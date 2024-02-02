@@ -1,24 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import './index.css';
+import { useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+
+import Navigation from './Components/Home/Navigation.js'
+import Login from './Components/LogInSignUp/Login.js'
+import Signup from './Components/LogInSignUp/Signup.js'
+
+import { DataProvider } from './context/DataContext.js'
 
 function App() {
+
+  const [type, setType] = useState('SignIn')
+
+  const [loginInfo, setLoginInfo] = useState({
+    email: '',
+    password: ''
+  })
+
+  const [singUpInfo, setSignUpInfo] = useState({
+    name: '',
+    email: '',
+    password: '',
+    registrationKey: ''
+  })
+
+  const handleOnClick = (text) => {
+    if (text !== type) {
+      setType(text);
+      console.log(text)
+      console.log(type)
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navigation />
+      <Routes>
+        <Route path='/login' element={
+          <Login
+            email={loginInfo.email}
+            password={loginInfo.password}
+            setLoginInfo={setLoginInfo}
+            handleOnClick={handleOnClick}
+          />
+        } />
+        <Route path='/signup' element={
+          <Signup
+            name={singUpInfo.name}
+            email={singUpInfo.email}
+            password={singUpInfo.password}
+            registrationKey={singUpInfo}
+            setSignUpInfo={setSignUpInfo}
+            handleOnClick={handleOnClick}
+          />
+        } />
+      </Routes>
     </div>
+
   );
 }
 
