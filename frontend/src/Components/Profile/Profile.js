@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { MdCameraAlt, MdPerson, MdVpnKey, MdEmail } from 'react-icons/md';
+import { MdCameraAlt, MdPerson, MdVpnKey, MdEmail, MdPhone } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 
-const Profile = ({ profile }) => {
+const UserProfile = ({ profile }) => {
   const [editMode, setEditMode] = useState(false);
   const [editedProfile, setEditedProfile] = useState({ ...profile });
   const [selectedFile, setSelectedFile] = useState(null);
@@ -30,6 +30,38 @@ const Profile = ({ profile }) => {
     setSelectedFile(file);
   };
 
+  const resetFileInput = () => {
+    // Reset file input to clear the selected file
+    document.getElementById('profilePictureInput').value = '';
+    setSelectedFile(null);
+  };
+
+  const profilePictureContainerStyles = {
+    position: 'relative',
+    width: '120px',
+    height: '120px',
+    borderRadius: '50%',
+    overflow: 'hidden',
+    margin: '0 auto 10px',
+  };
+
+  const selectedPictureStyles = {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    borderRadius: '50%',
+  };
+
+  const cameraIconStyles = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    fontSize: '2rem',
+    color: '#fff',
+    cursor: 'pointer',
+  };
+
   return (
     <>
       <div className='container'>
@@ -40,17 +72,29 @@ const Profile = ({ profile }) => {
         <div className='inputs'>
           <IconContext.Provider value={{ className: 'react-icons-signup' }}>
             <div className='input-field'>
-              <div style={{ position: 'relative', width: '120px', height: '120px', borderRadius: '50%', overflow: 'hidden', margin: '0 auto 10px' }}>
+              <label htmlFor='profilePictureInput' style={profilePictureContainerStyles}>
                 {selectedFile ? (
-                  <img
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
-                    src={URL.createObjectURL(selectedFile)}
-                    alt='Selected'
-                  />
+                  <>
+                    <img
+                      style={selectedPictureStyles}
+                      src={URL.createObjectURL(selectedFile)}
+                      alt='Selected'
+                    />
+                    {editMode && (
+                      <MdCameraAlt
+                        style={cameraIconStyles}
+                        onClick={() => resetFileInput()}
+                      />
+                    )}
+                  </>
                 ) : (
                   <>
-                    <MdCameraAlt style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '2rem', color: '#fff' }} />
+                    <MdCameraAlt
+                      style={cameraIconStyles}
+                      onClick={() => document.getElementById('profilePictureInput').click()}
+                    />
                     <input
+                      id='profilePictureInput'
                       type='file'
                       accept='image/jpeg'
                       onChange={handleFileChange}
@@ -59,7 +103,7 @@ const Profile = ({ profile }) => {
                     />
                   </>
                 )}
-              </div>
+              </label>
             </div>
             <div className='input-field'>
               <MdPerson />
@@ -94,6 +138,28 @@ const Profile = ({ profile }) => {
                 readOnly={!editMode}
               />
             </div>
+            <div className='input-field'>
+              <MdPhone />
+              <input
+                type='tel'
+                name='phoneNumber'
+                value={editedProfile.phoneNumber}
+                placeholder='Phone Number'
+                onChange={handleInputChange}
+                readOnly={!editMode}
+              />
+            </div>
+            <div className='input-field'>
+              <MdVpnKey />
+              <input
+                type='text'
+                name='userID'
+                value={editedProfile.userID}
+                placeholder='User ID'
+                onChange={handleInputChange}
+                readOnly={!editMode}
+              />
+            </div>
           </IconContext.Provider>
         </div>
         {editMode ? (
@@ -114,4 +180,4 @@ const Profile = ({ profile }) => {
   );
 };
 
-export default Profile;
+export default UserProfile;
