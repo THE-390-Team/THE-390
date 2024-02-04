@@ -29,7 +29,7 @@ const Login = ({ name, email, password, registrationKey, setLoginInfo, handleOnC
         </div>
         <div className="forgot-password">Forgot Password? <span>Click Here!</span></div>
         <div className='submit-container'>
-          <div className="submit" onClick={() => handleOnClick("Login")}>Login</div>
+          <div className="submit" onClick={() => handleOnClick("Login")}><Link to='/profile'>Login</Link></div>
         </div>
         <div className="no-account">Don't have an account? <span><Link to='/signup'>Sign Up</Link></span></div>
       </div>

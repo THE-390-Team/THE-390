@@ -5,6 +5,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Navigation from './Components/Home/Navigation.js'
 import Login from './Components/LogInSignUp/Login.js'
 import Signup from './Components/LogInSignUp/Signup.js'
+import Profile from './Components/Profile/Profile.js'
 
 import { DataProvider } from './context/DataContext.js'
 
@@ -54,6 +55,10 @@ function App() {
             handleOnClick={handleOnClick}
           />
         } />
+        <Route path='/profile' element={
+          <Profile/>
+        } />
+        
       </Routes>
     </div>
 
