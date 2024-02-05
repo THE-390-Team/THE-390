@@ -47,6 +47,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     province = models.CharField(max_length=100, blank=True)
     postal_code = models.CharField(max_length=10, blank=True)
     registration_key = models.CharField(max_length=150, blank=True)
+    phone_number = models.CharField(max_length=15, blank=True)
 
     objects = CustomProfileManager()
 
