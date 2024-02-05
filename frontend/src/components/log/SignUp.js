@@ -100,18 +100,19 @@ const SignUp = () => {
                     <Form.Group as={Col} controlId="formGridState">
                         <Form.Label>Province</Form.Label>
                         <Form.Select defaultValue="Choose...">
-                            <option>Choose...</option>
-                            <option>Choose...</option>
-                            <option>Choose...</option>
-                            <option>Choose...</option>
-                            <option>Choose...</option>
-                            <option>Choose...</option>
-                            <option>Choose...</option>
-                            <option>Choose...</option>
-                            <option>Choose...</option>
-                            <option>Choose...</option>
-                            <option>Choose...</option>
-                            <option>...</option>
+                            <option>BC</option>
+                            <option>PE</option>
+                            <option>NS</option>
+                            <option>NB</option>
+                            <option>QC</option>
+                            <option>ON</option>
+                            <option>MB</option>
+                            <option>SK</option>
+                            <option>AB</option>
+                            <option>BC</option>
+                            <option>YT</option>
+                            <option>NT</option>
+                            <option>NJ</option>
                         </Form.Select>
                     </Form.Group>
 

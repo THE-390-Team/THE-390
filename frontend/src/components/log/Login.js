@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Form, Row, Col, Button } from 'react-bootstrap'
+import { Container, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -43,7 +43,7 @@ const Login = () => {
   };
 
   return (
-    <Container className="w-75 p-3 bg-secondary mt-5 text-dark" >
+    <Container className="w-75 p-3 bg-secondary mt-5" >
       <Form className='py-5 text-dark' onSubmit={(handleSubmit)}>
         <Form.Group className="mb-3" controlId="formGridEmailAddress">
           <Form.Label>Email</Form.Label>
