@@ -1,11 +1,11 @@
 import Header from './components/Header.js'
 import Footer from './components/Footer.js'
-import Content from './components/Content.js'
 import HomeScreen from './screens/HomeScreen.js'
 import Login from './components/log/Login.js'
 import { Container } from 'react-bootstrap'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import SignUp from './components/log/SignUp.js'
+import UserProfile from './components/UserProfile.js'
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
             <Route path='/' element={<HomeScreen />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<SignUp />} />
+            <Route path='/profile' element={<UserProfile />} />
           </Routes>
         </Container>
       </main>
