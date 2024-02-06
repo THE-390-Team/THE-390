@@ -38,5 +38,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@cypress/instrument-cra": "^1.4.0",
+    "cypress": "^13.6.4",
+    "nyc": "^15.1.0"
   }
 }
