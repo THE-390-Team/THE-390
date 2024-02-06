@@ -4,10 +4,12 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
+
 class CustomProfileManager(BaseUserManager):
     
     # Create a super user (admin user)
     def create_superuser(self, email, first_name, last_name, password, registration_key, **other_fields):
+        
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
         other_fields.setdefault('is_active', True)
