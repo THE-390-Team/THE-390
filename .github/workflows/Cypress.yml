@@ -22,5 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Start Npm
+        run: npm start
+
       - name: Run Cypress tests
         run: npx cypress run --spec 'cypress/e2e/AppTesting.cy.js' --browser chrome
