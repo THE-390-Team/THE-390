@@ -14,10 +14,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  
+          node-version: '14'  # Adjust the node version as needed
+
+      - name: Navigate to frontend directory
+        run: cd frontend
 
       - name: Install dependencies
         run: npm install
 
       - name: Run Cypress tests
-        run: npx cypress run --spec 'frontend/cypress/e2e/AppTesting.cy.js' --browser chrome
+        run: npx cypress run --spec 'cypress/e2e/AppTesting.cy.js' --browser chrome
