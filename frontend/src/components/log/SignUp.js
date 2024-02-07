@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axiosInstance from "../../api/axios.js";
 
 const SignUp = () => {
+
   const history = useNavigate();
 
   //this should in extended to match all info we have
@@ -25,18 +26,17 @@ const SignUp = () => {
     setFormData({
       ...formData,
       // Trimming any whitespace
-      //   [e.target.name]: e.target.value.trim(),
       [e.target.name]: e.target.value,
     });
-    console.log(
-      `${formData.email} ${formData.first_name} ${formData.last_name} ${formData.password}`
-    );
   };
 
   // handle submit form
   const handleSubmit = (e) => {
+
     e.preventDefault();
+    
     console.log(formData);
+
     axiosInstance
       .post(`user-profile/register/`, {
         email: formData.email,
@@ -60,6 +60,9 @@ const SignUp = () => {
       })
       .catch((error) => {
         console.log(error);
+        console.log(error.data);
+        window.alert(`${error} `)
+        history(SignUp)
       });
   };
 
@@ -167,7 +170,7 @@ const SignUp = () => {
 
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Province</Form.Label>
-            <Form.Select defaultValue="Choose..." name="province" value={formData.province} onChange={handleChange}>
+            <Form.Select defaultValue={formData.province} name="province" value={formData.province} onChange={handleChange}>
               <option value="British Colombia">BC</option>
               <option value="Prince Edward Island">PE</option>
               <option value="Nova Scotia">NS</option>

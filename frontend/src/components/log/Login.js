@@ -6,6 +6,7 @@ import axiosInstance from "../../api/axios.js";
 // Login Page
 
 const Login = () => {
+
   const history = useNavigate();
 
   // Login information
@@ -18,8 +19,7 @@ const Login = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-
-      [e.target.name]: e.target.value, // .trim(),
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -46,6 +46,10 @@ const Login = () => {
         // confirm to user that they have been successfully logged in
         if (res.status == 200)
           window.alert(`you have been logged in as ${formData.email}`);
+      })
+      .catch((err)=>{
+        console.log(err);
+        window.alert("something went wrong when loggin in");
       });
   };
 

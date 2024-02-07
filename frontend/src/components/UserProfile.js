@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import profilepic from "../assets/pp.jpg";
 import axiosInstance from "../api/axios";
 import {
@@ -12,7 +12,10 @@ import {
   Form,
 } from "react-bootstrap";
 
+
+
 const UserProfile = () => {
+
   // user information
   const [profileInfo, setProfileInfo] = useState({
     avatar: profilepic,
@@ -65,6 +68,8 @@ const UserProfile = () => {
   // TODO need a to fetch
   // get information on active user
   useEffect(() => {
+
+
     axiosInstance
       .get("user-profile/profile/")
       .then((response) => {

@@ -3,15 +3,15 @@ from django.contrib.auth import get_user_model
 from .models import UserProfile, CustomProfileManager
 from django.test import TestCase
 from user_profile.models import UserProfile
-from rest_framework.test import APIClient
+from rest_framework.test import APIClient, APIRequestFactory, force_authenticate
 from rest_framework import status
 from rest_framework.test import APITestCase
 from rest_framework import status
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from django.contrib.auth import get_user_model
+from . import views
 
-
-class TestUserProfile(TestCase):
+class UserProfileCreationTest(TestCase):
 
     @classmethod
     def setUpTestData(cls) -> None:
@@ -31,7 +31,7 @@ class TestUserProfile(TestCase):
         cls.super_user = get_user_model().objects.create_superuser(
             first_name="admin",
             last_name="Doe",
-            email="admin@example2.com",
+            email="admin@example.com",
             password="password123",
             phone_number="5144841243",
             address="17 Guy St",
@@ -59,10 +59,10 @@ class TestUserProfile(TestCase):
 
     # test super user creation
     def test_create_superuser_profile(self):
-        user_profile = UserProfile.objects.get(email="admin@example2.com")
+        user_profile = UserProfile.objects.get(email="admin@example.com")
         self.assertEqual(user_profile.first_name, "admin")
         self.assertEqual(user_profile.last_name, "Doe")
-        self.assertEqual(user_profile.email, "admin@example2.com")
+        self.assertEqual(user_profile.email, "admin@example.com")
         self.assertTrue(user_profile.password, "password123")
         self.assertEqual(user_profile.phone_number, "5144841243")
         self.assertEqual(user_profile.address, "17 Guy St")
@@ -72,6 +72,7 @@ class TestUserProfile(TestCase):
         self.assertEqual(user_profile.registration_key, "regkey")
         self.assertEqual(user_profile.is_active, True)
         self.assertEqual(user_profile.is_staff, True)
+        self.assertEqual(user_profile.is_superuser, True)
         self.assertEqual(str(user_profile), "admin Doe")
 
     """
@@ -132,62 +133,50 @@ class UserProfileSerializerTest(TestCase):
 class UserProfileViewTest(TestCase):
 
     @classmethod
-    def setUpTestData(cls) -> None:
-        # Create a test user
-        cls.user = get_user_model().objects.create_user(
-            email="testuser1@example.com",
+    def setUpTestData(cls):
+        cls.user = UserProfile.objects.create(
+            email="testuser@example.com",
             password="testpassword",
             first_name="John",
             last_name="Doe",
-            registration_key="mkdmCDGVcdsmlcs",
-            is_staff=False,
-            is_active=True,
-        )
-
-        # Create a UserProfile for the test user
-        cls.user_profile = UserProfile.objects.create(
-            email="testuser2@example.com",
-            password="testpassword",
-            first_name="John",
-            last_name="Doe",
+            registration_key="testregistrationkey",
             is_staff=False,
             is_active=True,
             address="123 Main St",
             city="Cityville",
             province="State",
             postal_code="12345",
-            registration_key="registration_key_value",
             phone_number="1234567890",
         )
 
-        # Set up the test client
         cls.client = APIClient()
-
-    # Testing get()
-    # def test_get_with_user(self):
-    #     # Log in the test user
-    #     self.client.force_authenticate(user=self.user)
-
-    #     # Make a GET request to the UserProfileView
-    #     response = self.client.get('http://localhost:8000/user-profile/profile/')  # Replace with the actual endpoint
-
-    #     # Assert that the response status code is 200 (OK)
+    
+    # def test_authenticated_get_request(self):
+    #     response = self.client.get('/user-profile/profile/')
     #     self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-    #     # Assert that the expected user profile data is present in the response
-    #     self.assertEqual(response.data['email'], self.user.email)
-    #     # Add more assertions for other fields as needed
+    #     expected_data = {
+    #         'email': self.user.email,
+    #         'first_name': self.user.first_name,
+    #         'last_name': self.user.last_name,
+    #         'created_at': str(self.user_profile.created_at),
+    #         'is_staff': self.user_profile.is_staff,
+    #         'is_active': self.user_profile.is_active,
+    #         'address': self.user_profile.address,
+    #         'city': self.user_profile.city,
+    #         'province': self.user_profile.province,
+    #         'postal_code': self.user_profile.postal_code,
+    #         'registration_key': self.user_profile.registration_key,
+    #         'phone_number': self.user_profile.phone_number
+    #     }
+    #     self.assertEqual(response.data, expected_data)
 
     def test_get_with_no_user(self):
-        # Make a GET request to the UserProfileView without authentication
-        response = self.client.get(
-            "http://localhost:8000/user-profile/profile/"
-        )  # Replace with the actual endpoint
 
-        # Assert that the response status code is 401 (Unauthorized) for unauthenticated users
+        
+        response = self.client.get('/user-profile/profile/')
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-
-
+        
+        
 class BlackListTokenViewTest(TestCase):
 
     @classmethod
