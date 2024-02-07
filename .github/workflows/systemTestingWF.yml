@@ -16,10 +16,22 @@ jobs:
       - name: Navigate to frontend directory
         run: cd frontend
 
-      - name: Cypress run
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run frontend build
+        run: npm run build
+
+      - name: Start frontend server
+        run: npm start &
+
+      - name: Wait for frontend server to start
+        run: |
+          timeout 30s bash -c 'until nc -z localhost 3000; do sleep 1; done'
+
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v3
         with:
-          project: ./site
           browser: chrome
           start: npm start
           wait-on: "http://localhost:3000"
