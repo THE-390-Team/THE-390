@@ -65,7 +65,6 @@ const Login = () => {
             value={formData.email}
             onChange={handleChange}
           />
-          <Form.Control type="email" name="email" placeholder="your-email@email.com" value={formData.email} onChange={handleChange} data-testid="email-input" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formGridPassword">
@@ -77,7 +76,7 @@ const Login = () => {
             value={formData.password}
             onChange={handleChange}
           />
-          <Form.Control type='password' name="password" placeholder="Enter Your Password" value={formData.password} onChange={handleChange} data-testid="password-input" />
+        
         </Form.Group>
         <Button variant="primary" type="submit" data-testid="submit-button">
           Submit
