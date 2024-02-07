@@ -18,18 +18,20 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     - Ensure 'npm package manager' is included in the installation.
 3. Verify Installation
     - Open your terminal or command prompt.
-    - Run node -v to check the Node.js version.
-    - Run npm -v to verify npm installation.
+    - Run `node -v` to check the Node.js version.
+    - Run `npm -v` to verify npm installation.
 
 ## Setup
 
 1. Clone the Repository
-    - git clone [repository-url]
-    - cd [repository-name]
-2. Install Dependencies
-    - npm install
-3.  Start the App
-    - npm start
+    - `git clone [repository-url]`
+    - `cd [repository-name]`
+2. Open the app directory
+    - `cd frontend`
+4. Install Dependencies
+    - `npm install`
+5.  Start the App
+    - `npm start`
     - Access at http://localhost:3000
 
 ## Notes
