@@ -18,8 +18,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     - Ensure 'npm package manager' is included in the installation.
 3. Verify Installation
     - Open your terminal or command prompt.
-    - Run node -v to check the Node.js version.
-    - Run npm -v to verify npm installation.
+    - Run `node -v` to check the Node.js version.
+    - Run `npm -v` to verify npm installation.
 
 ## Setup
 
