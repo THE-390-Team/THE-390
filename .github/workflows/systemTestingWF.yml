@@ -13,12 +13,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Navigate to frontend directory
+        run: cd frontend
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Cypress run
         uses: cypress-io/github-action@v3
         with:
           project: ./site
           browser: chrome
-          build: yarn build
-          start: yarn start
+          start: npm start
           wait-on: "http://localhost:3000"
+
 
