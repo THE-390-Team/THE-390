@@ -24,12 +24,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Setup
 
 1. Clone the Repository
-    - git clone [repository-url]
-    - cd [repository-name]
-2. Install Dependencies
-    - npm install
-3.  Start the App
-    - npm start
+    - `git clone [repository-url]`
+    - `cd [repository-name]`
+2. Open the app directory
+    - `cd frontend`
+4. Install Dependencies
+    - `npm install`
+5.  Start the App
+    - `npm start`
     - Access at http://localhost:3000
 
 ## Notes
