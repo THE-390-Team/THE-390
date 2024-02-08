@@ -262,7 +262,7 @@ const UserProfile = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
+          <Button variant="secondary" onClick={handleCloseModal} data-testid="secondary">
             Close
           </Button>
           <Button variant="primary" onClick={handleSaveChanges} data-testid="submit-button">

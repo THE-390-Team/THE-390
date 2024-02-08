@@ -21,8 +21,8 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
 
-              <LinkContainer to="/logout">
-                <Nav.Link>
+              <LinkContainer to="/logout" >
+                <Nav.Link data-testid ="logout">
                   <i className="fas fa-user"></i> LOGOUT
                 </Nav.Link>
               </LinkContainer>

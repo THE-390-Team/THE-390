@@ -28,8 +28,24 @@ jobs:
         run: |
           timeout 30s bash -c 'until nc -z localhost 3000; do sleep 1; done'
 
+      - name: Start frontend server
+        working-directory: ./backend
+        run: python manage.py runserver
+
+      - name: Create python environment locally 
+        working-directory: ./backend 
+        run: python -m venv venv . venv/Scripts/activate 
+
+      - name: Install Cypress
+        working-directory: ./frontend
+        run: npm install cypress --save-dev
+
       - name: Run Cypress tests
         working-directory: ./frontend
         run: npx cypress run
 
+     - name: Run Unit tests Django
+        working-directory: ./backend
+        run: python manage.py test
 
+      
