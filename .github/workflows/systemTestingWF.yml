@@ -19,7 +19,7 @@ jobs:
 
       - name: Start frontend server
         working-directory: ./frontend
-        run: npm start 
+        run: npm start &
 
       - name: Create python environment
         working-directory: ./backend
