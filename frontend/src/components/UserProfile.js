@@ -196,7 +196,7 @@ const UserProfile = () => {
                 name="phone_number"
                 defaultValue={profileInfo.phone_number}
                 onChange={handleChange}
-                data-testid="phone-number-input"
+                data-testid="phone-number-input1"
               />
             </Form.Group>
             {/* TODO check the default profile picture */}
@@ -215,7 +215,7 @@ const UserProfile = () => {
                 name="address"
                 defaultValue={profileInfo.address}
                 onChange={handleChange}
-                data-testid="address-input"
+                data-testid="address-input1"
               />
             </Form.Group>
 
