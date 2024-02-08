@@ -13,26 +13,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install frontend dependencies and start server
+      - name: Install frontend dependencies
         working-directory: ./frontend
-        run: |
-          npm install &&
-          npm start & &&
-          timeout 30s bash -c 'until nc -z localhost 3000; do sleep 1; done'
+        run: npm install
 
-      - name: Create and activate python environment, install backend dependencies, and start server
+      - name: Start frontend server
+        working-directory: ./frontend
+        run: npm start 
+
+      - name: Create python environment
         working-directory: ./backend
-        run: |
-          python -m venv venv &&
-          source venv/bin/activate &&
-          pip install -r requirements.txt &&
-          python manage.py runserver &
+        run: python -m venv venv
 
-      - name: Install Cypress and run tests
+      - name: Activate python environment
+        working-directory: ./backend
+        run: source venv/bin/activate
+
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: pip install -r requirements.txt
+
+      - name: Start backend server
+        working-directory: ./backend
+        run: python manage.py runserver &
+
+      - name: Install Cypress
         working-directory: ./frontend
-        run: |
-          npm install cypress --save-dev &&
-          npx cypress run
+        run: npm install cypress --save-dev
+
+      - name: Run Cypress tests
+        working-directory: ./frontend
+        run: npx cypress run
 
       - name: Run Unit tests Django
         working-directory: ./backend
