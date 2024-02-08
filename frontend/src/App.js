@@ -1,3 +1,4 @@
+import React from "react";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 import HomeScreen from "./screens/HomeScreen.js";
@@ -7,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./components/log/SignUp.js";
 import UserProfile from "./components/UserProfile.js";
 import LogOut from "./components/log/LogOut";
+
 
 function App() {
   return (

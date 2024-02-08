@@ -1,3 +1,4 @@
+import React from "react";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -79,6 +80,7 @@ const SignUp = () => {
               placeholder="Enter Your First Name"
               value={formData.first_name}
               onChange={handleChange}
+              data-testid="first-name-input"
             />
           </Form.Group>
 
@@ -90,6 +92,7 @@ const SignUp = () => {
               placeholder="Enter Your Last Name"
               value={formData.last_name}
               onChange={handleChange}
+              data-testid="last-name-input"
             />
           </Form.Group>
         </Row>
@@ -103,6 +106,7 @@ const SignUp = () => {
               name="phone_number"
               value={formData.phone_number}
               onChange={handleChange}
+              data-testid="phone-number-input"
             />
           </Form.Group>
 
@@ -114,6 +118,7 @@ const SignUp = () => {
               name="registration_key"
               value={formData.registration_key}
               onChange={handleChange}
+              data-testid="registration-key-input"
             />
           </Form.Group>
         </Row>
@@ -126,6 +131,7 @@ const SignUp = () => {
             placeholder="your-email@email.com"
             value={formData.email}
             onChange={handleChange}
+            data-testid="email-input"
           />
         </Form.Group>
 
@@ -138,6 +144,7 @@ const SignUp = () => {
               placeholder="Enter Your Password"
               value={formData.password}
               onChange={handleChange}
+              data-testid="password-input"
             />
           </Form.Group>
 
@@ -147,6 +154,7 @@ const SignUp = () => {
               type="password"
               placeholder="Confirm Your Password"
               name="password_confirmation"
+              data-testid="confirm-password-input"
             />
           </Form.Group>
         </Row>
@@ -159,18 +167,20 @@ const SignUp = () => {
             name="address"
             value={formData.address}
             onChange={handleChange}
+            data-testid="address-input"
           />
         </Form.Group>
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>City</Form.Label>
-            <Form.Control type="text" name="city" value={formData.city} onChange={handleChange} />
+            <Form.Control type="text" name="city" value={formData.city} onChange={handleChange} data-testid="city-input" />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Province</Form.Label>
-            <Form.Select defaultValue={formData.province} name="province" value={formData.province} onChange={handleChange}>
+            <Form.Select defaultValue={formData.province} name="province" value={formData.province} onChange={handleChange} 
+            data-testid="province-select"  >
               <option value="British Colombia">BC</option>
               <option value="Prince Edward Island">PE</option>
               <option value="Nova Scotia">NS</option>
@@ -189,7 +199,7 @@ const SignUp = () => {
 
           <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Postal Code</Form.Label>
-            <Form.Control type="text" name="postal_code" value={formData.postal_code} onChange={handleChange} />
+            <Form.Control type="text" name="postal_code" value={formData.postal_code} onChange={handleChange} data-testid ="postal-code-input" />
           </Form.Group>
         </Row>
 
@@ -197,7 +207,7 @@ const SignUp = () => {
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group> */}
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" data-testid="submit-button">
           Submit
         </Button>
         <Form.Text>

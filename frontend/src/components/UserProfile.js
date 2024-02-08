@@ -120,7 +120,7 @@ const UserProfile = () => {
               </ListGroup.Item>
             </ListGroup>
             <Card.Body className="d-flex justify-content-center">
-              <Button variant="primary" onClick={handleShowModal}>
+              <Button variant="primary" onClick={handleShowModal} data-testid="edit-profile">
                 Edit Profile
               </Button>
             </Card.Body>
@@ -196,6 +196,7 @@ const UserProfile = () => {
                 name="phone_number"
                 defaultValue={profileInfo.phone_number}
                 onChange={handleChange}
+                data-testid="phone-number-input"
               />
             </Form.Group>
             {/* TODO check the default profile picture */}
@@ -214,6 +215,7 @@ const UserProfile = () => {
                 name="address"
                 defaultValue={profileInfo.address}
                 onChange={handleChange}
+                data-testid="address-input"
               />
             </Form.Group>
 
@@ -263,7 +265,7 @@ const UserProfile = () => {
           <Button variant="secondary" onClick={handleCloseModal}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSaveChanges}>
+          <Button variant="primary" onClick={handleSaveChanges} data-testid="submit-button">
             Save Changes
           </Button>
         </Modal.Footer>

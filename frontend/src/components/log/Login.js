@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -64,6 +65,7 @@ const Login = () => {
             placeholder="your-email@email.com"
             value={formData.email}
             onChange={handleChange}
+            data-testid="email-input"
           />
         </Form.Group>
 
@@ -75,6 +77,7 @@ const Login = () => {
             placeholder="Enter Your Password"
             value={formData.password}
             onChange={handleChange}
+            data-testid="password-input"
           />
         
         </Form.Group>

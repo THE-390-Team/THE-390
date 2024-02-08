@@ -1,49 +1,34 @@
 const { Link } = require("react-router-dom")
+
+/* In this file, we are testing the following:
+  -Entering the site and navigating to the login page
+  -Entering the site and navigating to the profile page
+  -Filling out the sign-up form and submitting successfully
+  -Filling out the login form and submitting successfully
+  -Opening the profile editing modal and submitting successfully
+  -Logging out
+*/
+
 describe('Header Navigation', () => {
   beforeEach(() => {
-    cy.visit('/') // Assuming your homepage is served at '/'
-  })
+    cy.visit('/');
+  });
 
-  it('should navigate to login page when "LOGIN" link is clicked', () => {
-    cy.get('nav').contains('LOGIN').click()
-    cy.url().should('include', '/login')
-  })
+  it('should navigate to login page', () => {
+    cy.contains('LOGIN').click();
+    cy.url().should('include', '/login');
+  });
 
-  it('should navigate to properties page when "Properties" link is clicked', () => {
-    cy.get('nav').contains('Properties').click()
-    cy.url().should('include', '/properties')
-  })
+  it('should navigate to profile page', () => {
+    cy.contains('Profile').click();
+    cy.url().should('include', '/profile');
+  });
+});
 
-  it('should display dropdown menu when dropdown toggle is clicked', () => {
-    cy.get('nav').contains('Dropdown').click()
-    cy.get('nav').contains('Action').should('be.visible')
-    cy.get('nav').contains('Another action').should('be.visible')
-    cy.get('nav').contains('Something').should('be.visible')
-    cy.get('nav').contains('Separated link').should('be.visible')
-  })
-
-  it('should navigate to a specific dropdown item when clicked', () => {
-    cy.get('nav').contains('Dropdown').click()
-    cy.get('nav').contains('Action').click()
-  })
-
-})
-
-describe('Login Form', () => {
-  beforeEach(() => {
-    cy.visit('/login') 
-  })
-
-  it('should fill out the form and submit successfully', () => {
-    cy.get('[data-testid="email-input"]').type('test@example.com')
-    cy.get('[data-testid="password-input"]').type('password123')
-    // cy.get('[data-testid="submit-button"]').click()
-  })
-})
 
 describe('Sign Up Form', () => {
   beforeEach(() => {
-    cy.visit('/signup') // Assuming your sign-up page is served at '/signup'
+    cy.visit('/signup')
   })
 
   it('should fill out the sign-up form and submit successfully', () => {
@@ -56,10 +41,46 @@ describe('Sign Up Form', () => {
     cy.get('[data-testid="confirm-password-input"]').type('password123')
     cy.get('[data-testid="address-input"]').type('123 Main St')
     cy.get('[data-testid="city-input"]').type('Anytown')
-    cy.get('[data-testid="province-select"]').select('Choose...')
+    cy.get('[data-testid="province-select"]').select('BC')
     cy.get('[data-testid="postal-code-input"]').type('12345')
+    cy.get('[data-testid="submit-button"]').click()
+  })
+})
 
-    // cy.get('[data-testid="submit-button"]').click()
+describe('Login Form', () => {
+  beforeEach(() => {
+    cy.visit('/login') 
   })
 
+  it('should fill out the form and submit successfully', () => {
+    cy.get('[data-testid="email-input"]').type('test@example.com')
+    cy.get('[data-testid="password-input"]').type('password123')
+    cy.get('[data-testid="submit-button"]').click()
+  })
 })
+
+describe('Profile Editing Modal', () => {
+  beforeEach(() => {
+    cy.visit('/profile') 
+  });
+  it('should open the modal when the "Edit Profile" button is clicked', () => {
+    cy.contains('Edit Profile').click(); 
+    cy.get('[role="dialog"]').should('be.visible'); 
+    cy.contains('Edit Profile').should('be.visible');
+    cy.get('[data-testid="phone-number-input"]').clear().type('0987654321');
+    cy.get('[data-testid="address-input"').clear().type('123 Elm St');
+    cy.get('[variant="secondary"]').click();
+    cy.get('[role="dialog"]').should('not.exist');
+    cy.get('[data-testid="edit-profile"]').click();
+    cy.get('[role="dialog"]').should('not.exist');
+  });
+});
+
+describe('Logout', () => {
+  it('should log the user out', () => {
+    cy.get('[data-testid="logout-button"]').click();
+    cy.url().should('include', '/login');
+  });
+});
+
+
