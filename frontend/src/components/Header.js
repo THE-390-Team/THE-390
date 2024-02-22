@@ -3,8 +3,12 @@ import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axios";
+import { useAuth } from "../utils/hooks/AuthContext";
+
+
 
 const Header = () => {
+  const { isLoggedIn } = useAuth();
   return (
     <header>
       <Navbar expand="sm" className="bg-body-tertiary">
@@ -15,22 +19,15 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <LinkContainer to="/login">
+              {isLoggedIn ? "" : <LinkContainer to="/login">
                 <Nav.Link>
                   <i className="fas fa-user"></i> LOGIN
                 </Nav.Link>
-              </LinkContainer>
+              </LinkContainer>}
 
-              <LinkContainer to="/logout" >
-                <Nav.Link data-testid ="logout">
-                  <i className="fas fa-user"></i> LOGOUT
-                </Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/profile">
-                <Nav.Link>
-                  <i className="fa-sharp fa-solid fa-house"></i> Profile
-                </Nav.Link>
-              </LinkContainer>
+
+
+
 
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item>Action</NavDropdown.Item>
@@ -40,6 +37,20 @@ const Header = () => {
                 <NavDropdown.Item>Separated link</NavDropdown.Item>
               </NavDropdown>
             </Nav>
+            <Nav className="ms-auto">
+              {isLoggedIn ? <LinkContainer to="/profile">
+                <Nav.Link>
+                  <i className="fa-sharp fa-solid fa-house"></i> Profile
+                </Nav.Link>
+              </LinkContainer>
+                : ""}
+              {isLoggedIn ? <LinkContainer to="/logout" >
+                <Nav.Link data-testid="logout">
+                  <i className="fas fa-user"></i> LOGOUT
+                </Nav.Link>
+              </LinkContainer> : ""}
+            </Nav>
+
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axios.js";
-
+import { useAuth } from "../../utils/hooks/AuthContext.js";
 // Login Page
 
 const Login = () => {
 
   const history = useNavigate();
-
+  const {authUser,
+    setAuthUser,
+    isLoggedIn,
+    setIsLoggedIn} = useAuth();
   // Login information
   const [formData, setFormData] = useState({
     email: "",
@@ -44,11 +47,14 @@ const Login = () => {
         history("/profile");
         console.log(res);
         console.log(res.data);
+        setIsLoggedIn(true);
+        // TODO must confirm i need to use user id?
+        setAuthUser(formData.email);
         // confirm to user that they have been successfully logged in
         if (res.status == 200)
           window.alert(`you have been logged in as ${formData.email}`);
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err);
         window.alert("something went wrong when loggin in");
       });
@@ -79,15 +85,10 @@ const Login = () => {
             onChange={handleChange}
             data-testid="password-input"
           />
-        
         </Form.Group>
         <Button variant="primary" type="submit" data-testid="submit-button">
           Submit
         </Button>
-        <Form.Text className="py-3">
-          {" "}
-          Don't have an account? <Link to="/signup">Sign Up</Link>
-        </Form.Text>
         <Form.Text className='py-3'> Don't have an account? <Link to='/signup' data-testid="sign-up-link">Sign Up</Link></Form.Text>
       </Form>
     </Container>
