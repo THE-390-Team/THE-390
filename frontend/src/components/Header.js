@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react"
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axios";
 import { useAuth } from "../utils/hooks/AuthContext";
@@ -24,13 +25,8 @@ const Header = () => {
                   <i className="fas fa-user"></i> LOGIN
                 </Nav.Link>
               </LinkContainer>}
-
-
-
-
-
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item>Action</NavDropdown.Item>
+                <LinkContainer to="/create-unit"><NavDropdown.Item> Create Unit Profile </NavDropdown.Item></LinkContainer>
                 <NavDropdown.Item>Another action</NavDropdown.Item>
                 <NavDropdown.Item>Something</NavDropdown.Item>
                 <NavDropdown.Divider />
