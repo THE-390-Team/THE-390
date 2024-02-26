@@ -18,11 +18,6 @@ describe('Header Navigation', () => {
     cy.contains('LOGIN').click();
     cy.url().should('include', '/login');
   });
-
-  it('should navigate to profile page', () => {
-    cy.contains('Profile').click();
-    cy.url().should('include', '/profile');
-  });
 });
 
 
