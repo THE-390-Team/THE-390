@@ -46,7 +46,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['role']
+    REQUIRED_FIELDS = ['role', 'first_name', 'last_name']
     
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -66,6 +66,9 @@ def create_user_profile(sender, instance, created, **kwargs):
         CompanyProfile.objects.create(user=instance)
     
 class Profile(models.Model):
+    """
+        Abstract Profile Model whos propreties are inherited by Public, Employee and Company Profiles  
+    """
     class Meta:
         abstract = True
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)    

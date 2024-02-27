@@ -5,7 +5,8 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView
 )
-from user_profile.views import BlackListTokenView
+from auth.views import BlackListTokenView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
