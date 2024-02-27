@@ -1,13 +1,15 @@
-import { useState, useEffect, useContext, createContext } from 'react';
+import { useState, useContext, createContext } from 'react';
+import axiosInstance from '../../api/axios';
+import profilepic from "../../assets/pp.jpg"
 
-const profileContext = createContext();
+const ProfileContext = createContext();
 
 export function useProfile() {
-    return useContext(profileContext);
+    return useContext(ProfileContext);
 }
-export function AuthProvider(props) {
+export function ProfileProvider(props) {
 
-    const [profile, setProfile] = useState({
+    const [profileInfo, setProfileInfo] = useState({
         avatar: "",
         first_name: "",
         last_name: "",
@@ -20,15 +22,35 @@ export function AuthProvider(props) {
         postal_code: "",
     });
 
-    const  updateUser = (user) => {
-        //implement the update with the new api
-    };
-
-    const updateProfile = (profile) =>{
-        // implement the update with the new api
-    };
-
+    const getProfileInformation = async () => {
+        axiosInstance
+            .get("user-profile/profile/")
+            .then((response) => {
+                console.log(response);
+                setProfileInfo({
+                    avatar: profilepic,
+                    first_name: response.data.first_name,
+                    last_name: response.data.last_name,
+                    email: response.data.email,
+                    phone_number: response.data.phone_number,
+                    address: response.data.address,
+                    city: response.data.city,
+                    province: response.data.province,
+                    postal_code: response.data.postal_code,
+                });
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching user profile:", error.message);
+            });
+    }
+   
+    const setProfileInformation = (profile) => {
+        setProfileInfo(profile);
+    }
+    
+    
     return (
-        <AuthContext.Provider value={{profile, updateProfile}} > {props.children} </AuthContext.Provider>
+        <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation}} > {props.children} </ProfileContext.Provider>
     )
 }

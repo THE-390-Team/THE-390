@@ -59,12 +59,11 @@ const PropertyContainer = () => {
 
     return (
         <div className="d-flex flex-column align-items-center" style={{
-            width: '30rem', maxHeight: '80vh',
+            width: '30rem', maxHeight: '75vh',
             overflowY: 'auto',
             width: '30rem',
-            // backgroundColor: "#a6aabd"
         }}>
-            <h1 >Properties</h1>
+            {/* <h1 >Properties</h1> */}
             {Object.values(propertiesData).map((property) => (
                 <PropertyCard key={property.id} property={property} />
             ))}
