@@ -3,6 +3,8 @@ import { useState } from "react"
 import PropertyContainer from './property/PropertyContainer.js'
 
 const DashBoard = () => {
+
+    // must implement use context to share user profile information
     const [property, setProperty] = useState({
         name: "property name",
         location: "property location",

@@ -51,12 +51,36 @@ const PropertyCard = ({ property }) => {
     ));
   };
 
+  const calculateUnitTotal = (property) => {
+    let total = 0;
+    for (const unit of property.units) {
+      total += unit.price;
+    }
+    return total;
+  }
+
+  const calculateParkingTotal = (property) => {
+    let total = 0;
+    for (const parking of property.parkingSpots) {
+      total += parking.price;
+    }
+    return total;
+  }
+  const calculateLockerTotal = (property) => {
+    let total = 0;
+    for (const locker of property.lockers) {
+      total += locker.price;
+    }
+    return total;
+  }
+
+
   return (
-    <Card className = "mb-3" style={{ width: '25rem', textAlign: 'center' }}>
+    <Card className="mb-3" style={{ width: '25rem', textAlign: 'center' }}>
       <Card.Img
         variant="top"
         src={property.image}
-        style={{ width: '100%', height: 'auto', display: 'block', maxHeight: "200px", borderRadius:"10px"}}
+        style={{ width: '100%', height: 'auto', display: 'block', maxHeight: "200px", borderRadius: "10px" }}
       />
       <Card.Body>
         <Card.Title>{property.name}</Card.Title>
@@ -65,8 +89,12 @@ const PropertyCard = ({ property }) => {
         <Overlay target={unitsRef.current} show={showUnits} placement="bottom">
           {(props) => (
             <Popover {...props} id="popover-units">
-              <Popover.Header as="h3">Units</Popover.Header>
-              <Popover.Body>{renderUnits()}</Popover.Body>
+              <Popover.Body>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                  <div>Count: {property.units.length}</div>
+                  <div>Value: ${calculateUnitTotal(property)}</div>
+                </div>
+              </Popover.Body>
             </Popover>
           )}
         </Overlay>
@@ -75,8 +103,12 @@ const PropertyCard = ({ property }) => {
         <Overlay target={parkingRef.current} show={showParking} placement="bottom">
           {(props) => (
             <Popover {...props} id="popover-parking">
-              <Popover.Header as="h3">Parking Spots</Popover.Header>
-              <Popover.Body>{renderParkingSpots()}</Popover.Body>
+              <Popover.Body>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                  <div>Count: {property.parkingSpots.length}</div>
+                  <div>Total: ${calculateParkingTotal(property)}</div>
+                </div>
+              </Popover.Body>
             </Popover>
           )}
         </Overlay>
@@ -85,8 +117,12 @@ const PropertyCard = ({ property }) => {
         <Overlay target={lockersRef.current} show={showLockers} placement="bottom">
           {(props) => (
             <Popover {...props} id="popover-lockers">
-              <Popover.Header as="h3">Lockers</Popover.Header>
-              <Popover.Body>{renderLockers()}</Popover.Body>
+              <Popover.Body>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                  <div>Count: {property.lockers.length} </div>
+                  <div>Total: ${calculateLockerTotal(property)}</div>
+                </div>
+              </Popover.Body>
             </Popover>
           )}
         </Overlay>
