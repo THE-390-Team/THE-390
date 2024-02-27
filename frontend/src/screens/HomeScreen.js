@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const HomeScreen = () => {
     return (
-        <main>
-            <div></div>
-        </main>
+        
+            <div><Link to = "/property-page"> Property Page </Link></div>
+        
 
     )
 }

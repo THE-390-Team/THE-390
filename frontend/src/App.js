@@ -10,6 +10,7 @@ import UserProfile from "./components/UserProfile.js";
 import LogOut from "./components/log/LogOut";
 import PropertyCard from "./components/property/PropertyCard.js";
 import DashBoard from "./components/DashBoard.js";
+import PropertyPage from "./components/property/CreateProperty.js";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/property-card" element={<PropertyCard />} />
             <Route path="/dashboard" element={<DashBoard />} />
+            <Route path="/property-page" element={<PropertyPage />} />
           </Routes>
         </Container>
       </main>
