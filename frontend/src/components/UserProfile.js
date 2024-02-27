@@ -68,15 +68,18 @@ const UserProfile = () => {
   // TODO need a to fetch
   // get information on active user
   useEffect(() => {
-   axiosInstance
-      .get("user-profile/profile/")
-      .then((response) => {
+    const id = localStorage.getItem("ID");
+
+
+    axiosInstance
+    .get(`profiles/public-profile/${id}/`)
+    .then((response) => {
         console.log(response);
         setProfileInfo({
           avatar: profilepic,
-          first_name: response.data.first_name,
-          last_name: response.data.last_name,
-          email: response.data.email,
+          first_name: response.data.user.first_name,
+          last_name: response.data.user.last_name,
+          email: response.data.user.email,
           phone_number: response.data.phone_number,
           address: response.data.address,
           city: response.data.city,

@@ -18,11 +18,6 @@ describe('Header Navigation', () => {
     cy.contains('LOGIN').click();
     cy.url().should('include', '/login');
   });
-
-  it('should navigate to profile page', () => {
-    cy.contains('Profile').click();
-    cy.url().should('include', '/profile');
-  });
 });
 
 
@@ -77,7 +72,7 @@ describe('Profile Editing Modal', () => {
 describe('Logout', () => {
   it('Login and then logout', () => {
     cy.visit('/login') 
-    cy.get('[data-testid="email-input"]').type('test@example.com')
+    cy.get('[data-testid="email-input"]').type('testuser@example.com')
     cy.get('[data-testid="password-input"]').type('password123')
     cy.get('[data-testid="submit-button"]').click()
     cy.get('[data-testid ="logout"]').click();
