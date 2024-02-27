@@ -6,10 +6,10 @@ import Login from "./components/log/Login.js";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./components/log/SignUp.js";
-import UserProfile from "./components/UserProfile.js";
+import UserProfile from "./components/userProfile/UserProfile.js";
 import LogOut from "./components/log/LogOut";
 import PropertyCard from "./components/property/PropertyCard.js";
-import DashBoard from "./components/DashBoard.js";
+import DashBoard from "./components/dashboard/DashBoard.js";
 
 
 function App() {

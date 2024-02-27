@@ -1,6 +1,9 @@
 import React from 'react'
 import { useState } from "react"
-import PropertyContainer from './property/PropertyContainer.js'
+import PropertyContainer from '../property/PropertyContainer.js'
+import UserInfo from './UserInfo.js';
+import { Container, Col, Row } from "react-bootstrap";
+import Financial from './Financial.js';
 
 const DashBoard = () => {
 
@@ -21,9 +24,17 @@ const DashBoard = () => {
     });
 
     return (
-        <div className="d-flex justify-content-end">
-            <PropertyContainer style={{}}></PropertyContainer>
-        </div>
+        <Container className="mt-5">
+            <Row className="justify-content-center">
+                <Col>
+                    <UserInfo className="mb-4" />
+                    <Financial className="mt-4" />
+                </Col>
+                <Col>
+                    <PropertyContainer />
+                </Col>
+            </Row>
+        </Container>
 
     );
 }

@@ -62,6 +62,7 @@ const PropertyContainer = () => {
             width: '30rem', maxHeight: '80vh',
             overflowY: 'auto',
             width: '30rem',
+            // backgroundColor: "#a6aabd"
         }}>
             <h1 >Properties</h1>
             {Object.values(propertiesData).map((property) => (
