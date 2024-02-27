@@ -11,7 +11,7 @@ const LogOut = () => {
 
 
   useEffect(() => {
-    const response = axiosInstance.post("user-profile/logout/blacklist/", {
+    const response = axiosInstance.post("/logout/blacklist/", {
       refresh_token: localStorage.getItem("refresh_token"),
     });
 
