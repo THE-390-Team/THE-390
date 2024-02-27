@@ -8,8 +8,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./components/log/SignUp.js";
 import UserProfile from "./components/UserProfile.js";
 import LogOut from "./components/log/LogOut";
-import PropertyCard from "./components/property/PropertyCard.js";
-import CreateUnit from "./components/CreateUnit.js"
+//import PropertyCard from "./components/property/PropertyCard.js";
+import CreateUnit from "./components/CreateUnit.js";
+import CreateParking from "./components/CreateParking.js";
+import CreateLocker from "./components/CreateLocker.js";
 
 
 function App() {
@@ -25,7 +27,9 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/create-unit" element={<CreateUnit />} />
-            <Route path="/property-card" element={<PropertyCard />} />
+            <Route path="/create-parking" element={<CreateParking />} />
+            <Route path="/create-locker" element={<CreateLocker />} />
+            {/* <Route path="/property-card" element={<PropertyCard />} /> */}
           </Routes>
         </Container>
       </main>

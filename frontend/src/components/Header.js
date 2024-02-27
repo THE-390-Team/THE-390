@@ -27,6 +27,8 @@ const Header = () => {
               </LinkContainer>}
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <LinkContainer to="/create-unit"><NavDropdown.Item> Create Unit Profile </NavDropdown.Item></LinkContainer>
+                <LinkContainer to="/create-parking"><NavDropdown.Item> Create Parking Profile </NavDropdown.Item></LinkContainer>
+                <LinkContainer to="/create-locker"><NavDropdown.Item> Create Locker Profile </NavDropdown.Item></LinkContainer>
                 <NavDropdown.Item>Another action</NavDropdown.Item>
                 <NavDropdown.Item>Something</NavDropdown.Item>
                 <NavDropdown.Divider />

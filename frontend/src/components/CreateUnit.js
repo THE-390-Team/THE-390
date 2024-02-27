@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import profilepic from "../assets/pp.jpg";
 import axiosInstance from "../api/axios";
 import {
   Container,
@@ -16,12 +15,12 @@ import {
 const CreateUnit = () => {
 
   const history = useNavigate();
-  // condo information, should extend to match all info needed
+  // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
-    condo_id: "",
-    condo_size: "",
-    condo_owner: "",
-    condo_info: "",
+    unit_id: "",
+    unit_size: "",
+    unit_owner: "",
+    unit_info: "",
   });
 
   const handleChange = (e) => {
@@ -40,15 +39,15 @@ const CreateUnit = () => {
     console.log(formData);
 
     axiosInstance
-      .post(`condo-profile/register/`, {
-        condo_id: formData.condo_id,
-        condo_size: formData.condo_size,
-        condo_owner: formData.condo_owner,
-        condo_info: formData.condo_info,
+      .post(`unit-profile/register/`, {
+        unit_id: formData.unit_id,
+        unit_size: formData.unit_size,
+        unit_owner: formData.unit_owner,
+        unit_info: formData.unit_info,
       })
       .then((res) => {
         if (res.status == 201) {
-          window.alert(`condo profile ${formData.condo_id} has been created`)
+          window.alert(`unit profile ${formData.unit_id} has been created`)
           console.log(res);
           console.log(res.data);
           //There should be a history
@@ -60,7 +59,7 @@ const CreateUnit = () => {
         console.log(error.data);
         window.alert(`${error} `)
         //There should be a history
-        //history(CondoProfile)
+        //history(UnitProfile)
       });
   };
 
@@ -69,51 +68,51 @@ const CreateUnit = () => {
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
 
         <Row classname="mb-3">
-          <Form.Group as={Col} controlId="formGridCondoID">
-            <Form.Label>Condo ID</Form.Label>
+          <Form.Group as={Col} controlId="formGridUnitID">
+            <Form.Label>Unit ID</Form.Label>
             <Form.Control
               type="text"
-              name="condo_id"
-              placeholder="Enter Condo ID"
-              value={formData.condo_id}
+              name="unit_id"
+              placeholder="Enter Unit ID"
+              value={formData.unit_id}
               onChange={handleChange}
-              data-testid="condo-ID-input"
+              data-testid="unit-ID-input"
             />
           </Form.Group>
-          <Form.Group as={Col} controlId="formGridCondoSize">
-            <Form.Label>Condo Size</Form.Label>
+          <Form.Group as={Col} controlId="formGridUnitSize">
+            <Form.Label>Unit Size</Form.Label>
             <Form.Control
               type="text"
-              name="condo_size"
-              placeholder="Enter Condo Size"
-              value={formData.condo_size}
+              name="unit_size"
+              placeholder="Enter Unit Size"
+              value={formData.unit_size}
               onChange={handleChange}
-              data-testid="condo-size-input"
+              data-testid="unit-size-input"
             />
           </Form.Group>
         </Row>
 
-        <Form.Group classname="mb-3" controlId="formGridCondoOwner">
-          <Form.Label>Condo Owner</Form.Label>
+        <Form.Group classname="mb-3" controlId="formGridUnitOwner">
+          <Form.Label>Unit Owner</Form.Label>
           <Form.Control
             type="text"
-            name="condo_owner"
-            placeholder="Enter Condo Owner Name"
-            value={formData.condo_owner}
+            name="unit_owner"
+            placeholder="Enter Unit Owner Name"
+            value={formData.unit_owner}
             onChange={handleChange}
-            data-testid="condo-owner-input"
+            data-testid="unit-owner-input"
           />
         </Form.Group>
 
-        <Form.Group classname="mb-3" controlId="formGridCondoInfo">
-          <Form.Label>Condo Occupant Info</Form.Label>
+        <Form.Group classname="mb-3" controlId="formGridUnitInfo">
+          <Form.Label>Unit Occupant Info</Form.Label>
           <Form.Control
             type="text"
-            name="condo_info"
-            placeholder="Enter Condo Occupant Info"
-            value={formData.condo_info}
+            name="unit_info"
+            placeholder="Enter Unit Occupant Info"
+            value={formData.unit_info}
             onChange={handleChange}
-            data-testid="condo-info-input"
+            data-testid="unit-info-input"
           />
         </Form.Group>
         <Button variant="primary" type="submit" data-testid="submit-button">
