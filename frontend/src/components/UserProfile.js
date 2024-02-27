@@ -68,9 +68,7 @@ const UserProfile = () => {
   // TODO need a to fetch
   // get information on active user
   useEffect(() => {
-
-
-    axiosInstance
+   axiosInstance
       .get("user-profile/profile/")
       .then((response) => {
         console.log(response);

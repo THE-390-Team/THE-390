@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./components/log/SignUp.js";
 import UserProfile from "./components/UserProfile.js";
 import LogOut from "./components/log/LogOut";
+import PropertyCard from "./components/property/PropertyCard.js";
+import DashBoard from "./components/DashBoard.js";
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
             <Route path="/logout" element={<LogOut />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<UserProfile />} />
+            <Route path="/property-card" element={<PropertyCard />} />
+            <Route path="/dashboard" element={<DashBoard />} />
           </Routes>
         </Container>
       </main>
