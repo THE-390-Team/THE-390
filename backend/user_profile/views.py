@@ -1,81 +1,52 @@
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
+from .models import User, Profile, PublicProfile, EmployeeProfile, CompanyProfile
+from .serializers import UserSerializer, PublicProfileSerializer, EmployeeProfileSerializer, CompanyProfileSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.request import Request
 from rest_framework.views import APIView
-
 from rest_framework import status
 
-from .serializers import UserProfileSerializer
-from .models import UserProfile
-
 
 """
-    User Profile Creation -> sign up user
+    ViewSets For CRUD Operations on the PublicProfile, CompanyProfile, EmployeeProfile and User models 
 """
-class UserProfileCreate(APIView):
+class UserViewSet(ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
     
-    # Everyone can access this view 
-    permission_classes = [AllowAny] 
+class PublicProfileViewSet(ModelViewSet):
+    queryset = PublicProfile.objects.all()
+    serializer_class = PublicProfileSerializer
+
+    lookup_field = 'user'
     
+class EmployeeProfileViewSet(ModelViewSet):
+    queryset = EmployeeProfile.objects.all()
+    serializer_class = EmployeeProfileSerializer
+
+    lookup_field = 'user'
     
-    # create the user profile and save to database
-    def post(self, request: Request):
-        serializer = UserProfileSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            if user:
-                return Response(status=status.HTTP_201_CREATED)
-            
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-"""
-    User Profile Retrieval and Updating
-"""
-class UserProfileView(APIView):
+class CompanyProfileViewSet(ModelViewSet):
+    queryset = CompanyProfile.objects.all()
+    serializer_class = CompanyProfileSerializer
+    lookup_field = 'user'
     
-    # Only authenticated users can access this view  
-    permission_classes = [IsAuthenticated]
-    serializer_class = UserProfileSerializer
-
-    # retrieve user information 
-    def get(self, request: Request , *args, **kwargs):
-        
-        # get current 
-        user = request.user
-        user_profile = UserProfile.objects.filter(email=user.email).first()
-
-        # error if it does not exist
-        if user_profile is None:
-            return Response({"error": "User profile not found"})
-
-        
-        user_data = {
-            'email': user_profile.email,
-            'first_name': user_profile.first_name,
-            'last_name': user_profile.last_name,
-            'created_at': user_profile.created_at,
-            'is_staff': user_profile.is_staff,
-            'is_active': user_profile.is_active,
-            'address': user_profile.address,
-            'city': user_profile.city,
-            'province': user_profile.province,
-            'postal_code': user_profile.postal_code,
-            'registration_key': user_profile.registration_key,
-            'phone_number': user_profile.phone_number
-        }
-        
-        return Response(user_data)
     
 
-"""
-    Black List Used JWT tokens ( the same token cannot be generated more than once )
-"""
 class BlackListTokenView(APIView):
+    """
+        Black List Used JWT tokens 
+        * Post Method
+        * data: refresh_token 
+        * anyone can access this view
+        https://django-rest-framework-simplejwt.readthedocs.io/en/latest/blacklist_app.html
+        
+    """
     permission_classes = [AllowAny]
     
-    def post(self, request: Request):
+    def post(self, request):
         try:
             refresh_token = request.data['refresh_token']
             token=RefreshToken(refresh_token)

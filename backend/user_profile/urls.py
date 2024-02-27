@@ -1,12 +1,11 @@
+from rest_framework import routers
+from .views import PublicProfileViewSet, EmployeeProfileViewSet, CompanyProfileViewSet, UserViewSet
 
-from django.contrib import admin
-from django.urls import path, include
-from .views import UserProfileCreate, BlackListTokenView, UserProfileView
+router = routers.SimpleRouter()
+router.register(r'user', UserViewSet, basename='users')
+router.register(r'public-profile', PublicProfileViewSet, basename='public-profiles' )
+router.register(r'employee-profile', EmployeeProfileViewSet, basename='employee-profiles' )
+router.register(r'company-profile', CompanyProfileViewSet, basename='company-profiles' )
 
-app_name = 'user_profile'
 
-urlpatterns = [
-    path('register/', UserProfileCreate.as_view(), name='create-profile'),
-    path('profile/', UserProfileView.as_view(), name='view-profile' ),
-    path('logout/blacklist/', BlackListTokenView.as_view(), name='blacklist')
-]
+urlpatterns = router.urls

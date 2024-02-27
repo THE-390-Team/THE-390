@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #
     'rest_framework',
-    "corsheaders",
+    'corsheaders',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     #
@@ -142,7 +142,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
-AUTH_USER_MODEL = 'user_profile.UserProfile'
+AUTH_USER_MODEL = 'user_profile.User'
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
