@@ -83,7 +83,7 @@ const CreateParking = () => {
             <Form.Label>Parking Owner</Form.Label>
             <Form.Control
               type="text"
-              name="parkking_owner"
+              name="parking_owner"
               placeholder="Enter Parking Owner"
               value={formData.parking_owner}
               onChange={handleChange}
@@ -108,15 +108,15 @@ const CreateParking = () => {
           <Form.Label>Parking Fee</Form.Label>
           <Form.Control
             type="text"
-            name="parking-fee"
+            name="parking_fee"
             placeholder="Enter Parking Fee"
             value={formData.parking_fee}
             onChange={handleChange}
             data-testid="parking-fee-input"
           />
         </Form.Group>
-        <div></div>
-        <Button variant="primary" type="submit" data-testid="submit-button">
+        
+        <Button style={{marginTop:"20px"}} variant="primary" type="submit" data-testid="submit-button">
           Submit
         </Button>
       </Form>

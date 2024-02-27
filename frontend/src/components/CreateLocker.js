@@ -83,7 +83,7 @@ const CreateLocker = () => {
             <Form.Label>Locker Owner</Form.Label>
             <Form.Control
               type="text"
-              name="parkking_owner"
+              name="locker_owner"
               placeholder="Enter Locker Owner"
               value={formData.locker_owner}
               onChange={handleChange}
@@ -108,7 +108,7 @@ const CreateLocker = () => {
           <Form.Label>Locker Fee</Form.Label>
           <Form.Control
             type="text"
-            name="locker-fee"
+            name="locker_fee"
             placeholder="Enter Locker Fee"
             value={formData.locker_fee}
             onChange={handleChange}
@@ -116,7 +116,7 @@ const CreateLocker = () => {
           />
         </Form.Group>
         <div></div>
-        <Button variant="primary" type="submit" data-testid="submit-button">
+        <Button style={{margin:"20px"}} variant="primary" type="submit" data-testid="submit-button">
           Submit
         </Button>
       </Form>
