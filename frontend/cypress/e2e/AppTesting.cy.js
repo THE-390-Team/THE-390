@@ -27,11 +27,11 @@ describe('Sign Up Form', () => {
   })
 
   it('should fill out the sign-up form and submit successfully', () => {
-    cy.get('[data-testid="first-name-input"]').type('John')
-    cy.get('[data-testid="last-name-input"]').type('Doe')
+    cy.get('[data-testid="first-name-input"]').type('Jennifer')
+    cy.get('[data-testid="last-name-input"]').type('Lennon')
     cy.get('[data-testid="phone-number-input"]').type('1234567890')
     cy.get('[data-testid="registration-key-input"]').type('exampleKey')
-    cy.get('[data-testid="email-input"]').type('test@example.com')
+    cy.get('[data-testid="email-input"]').type('testuser123@example.com')
     cy.get('[data-testid="password-input"]').type('password123')
     cy.get('[data-testid="confirm-password-input"]').type('password123')
     cy.get('[data-testid="address-input"]').type('123 Main St')
