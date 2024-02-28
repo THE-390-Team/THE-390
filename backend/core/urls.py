@@ -5,7 +5,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView
 )
-from auth.views import BlackListTokenView
+from jwt_auth_token.views import BlackListTokenView
 
 
 urlpatterns = [

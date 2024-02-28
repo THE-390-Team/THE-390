@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from properties.models import PropertyProfile
+
 
 class CustomUserManager(BaseUserManager):
     
@@ -93,5 +95,12 @@ class EmployeeProfile(Profile):
     position = models.CharField(max_length =100, choices=Position.choices, default=Position.DAILY_OPERATIONS)
     
     
+    
+class CompanyProfileManager(models.Manager):
+    def property_profiles(self):
+        return PropertyProfile.objects.filter(company=self)
+    
 class CompanyProfile(Profile):
-    pass
+    
+    def property_profiles(self):
+        return PropertyProfile.objects.filter(company=self)
