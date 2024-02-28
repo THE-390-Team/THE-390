@@ -80,6 +80,9 @@ class Profile(models.Model):
     postal_code = models.CharField(max_length=10, blank=True)
     phone_number = models.CharField(max_length=15, blank=True)
     
+    def __str__(self):
+        return str(self.user)
+    
 class PublicProfile(Profile):
     class Type(models.TextChoices):
         OWNER = 'OWNER', 'Owner'

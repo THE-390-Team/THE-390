@@ -16,6 +16,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('logout/blacklist/', BlackListTokenView.as_view(), name='blacklist'),
     # apps 
-    path('profiles/', include('user_profile.urls'))
+    path('profiles/', include('user_profile.urls')),
+    path('properties/', include('properties.urls')),
     
 ]
