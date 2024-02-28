@@ -14,6 +14,6 @@ router.register(r'employee-profile', EmployeeProfileViewSet, basename='employee-
 
 urlpatterns = [
     # endpoint for listing all properties related to a company
-    path('company-profile/<int:company_id>/property-profiles/', PropertyProfileViewSet.as_view({'get': 'list'}))
+    path('company-profile/<int:company_id>/property-profiles/', PropertyProfileViewSet.as_view({'get': 'list', 'post':'create'}))
 ]
 urlpatterns += router.urls

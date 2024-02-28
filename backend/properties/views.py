@@ -40,6 +40,29 @@ class PropertyProfileViewSet(ModelViewSet):
                 return Response({"details":"Company Profile does not exist"},status=status.HTTP_404_NOT_FOUND)
         return super().list(request)
     
+    def create(self, request, **kwargs):
+        """  
+            overriding the inherites .create() method 
+            *
+            * 2 possible listings
+            *      1. profiles/company-profile/<int:company_id>/property-profiles/
+            *          - creates the profile and associated it to user with user_id
+            *      2. properties/property-profile/
+            *          - create property normally
+            *
+        """
+        company_id = self.kwargs.get('company_id', None)
+        if not company_id:
+            return super().create(request, **kwargs)
+        try:
+                company = CompanyProfile.objects.filter(user_id=company_id).first()
+                request.data['company'] = company
+                return super().create(request, **kwargs)
+        except CompanyProfile.DoesNotExist:
+                return Response({"details":"Company Profile does not exist"},status=status.HTTP_404_NOT_FOUND)
+        
+        
+    
 class CondoUnitViewSet(ModelViewSet):
     """
         View Set for Condo Unit model 
