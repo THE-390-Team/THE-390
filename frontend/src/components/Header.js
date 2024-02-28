@@ -27,11 +27,11 @@ const Header = () => {
             </Nav>
             <Nav className="ms-auto">
               {isLoggedIn ?
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <NavDropdown data-testid="dropdown" title="Dropdown" id="basic-nav-dropdown">
                   <LinkContainer to="/profile"><NavDropdown.Item>Profile</NavDropdown.Item></LinkContainer>
                   <LinkContainer to="/dashboard"><NavDropdown.Item>Dashboard</NavDropdown.Item></LinkContainer>
                   <NavDropdown.Divider />
-                  <LinkContainer to="/logout"><NavDropdown.Item>LOGOUT</NavDropdown.Item></LinkContainer>
+                  <LinkContainer data-testid="logout" to="/logout"><NavDropdown.Item>LOGOUT</NavDropdown.Item></LinkContainer>
                 </NavDropdown>
                 : ""}
             </Nav>
