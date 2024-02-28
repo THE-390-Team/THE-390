@@ -68,12 +68,12 @@ const UserProfile = () => {
   // TODO need a to fetch
   // get information on active user
   useEffect(() => {
-
     const id = localStorage.getItem("ID");
 
+
     axiosInstance
-      .get(`profiles/public-profile/${id}/`)
-      .then((response) => {
+    .get(`profiles/public-profile/${id}/`)
+    .then((response) => {
         console.log(response);
         setProfileInfo({
           avatar: profilepic,

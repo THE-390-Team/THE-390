@@ -44,7 +44,7 @@ describe('Sign Up Form', () => {
 
 describe('Login Form', () => {
   beforeEach(() => {
-    cy.visit('/login') 
+    cy.visit('/login')
   })
 
   it('should fill out the form and submit successfully', () => {
@@ -56,28 +56,30 @@ describe('Login Form', () => {
 
 describe('Profile Editing Modal', () => {
   beforeEach(() => {
-    cy.visit('/profile') 
+    cy.visit('/profile')
   });
   it('should open the modal when the "Edit Profile" button is clicked', () => {
-    
-  cy.contains('Edit Profile').should('be.visible');
-  cy.get('[data-testid="edit-profile"]').click();
-  cy.get('[data-testid="phone-number-input1"]').clear().type('0987654321');
-  cy.get('[data-testid="address-input1"').clear().type('123 Elm St');
-  cy.get('[data-testid="secondary"]').click();
-  cy.get('[role="dialog"]').should('not.exist');
-  cy.get('[data-testid="edit-profile"]').click();
-});
+
+    cy.contains('Edit Profile').should('be.visible');
+    cy.get('[data-testid="edit-profile"]').click();
+    cy.get('[data-testid="phone-number-input1"]').clear().type('0987654321');
+    cy.get('[data-testid="address-input1"').clear().type('123 Elm St');
+    cy.get('[data-testid="secondary"]').click();
+    cy.get('[role="dialog"]').should('not.exist');
+    cy.get('[data-testid="edit-profile"]').click();
+  });
 });
 describe('Logout', () => {
   it('Login and then logout', () => {
-    cy.visit('/login') 
-    cy.get('[data-testid="email-input"]').type('testuser@example.com')
+    cy.visit('/login')
+    cy.get('[data-testid="email-input"]').type('test@example.com')
     cy.get('[data-testid="password-input"]').type('password123')
     cy.get('[data-testid="submit-button"]').click()
+    cy.get('[data-testid="dropdown"]').click()
     cy.get('[data-testid ="logout"]').click();
     cy.url().should('include', '/login');
-    });
+  });
 })
+
 
 
