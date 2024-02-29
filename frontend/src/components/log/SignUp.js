@@ -14,6 +14,12 @@ const SignUp = () => {
     first_name: "",
     last_name: "",
     password: "",
+    phone_number: "",
+    address: "",
+    city: "",
+    province: "",
+    postal_code: "",
+    registration_key: ""
   });
 
   // update formData as input is given
