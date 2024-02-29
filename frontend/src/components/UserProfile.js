@@ -11,24 +11,13 @@ import {
   Modal,
   Form,
 } from "react-bootstrap";
+import { useProfile } from "../utils/hooks/ProfileContext";
 
 
 
 const UserProfile = () => {
 
-  // user information
-  const [profileInfo, setProfileInfo] = useState({
-    avatar: profilepic,
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone_number: "",
-    address: "",
-    city: "",
-    province: "",
-    registration_key: "",
-    postal_code: "",
-  });
+  const { profileInfo, getProfileInformation, setProfileInformation } = useProfile();
 
   const [tempChanges, setTempChanges] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -36,11 +25,10 @@ const UserProfile = () => {
   const handleCloseModal = () => setShowModal(false);
 
   const handleSaveChanges = () => {
-    // TODO: Implement save functionality with the backend
     console.log("Save changes");
     handleCloseModal();
-    setProfileInfo(tempChanges);
-    // TODO need to CRUD
+    // this will update the app only, must link to backend
+    // setProfileInformation(tempChanges);
   };
 
   const handleChange = (e) => {
@@ -68,30 +56,8 @@ const UserProfile = () => {
   // TODO need a to fetch
   // get information on active user
   useEffect(() => {
-    const id = localStorage.getItem("ID");
-
-
-    axiosInstance
-    .get(`profiles/public-profile/${id}/`)
-    .then((response) => {
-        console.log(response);
-        setProfileInfo({
-          avatar: profilepic,
-          first_name: response.data.user.first_name,
-          last_name: response.data.user.last_name,
-          email: response.data.user.email,
-          phone_number: response.data.phone_number,
-          address: response.data.address,
-          city: response.data.city,
-          province: response.data.province,
-          postal_code: response.data.postal_code,
-        });
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching user profile:", error.message);
-      });
-  }, [setProfileInfo]);
+    getProfileInformation()
+  }, []);
 
   return (
     <Container className="mt-5">
