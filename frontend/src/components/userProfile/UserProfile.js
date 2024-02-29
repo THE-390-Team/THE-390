@@ -17,7 +17,7 @@ import { useProfile } from "../../utils/hooks/ProfileContext";
 const UserProfile = () => {
 
 
-    const { profileInfo, getProfileInformation, setProfileInformation } = useProfile();
+  const { profileInfo, getProfileInformation, setProfileInformation } = useProfile();
 
   // // user information
   // const [profileInfo, setProfileInfo] = useState({
@@ -71,7 +71,7 @@ const UserProfile = () => {
   // get information on active user
   useEffect(() => {
     getProfileInformation()
-  }, [setProfileInformation]);
+  }, []);
 
   return (
     <Container className="mt-5">
