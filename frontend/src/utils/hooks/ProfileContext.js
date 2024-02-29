@@ -3,8 +3,10 @@ import axiosInstance from '../../api/axios';
 import profilepic from "../../assets/pp.jpg"
 
 const ProfileContext = createContext();
+const ProfileContext = createContext();
 
 export function useProfile() {
+    return useContext(ProfileContext);
     return useContext(ProfileContext);
 }
 export function ProfileProvider(props) {
@@ -23,15 +25,18 @@ export function ProfileProvider(props) {
     });
 
     const getProfileInformation = async () => {
+        const id = localStorage.getItem("ID");
         axiosInstance
-            .get("user-profile/profile/")
+            .get(`profiles/public-profile/${id}/`)
             .then((response) => {
                 console.log(response);
                 setProfileInfo({
                     avatar: profilepic,
-                    first_name: response.data.first_name,
-                    last_name: response.data.last_name,
-                    email: response.data.email,
+                    // get information from the user model
+                    first_name: response.data.user.first_name,
+                    last_name: response.data.user.last_name,
+                    email: response.data.user.email,
+                    // get information from the public-profile model
                     phone_number: response.data.phone_number,
                     address: response.data.address,
                     city: response.data.city,
@@ -44,13 +49,13 @@ export function ProfileProvider(props) {
                 console.error("Error fetching user profile:", error.message);
             });
     }
-   
+
     const setProfileInformation = (profile) => {
         setProfileInfo(profile);
     }
-    
-    
+
     return (
+        <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation}} > {props.children} </ProfileContext.Provider>
         <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation}} > {props.children} </ProfileContext.Provider>
     )
 }
