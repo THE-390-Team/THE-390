@@ -27,7 +27,7 @@ function App() {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/property-card" element={<PropertyCard />} />
             <Route path="/dashboard" element={<DashBoard />} />
-            <Route path="/property-page" element={<PropertyPage />} />
+            
           </Routes>
         </Container>
       </main>

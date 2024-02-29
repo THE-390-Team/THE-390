@@ -13,11 +13,21 @@ const Property = () => {
         units: [
             { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
             { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
+            { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
+            { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
+            { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
+            { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
+            { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
+            { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
+            
         ],
         parkingSpots: [
             { id: 1, level: 2, size: 200, price: 50000, slotNumber: 12 },
+            { id: 1, level: 2, size: 200, price: 50000, slotNumber: 12 },
+            { id: 1, level: 2, size: 200, price: 50000, slotNumber: 12 },
         ],
         lockers: [
+            { id: 1, location: 'Basement', size: 50, number: 3 },
             { id: 1, location: 'Basement', size: 50, number: 3 },
         ],
     }
