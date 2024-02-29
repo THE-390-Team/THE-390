@@ -6,7 +6,6 @@ const ProfileContext = createContext();
 
 export function useProfile() {
     return useContext(ProfileContext);
-    return useContext(ProfileContext);
 }
 export function ProfileProvider(props) {
 
