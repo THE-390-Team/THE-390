@@ -26,34 +26,17 @@ const Header = () => {
                   <i className="fas fa-user"></i> LOGIN
                 </Nav.Link>
               </LinkContainer>}
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                {isLoggedIn ? <LinkContainer to="/create-unit">
-                  <NavDropdown.Item> Create Unit Profile </NavDropdown.Item>
-                </LinkContainer> : ""}
-                {isLoggedIn ? <LinkContainer to="/create-parking">
-                  <NavDropdown.Item> Create Parking Profile </NavDropdown.Item>
-                </LinkContainer> : ""}
-                {isLoggedIn ? <LinkContainer to="/create-locker">
-                  <NavDropdown.Item> Create Locker Profile </NavDropdown.Item>
-                </LinkContainer> : ""}
-                <NavDropdown.Item>Another action</NavDropdown.Item>
-                <NavDropdown.Item>Something</NavDropdown.Item>
-                <NavDropdown.Item>Separated link</NavDropdown.Item>
-              </NavDropdown>
             </Nav>
             
             <Nav className="ms-auto">
-              {isLoggedIn ? <LinkContainer to="/profile">
-                <Nav.Link>
-                  <i className="fa-sharp fa-solid fa-house"></i> Profile
-                </Nav.Link>
-              </LinkContainer>
+              {isLoggedIn ?
+                <NavDropdown data-testid="dropdown" title="Dropdown" id="basic-nav-dropdown">
+                  <LinkContainer to="/profile"><NavDropdown.Item>Profile</NavDropdown.Item></LinkContainer>
+                  <LinkContainer to="/dashboard"><NavDropdown.Item>Dashboard</NavDropdown.Item></LinkContainer>
+                  <NavDropdown.Divider />
+                  <LinkContainer data-testid="logout" to="/logout"><NavDropdown.Item>LOGOUT</NavDropdown.Item></LinkContainer>
+                </NavDropdown>
                 : ""}
-              {isLoggedIn ? <LinkContainer to="/logout" >
-                <Nav.Link data-testid="logout">
-                  <i className="fas fa-user"></i> LOGOUT
-                </Nav.Link>
-              </LinkContainer> : ""}
             </Nav>
 
           </Navbar.Collapse>

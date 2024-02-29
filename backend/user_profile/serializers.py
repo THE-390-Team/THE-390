@@ -1,12 +1,18 @@
-from user_profile.models import UserProfile
 from rest_framework import serializers
+from .models import User, PublicProfile, EmployeeProfile, CompanyProfile, Profile
 
-class UserProfileSerializer(serializers.ModelSerializer):
-    
+"""  
+    Serializers for the profile and user models 
+"""
+
+class UserSerializer(serializers.ModelSerializer):
+    """
+        User Serializer  
+    """
     class Meta:
-        model = UserProfile
-        fields = ('email', 'first_name', 'last_name', 'password', 'address', 'city', 'province', 'postal_code', 'registration_key', 'phone_number')
-        extra_kwargs = { 'password': {'write_only': True}}
+        model = User
+        fields = ['id', 'email', 'role', 'first_name', 'last_name', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
         
     def create(self, validated_data):
         password = validated_data.pop('password', None)
@@ -15,3 +21,41 @@ class UserProfileSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+    
+class ProfileSerializer(serializers.ModelSerializer):
+    """
+        Profile Serializer for abstract profile class  
+    """
+    user = UserSerializer()
+    class Meta:
+        model = Profile
+        fields = ['user', 'address', 'city', 'province', 'postal_code', 'phone_number']
+
+class PublicProfileSerializer(serializers.ModelSerializer):
+    """
+        Public Profile Serializer with inherited fields  
+    """
+    user = UserSerializer()
+    class Meta(ProfileSerializer.Meta):
+        model = PublicProfile
+        fields = ProfileSerializer.Meta.fields + ['type']
+
+
+class EmployeeProfileSerializer(serializers.ModelSerializer):
+    """
+        Employee Profile Serializer with inherited fields  
+    """
+    user = UserSerializer()
+    class Meta(ProfileSerializer.Meta):
+        model = EmployeeProfile
+        fields = ProfileSerializer.Meta.fields + ['position']
+        read_only_fields = ['position']
+
+class CompanyProfileSerializer(serializers.ModelSerializer):
+    """
+        Company Profile Serializer with inherited fields  
+    """
+    user = UserSerializer()
+    class Meta(ProfileSerializer.Meta):
+        model = CompanyProfile
+        fields = ProfileSerializer.Meta.fields

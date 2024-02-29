@@ -39,24 +39,20 @@ const SignUp = () => {
     console.log(formData);
 
     axiosInstance
-      .post(`user-profile/register/`, {
+      .post(`profiles/user/`, {
         email: formData.email,
         first_name: formData.first_name,
         last_name: formData.last_name,
         password: formData.password,
-        phone_number: formData.phone_number,
-        address: formData.address,
-        city: formData.city,
-        province: formData.province,
-        postal_code: formData.postal_code,
-        registration_key: formData.registration_key
+        role: 'PUBLIC',
       })
       .then((res) => {
         if (res.status == 201) {
-            window.alert(`profile ${formData.email} has been created`)
-            console.log(res);
-            console.log(res.data);
-            history("/login");
+          console.log(res);
+          console.log(res.data);
+          updateProfileInfo(res.data.id)
+          window.alert(`profile ${formData.email} has been created`)
+          history("/login");
         }
       })
       .catch((error) => {
@@ -67,6 +63,32 @@ const SignUp = () => {
       });
   };
 
+  const updateProfileInfo = (id) => {
+    axiosInstance
+      .patch(`profiles/public-profile/${id}/`, {
+        phone_number: formData.phone_number,
+        address: formData.address,
+        city: formData.city,
+        province: formData.province,
+        postal_code: formData.postal_code,
+        registration_key: formData.registration_key
+      })
+      .then((res)=>{
+        if ( res.status == 200 ) {
+          console.log('public-profile information patched')
+          console.log(res.data)
+          window.alert(`profile ${formData.email} has been created`)
+          history("/login");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(error.data);
+        window.alert(`${error} `)
+        history(SignUp)
+      });
+
+  }
   //match the input with the backend parameters (ex: first last and all the other fields)
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
