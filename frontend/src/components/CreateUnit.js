@@ -76,7 +76,7 @@ const CreateUnit = () => {
               placeholder="Enter Unit ID"
               value={formData.unit_id}
               onChange={handleChange}
-              data-testid="unit-ID-input"
+              data-testid="unit-id-input"
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridUnitSize">
