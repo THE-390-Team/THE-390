@@ -3,10 +3,8 @@ import axiosInstance from '../../api/axios';
 import profilepic from "../../assets/pp.jpg"
 
 const ProfileContext = createContext();
-const ProfileContext = createContext();
 
 export function useProfile() {
-    return useContext(ProfileContext);
     return useContext(ProfileContext);
 }
 export function ProfileProvider(props) {
@@ -55,7 +53,6 @@ export function ProfileProvider(props) {
     }
 
     return (
-        <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation}} > {props.children} </ProfileContext.Provider>
         <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation}} > {props.children} </ProfileContext.Provider>
     )
 }
