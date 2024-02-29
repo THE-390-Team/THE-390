@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.CreateModel(
             name='CondoUnit',
+            name='CondoUnit',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('location', models.IntegerField()),
@@ -25,6 +26,7 @@ class Migration(migrations.Migration):
         ),
         migrations.CreateModel(
             name='ParkingUnit',
+            name='ParkingUnit',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('location', models.IntegerField()),
@@ -34,6 +36,16 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
+        ),
+        migrations.CreateModel(
+            name='PropertyProfile',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('address', models.CharField(max_length=100)),
+                ('city', models.CharField(max_length=100)),
+                ('province', models.CharField(max_length=100)),
+                ('postal_code', models.CharField(max_length=12)),
+            ],
         ),
         migrations.CreateModel(
             name='PropertyProfile',
