@@ -16,12 +16,13 @@ const PropertyContainer = () => {
             units: [
                 { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
                 { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
+                { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 3100000, size: 1000 },
             ],
             parkingSpots: [
                 { id: 1, level: 2, size: 200, price: 50000, slotNumber: 12 },
             ],
             lockers: [
-                { id: 1, location: 'Basement', size: 50, number: 3 },
+                { id: 1, location: 'Basement', size: 50, number: 3, price: 10000 },
             ],
         },
         property2: {
@@ -36,7 +37,7 @@ const PropertyContainer = () => {
                 { id: 1, level: 1, size: 250, price: 75000, slotNumber: 8 },
             ],
             lockers: [
-                { id: 1, location: 'Sub-basement', size: 60, number: 5 },
+                { id: 1, location: 'Sub-basement', size: 60, number: 5, price: 20000 },
             ],
         },
         property3: {
@@ -51,18 +52,18 @@ const PropertyContainer = () => {
                 { id: 1, level: 3, size: 180, price: 60000, slotNumber: 20 },
             ],
             lockers: [
-                { id: 1, location: 'Lower Level', size: 40, number: 7 },
+                { id: 1, location: 'Lower Level', size: 40, number: 7, price: 15000 },
             ],
         }
     });
 
     return (
         <div className="d-flex flex-column align-items-center" style={{
-            width: '30rem', maxHeight: '80vh',
+            width: '30rem', maxHeight: '75vh',
             overflowY: 'auto',
             width: '30rem',
         }}>
-            <h1 >Properties</h1>
+            {/* <h1 >Properties</h1> */}
             {Object.values(propertiesData).map((property) => (
                 <PropertyCard key={property.id} property={property} />
             ))}
