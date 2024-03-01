@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Button, Overlay, Popover, ListGroup, Card } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 
 const PropertyCard = ({ property }) => {
@@ -53,14 +54,14 @@ const PropertyCard = ({ property }) => {
   };
 
   return (
-    <Card className = "mb-3" style={{ width: '25rem', textAlign: 'center' }}>
+    <Card className="mb-3" style={{ width: '25rem', textAlign: 'center' }}>
       <Card.Img
         variant="top"
         src={property.image}
-        style={{ width: '100%', height: 'auto', display: 'block', maxHeight: "200px", borderRadius:"10px"}}
+        style={{ width: '100%', height: 'auto', display: 'block', maxHeight: "200px", borderRadius: "10px" }}
       />
       <Card.Body>
-        <Card.Title>{property.name}</Card.Title>
+        <Card.Title><Link to="/property-page">{property.name}</Link></Card.Title>
         <Card.Text>Location: {property.location}</Card.Text>
         <Button ref={unitsRef} onClick={toggleUnits} variant="secondary" className="me-2">Units</Button>
         <Overlay target={unitsRef.current} show={showUnits} placement="bottom">

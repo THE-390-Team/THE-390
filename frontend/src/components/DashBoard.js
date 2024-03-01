@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from "react"
 import PropertyContainer from './property/PropertyContainer.js'
+import propertyPhoto from "../assets/condo-photo.jpg"
 
 const DashBoard = () => {
     const [property, setProperty] = useState({
