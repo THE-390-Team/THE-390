@@ -30,10 +30,12 @@ const UserInfo = () => {
     //     postal_code: "",
     // });
 
+    // This call is not needed anymore because the call is made right after sign up
     // get information on active user
-    useEffect(() => {
-        getProfileInformation()
-    }, [setProfileInformation]);
+    // useEffect(() => {
+    //     getProfileInformation()
+    //     // This empty dependency 
+    // }, []);
 
     return (
         <Container style={{ width: '400px' }}>
