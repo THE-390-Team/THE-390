@@ -19,40 +19,6 @@ const PropertyCard = ({ property }) => {
   const toggleParking = () => setShowParking(!showParking);
   const toggleLockers = () => setShowLockers(!showLockers);
 
-  // Rendering functions
-  const renderUnits = () => {
-    return property.units.map((unit) => (
-      <ListGroup variant="flush" key={unit.id}>
-        <ListGroup.Item><strong>{unit.name}</strong></ListGroup.Item>
-        <ListGroup.Item>Address: {unit.address}</ListGroup.Item>
-        <ListGroup.Item>Location: {unit.location}</ListGroup.Item>
-        <ListGroup.Item>Price: ${unit.price}</ListGroup.Item>
-        <ListGroup.Item>Size: {unit.size} sqft</ListGroup.Item>
-      </ListGroup>
-    ));
-  };
-
-  const renderParkingSpots = () => {
-    return property.parkingSpots.map((spot) => (
-      <ListGroup key={spot.id}>
-        <ListGroup.Item>Level: {spot.level}</ListGroup.Item>
-        <ListGroup.Item>Size: {spot.size} sqft</ListGroup.Item>
-        <ListGroup.Item>Price: ${spot.price}</ListGroup.Item>
-        <ListGroup.Item>Slot Number: {spot.slotNumber}</ListGroup.Item>
-      </ListGroup>
-    ));
-  };
-
-  const renderLockers = () => {
-    return property.lockers.map((locker) => (
-      <ListGroup key={locker.id}>
-        <ListGroup.Item>Location: {locker.location}</ListGroup.Item>
-        <ListGroup.Item>Size: {locker.size} sqft</ListGroup.Item>
-        <ListGroup.Item>Number: {locker.number}</ListGroup.Item>
-      </ListGroup>
-    ));
-  };
-
   const calculateUnitTotal = (property) => {
     let total = 0;
     for (const unit of property.units) {
@@ -60,7 +26,6 @@ const PropertyCard = ({ property }) => {
     }
     return total;
   }
-
   const calculateParkingTotal = (property) => {
     let total = 0;
     for (const parking of property.parkingSpots) {
@@ -85,10 +50,11 @@ const PropertyCard = ({ property }) => {
         style={{ width: '100%', height: 'auto', display: 'block', maxHeight: "200px", borderRadius: "10px" }}
       />
       <Card.Body>
+        {/* TODO hard coded the url until database connection */}
         <Card.Title><Link to="/property-page">{property.name}</Link></Card.Title>
         <Card.Text>Location: {property.location}</Card.Text>
         <Button ref={unitsRef} onClick={toggleUnits} variant="secondary" className="me-2">Units</Button>
-        <Overlay target={unitsRef.current} show={showUnits} placement="bottom">
+        <Overlay target={unitsRef.current} show={showUnits} placement="bottom" rootClose={true} onHide={() => setShowUnits(false)}>
           {(props) => (
             <Popover {...props} id="popover-units">
               <Popover.Body>
@@ -102,7 +68,7 @@ const PropertyCard = ({ property }) => {
         </Overlay>
 
         <Button ref={parkingRef} onClick={toggleParking} variant="secondary" className="me-2">Parking</Button>
-        <Overlay target={parkingRef.current} show={showParking} placement="bottom">
+        <Overlay target={parkingRef.current} show={showParking} placement="bottom" rootClose={true} onHide={() => setShowParking(false)}>
           {(props) => (
             <Popover {...props} id="popover-parking">
               <Popover.Body>
@@ -116,7 +82,7 @@ const PropertyCard = ({ property }) => {
         </Overlay>
 
         <Button ref={lockersRef} onClick={toggleLockers} variant="secondary">Lockers</Button>
-        <Overlay target={lockersRef.current} show={showLockers} placement="bottom">
+        <Overlay target={lockersRef.current} show={showLockers} placement="bottom" rootClose={true} onHide={() => setShowLockers(false)}>
           {(props) => (
             <Popover {...props} id="popover-lockers">
               <Popover.Body>
