@@ -11,7 +11,6 @@ import LogOut from "./components/log/LogOut";
 import PropertyCard from "./components/property/PropertyCard.js";
 import DashBoard from "./components/dashboard/DashBoard.js";
 import PropertyPage from "./components/property/PropertyPage.js";
-import propertyPhoto from "./assets/condo-photo.jpg"
 
 
 function App() {
@@ -28,7 +27,7 @@ function App() {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/property-card" element={<PropertyCard />} />
             <Route path="/dashboard" element={<DashBoard />} />
-            <Route path="/property-page" element={<PropertyPage/>} />
+            <Route path="/property-page/:propertyId" element={<PropertyPage/>} />
             
           </Routes>
         </Container>
