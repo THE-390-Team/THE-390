@@ -27,8 +27,9 @@ function App() {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/property-card" element={<PropertyCard />} />
             <Route path="/dashboard" element={<DashBoard />} />
-            <Route path="/property-page/:propertyId" element={<PropertyPage/>} />
-            
+            {/* TODO id hard coded until db connection is made should be path="/property-page/:propertyId" with no prop*/}
+            <Route path="/property-page" element={<PropertyPage id={"1"}/>} />
+
           </Routes>
         </Container>
       </main>
