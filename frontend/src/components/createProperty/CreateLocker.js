@@ -5,10 +5,7 @@ import {
   Container,
   Row,
   Col,
-  Card,
-  ListGroup,
   Button,
-  Modal,
   Form,
 } from "react-bootstrap";
 
@@ -67,6 +64,7 @@ const CreateLocker = () => {
   function handleBackToPropertyPage() {
     navigate('/property-page');
   }
+  
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
