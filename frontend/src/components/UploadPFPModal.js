@@ -14,8 +14,8 @@ export const UploadPFPModal = () => {
           </Modal.Header>
 
           <Modal.Body>
-            <div className="text-center p-5" style={{border: "2px dashed #485785"}}>
-              <p>Drop your picture here</p>
+            <div className=" p-5">
+              <input type="file" accept="image/png, image/jpeg"></input>
               <p>Supported format: .jpeg .png</p>
             </div>
           </Modal.Body>
