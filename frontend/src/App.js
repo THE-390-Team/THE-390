@@ -10,11 +10,12 @@ import UserProfile from "./components/userProfile/UserProfile.js";
 import LogOut from "./components/log/LogOut";
 import PropertyCard from "./components/property/PropertyCard.js";
 import DashBoard from "./components/dashboard/DashBoard.js";
+import PropertyPage from "./components/property/PropertyPage.js";
 //import PropertyCard from "./components/property/PropertyCard.js";
 import CreateUnit from "./components/CreateUnit.js";
 import CreateParking from "./components/CreateParking.js";
 import CreateLocker from "./components/CreateLocker.js";
-
+import CreateProperty from "./components/property/CreateProperty.js";
 
 function App() {
   return (
@@ -34,6 +35,10 @@ function App() {
             <Route path="/create-parking" element={<CreateParking />} />
             <Route path="/create-locker" element={<CreateLocker />} />
             {/* <Route path="/property-card" element={<PropertyCard />} /> */}
+            {/* TODO id hard coded until db connection is made should be path="/property-page/:propertyId" with no prop*/}
+            <Route path="/property-page" element={<PropertyPage id={"1"}/>} />
+            <Route path="/create-property" element={<CreateProperty />} />
+
           </Routes>
         </Container>
       </main>
