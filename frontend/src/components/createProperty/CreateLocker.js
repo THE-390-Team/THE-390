@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../api/axios";
+import axiosInstance from "../../api/axios";
 import {
   Container,
   Row,
@@ -14,7 +14,7 @@ import {
 
 const CreateLocker = () => {
 
-  const history = useNavigate();
+  const navigate = useNavigate();
   // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
     locker_id: "",
@@ -63,6 +63,10 @@ const CreateLocker = () => {
       });
   };
 
+  //TODO hardcoded path
+  function handleBackToPropertyPage() {
+    navigate('/property-page');
+  }
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
@@ -71,12 +75,12 @@ const CreateLocker = () => {
           <Form.Group as={Col} controlId="formGridLockerID">
             <Form.Label>Locker ID</Form.Label>
             <Form.Control
-                type="text"
-                name="locker_id"
-                placeholder="Enter Locker ID"
-                value={formData.locker_id}
-                onChange={handleChange}
-                data-testid="locker-id-input"
+              type="text"
+              name="locker_id"
+              placeholder="Enter Locker ID"
+              value={formData.locker_id}
+              onChange={handleChange}
+              data-testid="locker-id-input"
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridLockerOwner">
@@ -115,8 +119,10 @@ const CreateLocker = () => {
             data-testid="locker-fee-input"
           />
         </Form.Group>
-        <div></div>
-        <Button style={{margin:"20px"}} variant="primary" type="submit" data-testid="submit-button">
+        <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToPropertyPage}>
+          Cancel
+        </Button>
+        <Button style={{ marginTop: "20px", marginLeft: "20px" }} variant="primary" type="submit" data-testid="submit-button">
           Submit
         </Button>
       </Form>

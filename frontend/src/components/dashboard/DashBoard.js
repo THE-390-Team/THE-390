@@ -21,7 +21,7 @@ const DashBoard = () => {
                     <UserInfo />
                     <Financial />
                     <SubmittedRequests />
-                    <Button variant="primary" onClick={handleGoToProperty}>Add Property</Button>
+                    <Button variant="primary" style={{width: "150px", marginLeft: "120px"}} onClick={handleGoToProperty}>Add Property</Button>
                 </Col>
                 <Col>
                     <PropertyContainer />

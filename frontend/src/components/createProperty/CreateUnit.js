@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../api/axios";
+import axiosInstance from "../../api/axios";
 import {
   Container,
   Row,
@@ -14,7 +14,7 @@ import {
 
 const CreateUnit = () => {
 
-  const history = useNavigate();
+  const navigate = useNavigate();
   // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
     unit_id: "",
@@ -62,6 +62,11 @@ const CreateUnit = () => {
         //history(UnitProfile)
       });
   };
+
+  //TODO hardcoded path
+  function handleBackToPropertyPage() {
+    navigate('/property-page');
+  }
 
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
@@ -115,7 +120,10 @@ const CreateUnit = () => {
             data-testid="unit-info-input"
           />
         </Form.Group>
-        <Button variant="primary" type="submit" data-testid="submit-button">
+        <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToPropertyPage}>
+          Cancel
+        </Button>
+        <Button style={{ marginTop: "20px", marginLeft: "20px" }} variant="primary" type="submit" data-testid="submit-button">
           Submit
         </Button>
       </Form>
