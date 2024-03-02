@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, createContext } from 'react';
+import { useState, useContext, createContext } from 'react';
 
 const AuthContext = createContext();
 
@@ -7,7 +7,10 @@ export function useAuth() {
 }
 export function AuthProvider(props) {
 
-    const [authUser, setAuthUser] = useState(null)
+    const [authUser, setAuthUser] = useState({
+        first_name: '',
+        last_name: '',
+    })
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const value = {

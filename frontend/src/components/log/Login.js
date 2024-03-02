@@ -4,15 +4,16 @@ import { Container, Form, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axios.js";
 import { useAuth } from "../../utils/hooks/AuthContext.js";
+import PropertyCard from "../property/PropertyCard.js";
 // Login Page
 
 const Login = () => {
 
   const history = useNavigate();
-  const {authUser,
+  const { authUser,
     setAuthUser,
     isLoggedIn,
-    setIsLoggedIn} = useAuth();
+    setIsLoggedIn } = useAuth();
   // Login information
   const [formData, setFormData] = useState({
     email: "",
@@ -42,6 +43,7 @@ const Login = () => {
         // store JWT tokens in localStorage
         localStorage.setItem("access_token", res.data.access);
         localStorage.setItem("refresh_token", res.data.refresh);
+        localStorage.setItem("ID", res.data.id);
         axiosInstance.defaults.headers["Authorization"] =
           "JWT " + localStorage.getItem("access_token");
         history("/profile");
