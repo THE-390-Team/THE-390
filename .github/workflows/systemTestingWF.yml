@@ -47,6 +47,8 @@ jobs:
 
       - name: Run Unit tests Django
         working-directory: ./backend
-        run: python manage.py test
+        run: |
+          coverage run manage.py test
+          coverage report
 
       
