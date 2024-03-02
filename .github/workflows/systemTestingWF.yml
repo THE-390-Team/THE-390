@@ -37,6 +37,12 @@ jobs:
         working-directory: ./backend
         run: python manage.py runserver &
 
+      - name: Run Unit tests Django
+        working-directory: ./backend
+        run: |
+          coverage run manage.py test
+          coverage report
+
       - name: Install Cypress
         working-directory: ./frontend
         run: npm install cypress --save-dev
@@ -45,10 +51,5 @@ jobs:
         working-directory: ./frontend
         run: npx cypress run
 
-      - name: Run Unit tests Django
-        working-directory: ./backend
-        run: |
-          coverage run manage.py test
-          coverage report
 
       
