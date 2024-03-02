@@ -14,26 +14,14 @@ import { useProfile } from "../../utils/hooks/ProfileContext";
 
 const UserInfo = () => {
 
-    const { profileInfo, getProfileInformation, setProfileInformation } = useProfile();
+    const { profileInfo } = useProfile();
 
-    // user information
-    // const [profileInfo, setProfileInfo] = useState({
-    //     avatar: profilepic,
-    //     first_name: "",
-    //     last_name: "",
-    //     email: "",
-    //     phone_number: "",
-    //     address: "",
-    //     city: "",
-    //     province: "",
-    //     registration_key: "",
-    //     postal_code: "",
-    // });
-
+    // This call is not needed anymore because the call is made right after sign up
     // get information on active user
-    useEffect(() => {
-        getProfileInformation()
-    }, [setProfileInformation]);
+    // useEffect(() => {
+    //     getProfileInformation()
+    //     // This empty dependency 
+    // }, []);
 
     return (
         <Container style={{ width: '400px' }}>
