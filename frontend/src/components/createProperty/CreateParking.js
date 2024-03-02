@@ -1,20 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../api/axios";
+import axiosInstance from "../../api/axios";
 import {
   Container,
   Row,
   Col,
-  Card,
-  ListGroup,
   Button,
-  Modal,
   Form,
 } from "react-bootstrap";
 
 const CreateParking = () => {
 
-  const history = useNavigate();
+  const navigate = useNavigate();
   // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
     parking_id: "",
@@ -63,6 +60,11 @@ const CreateParking = () => {
       });
   };
 
+  //TODO hardcoded path
+  function handleBackToPropertyPage() {
+    navigate('/property-page');
+  }
+  
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
@@ -71,12 +73,12 @@ const CreateParking = () => {
           <Form.Group as={Col} controlId="formGridParkingID">
             <Form.Label>Parking ID</Form.Label>
             <Form.Control
-                type="text"
-                name="parking_id"
-                placeholder="Enter Parking ID"
-                value={formData.parking_id}
-                onChange={handleChange}
-                data-testid="parking-id-input"
+              type="text"
+              name="parking_id"
+              placeholder="Enter Parking ID"
+              value={formData.parking_id}
+              onChange={handleChange}
+              data-testid="parking-id-input"
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridParkingOwner">
@@ -115,8 +117,10 @@ const CreateParking = () => {
             data-testid="parking-fee-input"
           />
         </Form.Group>
-        
-        <Button style={{marginTop:"20px"}} variant="primary" type="submit" data-testid="submit-button">
+        <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToPropertyPage}>
+          Cancel
+        </Button>
+        <Button style={{ marginTop: "20px", marginLeft: "20px" }} variant="primary" type="submit" data-testid="submit-button">
           Submit
         </Button>
       </Form>

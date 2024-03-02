@@ -12,10 +12,10 @@ import PropertyCard from "./components/property/PropertyCard.js";
 import DashBoard from "./components/dashboard/DashBoard.js";
 import PropertyPage from "./components/property/PropertyPage.js";
 //import PropertyCard from "./components/property/PropertyCard.js";
-import CreateUnit from "./components/CreateUnit.js";
-import CreateParking from "./components/CreateParking.js";
-import CreateLocker from "./components/CreateLocker.js";
-import CreateProperty from "./components/property/CreateProperty.js";
+import CreateUnit from "./components/createProperty/CreateUnit.js";
+import CreateParking from "./components/createProperty/CreateParking.js";
+import CreateLocker from "./components/createProperty/CreateLocker.js";
+import CreateProperty from "./components/createProperty/CreateProperty.js";
 
 function App() {
   return (
