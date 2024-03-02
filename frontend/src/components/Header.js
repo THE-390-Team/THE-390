@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react"
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axios";
 import { useAuth } from "../utils/hooks/AuthContext";
@@ -18,6 +19,7 @@ const Header = () => {
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
+            
             <Nav className="me-auto">
               {isLoggedIn ? "" : <LinkContainer to="/login">
                 <Nav.Link>
@@ -25,6 +27,7 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>}
             </Nav>
+            
             <Nav className="ms-auto">
               {isLoggedIn ?
                 <NavDropdown data-testid="dropdown" title="Dropdown" id="basic-nav-dropdown">
