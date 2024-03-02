@@ -15,7 +15,7 @@ import PropertyPage from "./components/property/PropertyPage.js";
 import CreateUnit from "./components/CreateUnit.js";
 import CreateParking from "./components/CreateParking.js";
 import CreateLocker from "./components/CreateLocker.js";
-
+import CreateProperty from "./components/property/CreateProperty.js";
 
 function App() {
   return (
@@ -37,6 +37,7 @@ function App() {
             {/* <Route path="/property-card" element={<PropertyCard />} /> */}
             {/* TODO id hard coded until db connection is made should be path="/property-page/:propertyId" with no prop*/}
             <Route path="/property-page" element={<PropertyPage id={"1"}/>} />
+            <Route path="/create-property" element={<CreateProperty />} />
 
           </Routes>
         </Container>

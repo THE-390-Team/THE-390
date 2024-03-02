@@ -22,11 +22,6 @@ export const PropertyProvider = ({ children }) => {
             units: [
                 { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
                 { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
-                { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 3100000, size: 1000 },
-                { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 3100000, size: 1000 },
-                { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 3100000, size: 1000 },
-                { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 3100000, size: 1000 },
-                { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 3100000, size: 1000 },
             ],
             parkingSpots: [
                 { id: 1, level: 2, size: 200, price: 50000, slotNumber: 12 },
