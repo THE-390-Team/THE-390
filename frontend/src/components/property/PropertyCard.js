@@ -22,7 +22,7 @@ const PropertyCard = ({ property }) => {
   const calculateUnitTotal = (property) => {
     let total = 0;
     for (const unit of property.condo_units) {
-      total += unit.price;
+      total += unit.purchase_price;
     }
     return total;
   }
