@@ -40,9 +40,18 @@ const UserProfile = () => {
   // Handle form submission
   const handleSaveChanges = () => {
     console.log(formData);
-    axiosInstance.patchForm(`profiles/public-profile/${id}/`, formData);
-    handleCloseModal();
-    history("")
+    axiosInstance
+      .patchForm(`profiles/user/${id}/`, formData)
+      .then((response) => {
+        console.log(response);
+      });
+    axiosInstance
+      .patchForm(`profiles/public-profile/${id}/`, formData)
+      .then((response) => {
+        console.log(response);
+        handleCloseModal();
+        window.location.reload();
+      });
   };
 
   // Update formData when change occurs
