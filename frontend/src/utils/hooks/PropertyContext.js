@@ -63,7 +63,19 @@ export const PropertyProvider = ({ children }) => {
         //     ],
         // }
     });
-    const [property, setProperty] = useState({});
+    const [property, setProperty] = useState({
+        id: -1,
+        company: -1,
+        num_condo_units: -1,
+        num_parking_units: -1,
+        num_storage_units: -1,
+        address: "",
+        city: "",
+        province: "",
+        postal_code: "",
+        condo_units: []
+    }
+    );
 
     //TODO check if this is good to fetch all properties
     const fetchAllProperties = async () => {
@@ -88,7 +100,18 @@ export const PropertyProvider = ({ children }) => {
             .get(`/properties/property-profile/${id}`)
             .then((response) => {
                 console.log(response);
-                setProperty(response.data);
+                setProperty({
+                    id: response.data.id,
+                    company: response.data.company,
+                    num_condo_units: response.data.num_condo_units,
+                    num_parking_units: response.data.num_parking_units,
+                    num_storage_units: response.data.num_storage_units,
+                    address: response.data.address,
+                    city: response.data.city,
+                    province: response.data.province,
+                    postal_code: response.data.postal_code,
+                    condo_units: response.data.condo_units,
+                });
                 console.log(response.data);
             })
             .catch((error) => {
