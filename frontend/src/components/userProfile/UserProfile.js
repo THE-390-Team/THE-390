@@ -44,13 +44,19 @@ const UserProfile = () => {
       .patchForm(`profiles/user/${id}/`, formData)
       .then((response) => {
         console.log(response);
-      });
+      })
+      .catch(error => {
+        console.log(error);
+      })
     axiosInstance
       .patchForm(`profiles/public-profile/${id}/`, formData)
       .then((response) => {
         console.log(response);
         handleCloseModal();
         window.location.reload();
+      })
+      .catch(error => {
+        console.log(error);
       });
   };
 
