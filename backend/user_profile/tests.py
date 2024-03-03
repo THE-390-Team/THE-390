@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, client
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from django.urls import reverse
@@ -49,6 +49,30 @@ class TestProfileModels(TestCase):
         self.assertTrue(self.user.is_staff)
         self.assertTrue(self.user.is_active)
 
+    def test_create_superuser_invalid(self):
+        with self.assertRaises(ValueError) as err:
+            User.objects.create_superuser(
+                email='testuser1@gmail.com',
+                first_name="test",
+                last_name="user",
+                password="password",
+                role="PUBLIC",
+                is_superuser=True,
+                is_staff=False,
+            )
+        self.assertEqual(str(err.exception), 'Superuser must be assigned to is_staff=True.')
+        with self.assertRaises(ValueError) as err:
+            User.objects.create_superuser(
+                email='testuser2@gmail.com',
+                first_name="test",
+                last_name="user",
+                password="password",
+                role="PUBLIC",
+                is_superuser=False,
+                is_staff=True,
+            )
+        self.assertEqual(str(err.exception), 'Superuser must be assigned to is_superuser=True.')
+
     def test_create_user_is_not_superuser(self):
         self.assertFalse(self.public.is_superuser)
         self.assertFalse(self.public.is_staff)
@@ -59,15 +83,6 @@ class TestProfileModels(TestCase):
         self.assertEqual(self.employee.role, 'EMPLOYEE')
         self.assertEqual(self.company.role, 'COMPANY')
 
-    """ Testing profiles creation with the user """  
-    def test_user_creation(self):
-        public_profile_created = PublicProfile.objects.filter(user=self.public).exists()
-        employee_profile_created = EmployeeProfile.objects.filter(user=self.employee).exists()
-        company_profile_created = CompanyProfile.objects.filter(user=self.company).exists()
-        self.assertTrue(public_profile_created)
-        self.assertTrue(employee_profile_created)
-        self.assertTrue(company_profile_created)
-        
     def test_public_profile_created(self):
         public_profile = PublicProfile.objects.get(user=self.public)
         self.assertIsInstance(public_profile, PublicProfile)
@@ -81,6 +96,7 @@ class TestProfileModels(TestCase):
     def test_company_profile_created(self):
         company_profile = CompanyProfile.objects.get(user=self.company)
         self.assertIsInstance(company_profile, CompanyProfile)
+        
 
 
 class TestUserSignUp(TestCase):

@@ -8,8 +8,9 @@ export function useProfile() {
     return useContext(ProfileContext);
 }
 export function ProfileProvider(props) {
+
     const [profileInfo, setProfileInfo] = useState({
-        avatar: profilepic,
+        avatar: "",
         first_name: "",
         last_name: "",
         email: "",

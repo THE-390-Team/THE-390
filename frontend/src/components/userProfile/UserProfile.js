@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import profilepic from "../assets/pp.jpg";
-import axiosInstance from "../api/axios";
+import profilepic from "../../assets/pp.jpg";
+import axiosInstance from "../../api/axios";
 import {
   Container,
   Row,
@@ -11,13 +11,27 @@ import {
   Modal,
   Form,
 } from "react-bootstrap";
-import { useProfile } from "../utils/hooks/ProfileContext";
-
+import { useProfile } from "../../utils/hooks/ProfileContext";
 
 
 const UserProfile = () => {
 
+
   const { profileInfo, getProfileInformation, setProfileInformation } = useProfile();
+
+  // // user information
+  // const [profileInfo, setProfileInfo] = useState({
+  //   avatar: profilepic,
+  //   first_name: "",
+  //   last_name: "",
+  //   email: "",
+  //   phone_number: "",
+  //   address: "",
+  //   city: "",
+  //   province: "",
+  //   registration_key: "",
+  //   postal_code: "",
+  // });
 
   const [tempChanges, setTempChanges] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -25,10 +39,11 @@ const UserProfile = () => {
   const handleCloseModal = () => setShowModal(false);
 
   const handleSaveChanges = () => {
+    // TODO: Implement save functionality with the backend
     console.log("Save changes");
     handleCloseModal();
-    // this will update the app only, must link to backend
-    // setProfileInformation(tempChanges);
+    setProfileInformation(tempChanges);
+    // TODO need to CRUD
   };
 
   const handleChange = (e) => {
@@ -53,7 +68,6 @@ const UserProfile = () => {
     console.log(profileInfo);
   };
 
-  // TODO need a to fetch
   // get information on active user
   useEffect(() => {
     getProfileInformation()
@@ -62,7 +76,7 @@ const UserProfile = () => {
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
-        <Col md={4}>
+        <Col md={4} >
           <Card>
             <Card.Img
               variant="top"
@@ -78,7 +92,7 @@ const UserProfile = () => {
               </Card.Title>
             </Card.Body>
 
-            <ListGroup>
+            <ListGroup >
               <ListGroup.Item>
                 <strong>Email:</strong> {profileInfo.email}
               </ListGroup.Item>

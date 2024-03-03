@@ -13,6 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      # Install frontend dependencies and start server
+
       - name: Install frontend dependencies
         working-directory: ./frontend
         run: npm install
@@ -20,6 +22,8 @@ jobs:
       - name: Start frontend server
         working-directory: ./frontend
         run: npm start &
+
+      # Install backend dependencies and start server
 
       - name: Create python environment
         working-directory: ./backend
@@ -37,16 +41,44 @@ jobs:
         working-directory: ./backend
         run: python manage.py runserver &
 
+      # Run Unit tests Django and capture coverage report
+
+      - name: Run Unit tests Django
+        working-directory: ./backend
+        run: |
+          coverage run manage.py test
+          coverage report > ../coverage_report.txt
+
+      # Install Cypress and run tests
+
       - name: Install Cypress
         working-directory: ./frontend
         run: npm install cypress --save-dev
 
       - name: Run Cypress tests
         working-directory: ./frontend
-        run: npx cypress run
+        run: npx cypress run > ../report_cypress.txt
 
-      - name: Run Unit tests Django
-        working-directory: ./backend
-        run: python manage.py test
+      # Update README.md with coverage report and Cypress output using GitHub API
+
+      - name: Update README.md
+        run: |
+          ACCESS_TOKEN=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 # Replace with your GitHub personal access token
+          REPO_NAME=THE-390
+          COVERAGE_REPORT=$(cat ../coverage_report.txt)
+          CYPRESS_OUTPUT=$(cat ../report_cypress.txt)
+          
+          curl -X PUT \
+            -H "Authorization: token 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" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/$REPO_NAME/contents/README.md" \
+            -d '{
+                  "message": "Update README.md",
+                  "content": "'"$(echo "## Coverage Report\n\n\`\`\`bash\n$COVERAGE_REPORT\n\`\`\`\n\n## Cypress Test Outputs\n\n\`\`\`bash\n$CYPRESS_OUTPUT\n\`\`\`" | base64)"'",
+                  "sha": "'"$(curl -s -H "Authorization: token $ACCESS_TOKEN" \
+                          -H "Accept: application/vnd.github.v3+json" \
+                          "https://api.github.com/repos/$REPO_NAME/contents/README.md" | \
+                          jq -r '.sha')"
+                }'
 
       
