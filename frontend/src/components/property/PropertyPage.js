@@ -94,7 +94,7 @@ const PropertyPage = ({ id }) => {
               <Button >
                 Make Request?
               </Button>
-              <Button onClick={handleBackToDashboard}>
+              <Button onClick={handleBackToDashboard} data-testid="dashboard-return">
                 Dashboard
               </Button>
 
