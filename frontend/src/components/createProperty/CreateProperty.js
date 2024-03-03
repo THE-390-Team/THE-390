@@ -17,7 +17,7 @@ const CreateProperty = () => {
 
   const [formData, setFormData] = useState({
     property_name: "",
-    property_company: "",
+    property_company: "", 
     property_address: "",
     property_city: "",
     property_province: "",
@@ -41,19 +41,24 @@ const CreateProperty = () => {
     console.log(formData);
 
     axiosInstance
-      .post(`property-profile/register/`, {
-        //TODO await model updates with name and image
-        // name: formData.name,
-        company: formData.company,
-        address: formData.address,
-        city: formData.city,
-        province: formData.province,
-        postal_code: formData.postal_code,
-        // image: formData.image,
+      .post(`/properties/property-profile/`, {
+        // name: formData.property_name, //TODO await model updates with name and image
+    
+    
+            //TODO this a key for another company profile (dropdown of available companies maybe??)
+        // it also most likely won't be needed since condo admin will have a company already
+        // and it can be used for this
+        company: formData.property_company,
+        address: formData.property_address,
+        city: formData.property_city,
+        province: formData.property_province,
+        postal_code: formData.property_postal_code,
+
+        // image: formData.property_image, //TODO await model updates with name and image
       })
       .then((res) => {
         if (res.status == 201) {
-          window.alert(`Property profile ${formData.name} has been created`)
+          window.alert(`Property profile ${formData.property_name} has been created`)
           console.log(res);
           console.log(res.data);
           navigate("/dashboard");
@@ -64,7 +69,7 @@ const CreateProperty = () => {
         console.log(error);
         console.log(error.data);
         window.alert(`${error} `)
-        navigate("/dashboard");
+        // navigate("/dashboard")
       });
   };
 
@@ -128,9 +133,9 @@ const CreateProperty = () => {
           <Form.Group as={Col} controlId="formGridPropertyProvince">
             <Form.Label>Property Province</Form.Label>
             <Form.Select
-              defaultValue={formData.province}
-              name="province"
-              value={formData.province}
+              defaultValue={formData.property_rovince}
+              name="property_province"
+              value={formData.property_province}
               onChange={handleChange}
               data-testid="province-select">
               <option value="British Colombia">BC</option>
