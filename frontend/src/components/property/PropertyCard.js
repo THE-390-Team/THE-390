@@ -21,21 +21,21 @@ const PropertyCard = ({ property }) => {
 
   const calculateUnitTotal = (property) => {
     let total = 0;
-    for (const unit of property.units) {
+    for (const unit of property.condo_units) {
       total += unit.price;
     }
     return total;
   }
   const calculateParkingTotal = (property) => {
     let total = 0;
-    for (const parking of property.parkingSpots) {
+    for (const parking of property.condo_parkingSpots) {
       total += parking.price;
     }
     return total;
   }
   const calculateLockerTotal = (property) => {
     let total = 0;
-    for (const locker of property.lockers) {
+    for (const locker of property.condo_lockers) {
       total += locker.price;
     }
     return total;
@@ -51,15 +51,16 @@ const PropertyCard = ({ property }) => {
       />
       <Card.Body>
         {/* TODO hard coded the url until database connection */}
-        <Card.Title><Link to="/property-page">{property.name}</Link></Card.Title>
-        <Card.Text>Location: {property.location}</Card.Text>
+        {/* FIXME the property doesn't have a name yet so i used id */}
+        <Card.Title><Link to="/property-page">{property.id}</Link></Card.Title>
+        <Card.Text>Location: {property.address}</Card.Text>
         <Button ref={unitsRef} onClick={toggleUnits} variant="secondary" className="me-2">Units</Button>
         <Overlay target={unitsRef.current} show={showUnits} placement="bottom" rootClose={true} onHide={() => setShowUnits(false)}>
           {(props) => (
             <Popover {...props} id="popover-units">
               <Popover.Body>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                  <div>Count: {property.units.length}</div>
+                  <div>Count: {property.condo_units.length}</div>
                   <div>Value: ${calculateUnitTotal(property)}</div>
                 </div>
               </Popover.Body>
@@ -73,6 +74,8 @@ const PropertyCard = ({ property }) => {
             <Popover {...props} id="popover-parking">
               <Popover.Body>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                  {/* TODO property model doesn't have parking and locker
+                  FIXME check if there's updated models with parking and lockers */}
                   <div>Count: {property.parkingSpots.length}</div>
                   <div>Total: ${calculateParkingTotal(property)}</div>
                 </div>
@@ -87,6 +90,8 @@ const PropertyCard = ({ property }) => {
             <Popover {...props} id="popover-lockers">
               <Popover.Body>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                  {/* TODO property model doesn't have parking and locker
+                  FIXME check if there's updated models with parking and lockers */}
                   <div>Count: {property.lockers.length} </div>
                   <div>Total: ${calculateLockerTotal(property)}</div>
                 </div>
