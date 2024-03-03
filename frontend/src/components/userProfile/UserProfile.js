@@ -185,6 +185,7 @@ const UserProfile = () => {
               <Form.Label>Update Profile Picture</Form.Label>
               <Form.Control
                 type="file"
+                accept="image/png, image/jpeg"
                 name="avatar"
                 multiple
                 onChange={handleChange}
