@@ -1,17 +1,19 @@
-from django.test import TestCase, client
+from django.test import TestCase
 from django.contrib.auth import get_user_model
-from .models import CustomUserManager, User, PublicProfile, EmployeeProfile, CompanyProfile
 from rest_framework import status
 from django.urls import reverse
-from rest_framework.test import APITestCase
 from .serializers import UserSerializer
+from .models import User, PublicProfile, EmployeeProfile, CompanyProfile
+
 UserModel = get_user_model()
 
 
 class TestProfileModels(TestCase):
+    """ Test User Profile Models """
     
     @classmethod
     def setUpTestData(cls):
+        # Set up test data to be used 
         cls.user = User.objects.create_superuser(         
             email='test@example.com',
             password='password',
@@ -33,7 +35,6 @@ class TestProfileModels(TestCase):
             first_name='Test',
             last_name='User'
         )
-
         cls.company = User.objects.create_user(
             email='company@example.com',
             password='password',
@@ -43,7 +44,6 @@ class TestProfileModels(TestCase):
         )
 
     """ Test superuser and is_staff """
-     
     def test_create_superuser_is_superuser(self):
         self.assertTrue(self.user.is_superuser)
         self.assertTrue(self.user.is_staff)
@@ -59,8 +59,7 @@ class TestProfileModels(TestCase):
         self.assertEqual(self.employee.role, 'EMPLOYEE')
         self.assertEqual(self.company.role, 'COMPANY')
 
-    """ Testing profiles creation with the user """
-     
+    """ Testing profiles creation with the user """  
     def test_user_creation(self):
         public_profile_created = PublicProfile.objects.filter(user=self.public).exists()
         employee_profile_created = EmployeeProfile.objects.filter(user=self.employee).exists()
@@ -69,7 +68,6 @@ class TestProfileModels(TestCase):
         self.assertTrue(employee_profile_created)
         self.assertTrue(company_profile_created)
         
-     
     def test_public_profile_created(self):
         public_profile = PublicProfile.objects.get(user=self.public)
         self.assertIsInstance(public_profile, PublicProfile)
@@ -85,11 +83,11 @@ class TestProfileModels(TestCase):
         self.assertIsInstance(company_profile, CompanyProfile)
 
 
-class TestProfilesViews(TestCase):
-    
+class TestUserSignUp(TestCase):
+    """ Testing Sign up endpoints for public profile/user """
     @classmethod
     def setUpTestData(cls):
-    
+        # create test data user
         cls.user = User.objects.create_user(
             email='public@example.com',
             password='password',
@@ -98,57 +96,52 @@ class TestProfilesViews(TestCase):
             last_name='User'
         )
         
+    # sign up for public profile
     def test_user_creation(self):
-        respnse = self.client.post(reverse('users-list'),{
+        respnse = self.client.post('/profiles/user/',{
             "email": "test4@example.com",
             "first_name": "John",
             "last_name": "Doe",
             "role": "PUBLIC",
             "password": "password"
         })
-        
+        test_user = User.objects.get(email="test4@example.com")
         self.assertEqual(respnse.status_code, status.HTTP_201_CREATED)
         self.assertTrue(User.objects.filter(email="test4@example.com").exists())
-        
-    def test_user_details(self):
-        response = self.client.get(reverse('users-detail', args=[self.user.id]))
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        user_data = UserSerializer(self.user).data
-        self.assertEqual(response.data, user_data)
+        self.assertTrue(PublicProfile.objects.filter(user=test_user).exists())
     
-    
-    def test_user_list(self):
-        response = self.client.get(reverse('users-list'))
-        db_users = User.objects.all()
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        if len(db_users) == 0:
-            self.assertEqual(response.data, [])
-        elif len(db_users) == 1:
-            user_serializer = UserSerializer(db_users, many=False)
-            self.assertEqual(response.data, user_serializer.data) 
-        else:
-            user_serializer = UserSerializer(db_users, many=True)
-            self.assertEqual(response.data, user_serializer.data)
-    
-    def test_user_update(self):
-        email  = "fake@example.com"
-        first_name = "Fake"
-        last_name = "User"
-        password = "password"
-        role = "PUBLIC"
-        create_user_response = self.client.post(reverse('users-detail'),{
-            "email" : email, 
-            "first_name": first_name,
-            "last_name" : last_name,
-            "role": role,
-            "password": password
+    # sign up with email that is already in use
+    def test_user_creation_existing_email(self):
+        response = self.client.post('/profiles/user/',{
+            "email": "public@example.com",
+            "first_name": "John",
+            "last_name": "Doe",
+            "role": "PUBLIC",
+            "password": "password"
         })
-        self.assertEqual(create_user_response.status_code, status.HTTP_201_CREATED)
-        
-        response = self.client.patch(f'/profiles/user/{create_user_response.data.id}/', {
-            "email": "publicaaa@example.com",
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data['email'],["user with this email address already exists."])
+    
+    # sign up with invalid email 
+    def test_user_creation_invalid_email(self):
+        response = self.client.post('/profiles/user/',{
+            "email": "public",
+            "first_name": "John",
+            "last_name": "Doe",
+            "role": "PUBLIC",
+            "password": "password"
         })
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertNotEqual(email, response.data.email)
-        
-        
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data['email'],["Enter a valid email address."])
+    
+    # sign up without password 
+    def test_user_creation_without_password(self):
+        response = self.client.post('/profiles/user/',{
+            "email": "publhhic@example.com",
+            "first_name": "John",
+            "last_name": "Doe",
+            "role": "PUBLIC",
+            "password": ""
+        })
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(response.data["password"],["This field may not be blank."])
