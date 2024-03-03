@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Button, Overlay, Popover, ListGroup, Card } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 const PropertyCard = ({ property }) => {
@@ -52,7 +52,7 @@ const PropertyCard = ({ property }) => {
       <Card.Body>
         {/* TODO hard coded the url until database connection */}
         {/* FIXME the property doesn't have a name yet so i used id */}
-        <Card.Title><Link to="/property-page">{property.id}</Link></Card.Title>
+        <Card.Title><NavLink to={`/property-page/${property.id}`}>{property.id}</NavLink></Card.Title>
         <Card.Text>Location: {property.address}</Card.Text>
         <Button ref={unitsRef} onClick={toggleUnits} variant="secondary" className="me-2">Units</Button>
         <Overlay target={unitsRef.current} show={showUnits} placement="bottom" rootClose={true} onHide={() => setShowUnits(false)}>

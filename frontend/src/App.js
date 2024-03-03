@@ -36,7 +36,7 @@ function App() {
             <Route path="/create-locker" element={<CreateLocker />} />
             {/* <Route path="/property-card" element={<PropertyCard />} /> */}
             {/* TODO id hard coded until db connection is made should be path="/property-page/:propertyId" with no prop*/}
-            <Route path="/property-page" element={<PropertyPage id={"1"}/>} />
+            <Route path="/property-page/:propertyId" element={<PropertyPage />} />
             <Route path="/create-property" element={<CreateProperty />} />
 
           </Routes>

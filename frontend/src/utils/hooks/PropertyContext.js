@@ -63,7 +63,7 @@ export const PropertyProvider = ({ children }) => {
         //     ],
         // }
     });
-    const [property, setProperty] = useState();
+    const [property, setProperty] = useState({});
 
     //TODO check if this is good to fetch all properties
     const fetchAllProperties = async () => {
@@ -84,7 +84,8 @@ export const PropertyProvider = ({ children }) => {
     //it JSON already? serializer? 
     const fetchProperty = async (id) => {
         axiosInstance
-            .get(`properties/property-profile/${id}`)
+
+            .get(`/properties/property-profile/${id}`)
             .then((response) => {
                 console.log(response);
                 setProperty(response.data);
@@ -108,7 +109,7 @@ export const PropertyProvider = ({ children }) => {
     };
 
     return (
-        <PropertyContext.Provider value={{ properties, fetchAllProperties, addProperty, updateProperty, deleteProperty }}>
+        <PropertyContext.Provider value={{ properties, fetchAllProperties, addProperty, updateProperty, deleteProperty, property, setProperty, fetchProperty }}>
             {children}
         </PropertyContext.Provider>
     );
