@@ -6,6 +6,8 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView
 )
 from jwt_auth_token.views import BlackListTokenView
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -19,4 +21,4 @@ urlpatterns = [
     path('profiles/', include('user_profile.urls')),
     path('properties/', include('properties.urls')),
     
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
