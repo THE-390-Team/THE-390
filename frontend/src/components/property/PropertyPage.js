@@ -101,15 +101,15 @@ const PropertyPage = ({ id }) => {
             </Col>
           </Row>
 
-          <h5 className="mt-3">Units <Button variant="primary" onClick={handleGoToUnitCreate}>+</Button></h5>
+          <h5 className="mt-3">Units <Button variant="primary" onClick={handleGoToUnitCreate} data-testid="create-unit-button">+</Button></h5>
           <div style={renderStyle}>
             {renderUnits()}
           </div>
-          <h5 className="mt-3">Parking Spots <Button variant="primary" onClick={handleGoToParkingCreate}>+</Button></h5>
+          <h5 className="mt-3">Parking Spots <Button variant="primary" onClick={handleGoToParkingCreate} data-testid="create-parking-button">+</Button></h5>
           <div style={renderStyle}>
             {renderParkingSpots()}
           </div>
-          <h5 className="mt-3">Lockers <Button variant="primary" onClick={handleGoToLockerCreate}>+</Button></h5>
+          <h5 className="mt-3">Lockers <Button variant="primary" onClick={handleGoToLockerCreate} data-testid="create-locker-button">+</Button></h5>
           <div style={renderStyle}>
             {renderLockers()}
           </div>
