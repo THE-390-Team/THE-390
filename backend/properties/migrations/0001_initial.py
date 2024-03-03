@@ -13,7 +13,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.CreateModel(
             name='CondoUnit',
-            name='CondoUnit',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('location', models.IntegerField()),
@@ -25,7 +24,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='ParkingUnit',
             name='ParkingUnit',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
