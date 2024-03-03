@@ -6,7 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-
+from rest_framework.parsers import MultiPartParser, FormParser
 
 """
     ViewSets For CRUD Operations on the PublicProfile, CompanyProfile, EmployeeProfile and User models 
@@ -35,6 +35,7 @@ class PublicProfileViewSet(ModelViewSet):
     queryset = PublicProfile.objects.all()
     serializer_class = PublicProfileSerializer
     lookup_field = 'user'
+    parser_classes = [MultiPartParser, FormParser]
     
 class EmployeeProfileViewSet(ModelViewSet):
     """
@@ -42,7 +43,8 @@ class EmployeeProfileViewSet(ModelViewSet):
     """
     queryset = EmployeeProfile.objects.all()
     serializer_class = EmployeeProfileSerializer
-    lookup_field = 'user'
+    lookup_field = 'user'       
+    parser_classes = [MultiPartParser, FormParser]
     
 class CompanyProfileViewSet(ModelViewSet):
     """
@@ -51,3 +53,4 @@ class CompanyProfileViewSet(ModelViewSet):
     queryset = CompanyProfile.objects.all()
     serializer_class = CompanyProfileSerializer
     lookup_field = 'user'
+    parser_classes = [MultiPartParser, FormParser]
