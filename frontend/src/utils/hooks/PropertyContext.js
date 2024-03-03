@@ -13,69 +13,70 @@ export const PropertyProvider = ({ children }) => {
 
     //TODO hard coded until the api is confirmed with db content as well
     const [properties, setProperties] = useState({
-        property1: {
-            id: "1",
-            company: "",
-            name: "Estate Alpha",
-            location: "Greenwich, London",
-            image: propertyPhoto,
-            units: [
-                { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
-                { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
-            ],
-            parkingSpots: [
-                { id: 1, level: 2, size: 200, price: 50000, slotNumber: 12 },
-            ],
-            lockers: [
-                { id: 1, location: 'Basement', size: 50, number: 3, price: 10000 },
-            ],
-        },
-        property2: {
-            id: "2",
-            company: "",
-            name: "Villa Beta",
-            location: "Beverly Hills, California",
-            image: propertyPhoto1,
-            units: [
-                { id: 1, name: "Sunset Manor", address: '456 Grand Ave', location: 'Hills', price: 2500000, size: 1500 },
-            ],
-            parkingSpots: [
-                { id: 1, level: 1, size: 250, price: 75000, slotNumber: 8 },
-            ],
-            lockers: [
-                { id: 1, location: 'Sub-basement', size: 60, number: 5, price: 20000 },
-            ],
-        },
-        property3: {
-            id: "3",
-            company: "",
-            name: "Condo Gamma",
-            location: "Manhattan, New York",
-            image: propertyPhoto2,
-            units: [
-                { id: 1, name: "The Empire Loft", address: '789 Broadway St', location: 'Midtown', price: 900000, size: 800 },
-            ],
-            parkingSpots: [
-                { id: 1, level: 3, size: 180, price: 60000, slotNumber: 20 },
-            ],
-            lockers: [
-                { id: 1, location: 'Lower Level', size: 40, number: 7, price: 15000 },
-            ],
-        }
+        // property1: {
+        //     id: "1",
+        //     company: "",
+        //     name: "Estate Alpha",
+        //     location: "Greenwich, London",
+        //     image: propertyPhoto,
+        //     units: [
+        //         { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
+        //         { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
+        //     ],
+        //     parkingSpots: [
+        //         { id: 1, level: 2, size: 200, price: 50000, slotNumber: 12 },
+        //     ],
+        //     lockers: [
+        //         { id: 1, location: 'Basement', size: 50, number: 3, price: 10000 },
+        //     ],
+        // },
+        // property2: {
+        //     id: "2",
+        //     company: "",
+        //     name: "Villa Beta",
+        //     location: "Beverly Hills, California",
+        //     image: propertyPhoto1,
+        //     units: [
+        //         { id: 1, name: "Sunset Manor", address: '456 Grand Ave', location: 'Hills', price: 2500000, size: 1500 },
+        //     ],
+        //     parkingSpots: [
+        //         { id: 1, level: 1, size: 250, price: 75000, slotNumber: 8 },
+        //     ],
+        //     lockers: [
+        //         { id: 1, location: 'Sub-basement', size: 60, number: 5, price: 20000 },
+        //     ],
+        // },
+        // property3: {
+        //     id: "3",
+        //     company: "",
+        //     name: "Condo Gamma",
+        //     location: "Manhattan, New York",
+        //     image: propertyPhoto2,
+        //     units: [
+        //         { id: 1, name: "The Empire Loft", address: '789 Broadway St', location: 'Midtown', price: 900000, size: 800 },
+        //     ],
+        //     parkingSpots: [
+        //         { id: 1, level: 3, size: 180, price: 60000, slotNumber: 20 },
+        //     ],
+        //     lockers: [
+        //         { id: 1, location: 'Lower Level', size: 40, number: 7, price: 15000 },
+        //     ],
+        // }
     });
     const [property, setProperty] = useState();
 
     //TODO check if this is good to fetch all properties
     const fetchAllProperties = async () => {
         axiosInstance
-            .get(`properties/property-profile`)
+            .get(`/properties/property-profile/`)
             .then((response) => {
                 console.log(response);
                 setProperties(response.data);
                 console.log(response.data);
+                console.log(properties);
             })
             .catch((error) => {
-                console.error("Error fetching user profile:", error.message);
+                console.error("Error fetching property profile:", error.message);
             });
     };
 
