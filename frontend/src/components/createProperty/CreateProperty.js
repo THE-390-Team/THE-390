@@ -42,10 +42,10 @@ const CreateProperty = () => {
 
     axiosInstance
       .post(`/properties/property-profile/`, {
-        // name: formData.property_name, //TODO await model updates with name and image
+        //TODO await model updates with name and image
+        // name: formData.property_name, 
     
-    
-            //TODO this a key for another company profile (dropdown of available companies maybe??)
+        //TODO this a key for another company profile (dropdown of available companies maybe??)
         // it also most likely won't be needed since condo admin will have a company already
         // and it can be used for this
         company: formData.property_company,
@@ -93,6 +93,7 @@ const CreateProperty = () => {
               data-testid="property-name-input"
             />
           </Form.Group>
+          {/* FIXME this won't be needed, should automatically be assigned based on login access */}
           <Form.Group as={Col} controlId="formGridPropertyCompany">
             <Form.Label>Property Company</Form.Label>
             <Form.Control
