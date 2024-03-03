@@ -13,6 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      # Install frontend dependencies and start server
       - name: Install frontend dependencies
         working-directory: ./frontend
         run: npm install
@@ -21,6 +22,7 @@ jobs:
         working-directory: ./frontend
         run: npm start &
 
+      # Install backend dependencies and start server
       - name: Create python environment
         working-directory: ./backend
         run: python -m venv venv
@@ -37,19 +39,48 @@ jobs:
         working-directory: ./backend
         run: python manage.py runserver &
 
+      # Run Unit tests Django and capture coverage report
       - name: Run Unit tests Django
         working-directory: ./backend
         run: |
           coverage run manage.py test
-          coverage report
+          coverage report > coverage_report.txt
 
+      # Save coverage report to repository
+      - name: Save coverage report
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: ./backend/coverage_report.txt
+
+      # Install Cypress and run tests
       - name: Install Cypress
         working-directory: ./frontend
         run: npm install cypress --save-dev
 
       - name: Run Cypress tests
         working-directory: ./frontend
-        run: npx cypress run
+        run: npx cypress run > report_cypress.txt
 
+      # Save Cypress report to repository
+      - name: Save Cypress report
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-report
+          path: ./frontend/report_cypress.txt
+          
+      - name: Copy Artifacts
+        run: |
+          cp ${{ github.workspace }}/backend/coverage_report.txt .
+          cp ${{ github.workspace }}/frontend/report_cypress.txt .
+
+      # Commit and push the changes
+      - name: Commit Artifacts
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -m "Add coverage report and Cypress output"
+          git push
 
       
