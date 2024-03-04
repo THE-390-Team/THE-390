@@ -15,10 +15,12 @@ const CreateLocker = () => {
   const navigate = useNavigate();
   // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
-    locker_id: "",
-    locker_owner: "",
-    locker_info: "",
-    locker_fee: "",
+    public_profile: null,
+    location: "",
+    purchase_price: "",
+    rent_price: "",
+    size: "",
+    extra_information: null,
   });
 
   const handleChange = (e) => {
@@ -45,10 +47,11 @@ const CreateLocker = () => {
 
     axiosInstance
       .post(`properties/property-profile/${propertyId}/storage-unit/`, {
-        locker_id: formData.locker_id,
-        locker_owner: formData.locker_owner,
-        locker_info: formData.locker_info,
-        locker_fee: formData.locker_fee,
+        location: formData.location,
+        purchase_price: formData.purchase_price,
+        rent_price: formData.rent_price,
+        size: formData.size,
+        extra_information: formData.extra_information,
       })
       .then((res) => {
         if (res.status == 201) {
@@ -56,7 +59,7 @@ const CreateLocker = () => {
           console.log(res);
           console.log(res.data);
           //There should be a history
-          //history("/login");
+          navigate(-1)
         }
       })
       .catch((error) => {
@@ -81,18 +84,29 @@ const CreateLocker = () => {
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
 
         <Row classname="mb-3">
-          <Form.Group as={Col} controlId="formGridLockerID">
-            <Form.Label>Locker ID</Form.Label>
+          <Form.Group as={Col} controlId="formGridLockerLocation">
+            <Form.Label>Locker Location</Form.Label>
             <Form.Control
               type="text"
-              name="locker_id"
-              placeholder="Enter Locker ID"
-              value={formData.locker_id}
+              name="location"
+              placeholder="####"
+              value={formData.location}
               onChange={handleChange}
-              data-testid="locker-id-input"
+              data-testid="locker-location-input"
             />
           </Form.Group>
-          <Form.Group as={Col} controlId="formGridLockerOwner">
+          <Form.Group as={Col} controlId="formGridLockerSize">
+            <Form.Label>Locker Size</Form.Label>
+            <Form.Control
+              type="text"
+              name="size"
+              placeholder="Enter Locker Owner"
+              value={formData.size}
+              onChange={handleChange}
+              data-testid="locker-size-input"
+            />
+          </Form.Group>
+          {/* <Form.Group as={Col} controlId="formGridLockerOwner">
             <Form.Label>Locker Owner</Form.Label>
             <Form.Control
               type="text"
@@ -102,30 +116,41 @@ const CreateLocker = () => {
               onChange={handleChange}
               data-testid="locker-owner-input"
             />
+          </Form.Group> */}
+        </Row>
+        <Row>
+          <Form.Group as={Col} classname="mb-3" controlId="formGridLockerPurchasePrice">
+            <Form.Label>Purchase Price</Form.Label>
+            <Form.Control
+              type="text"
+              name="purchase_price"
+              placeholder="Enter Locker Purchase Price"
+              value={formData.purchase_price}
+              onChange={handleChange}
+              data-testid="locker-purchase_price-input"
+            />
+          </Form.Group>
+          <Form.Group as={Col} classname="mb-3" controlId="formGridLockerRentPrice">
+            <Form.Label>Rent Price</Form.Label>
+            <Form.Control
+              type="text"
+              name="rent_price"
+              placeholder="Enter Locker Rent Price"
+              value={formData.rent_price}
+              onChange={handleChange}
+              data-testid="locker-rent_price-input"
+            />
           </Form.Group>
         </Row>
-
-        <Form.Group classname="mb-3" controlId="formGridLockerInfo">
-          <Form.Label>Locker Info</Form.Label>
+        <Form.Group classname="mb-3" controlId="formGridLockerExtraInformation">
+          <Form.Label>Extra Information</Form.Label>
           <Form.Control
             type="text"
-            name="locker_info"
-            placeholder="Enter Locker Owner Info"
-            value={formData.locker_info}
+            name="extra_information"
+            placeholder="Enter Locker Extra Info"
+            value={formData.extra_information}
             onChange={handleChange}
-            data-testid="locker-info-input"
-          />
-        </Form.Group>
-
-        <Form.Group classname="mb-3" controlId="formGridLockerFee">
-          <Form.Label>Locker Fee</Form.Label>
-          <Form.Control
-            type="text"
-            name="locker_fee"
-            placeholder="Enter Locker Fee"
-            value={formData.locker_fee}
-            onChange={handleChange}
-            data-testid="locker-fee-input"
+            data-testid="locker-extra_information-input"
           />
         </Form.Group>
         <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToPropertyPage}>
