@@ -1,12 +1,10 @@
-from django.shortcuts import render
+
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.views import APIView
-from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit
-from .serializers import PropertyProfileSerializer, CondoUnitSerializer, StorageUnitSerializer, ParkingUnitSerializer
-from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.views import APIView
+
+from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit
+from .serializers import PropertyProfileSerializer, CondoUnitSerializer, StorageUnitSerializer, ParkingUnitSerializer
 from user_profile.models import CompanyProfile
 
 
@@ -70,6 +68,7 @@ class CondoUnitViewSet(ModelViewSet):
     queryset = CondoUnit.objects.all()
     serializer_class = CondoUnitSerializer
     
+    # added list functionnality to list units belonging to property specified in endpoint url
     def list(self, request, **kwargs):
         property_id = self.kwargs.get('property_id', None)
         if not property_id:
@@ -81,7 +80,7 @@ class CondoUnitViewSet(ModelViewSet):
         except CompanyProfile.DoesNotExist:
             return Response({"details":"Company Profile does not exist"},status=status.HTTP_404_NOT_FOUND)
         
-    
+    # added functionnality to directly connect unit to the property
     def create(self, request, **kwargs):
         property_id = self.kwargs.get('property_id', None)
         if not property_id:
@@ -97,6 +96,7 @@ class ParkingUnitViewSet(ModelViewSet):
     queryset = ParkingUnit.objects.all()
     serializer_class = ParkingUnitSerializer
     
+    # added list functionnality to list units belonging to property specified in endpoint url
     def list(self, request, **kwargs):
         property_id = self.kwargs.get('property_id', None)
         if not property_id:
@@ -108,6 +108,7 @@ class ParkingUnitViewSet(ModelViewSet):
         except CompanyProfile.DoesNotExist:
             return Response({"details":"Company Profile does not exist"},status=status.HTTP_404_NOT_FOUND)
     
+    # added functionnality to directly connect unit to the property
     def create(self, request, **kwargs):
         property_id = self.kwargs.get('property_id', None)
         if not property_id:
@@ -122,6 +123,7 @@ class StorageUnitViewSet(ModelViewSet):
     queryset = StorageUnit.objects.all()
     serializer_class = StorageUnitSerializer
     
+    # added functionnality to directly connect unit to the property
     def create(self, request, **kwargs):
         property_id = self.kwargs.get('property_id', None)
         if not property_id:
@@ -129,6 +131,7 @@ class StorageUnitViewSet(ModelViewSet):
         request.data['property'] = property_id
         return super().create(request, **kwargs)
     
+    # added list functionnality to list units belonging to property specified in endpoint url
     def list(self, request, **kwargs):
         property_id = self.kwargs.get('property_id', None)
         if not property_id:
