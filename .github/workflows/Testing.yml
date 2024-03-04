@@ -88,6 +88,17 @@ jobs:
         with:
           name: cypress-report
           path: ./frontend/reports_cypress.json
+
+    # Push changes to the main branch
+      - name: Push changes to main
+        env:
+          PAT_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -m "Automated push from GitHub Actions"
+          git push origin main
           
 
       
