@@ -6,6 +6,7 @@ import Login from "./components/log/Login.js";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./components/log/SignUp.js";
+import SignUpCompany from "./components/log/SignUpCompany.js";
 import UserProfile from "./components/userProfile/UserProfile.js";
 import LogOut from "./components/log/LogOut";
 import PropertyCard from "./components/property/PropertyCard.js";
@@ -28,6 +29,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<LogOut />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/signup-company" element={<SignUpCompany />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/property-card" element={<PropertyCard />} />
             <Route path="/dashboard" element={<DashBoard />} />

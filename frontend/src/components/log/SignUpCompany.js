@@ -20,7 +20,8 @@ const SignUpCompany = () => {
     province: "",
     postal_code: "",
     registration_key: "",
-    profile_photo: ""
+    profile_photo: "",
+    role: "COMPANY"
   });
 
   // update formData as input is given
@@ -46,14 +47,14 @@ const SignUpCompany = () => {
         first_name: formData.first_name,
         last_name: formData.last_name,
         password: formData.password,
-        role: 'COMPANY',
+        role: formData.role,
       })
       .then((res) => {
         if (res.status == 201) {
           console.log(res);
           console.log(res.data);
           updateProfileInfo(res.data.id)
-          window.alert(`profile ${formData.email} has been created as a(n) $${formData.role} user`);
+          window.alert(`profile ${formData.email} has been created as a(n) ${res.data.role} user`);
           history("/login");
         }
       })
@@ -67,13 +68,13 @@ const SignUpCompany = () => {
 
   const updateProfileInfo = (id) => {
     axiosInstance
-      .patch(`profiles/public-profile/${id}/`, {
+      .patch(`profiles/company-profile/${id}/`, {
         phone_number: formData.phone_number,
         address: formData.address,
         city: formData.city,
         province: formData.province,
         postal_code: formData.postal_code,
-        registration_key: formData.registration_key
+        // registration_key: formData.registration_key
       })
       .then((res) => {
         if (res.status == 200) {
