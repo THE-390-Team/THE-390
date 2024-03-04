@@ -59,7 +59,14 @@ jobs:
       # Run Unit tests Jest (Frontend)
       - name: Run Unit Tests (Frontend)
         working-directory: ./frontend
-        run: echo " Implementation not made yet "
+        run: npm run coverage > jest-report.json
+
+      # Save Jest tests as artifacts
+      - name: Save Jest report
+        uses: actions/upload-artifact@v2
+        with:
+          name: jest-report
+          path: ./frontend/jest-report.json
 
       # Run Integration Tests (Backend)
       - name: Run Integration Tests (Backend)
@@ -81,6 +88,7 @@ jobs:
         with:
           name: cypress-report
           path: ./frontend/reports_cypress.json
+
           
 
       

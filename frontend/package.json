@@ -19,7 +19,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test":"react-scripts test --watchAll=false", 
+    "coverage": "react-scripts test --watchAll=false --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -27,6 +28,11 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/node/axios.cjs"
+    }
   },
   "browserslist": {
     "production": [
@@ -41,9 +47,14 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-react": "^7.23.3",
     "@cypress/instrument-cra": "^1.4.0",
+    "babel-jest": "^29.7.0",
     "cypress": "^13.6.4",
     "cypress-file-upload": "^5.0.8",
+    "istanbul": "^0.4.5",
+    "jest": "^27.5.1",
     "nyc": "^15.1.0"
   }
 }
