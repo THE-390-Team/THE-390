@@ -55,7 +55,7 @@ const CreateLocker = () => {
       })
       .then((res) => {
         if (res.status == 201) {
-          window.alert(`Locker profile ${formData.locker_id} has been created`)
+          window.alert(`Locker profile ${formData.location} has been created`)
           console.log(res);
           console.log(res.data);
           //There should be a history
