@@ -33,11 +33,9 @@ function App() {
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/property-card" element={<PropertyCard />} />
             <Route path="/dashboard" element={<DashBoard />} />
-            <Route path="/create-unit" element={<CreateUnit />} />
-            <Route path="/create-parking" element={<CreateParking />} />
-            <Route path="/create-locker" element={<CreateLocker />} />
-            {/* <Route path="/property-card" element={<PropertyCard />} /> */}
-            {/* TODO id hard coded until db connection is made should be path="/property-page/:propertyId" with no prop*/}
+            <Route path="/property-page/:propertyId/create-condo-unit" element={<CreateUnit />} />
+            <Route path="/property-page/:propertyId/create-parking-unit" element={<CreateParking />} />
+            <Route path="/property-page/:propertyId/create-locker-unit" element={<CreateLocker />} />
             <Route path="/property-page/:propertyId" element={<PropertyPage />} />
             <Route path="/create-property" element={<CreateProperty />} />
 

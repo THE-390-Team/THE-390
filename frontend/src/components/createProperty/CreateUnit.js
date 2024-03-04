@@ -10,16 +10,16 @@ import {
 } from "react-bootstrap";
 
 const CreateUnit = () => {
-  let { propertyID } = useParams();
+  let { propertyId } = useParams();
   const navigate = useNavigate();
   // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
-    unit_id: "", // location in the model
+    unit_location: "", // location in the model
     unit_purchase_price: "",
     unit_rent_price: "", // not always needed
-    unit_size: "", //TODO add to model
-    unit_owner: "", //TODO add to model
-    unit_info: "", //TODO add to model to include the renter
+    //unit_size: "", 
+    //unit_owner: "", 
+    //unit_info: "", 
   });
 
   const handleChange = (e) => {
@@ -38,13 +38,13 @@ const CreateUnit = () => {
     console.log(formData);
 
     axiosInstance
-      .post(`unit-profile/register/`, {
+      .post(`properties/property-profile/${propertyId}/condo-unit/`, {
         location: formData.unit_id,
         purchase_price: formData.unit_purchase_price,
-        // property: propertyID
-        unit_size: formData.unit_size, //TODO not existant yet
-        unit_owner: formData.unit_owner, //TODO not existant yet
-        unit_info: formData.unit_info, //TODO not existant yet
+        property: propertyId,
+        //unit_size: formData.unit_size, //not existant yet
+        //unit_owner: formData.unit_owner, //not existant yet
+        //unit_info: formData.unit_info, // not existant yet
       })
       .then((res) => {
         if (res.status == 201) {
@@ -77,15 +77,15 @@ const CreateUnit = () => {
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
 
         <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridUnitID">
-            <Form.Label>Unit ID</Form.Label>
+          <Form.Group as={Col} controlId="formGridUnitLocation">
+            <Form.Label>Unit Location</Form.Label>
             <Form.Control
               type="text"
-              name="unit_id"
-              placeholder="Enter Unit ID"
+              name="unit_location"
+              placeholder="Enter Unit Location"
               value={formData.unit_id}
               onChange={handleChange}
-              data-testid="unit-id-input"
+              data-testid="unit-location-input"
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridUnitSize">

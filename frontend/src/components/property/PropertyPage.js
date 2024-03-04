@@ -7,8 +7,6 @@ import { useEffect } from "react"
 import axiosInstance from '../../api/axios';
 
 
-//FIXME idk why but this is not working
-// this is not working, the property fetched based on the id is undefined...probably asynchronous issues
 const PropertyPage = () => {
   let navigate = useNavigate();
 
@@ -36,8 +34,8 @@ const PropertyPage = () => {
             id: response.data.id,
             company: response.data.company,
             num_condo_units: response.data.num_condo_units,
-            num_parking_units: response.data.num_parking_units,
-            num_storage_units: response.data.num_storage_units,
+            //num_parking_units: response.data.num_parking_units,
+            //num_storage_units: response.data.num_storage_units,
             address: response.data.address,
             city: response.data.city,
             province: response.data.province,
@@ -93,13 +91,13 @@ const PropertyPage = () => {
     navigate('/dashboard');
   }
   function handleGoToUnitCreate() {
-    navigate('/create-unit')
+    navigate(`/property-page/${propertyId}/create-condo-unit`);
   }
   function handleGoToParkingCreate() {
-    navigate('/create-parking')
+    navigate(`/property-page/${propertyId}/create-parking-unit`);
   }
   function handleGoToLockerCreate() {
-    navigate('/create-locker')
+    navigate(`/property-page/${propertyId}/create-locker-unit`);
   }
   return (
     <Container fluid>
@@ -107,11 +105,11 @@ const PropertyPage = () => {
         <Col md={4} style={{ padding: '0' }}>
           {/* FIXME there's no image in db yet */}
           {/* <img src={property.image} alt={property.name} style={{ width: '100%', height: '40vh', objectFit: 'cover', marginTop: '28px' }} /> */}
-          <Card className="mt-4 h-25 shadow">
+          <Card className="mt-4 h-50 shadow">
             <Card.Title className="fw-bold">This is where property finances go?</Card.Title>
             This is where the finanical details will go
           </Card>
-          <Card className="mt-4 h-25 shadow">
+          <Card className="mt-4 h-50 shadow">
             <Card.Title className="fw-bold">This is where property Requests go?</Card.Title>
             This is where the requests details will go
           </Card>

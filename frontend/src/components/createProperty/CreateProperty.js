@@ -88,18 +88,6 @@ return (
             data-testid="property-name-input"
           />
         </Form.Group>
-        {/* FIXME this won't be needed, should automatically be assigned based on login access */}
-        <Form.Group as={Col} controlId="formGridPropertyCompany">
-          <Form.Label>Property Company</Form.Label>
-          <Form.Control
-            type="text"
-            name="property_company"
-            placeholder="Enter Company Name"
-            value={formData.company}
-            onChange={handleChange}
-            data-testid="property-company-input"
-          />
-        </Form.Group>
       </Row>
 
       <Form.Group as={Col} controlId="formGridPropertyAddress">

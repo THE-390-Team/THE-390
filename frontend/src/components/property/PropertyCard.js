@@ -22,14 +22,14 @@ const PropertyCard = ({ property }) => {
   const calculateUnitTotal = (property) => {
     let total = 0;
     for (const unit of property.condo_units) {
-      total += unit.purchase_price;
+      total += Number(unit.purchase_price);
     }
     return total;
   }
   const calculateParkingTotal = (property) => {
     let total = 0;
     for (const parking of property.condo_parkingSpots) {
-      total += parking.price;
+      total += Number(parking.price);
     }
     return total;
   }
