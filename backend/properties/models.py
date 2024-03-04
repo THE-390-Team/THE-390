@@ -38,8 +38,8 @@ class PropertyProfile(models.Model):
 class Unit(models.Model):
     class Meta:
         abstract=True
-    location = models.IntegerField()
-    size = models.DecimalField(decimal_places=2, max_digits=20, default=0)
+    location = models.CharField()
+    size = models.DecimalField(decimal_places=2, max_digits=20, default=0)    
     purchase_price = models.DecimalField(decimal_places=2, max_digits=20)
     rent_price = models.DecimalField(decimal_places=2, max_digits=20)
     extra_information = models.TextField(null=True)

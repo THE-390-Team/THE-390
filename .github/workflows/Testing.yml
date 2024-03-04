@@ -1,5 +1,5 @@
-name: E2E on Chrome
-
+name: Testing 
+# This workflows simulates an environment to test the entire application using unit testing, integration testing and system testing.
 on:
   push:
     branches: [ "main" ]
@@ -14,14 +14,11 @@ jobs:
         uses: actions/checkout@v2
 
       # Install frontend entrance dependencies and start server
-      # test comment
-      - name: Install frontend dependencies
-        working-directory: ./frontend
-        run: npm install
-
       - name: Start frontend server
         working-directory: ./frontend
-        run: npm start &
+        run: |
+          npm ci
+          npm start &
 
       # Install backend dependencies and start server
       - name: Create python environment
@@ -34,49 +31,57 @@ jobs:
 
       - name: Install backend dependencies
         working-directory: ./backend
-        run: pip install -r requirements.txt
+        run: pip install --no-cache-dir -r requirements.txt
 
       - name: Start backend server
         working-directory: ./backend
         run: python manage.py runserver &
 
-      # Run Unit tests Django and capture coverage report
+    # Install Cypress and run tests
+      - name: Install Cypress
+        working-directory: ./frontend
+        run: npm install cypress --save-dev
+
+      # Run Unit tests Django (Backend)
       - name: Run Unit tests Django
         working-directory: ./backend
         run: |
           coverage run manage.py test
-          coverage report > coverage_report.txt
+          coverage report > coverage_report.json
 
       # Save coverage report to repository
-      - name: Save coverage report
+      - name: Save coverage report 
         uses: actions/upload-artifact@v2
         with:
           name: coverage-report
-          path: ./backend/coverage_report.txt
+          path: ./backend/coverage_report.json
 
-      # Install Cypress and run tests
-      - name: Install Cypress
+      # Run Unit tests Jest (Frontend)
+      - name: Run Unit Tests (Frontend)
         working-directory: ./frontend
-        run: npm install cypress --save-dev
-             npm install --save-dev cypress-terminal-report
+        run: echo " Implementation not made yet "
 
-      - name: Run Cypress tests
+      # Run Integration Tests (Backend)
+      - name: Run Integration Tests (Backend)
+        working-directory: ./backend
+        run: echo " Implementation not made yet "
+
+      # Run Integration Tests (Frontend)
+      - name: Run Integration Tests (Frontend)
         working-directory: ./frontend
-        env:
-          NSApplicationShowsSecureRestorableState: YES
-        run: npx cypress run --reporter cypress-terminal-reporter > report_cypress.txt
+        run: echo " Implementation not made yet "
 
-      # Save Cypress report to repository
+      - name: Run System tests
+        working-directory: ./frontend
+        run: npx cypress run > reports_cypress.json
+
+      # Save Cypress tests as artifacts
       - name: Save Cypress report
         uses: actions/upload-artifact@v2
         with:
           name: cypress-report
-          path: ./reports/report_cypress.txt
+          path: ./frontend/reports_cypress.json
           
-      - name: Copy Artifacts
-        run: |
-          cp ${{ github.workspace }}/backend/coverage_report.txt .
-          cp ${{ github.workspace }}/frontend/report_cypress.txt .
 
       
 
