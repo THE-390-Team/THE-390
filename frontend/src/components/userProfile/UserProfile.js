@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import profilepic from "../../assets/pp.jpg";
 import axiosInstance from "../../api/axios";
 import {
   Container,
@@ -13,11 +12,9 @@ import {
 } from "react-bootstrap";
 import { useProfile } from "../../utils/hooks/ProfileContext";
 
-
 const UserProfile = () => {
-
-
-  const { profileInfo, getProfileInformation, setProfileInformation } = useProfile();
+  const { profileInfo, getProfileInformation, setProfileInformation } =
+    useProfile();
 
   // // user information
   // const [profileInfo, setProfileInfo] = useState({
@@ -33,50 +30,67 @@ const UserProfile = () => {
   //   postal_code: "",
   // });
 
-  const [tempChanges, setTempChanges] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const id = localStorage.getItem("ID");
+  const [formData, setFormData] = useState({});
+
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
+  // Handle form submission
   const handleSaveChanges = () => {
-    // TODO: Implement save functionality with the backend
-    console.log("Save changes");
-    handleCloseModal();
-    setProfileInformation(tempChanges);
-    // TODO need to CRUD
+    console.log(formData);
+    axiosInstance
+      .patchForm(`profiles/user/${id}/`, formData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    axiosInstance
+      .patchForm(`profiles/public-profile/${id}/`, formData)
+      .then((response) => {
+        console.log(response);
+        handleCloseModal();
+        if(response.status == 200) {
+          alert("Successfully saved changes")
+          window.location.reload();
+        }
+        else {
+          alert("Error occured while saving changes")
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
+  // Update formData when change occurs
   const handleChange = (e) => {
-    setTempChanges(profileInfo);
-    const { name, value } = e.target;
-    // Handling nested properties in state
-    if (name.includes(".")) {
-      const [parentKey, childKey] = name.split(".");
-      setTempChanges((prevState) => ({
-        ...prevState,
-        [parentKey]: {
-          ...prevState[parentKey],
-          [childKey]: value,
-        },
-      }));
-    } else {
-      setTempChanges((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
-    console.log(profileInfo);
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Update formData when image changes
+  const handleImageChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.files[0],
+    });
   };
 
   // get information on active user
   useEffect(() => {
-    getProfileInformation()
+    getProfileInformation();
   }, []);
 
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
-        <Col md={4} >
+        <Col md={4}>
           <Card>
             <Card.Img
               variant="top"
@@ -92,7 +106,7 @@ const UserProfile = () => {
               </Card.Title>
             </Card.Body>
 
-            <ListGroup >
+            <ListGroup>
               <ListGroup.Item>
                 <strong>Email:</strong> {profileInfo.email}
               </ListGroup.Item>
@@ -101,7 +115,11 @@ const UserProfile = () => {
               </ListGroup.Item>
             </ListGroup>
             <Card.Body className="d-flex justify-content-center">
-              <Button variant="primary" onClick={handleShowModal} data-testid="edit-profile">
+              <Button
+                variant="primary"
+                onClick={handleShowModal}
+                data-testid="edit-profile"
+              >
                 Edit Profile
               </Button>
             </Card.Body>
@@ -185,9 +203,10 @@ const UserProfile = () => {
               <Form.Label>Update Profile Picture</Form.Label>
               <Form.Control
                 type="file"
+                accept="image/png, image/jpeg"
                 name="avatar"
                 multiple
-                onChange={handleChange}
+                onChange={handleImageChange}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formGridAddress">
@@ -243,10 +262,18 @@ const UserProfile = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal} data-testid="secondary">
+          <Button
+            variant="secondary"
+            onClick={handleCloseModal}
+            data-testid="secondary"
+          >
             Close
           </Button>
-          <Button variant="primary" onClick={handleSaveChanges} data-testid="submit-button">
+          <Button
+            variant="primary"
+            onClick={handleSaveChanges}
+            data-testid="submit-button"
+          >
             Save Changes
           </Button>
         </Modal.Footer>

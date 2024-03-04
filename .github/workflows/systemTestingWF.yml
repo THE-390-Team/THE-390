@@ -13,7 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Install frontend dependencies and start server
+      # Install frontend entrance dependencies and start server
+      # test comment
       - name: Install frontend dependencies
         working-directory: ./frontend
         run: npm install
@@ -76,11 +77,13 @@ jobs:
 
       # Commit and push the changes
       - name: Commit Artifacts
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git add .
           git commit -m "Add coverage report and Cypress output"
-          git push
+          git push origin HEAD:main
 
       
