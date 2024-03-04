@@ -21,7 +21,9 @@ jobs:
 
       - name: Start frontend server
         working-directory: ./frontend
-        run: npm start &
+        run: |
+          npm ci
+          npm start &
 
       # Install backend dependencies and start server
       - name: Create python environment
@@ -34,7 +36,7 @@ jobs:
 
       - name: Install backend dependencies
         working-directory: ./backend
-        run: pip install -r requirements.txt
+        run: pip install --no-cache-dir -r requirements.txt
 
       - name: Start backend server
         working-directory: ./backend
