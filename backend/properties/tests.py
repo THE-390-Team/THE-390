@@ -1,6 +1,5 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
-from user_profile.models import CompanyProfile
+from user_profile.models import CompanyProfile, User
 from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit
 
 class PropertyProfileTest(TestCase):
@@ -8,12 +7,12 @@ class PropertyProfileTest(TestCase):
     @classmethod
     def setUp(cls):
         # Create a test objects
-        cls.user = User.objects.create_user(username='testuser', password='testpass')
-        cls.company = CompanyProfile.objects.create(name='Test Company', user=cls.user)
-        cls.property = PropertyProfile.objects.create(company=cls.company, address='123 Test St', city='Test City', province='Test Province', postal_code='T1T 1T1')
-        cls.condo_unit = CondoUnit.objects.create(property=cls.property, location=1, purchase_price=100, rent_price=50)
-        cls.parking_unit = ParkingUnit.objects.create(property=cls.property, location=1, purchase_price=100, rent_price=50)
-        cls.storage_unit = StorageUnit.objects.create(property=cls.property, location=1, purchase_price=100, rent_price=50)
+        cls.testuser = User.objects.create_superuser(password='testpass', email='test@email.com')
+        cls.company = CompanyProfile.objects.create(user=cls.testuser)
+        cls.property = PropertyProfile.objects.create(company=cls.company, address='123 Test St', city='Montreal', province='QC', postal_code='T1T 1T1')
+        cls.condo_unit = CondoUnit.objects.create(property=cls.property, location='Montreal', purchase_price=100, rent_price=50)
+        cls.parking_unit = ParkingUnit.objects.create(property=cls.property, location='Montreal', purchase_price=100, rent_price=50)
+        cls.storage_unit = StorageUnit.objects.create(property=cls.property, location='Montreal', purchase_price=100, rent_price=50)
 
     def test_property_get_units_methods(self):
         # Test the get condo/parking/storage_units methods in a property
