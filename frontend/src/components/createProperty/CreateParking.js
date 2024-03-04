@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../api/axios";
 import {
@@ -14,16 +14,14 @@ const CreateParking = () => {
   let { propertyId } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    parking_id: "",
-    parking_owner: "",
-    parking_info: "",
-    parking_fee: "",
-
-    purchase_price:"",
-    rent_price:"",
+    location: "",
+    //FIXME bring this back for after sprint_2
+    //public_profile:"",
+    purchase_price: "",
+    rent_price: "",
     size: "",
     extra_information: "",
-    property: propertyId
+    parking_owner: ""
   });
 
 
@@ -52,22 +50,21 @@ const CreateParking = () => {
 
     axiosInstance
       .post(`properties/property-profile/${propertyId}/parking-unit/`, {
-        parking_id: formData.parking_id,
-        parking_owner: formData.parking_owner,
-        parking_info: formData.parking_info,
-        parking_fee: formData.parking_fee,
+        location: formData.location,
+        size: formData.size,
+        rent_price: formData.rent_price,
+        purchase_price: formData.purchase_price,
+        extra_information: formData.extra_information,
       })
       .then((res) => {
         if (res.status == 201) {
-          window.alert(`Parking profile ${formData.parking_id} has been created`)
+          window.alert(`Parking profile ${formData.location} has been created`)
           console.log(res);
           console.log(res.data);
-          //There should be a history
-          //history("/login");
+          navigate(-1);
         }
       })
       .catch((error) => {
-        console.log(error);
         console.log(error.data);
         window.alert(`${error} `)
         //There should be a history
@@ -75,31 +72,34 @@ const CreateParking = () => {
       });
   };
 
-  function goBack() {
-    navigate(-1);
-  }
-
-  function handleBackToPropertyPage() {
-    goBack()
-  }
-
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
 
-        <Row classname="mb-3">
-          <Form.Group as={Col} controlId="formGridParkingID">
-            <Form.Label>Parking ID</Form.Label>
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridParkingLocation">
+            <Form.Label>Parking Location</Form.Label>
             <Form.Control
               type="text"
-              name="parking_id"
-              placeholder="Enter Parking ID"
-              value={formData.parking_id}
+              name="location"
+              placeholder="####"
+              value={formData.location}
               onChange={handleChange}
-              data-testid="parking-id-input"
+              data-testid="parking-location-input"
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridParkingOwner">
+            <Form.Label>Parking Size</Form.Label>
+            <Form.Control
+              type="text"
+              name="size"
+              placeholder="Enter Parking Size"
+              value={formData.size}
+              onChange={handleChange}
+              data-testid="parking-size-input"
+            />
+          </Form.Group>
+          {/* <Form.Group as={Col} controlId="formGridParkingOwner">
             <Form.Label>Parking Owner</Form.Label>
             <Form.Control
               type="text"
@@ -109,30 +109,44 @@ const CreateParking = () => {
               onChange={handleChange}
               data-testid="parking-owner-input"
             />
-          </Form.Group>
+          </Form.Group> */}
         </Row>
 
-        <Form.Group classname="mb-3" controlId="formGridParkingInfo">
+
+
+        <Row>
+          <Form.Group as={Col} className="mb-3" controlId="formGridParkingPurchasePrice">
+            <Form.Label>Purchase Price</Form.Label>
+            <Form.Control
+              type="text"
+              name="purchase_price"
+              placeholder="Enter Parking Purchase Price"
+              value={formData.purchase_price}
+              onChange={handleChange}
+              data-testid="parking-purchase_price-input"
+            />
+          </Form.Group>
+          <Form.Group as={Col} className="mb-3" controlId="formGridParkingRentPrice">
+            <Form.Label>Rent Price</Form.Label>
+            <Form.Control
+              type="text"
+              name="rent_price"
+              placeholder="Enter Parking Renting Price"
+              value={formData.rent_price}
+              onChange={handleChange}
+              data-testid="parking-rent_price-input"
+            />
+          </Form.Group>
+        </Row>
+        <Form.Group className="mb-3" controlId="formGridParkingExtraInfo">
           <Form.Label>Parking Info</Form.Label>
           <Form.Control
             type="text"
-            name="parking_info"
+            name="extra_information"
             placeholder="Enter Parking Owner Info"
-            value={formData.parking_info}
+            value={formData.extra_information}
             onChange={handleChange}
-            data-testid="parking-info-input"
-          />
-        </Form.Group>
-
-        <Form.Group classname="mb-3" controlId="formGridParkingFee">
-          <Form.Label>Parking Fee</Form.Label>
-          <Form.Control
-            type="text"
-            name="parking_fee"
-            placeholder="Enter Parking Fee"
-            value={formData.parking_fee}
-            onChange={handleChange}
-            data-testid="parking-fee-input"
+            data-testid="parking-extra_information-input"
           />
         </Form.Group>
         <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToPropertyPage}>
