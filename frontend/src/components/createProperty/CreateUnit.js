@@ -14,7 +14,7 @@ const CreateUnit = () => {
   const navigate = useNavigate();
   // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
-    location: "", // location in the model
+    location: "",
     public_profile: "",
     purchase_price: "",
     rent_price: "", // not always needed
@@ -32,7 +32,6 @@ const CreateUnit = () => {
   };
 
   const handleSubmit = (e) => {
-
     e.preventDefault();
 
     console.log(formData);
@@ -44,14 +43,12 @@ const CreateUnit = () => {
         public_profile: formData.public_profile,
         rent_price: formData.rent_price,
         size: formData.size,
-        unit_owner: formData.owner,
         extra_information: formData.extra_information,
         property: formData.property,
-
       })
       .then((res) => {
         if (res.status == 201) {
-          window.alert(`unit profile ${formData.id} has been created`)
+          window.alert(`unit profile ${formData.location} has been created`)
           console.log(res);
           console.log(res.data);
           //There should be a history
@@ -116,25 +113,35 @@ const CreateUnit = () => {
               data-testid="unit_purchase_price-input"
             />
           </Form.Group>
-          <Form.Group as={Col} className="mb-3" controlId="formGridUnitOwner">
-            <Form.Label>Unit Owner</Form.Label>
+          <Form.Group as={Col} controlId="formGridUnitRentPrice">
+            <Form.Label>Unit Rent</Form.Label>
             <Form.Control
               type="text"
-              name="owner"
-              placeholder="Enter Unit Owner Name"
-              value={formData.public_profile}
+              name="rent_price"
+              placeholder="Enter Unit Rent"
+              value={formData.rent_price}
               onChange={handleChange}
-              data-testid="unit-owner-input"
+              data-testid="unit_purchase_price-input"
             />
           </Form.Group>
         </Row>
 
-        {/* TODO add a unit rent price */}
+        <Form.Group className="mb-3" controlId="formGridUnitPublicProfile">
+          <Form.Label>Unit Owner</Form.Label>
+          <Form.Control
+            type="text"
+            name="public_profile"
+            placeholder="Enter Unit Owner Name"
+            value={formData.public_profile}
+            onChange={handleChange}
+            data-testid="unit-public_profile-input"
+          />
+        </Form.Group>
         <Form.Group className="mb-3" controlId="formGridUnitInfo">
           <Form.Label>Unit Occupant Info</Form.Label>
           <Form.Control
             type="text"
-            name="info"
+            name="extra_information"
             placeholder="Enter Unit Occupant Info"
             value={formData.extra_information}
             onChange={handleChange}

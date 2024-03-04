@@ -13,13 +13,19 @@ const CreateParking = () => {
 
   let { propertyId } = useParams();
   const navigate = useNavigate();
-  // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
     parking_id: "",
     parking_owner: "",
     parking_info: "",
     parking_fee: "",
+
+    purchase_price:"",
+    rent_price:"",
+    size: "",
+    extra_information: "",
+    property: propertyId
   });
+
 
   const handleChange = (e) => {
     setFormData({

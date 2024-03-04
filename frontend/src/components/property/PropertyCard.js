@@ -73,8 +73,6 @@ const PropertyCard = ({ property }) => {
             <Popover {...props} id="popover-parking">
               <Popover.Body>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                  {/* TODO property model doesn't have parking and locker
-                  FIXME check if there's updated models with parking and lockers */}
                   <div>Count: {property.parking_units.length}</div>
                   <div>Total: ${calculateParkingTotal(property)}</div>
                 </div>
@@ -89,8 +87,6 @@ const PropertyCard = ({ property }) => {
             <Popover {...props} id="popover-lockers">
               <Popover.Body>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-                  {/* TODO property model doesn't have parking and locker
-                  FIXME check if there's updated models with parking and lockers */}
                   <div>Count: {property.storage_units.length} </div>
                   <div>Total: ${calculateLockerTotal(property)}</div>
                 </div>
