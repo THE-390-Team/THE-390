@@ -10,9 +10,13 @@ import {
 } from "react-bootstrap";
 
 const CreateUnit = () => {
+
+  // receive the containing property id from the url
   let { propertyId } = useParams();
+
   const navigate = useNavigate();
-  // unit information, should extend to match all info needed
+
+  //form data state to store changes in input
   const [formData, setFormData] = useState({
     location: "",
     public_profile: "",
@@ -21,6 +25,8 @@ const CreateUnit = () => {
     size: "",
     extra_information: ""
   });
+
+  //handle change from the user input and save to state
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -30,11 +36,13 @@ const CreateUnit = () => {
     console.log(formData);
   };
 
+
+  //handle form submission to create a new condo-uni
   const handleSubmit = (e) => {
     e.preventDefault();
 
     console.log(formData);
-
+    //TODO refractor this to the propertyContext
     axiosInstance
       .post(`properties/property-profile/${propertyId}/condo-unit/`, {
         location: formData.location,
@@ -44,25 +52,23 @@ const CreateUnit = () => {
         rent_price: formData.rent_price,
         size: formData.size,
         extra_information: formData.extra_information,
-      })
+      }) 
       .then((res) => {
-        if (res.status == 201) {
+        if (res.status == 201) { //if response is okay alert user and back to property page
           window.alert(`unit profile ${formData.location} has been created`)
           console.log(res);
           console.log(res.data);
-          //There should be a history
-          //history("/login");
+          navigate(-1);
         }
       })
       .catch((error) => {
         console.log(error);
         console.log(error.data);
         window.alert(`${error} `)
-        //There should be a history
-        //history(UnitProfile)
       });
   };
 
+  // cancel button handlers
   function goBack() {
     navigate(-1);
   }
@@ -73,8 +79,8 @@ const CreateUnit = () => {
 
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
+      {/* input forms to get the condo information */}
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
-
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridUnitLocation">
             <Form.Label>Unit Location</Form.Label>
