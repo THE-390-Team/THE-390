@@ -91,7 +91,7 @@ const Login = () => {
         <Button variant="primary" type="submit" data-testid="submit-button">
           Submit
         </Button>
-        <Form.Text className='py-3'> Don't have an account? <Link to='/signup' data-testid="sign-up-link">Sign Up</Link></Form.Text>
+        <Form.Text className='py-3'> Don't have an account? <Link to='/signup' data-testid="sign-up-link">Sign Up</Link> or <Link to='/signup-company' data-testid="sign-up-company-link">Company Sign Up </Link></Form.Text>
       </Form>
     </Container>
   );
