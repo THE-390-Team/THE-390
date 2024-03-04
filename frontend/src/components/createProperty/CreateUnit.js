@@ -14,14 +14,14 @@ const CreateUnit = () => {
   const navigate = useNavigate();
   // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
-    unit_location: "", // location in the model
-    unit_purchase_price: "",
-    unit_rent_price: "", // not always needed
-    //unit_size: "", 
-    //unit_owner: "", 
-    //unit_info: "", 
+    location: "", // location in the model
+    public_profile: "",
+    purchase_price: "",
+    rent_price: "", // not always needed
+    size: "",
+    property: propertyId,
+    extra_information: ""
   });
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -39,16 +39,19 @@ const CreateUnit = () => {
 
     axiosInstance
       .post(`properties/property-profile/${propertyId}/condo-unit/`, {
-        location: formData.unit_id,
-        purchase_price: formData.unit_purchase_price,
-        property: propertyId,
-        //unit_size: formData.unit_size, //not existant yet
-        //unit_owner: formData.unit_owner, //not existant yet
-        //unit_info: formData.unit_info, // not existant yet
+        location: formData.location,
+        purchase_price: formData.purchase_price,
+        public_profile: formData.public_profile,
+        rent_price: formData.rent_price,
+        size: formData.size,
+        unit_owner: formData.owner,
+        extra_information: formData.extra_information,
+        property: formData.property,
+
       })
       .then((res) => {
         if (res.status == 201) {
-          window.alert(`unit profile ${formData.unit_id} has been created`)
+          window.alert(`unit profile ${formData.id} has been created`)
           console.log(res);
           console.log(res.data);
           //There should be a history
@@ -81,9 +84,9 @@ const CreateUnit = () => {
             <Form.Label>Unit Location</Form.Label>
             <Form.Control
               type="text"
-              name="unit_location"
+              name="location"
               placeholder="Enter Unit Location"
-              value={formData.unit_id}
+              value={formData.id}
               onChange={handleChange}
               data-testid="unit-location-input"
             />
@@ -92,9 +95,9 @@ const CreateUnit = () => {
             <Form.Label>Unit Size</Form.Label>
             <Form.Control
               type="text"
-              name="unit_size"
+              name="size"
               placeholder="Enter Unit Size"
-              value={formData.unit_size}
+              value={formData.size}
               onChange={handleChange}
               data-testid="unit-size-input"
             />
@@ -106,9 +109,9 @@ const CreateUnit = () => {
             <Form.Label>Unit Price</Form.Label>
             <Form.Control
               type="text"
-              name="unit_purchase_price"
+              name="purchase_price"
               placeholder="Enter Unit Price"
-              value={formData.unit_purchase_price}
+              value={formData.purchase_price}
               onChange={handleChange}
               data-testid="unit_purchase_price-input"
             />
@@ -117,9 +120,9 @@ const CreateUnit = () => {
             <Form.Label>Unit Owner</Form.Label>
             <Form.Control
               type="text"
-              name="unit_owner"
+              name="owner"
               placeholder="Enter Unit Owner Name"
-              value={formData.unit_owner}
+              value={formData.public_profile}
               onChange={handleChange}
               data-testid="unit-owner-input"
             />
@@ -131,9 +134,9 @@ const CreateUnit = () => {
           <Form.Label>Unit Occupant Info</Form.Label>
           <Form.Control
             type="text"
-            name="unit_info"
+            name="info"
             placeholder="Enter Unit Occupant Info"
-            value={formData.unit_info}
+            value={formData.extra_information}
             onChange={handleChange}
             data-testid="unit-info-input"
           />

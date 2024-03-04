@@ -68,7 +68,7 @@ const SignUpCompany = () => {
 
   const updateProfileInfo = (id) => {
     axiosInstance
-      .patch(`profiles/company-profile/${id}/`, {
+      .patchForm(`profiles/company-profile/${id}/`, {
         phone_number: formData.phone_number,
         address: formData.address,
         city: formData.city,

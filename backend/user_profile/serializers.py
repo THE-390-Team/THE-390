@@ -29,10 +29,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         Profile Serializer for abstract profile class  
     """
     user = UserSerializer()
-    condo_units = CondoUnitSerializer(many=True, read_only=True)
     class Meta:
         model = Profile
-        fields = ['user', 'address', 'city', 'province', 'postal_code', 'phone_number', 'avatar', 'condo_units']
+        fields = ['user', 'address', 'city', 'province', 'postal_code', 'phone_number', 'avatar']
         
 
 class PublicProfileSerializer(serializers.ModelSerializer):
@@ -40,9 +39,10 @@ class PublicProfileSerializer(serializers.ModelSerializer):
         Public Profile Serializer with inherited fields  
     """
     user = UserSerializer()
+    condo_units = CondoUnitSerializer(many=True, read_only=True)
     class Meta(ProfileSerializer.Meta):
         model = PublicProfile
-        fields = ProfileSerializer.Meta.fields + ['type']
+        fields = ProfileSerializer.Meta.fields + ['type', 'condo_units']
 
 
 class EmployeeProfileSerializer(serializers.ModelSerializer):

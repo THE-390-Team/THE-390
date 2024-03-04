@@ -68,107 +68,107 @@ const CreateProperty = () => {
       });
   };
 
-function handleBackToDashboard() {
-  navigate('/dashboard');
-}
+  function handleBackToDashboard() {
+    navigate('/dashboard');
+  }
 
-return (
-  <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
-    <Form className="py-5 text-dark" onSubmit={handleSubmit}>
+  return (
+    <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
+      <Form className="py-5 text-dark" onSubmit={handleSubmit}>
 
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridPropertyName">
-          <Form.Label>Property Name</Form.Label>
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridPropertyName">
+            <Form.Label>Property Name</Form.Label>
+            <Form.Control
+              type="text"
+              name="property_name"
+              placeholder="Enter Property Name"
+              value={formData.name}
+              onChange={handleChange}
+              data-testid="property-name-input"
+            />
+          </Form.Group>
+        </Row>
+
+        <Form.Group as={Col} controlId="formGridPropertyAddress">
+          <Form.Label>Property Address</Form.Label>
           <Form.Control
             type="text"
-            name="property_name"
-            placeholder="Enter Property Name"
-            value={formData.name}
+            name="property_address"
+            placeholder="Enter Property Address"
+            value={formData.address}
             onChange={handleChange}
-            data-testid="property-name-input"
+            data-testid="property-address-input"
           />
         </Form.Group>
-      </Row>
 
-      <Form.Group as={Col} controlId="formGridPropertyAddress">
-        <Form.Label>Property Address</Form.Label>
-        <Form.Control
-          type="text"
-          name="property_address"
-          placeholder="Enter Property Address"
-          value={formData.address}
-          onChange={handleChange}
-          data-testid="property-address-input"
-        />
-      </Form.Group>
+        <Row className="mb-3">
 
-      <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridPropertyCity">
+            <Form.Label>Property City</Form.Label>
+            <Form.Control
+              type="text"
+              name="property_city"
+              value={formData.city}
+              onChange={handleChange}
+              data-testid="property-city-input" />
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridPropertyCity">
-          <Form.Label>Property City</Form.Label>
-          <Form.Control
-            type="text"
-            name="property_city"
-            value={formData.city}
-            onChange={handleChange}
-            data-testid="property-city-input" />
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formGridPropertyProvince">
-          <Form.Label>Property Province</Form.Label>
-          <Form.Select
-            defaultValue={formData.property_rovince}
-            name="property_province"
-            value={formData.property_province}
-            onChange={handleChange}
-            data-testid="province-select">
-            <option value="British Colombia">BC</option>
-            <option value="Prince Edward Island">PE</option>
-            <option value="Nova Scotia">NS</option>
-            <option value="New Brunswick">NB</option>
-            <option value="Quebec">QC</option>
-            <option value="Ontario">ON</option>
-            <option value="Manitoba">MB</option>
-            <option value="Saskatchuwan">SK</option>
-            <option value="Alberta">AB</option>
-            {/* <option value="British Colombia">BC</option>
+          <Form.Group as={Col} controlId="formGridPropertyProvince">
+            <Form.Label>Property Province</Form.Label>
+            <Form.Select
+              defaultValue={formData.property_rovince}
+              name="property_province"
+              value={formData.property_province}
+              onChange={handleChange}
+              data-testid="province-select">
+              <option value="British Colombia">BC</option>
+              <option value="Prince Edward Island">PE</option>
+              <option value="Nova Scotia">NS</option>
+              <option value="New Brunswick">NB</option>
+              <option value="Quebec">QC</option>
+              <option value="Ontario">ON</option>
+              <option value="Manitoba">MB</option>
+              <option value="Saskatchuwan">SK</option>
+              <option value="Alberta">AB</option>
+              {/* <option value="British Colombia">BC</option>
                 <option value="British Colombia">YT</option>
                 <option value="British Colombia">NT</option>
                 <option value="British Colombia">NJ</option> */}
-          </Form.Select>
-        </Form.Group>
+            </Form.Select>
+          </Form.Group>
 
-        <Form.Group as={Col} controlId="formGridPropertyZip">
-          <Form.Label>Property Postal Code</Form.Label>
-          <Form.Control
-            type="text"
-            name="property_postal_code"
-            value={formData.postal_code}
-            onChange={handleChange}
-            data-testid="property-postal-code-input" />
-        </Form.Group>
-      </Row>
+          <Form.Group as={Col} controlId="formGridPropertyZip">
+            <Form.Label>Property Postal Code</Form.Label>
+            <Form.Control
+              type="text"
+              name="property_postal_code"
+              value={formData.postal_code}
+              onChange={handleChange}
+              data-testid="property-postal-code-input" />
+          </Form.Group>
+        </Row>
 
         <Form.Group controlId="formGridPropertyImage" className="mb-4">
-            <Form.Label>Upload Property Image</Form.Label>
-            <Form.Control
-                type="file"
-                name="property_image"
-                multiple
-                onChange={handleChange}
-                data-testid = "property-image-file"
-            />
+          <Form.Label>Upload Property Image</Form.Label>
+          <Form.Control
+            type="file"
+            name="property_image"
+            multiple
+            onChange={handleChange}
+            data-testid="property-image-file"
+          />
         </Form.Group>
 
-      <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToDashboard}>
-        Cancel
-      </Button>
-      <Button style={{ marginLeft: "20px", marginTop: "20px" }} variant="primary" type="submit" data-testid="submit-button">
-        Submit
-      </Button>
-    </Form>
-  </Container>
-)
+        <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToDashboard}>
+          Cancel
+        </Button>
+        <Button style={{ marginLeft: "20px", marginTop: "20px" }} variant="primary" type="submit" data-testid="submit-button">
+          Submit
+        </Button>
+      </Form>
+    </Container>
+  )
 }
 
 export default CreateProperty

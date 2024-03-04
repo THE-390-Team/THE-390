@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../api/axios";
 import {
   Container,
@@ -11,6 +11,7 @@ import {
 
 const CreateLocker = () => {
 
+  let { propertyId } = useParams();
   const navigate = useNavigate();
   // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
@@ -29,6 +30,13 @@ const CreateLocker = () => {
     console.log(formData);
   };
 
+  function goBack() {
+    navigate(-1);
+  }
+
+  function handleBackToPropertyPage() {
+    goBack()
+  }
   const handleSubmit = (e) => {
 
     e.preventDefault();
@@ -36,7 +44,7 @@ const CreateLocker = () => {
     console.log(formData);
 
     axiosInstance
-      .post(`locker-profile/register/`, {
+      .post(`properties/property-profile/${propertyId}/storage-unit/`, {
         locker_id: formData.locker_id,
         locker_owner: formData.locker_owner,
         locker_info: formData.locker_info,
@@ -60,11 +68,14 @@ const CreateLocker = () => {
       });
   };
 
-  //TODO hardcoded path
-  function handleBackToPropertyPage() {
-    navigate('/property-page');
+  function goBack() {
+    navigate(-1);
   }
-  
+
+  function handleBackToPropertyPage() {
+    goBack()
+  }
+
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>

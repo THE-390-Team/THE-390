@@ -73,7 +73,9 @@ export const PropertyProvider = ({ children }) => {
         city: "",
         province: "",
         postal_code: "",
-        condo_units: []
+        condo_units: [],
+        parking_units: [],
+        locker_units: []
     }
     );
 
@@ -92,8 +94,6 @@ export const PropertyProvider = ({ children }) => {
             });
     };
 
-    //TODO check if this is good to fetch all properties
-    //it JSON already? serializer? 
     const fetchProperty = async (id) => {
         axiosInstance
 
@@ -104,14 +104,15 @@ export const PropertyProvider = ({ children }) => {
                     id: response.data.id,
                     company: response.data.company,
                     num_condo_units: response.data.num_condo_units,
-                    //TODO bring those two back after model update
-                    // num_parking_units: response.data.num_parking_units,
-                    // num_storage_units: response.data.num_storage_units,
+                    num_parking_units: response.data.num_parking_units,
+                    num_storage_units: response.data.num_storage_units,
                     address: response.data.address,
                     city: response.data.city,
                     province: response.data.province,
                     postal_code: response.data.postal_code,
                     condo_units: response.data.condo_units,
+                    parking_units: response.data.parking_units,
+                    storage_units: response.data.storage_units,
                 });
                 console.log(response.data);
             })

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../api/axios";
 import {
   Container,
@@ -11,6 +11,7 @@ import {
 
 const CreateParking = () => {
 
+  let { propertyId } = useParams();
   const navigate = useNavigate();
   // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
@@ -29,6 +30,14 @@ const CreateParking = () => {
     console.log(formData);
   };
 
+  function goBack() {
+    navigate(-1);
+  }
+
+  function handleBackToPropertyPage() {
+    goBack()
+  }
+
   const handleSubmit = (e) => {
 
     e.preventDefault();
@@ -36,7 +45,7 @@ const CreateParking = () => {
     console.log(formData);
 
     axiosInstance
-      .post(`parking-profile/register/`, {
+      .post(`properties/property-profile/${propertyId}/parking-unit/`, {
         parking_id: formData.parking_id,
         parking_owner: formData.parking_owner,
         parking_info: formData.parking_info,
@@ -60,11 +69,14 @@ const CreateParking = () => {
       });
   };
 
-  //TODO hardcoded path
-  function handleBackToPropertyPage() {
-    navigate('/property-page');
+  function goBack() {
+    navigate(-1);
   }
-  
+
+  function handleBackToPropertyPage() {
+    goBack()
+  }
+
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>

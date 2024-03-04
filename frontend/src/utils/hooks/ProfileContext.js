@@ -74,6 +74,7 @@ export function ProfileProvider(props) {
                                 city: response.data.city,
                                 province: response.data.province,
                                 postal_code: response.data.postal_code,
+                                // avatar: response.data.avatar
                             });
                             console.log(response.data);
                         })
