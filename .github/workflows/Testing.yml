@@ -72,6 +72,7 @@ jobs:
       # Run Integration Tests (Frontend)
       - name: Run Integration Tests (Frontend)
         working-directory: ./frontend
+        run: echo " Implementation not made yet "
 
       - name: Run System tests
         working-directory: ./frontend
