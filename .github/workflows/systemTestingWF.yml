@@ -69,13 +69,6 @@ jobs:
         with:
           name: cypress-report
           path: ./frontend/results.xml
-
-      # Parse and display Cypress test results
-      - name: Display Cypress test results
-        run: |
-          npm install -g cypress-multi-reporters
-          npx mochawesome-merge ./frontend/mochawesome-report/*.json > merged.json
-          npx marge merged.json --reportDir ./frontend/mochawesome-report --inline
           
       - name: Copy Artifacts
         run: |
