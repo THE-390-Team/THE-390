@@ -29,7 +29,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     class Meta:
         model = Profile
-        fields = ['user', 'address', 'city', 'province', 'postal_code', 'phone_number']
+        fields = ['user', 'address', 'city', 'province', 'postal_code', 'phone_number', 'avatar']
 
 class PublicProfileSerializer(serializers.ModelSerializer):
     """
