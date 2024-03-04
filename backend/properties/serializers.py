@@ -5,7 +5,7 @@ from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit, Unit
 class UnitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Unit
-        fields = ['location', 'purchase_price', 'rent_price']
+        fields = ['id', 'public_profile','location', 'purchase_price', 'rent_price', 'size', 'extra_information']
 
 class CondoUnitSerializer(serializers.ModelSerializer):
     class Meta(UnitSerializer.Meta):
@@ -27,13 +27,19 @@ class PropertyProfileSerializer(serializers.ModelSerializer):
     num_parking_units = serializers.IntegerField(read_only=True)
     num_storage_units = serializers.IntegerField(read_only=True) 
     condo_units = CondoUnitSerializer(many=True, read_only=True)
+    parking_units = ParkingUnitSerializer(many=True, read_only=True)
+    storage_units = StorageUnitSerializer(many=True, read_only=True)
+    
     class Meta:
         model = PropertyProfile
-        fields = ['id', 'company', 'num_condo_units', 'num_parking_units', 'num_storage_units', 'address', 'city', 'province', 'postal_code', 'condo_units']
+        fields = ['id', 'company', 
+                  'num_condo_units', 'num_parking_units',
+                  'num_storage_units', 'address', 'city', 
+                  'province', 'postal_code', 'condo_units',
+                  'parking_units','storage_units']
 
 def to_representation(self, instance):
     representation = self.super().to_representation(instance)
-    # condo_units = instance.condo_units.all()
     representation['num_condo_units'] = instance.condo_units.count()
     representation['num_parking_units'] = instance.parking_units.count()
     representation['num_storage_units'] = instance.storage_units.count()

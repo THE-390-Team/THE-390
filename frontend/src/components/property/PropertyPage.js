@@ -126,14 +126,14 @@ const PropertyPage = () => {
               <Button >
                 Make Request?
               </Button>
-              <Button onClick={handleBackToDashboard}>
+              <Button onClick={handleBackToDashboard} data-testid="dashboard-return">
                 Dashboard
               </Button>
 
             </Col>
           </Row>
 
-          <h5 className="mt-3">Units <Button variant="primary" onClick={handleGoToUnitCreate}>+</Button></h5>
+          <h5 className="mt-3">Units <Button variant="primary" onClick={handleGoToUnitCreate} data-testid="create-unit-button">+</Button></h5>
           <div style={renderStyle}>
             {renderUnits()}
           </div>
@@ -141,7 +141,7 @@ const PropertyPage = () => {
           <div style={renderStyle}>
             {renderParkingSpots()}
           </div>
-          <h5 className="mt-3">Lockers <Button variant="primary" onClick={handleGoToLockerCreate}>+</Button></h5>
+          <h5 className="mt-3">Lockers <Button variant="primary" onClick={handleGoToLockerCreate} data-testid="create-locker-button">+</Button></h5>
           <div style={renderStyle}>
             {renderLockers()}
           </div> */}

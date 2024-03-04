@@ -149,15 +149,16 @@ return (
         </Form.Group>
       </Row>
 
-      <Form.Group controlId="formGridPropertyImage" className="mb-4">
-        <Form.Label>Upload Property Image</Form.Label>
-        <Form.Control
-          type="file"
-          name="property_image"
-          multiple
-          onChange={handleChange}
-        />
-      </Form.Group>
+        <Form.Group controlId="formGridPropertyImage" className="mb-4">
+            <Form.Label>Upload Property Image</Form.Label>
+            <Form.Control
+                type="file"
+                name="property_image"
+                multiple
+                onChange={handleChange}
+                data-testid = "property-image-file"
+            />
+        </Form.Group>
 
       <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToDashboard}>
         Cancel

@@ -6,7 +6,9 @@ django-filter==23.5
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.3.1
 Markdown==3.5.2
+pillow==10.2.0
 PyJWT==2.8.0
 pytz==2023.4
 sqlparse==0.4.4
+typing_extensions==4.10.0
 tzdata==2023.4
