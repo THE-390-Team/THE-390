@@ -62,6 +62,8 @@ jobs:
 
       - name: Run Cypress tests
         working-directory: ./frontend
+        env:
+          NSApplicationShowsSecureRestorableState: YES
         run: npx cypress run --reporter cypress-terminal-reporter > report_cypress.txt
 
       # Save Cypress report to repository
