@@ -29,7 +29,9 @@ export function ProfileProvider(props) {
             .then((response) => {
                 console.log(response);
                 setProfileInfo({
-                    avatar: profilepic,
+                    //TODO check where the photo is? user vs profile
+                    // avatar: response.data.profile_photo,
+
                     // get information from the user model
                     first_name: response.data.user.first_name,
                     last_name: response.data.user.last_name,
@@ -53,6 +55,6 @@ export function ProfileProvider(props) {
     }
 
     return (
-        <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation}} > {props.children} </ProfileContext.Provider>
+        <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation }} > {props.children} </ProfileContext.Provider>
     )
 }

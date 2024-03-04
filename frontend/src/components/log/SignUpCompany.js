@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axiosInstance from "../../api/axios.js";
 
-const SignUp = () => {
+const SignUpCompany = () => {
 
   const history = useNavigate();
 
@@ -46,14 +46,14 @@ const SignUp = () => {
         first_name: formData.first_name,
         last_name: formData.last_name,
         password: formData.password,
-        role: 'PUBLIC',
+        role: 'COMPANY',
       })
       .then((res) => {
         if (res.status == 201) {
           console.log(res);
           console.log(res.data);
           updateProfileInfo(res.data.id)
-          window.alert(`profile ${formData.email} has been created`)
+          window.alert(`profile ${formData.email} has been created as a(n) $${formData.role} user`);
           history("/login");
         }
       })
@@ -61,7 +61,7 @@ const SignUp = () => {
         console.log(error);
         console.log(error.data);
         window.alert(`${error} `)
-        history(SignUp)
+        history(SignUpCompany)
       });
   };
 
@@ -73,6 +73,7 @@ const SignUp = () => {
         city: formData.city,
         province: formData.province,
         postal_code: formData.postal_code,
+        registration_key: formData.registration_key
       })
       .then((res) => {
         if (res.status == 200) {
@@ -86,7 +87,7 @@ const SignUp = () => {
         console.log(error);
         console.log(error.data);
         window.alert(`${error} `)
-        history(SignUp)
+        history(SignUpCompany)
       });
 
   }
@@ -143,7 +144,6 @@ const SignUp = () => {
               data-testid="phone-number-input"
             />
           </Form.Group>
-
         </Row>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridPassword">
@@ -241,4 +241,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpCompany;
