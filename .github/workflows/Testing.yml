@@ -80,7 +80,7 @@ jobs:
 
       - name: Run System tests
         working-directory: ./frontend
-        run: npx cypress run > reports_cypress.json
+        run: npx cypress run 
 
       # Save Cypress tests as artifacts
       - name: Save Cypress report
