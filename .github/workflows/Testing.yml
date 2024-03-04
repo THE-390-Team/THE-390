@@ -62,10 +62,12 @@ jobs:
       # Run Unit tests Jest (Frontend)
       - name: Run Unit Tests (Frontend)
         working-directory: ./frontend
+        run: echo " Implementation not made yet "
 
       # Run Integration Tests (Backend)
       - name: Run Integration Tests (Backend)
         working-directory: ./backend
+        run: echo " Implementation not made yet "
 
       # Run Integration Tests (Frontend)
       - name: Run Integration Tests (Frontend)
