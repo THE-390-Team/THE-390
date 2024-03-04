@@ -85,10 +85,6 @@ jobs:
           name: cypress-report
           path: ./frontend/reports_cypress.json
           
-      - name: Copy Artifacts
-        run: |
-          cp ${{ github.workspace }}/backend/coverage_report.txt .
-          cp ${{ github.workspace }}/frontend/report_cypress.txt .
 
       
 
