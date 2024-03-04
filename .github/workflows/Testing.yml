@@ -46,8 +46,8 @@ jobs:
       - name: Run Unit tests Django
         working-directory: ./backend
         run: |
-          coverage run manage.py test
-          coverage report > coverage_report.json
+          coverage run manage.py test 
+          coverage report --omit '*/dist-packages/*' > coverage_report.json
 
       # Save coverage report to repository
       - name: Save coverage report 
@@ -80,7 +80,7 @@ jobs:
 
       - name: Run System tests
         working-directory: ./frontend
-        run: npx cypress run > reports_cypress.json
+        run: npx cypress run 
 
       # Save Cypress tests as artifacts
       - name: Save Cypress report
