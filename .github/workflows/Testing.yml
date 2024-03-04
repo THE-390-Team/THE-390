@@ -1,6 +1,5 @@
-name: Testing Repository
-description: |
-  This workflows simulates an environment to test the entire application using unit testing, integration testing and system testing.
+name: Testing 
+# This workflows simulates an environment to test the entire application using unit testing, integration testing and system testing.
 on:
   push:
     branches: [ "main" ]
