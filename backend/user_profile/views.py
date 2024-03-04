@@ -1,14 +1,26 @@
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
-
-from properties.serializers import CondoUnitSerializer, ParkingUnitSerializer, StorageUnitSerializer
-from .models import User, Profile, PublicProfile, EmployeeProfile, CompanyProfile
-from .serializers import UserSerializer, PublicProfileSerializer, EmployeeProfileSerializer, CompanyProfileSerializer
-from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import status, viewsets
 from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
+from rest_framework import status
+from .models import (
+    User, 
+    Profile, 
+    PublicProfile, 
+    EmployeeProfile, 
+    CompanyProfile
+    )
+from properties.serializers import (
+    CondoUnitSerializer, 
+    ParkingUnitSerializer, 
+    StorageUnitSerializer
+    )
+from .serializers import (
+    UserSerializer, 
+    PublicProfileSerializer, 
+    EmployeeProfileSerializer, 
+    CompanyProfileSerializer
+    )
+
 
 """
     ViewSets For CRUD Operations on the PublicProfile, CompanyProfile, EmployeeProfile and User models 
@@ -39,6 +51,9 @@ class PublicProfileViewSet(ModelViewSet):
     lookup_field = 'user'
     parser_classes = [MultiPartParser, FormParser]
 
+    """  
+        List the various units 
+    """
     def get_condo_units(self, request, **kwargs):
         user_id = self.kwargs.get('user_id', None)
         if not user_id:
