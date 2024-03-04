@@ -75,7 +75,7 @@ export const PropertyProvider = ({ children }) => {
         postal_code: "",
         condo_units: [],
         parking_units: [],
-        locker_units: []
+        storage_units: []
     }
     );
 
