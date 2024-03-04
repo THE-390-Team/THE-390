@@ -53,7 +53,13 @@ const UserProfile = () => {
       .then((response) => {
         console.log(response);
         handleCloseModal();
-        window.location.reload();
+        if(response.status == 200) {
+          alert("Successfully saved changes")
+          window.location.reload();
+        }
+        else {
+          alert("Error occured while saving changes")
+        }
       })
       .catch(error => {
         console.log(error);
