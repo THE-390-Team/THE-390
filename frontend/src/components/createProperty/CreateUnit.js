@@ -19,7 +19,6 @@ const CreateUnit = () => {
     purchase_price: "",
     rent_price: "", // not always needed
     size: "",
-    property: propertyId,
     extra_information: ""
   });
   const handleChange = (e) => {
@@ -40,11 +39,11 @@ const CreateUnit = () => {
       .post(`properties/property-profile/${propertyId}/condo-unit/`, {
         location: formData.location,
         purchase_price: formData.purchase_price,
-        public_profile: formData.public_profile,
+        //FIXME should bring this back later but for sprint 2 it's enough
+        // public_profile: "",
         rent_price: formData.rent_price,
         size: formData.size,
         extra_information: formData.extra_information,
-        property: formData.property,
       })
       .then((res) => {
         if (res.status == 201) {
