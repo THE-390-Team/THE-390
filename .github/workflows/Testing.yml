@@ -46,8 +46,8 @@ jobs:
       - name: Run Unit tests Django
         working-directory: ./backend
         run: |
-          coverage run manage.py test
-          coverage report > coverage_report.json
+          coverage run manage.py test 
+          coverage report --omit '*/dist-packages/*' > coverage_report.json
 
       # Save coverage report to repository
       - name: Save coverage report 
