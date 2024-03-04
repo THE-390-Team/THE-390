@@ -38,7 +38,7 @@ class PropertyProfile(models.Model):
 class Unit(models.Model):
     class Meta:
         abstract=True
-    location = models.IntegerField()
+    location = models.CharField(max_length=100)
     purchase_price = models.DecimalField(decimal_places=2, max_digits=20)
     rent_price = models.DecimalField(decimal_places=2, max_digits=20)
     

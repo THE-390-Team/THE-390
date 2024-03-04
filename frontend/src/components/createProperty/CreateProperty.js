@@ -168,6 +168,7 @@ const CreateProperty = () => {
                 name="property_image"
                 multiple
                 onChange={handleChange}
+                data-testid = "property-image-file"
             />
         </Form.Group>
 
