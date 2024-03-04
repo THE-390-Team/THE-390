@@ -58,17 +58,18 @@ jobs:
       - name: Install Cypress
         working-directory: ./frontend
         run: npm install cypress --save-dev
+             npm install --save-dev cypress-terminal-report
 
       - name: Run Cypress tests
         working-directory: ./frontend
-        run: npx cypress run > report_cypress.txt
+        run: npx cypress run --reporter cypress-terminal-reporter > report_cypress.txt
 
       # Save Cypress report to repository
       - name: Save Cypress report
         uses: actions/upload-artifact@v2
         with:
           name: cypress-report
-          path: ./frontend/report_cypress.txt
+          path: ./reports/report_cypress.txt
           
       - name: Copy Artifacts
         run: |
