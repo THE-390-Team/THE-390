@@ -59,7 +59,7 @@ jobs:
       # Run Unit tests Jest (Frontend)
       - name: Run Unit Tests (Frontend)
         working-directory: ./frontend
-        run: npm test --coverage --watchAll=false --json > coverage/jest-report.json
+        run: npm run coverage > jest-report.json
 
       # Save Jest tests as artifacts
       - name: Save Jest report
