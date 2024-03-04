@@ -61,7 +61,7 @@ jobs:
 
       - name: Run Cypress tests
         working-directory: ./frontend
-        run: npx cypress run --reporter mocha-junit-reporter --reporter-options mochaFile=results.xml
+        run: npx cypress run > eport_cypress.txt 
 
       # Save Cypress JUnit XML report to repository
       - name: Save Cypress report
