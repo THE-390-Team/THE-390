@@ -43,6 +43,7 @@
   "devDependencies": {
     "@cypress/instrument-cra": "^1.4.0",
     "cypress": "^13.6.4",
+    "cypress-file-upload": "^5.0.8",
     "nyc": "^15.1.0"
   }
 }
