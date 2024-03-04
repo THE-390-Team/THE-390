@@ -104,8 +104,9 @@ export const PropertyProvider = ({ children }) => {
                     id: response.data.id,
                     company: response.data.company,
                     num_condo_units: response.data.num_condo_units,
-                    num_parking_units: response.data.num_parking_units,
-                    num_storage_units: response.data.num_storage_units,
+                    //TODO bring those two back after model update
+                    // num_parking_units: response.data.num_parking_units,
+                    // num_storage_units: response.data.num_storage_units,
                     address: response.data.address,
                     city: response.data.city,
                     province: response.data.province,

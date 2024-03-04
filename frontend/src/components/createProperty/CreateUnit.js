@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../api/axios";
 import {
   Container,
@@ -10,14 +10,16 @@ import {
 } from "react-bootstrap";
 
 const CreateUnit = () => {
-
+  let { propertyID } = useParams();
   const navigate = useNavigate();
   // unit information, should extend to match all info needed
   const [formData, setFormData] = useState({
-    unit_id: "",
-    unit_size: "",
-    unit_owner: "",
-    unit_info: "",
+    unit_id: "", // location in the model
+    unit_purchase_price: "",
+    unit_rent_price: "", // not always needed
+    unit_size: "", //TODO add to model
+    unit_owner: "", //TODO add to model
+    unit_info: "", //TODO add to model to include the renter
   });
 
   const handleChange = (e) => {
@@ -37,10 +39,12 @@ const CreateUnit = () => {
 
     axiosInstance
       .post(`unit-profile/register/`, {
-        unit_id: formData.unit_id,
-        unit_size: formData.unit_size,
-        unit_owner: formData.unit_owner,
-        unit_info: formData.unit_info,
+        location: formData.unit_id,
+        purchase_price: formData.unit_purchase_price,
+        // property: propertyID
+        unit_size: formData.unit_size, //TODO not existant yet
+        unit_owner: formData.unit_owner, //TODO not existant yet
+        unit_info: formData.unit_info, //TODO not existant yet
       })
       .then((res) => {
         if (res.status == 201) {
@@ -60,16 +64,19 @@ const CreateUnit = () => {
       });
   };
 
-  //TODO hardcoded path
+  function goBack() {
+    navigate(-1);
+  }
+
   function handleBackToPropertyPage() {
-    navigate('/property-page');
+    goBack()
   }
 
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
 
-        <Row classname="mb-3">
+        <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridUnitID">
             <Form.Label>Unit ID</Form.Label>
             <Form.Control
@@ -94,19 +101,33 @@ const CreateUnit = () => {
           </Form.Group>
         </Row>
 
-        <Form.Group classname="mb-3" controlId="formGridUnitOwner">
-          <Form.Label>Unit Owner</Form.Label>
-          <Form.Control
-            type="text"
-            name="unit_owner"
-            placeholder="Enter Unit Owner Name"
-            value={formData.unit_owner}
-            onChange={handleChange}
-            data-testid="unit-owner-input"
-          />
-        </Form.Group>
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridUnitPrice">
+            <Form.Label>Unit Price</Form.Label>
+            <Form.Control
+              type="text"
+              name="unit_purchase_price"
+              placeholder="Enter Unit Price"
+              value={formData.unit_purchase_price}
+              onChange={handleChange}
+              data-testid="unit_purchase_price-input"
+            />
+          </Form.Group>
+          <Form.Group as={Col} className="mb-3" controlId="formGridUnitOwner">
+            <Form.Label>Unit Owner</Form.Label>
+            <Form.Control
+              type="text"
+              name="unit_owner"
+              placeholder="Enter Unit Owner Name"
+              value={formData.unit_owner}
+              onChange={handleChange}
+              data-testid="unit-owner-input"
+            />
+          </Form.Group>
+        </Row>
 
-        <Form.Group classname="mb-3" controlId="formGridUnitInfo">
+        {/* TODO add a unit rent price */}
+        <Form.Group className="mb-3" controlId="formGridUnitInfo">
           <Form.Label>Unit Occupant Info</Form.Label>
           <Form.Control
             type="text"
