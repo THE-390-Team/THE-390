@@ -92,9 +92,13 @@ const PropertyPage = () => {
     ));
   };
 
-  function handleBackToDashboard() {
-    navigate('/dashboard');
+  function goBack() {
+    navigate(-1);
   }
+  function handleBackToDashboard() {
+    goBack()
+  }
+
   function handleGoToUnitCreate() {
     navigate(`/property-page/${propertyId}/create-condo-unit`);
   }
@@ -146,10 +150,10 @@ const PropertyPage = () => {
           <div style={renderStyle}>
             {renderParkingSpots()}
           </div>
-          {/* <h5 className="mt-3">Lockers <Button variant="primary" onClick={handleGoToLockerCreate} data-testid="create-locker-button">+</Button></h5>
+          <h5 className="mt-3">Lockers <Button variant="primary" onClick={handleGoToLockerCreate} data-testid="create-locker-button">+</Button></h5>
           <div style={renderStyle}>
             {renderLockers()}
-          </div> */}
+          </div>
         </Col>
       </Row>
     </Container>
