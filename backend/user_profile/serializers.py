@@ -1,4 +1,6 @@
 from rest_framework import serializers
+
+from properties.serializers import CondoUnitSerializer
 from .models import User, PublicProfile, EmployeeProfile, CompanyProfile, Profile
 
 """  
@@ -27,9 +29,11 @@ class ProfileSerializer(serializers.ModelSerializer):
         Profile Serializer for abstract profile class  
     """
     user = UserSerializer()
+    condo_units = CondoUnitSerializer(many=True, read_only=True)
     class Meta:
         model = Profile
-        fields = ['user', 'address', 'city', 'province', 'postal_code', 'phone_number', 'avatar']
+        fields = ['user', 'address', 'city', 'province', 'postal_code', 'phone_number', 'avatar', 'condo_units']
+        
 
 class PublicProfileSerializer(serializers.ModelSerializer):
     """
