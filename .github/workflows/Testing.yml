@@ -40,35 +40,47 @@ jobs:
         working-directory: ./backend
         run: python manage.py runserver &
 
-      # Run Unit tests Django and capture coverage report
-      - name: Run Unit tests Django
-        working-directory: ./backend
-        run: |
-          coverage run manage.py test
-          coverage report > coverage_report.txt
-
-      # Save coverage report to repository
-      - name: Save coverage report
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage-report
-          path: ./backend/coverage_report.txt
-
-      # Install Cypress and run tests
+    # Install Cypress and run tests
       - name: Install Cypress
         working-directory: ./frontend
         run: npm install cypress --save-dev
 
-      - name: Run Cypress tests
-        working-directory: ./frontend
-        run: npx cypress run > report_cypress.txt 
+      # Run Unit tests Django (Backend)
+      - name: Run Unit tests Django
+        working-directory: ./backend
+        run: |
+          coverage run manage.py test
+          coverage report > coverage_report.json
 
-      # Save Cypress JUnit XML report to repository
+      # Save coverage report to repository
+      - name: Save coverage report 
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: ./backend/coverage_report.json
+
+      # Run Unit tests Jest (Frontend)
+      - name: Run Unit Tests (Frontend)
+        working-directory: ./frontend
+
+      # Run Integration Tests (Backend)
+      - name: Run Integration Tests (Backend)
+        working-directory: ./backend
+
+      # Run Integration Tests (Frontend)
+      - name: Run Integration Tests (Frontend)
+        working-directory: ./frontend
+
+      - name: Run System tests
+        working-directory: ./frontend
+        run: npx cypress run > reports_cypress.json
+
+      # Save Cypress tests as artifacts
       - name: Save Cypress report
         uses: actions/upload-artifact@v2
         with:
           name: cypress-report
-          path: ./frontend/reports_cypress.txt
+          path: ./frontend/reports_cypress.json
           
       - name: Copy Artifacts
         run: |
