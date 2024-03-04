@@ -61,29 +61,20 @@ jobs:
 
       - name: Run Cypress tests
         working-directory: ./frontend
-        run: npx cypress run > report_cypress.txt
+        run: npx cypress run > report_cypress.txt 
 
-      # Save Cypress report to repository
+      # Save Cypress JUnit XML report to repository
       - name: Save Cypress report
         uses: actions/upload-artifact@v2
         with:
           name: cypress-report
-          path: ./frontend/report_cypress.txt
+          path: ./frontend/reports_cypress.txt
           
       - name: Copy Artifacts
         run: |
           cp ${{ github.workspace }}/backend/coverage_report.txt .
           cp ${{ github.workspace }}/frontend/report_cypress.txt .
 
-      # Commit and push the changes
-      - name: Commit Artifacts
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add .
-          git commit -m "Add coverage report and Cypress output"
-          git push origin HEAD:main
+      
 
       
