@@ -77,6 +77,8 @@ jobs:
 
       # Commit and push the changes
       - name: Commit Artifacts
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           git config user.email "you@example.com"
           git config user.name "Your Name"
