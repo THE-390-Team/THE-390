@@ -61,14 +61,14 @@ jobs:
 
       - name: Run Cypress tests
         working-directory: ./frontend
-        run: npx cypress run > eport_cypress.txt 
+        run: npx cypress run > report_cypress.txt 
 
       # Save Cypress JUnit XML report to repository
       - name: Save Cypress report
         uses: actions/upload-artifact@v2
         with:
           name: cypress-report
-          path: ./frontend/results.xml
+          path: ./frontend/reports_cypress.txt
           
       - name: Copy Artifacts
         run: |
