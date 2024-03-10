@@ -150,7 +150,7 @@ const PropertyPage = () => {
           <div style={renderStyle}>
             {renderParkingSpots()}
           </div>
-          <h5 className="mt-3">Lockers <Button variant="primary" onClick={handleGoToLockerCreate} data-testid="create-locker-button">+</Button></h5>
+          <h5 className="mt-3">Lockers <Button data-testid="create-locker-button" onClick={handleGoToLockerCreate} variant="primary">+</Button></h5>
           <div style={renderStyle}>
             {renderLockers()}
           </div>

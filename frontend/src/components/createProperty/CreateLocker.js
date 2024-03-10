@@ -87,23 +87,23 @@ const CreateLocker = () => {
           <Form.Group as={Col} controlId="formGridLockerLocation">
             <Form.Label>Locker Location</Form.Label>
             <Form.Control
-              type="text"
-              name="location"
-              placeholder="####"
-              value={formData.location}
-              onChange={handleChange}
               data-testid="locker-location-input"
+              name="location"
+              onChange={handleChange}
+              placeholder="####"
+              type="text"
+              value={formData.location}
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridLockerSize">
             <Form.Label>Locker Size</Form.Label>
             <Form.Control
-              type="text"
-              name="size"
-              placeholder="Enter Locker Owner"
-              value={formData.size}
-              onChange={handleChange}
               data-testid="locker-size-input"
+              name="size"
+              onChange={handleChange}
+              placeholder="Enter Locker Owner"
+              type="text"
+              value={formData.size}
             />
           </Form.Group>
           {/* <Form.Group as={Col} controlId="formGridLockerOwner">
@@ -122,35 +122,35 @@ const CreateLocker = () => {
           <Form.Group as={Col} classname="mb-3" controlId="formGridLockerPurchasePrice">
             <Form.Label>Purchase Price</Form.Label>
             <Form.Control
-              type="text"
-              name="purchase_price"
-              placeholder="Enter Locker Purchase Price"
-              value={formData.purchase_price}
-              onChange={handleChange}
               data-testid="locker-purchase_price-input"
+              name="purchase_price"
+              onChange={handleChange}
+              placeholder="Enter Locker Purchase Price"
+              type="text"
+              value={formData.purchase_price}
             />
           </Form.Group>
           <Form.Group as={Col} classname="mb-3" controlId="formGridLockerRentPrice">
             <Form.Label>Rent Price</Form.Label>
             <Form.Control
-              type="text"
-              name="rent_price"
-              placeholder="Enter Locker Rent Price"
-              value={formData.rent_price}
-              onChange={handleChange}
               data-testid="locker-rent_price-input"
+              name="rent_price"
+              onChange={handleChange}
+              placeholder="Enter Locker Rent Price"
+              type="text"
+              value={formData.rent_price}
             />
           </Form.Group>
         </Row>
         <Form.Group classname="mb-3" controlId="formGridLockerExtraInformation">
           <Form.Label>Extra Information</Form.Label>
           <Form.Control
-            type="text"
-            name="extra_information"
-            placeholder="Enter Locker Extra Info"
-            value={formData.extra_information}
-            onChange={handleChange}
             data-testid="locker-extra_information-input"
+            name="extra_information"
+            onChange={handleChange}
+            placeholder="Enter Locker Extra Info"
+            type="text"
+            value={formData.extra_information}
           />
         </Form.Group>
         <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToPropertyPage}>

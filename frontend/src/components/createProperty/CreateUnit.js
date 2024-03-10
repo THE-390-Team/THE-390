@@ -54,7 +54,7 @@ const CreateUnit = () => {
         extra_information: formData.extra_information,
       }) 
       .then((res) => {
-        if (res.status == 201) { //if response is okay alert user and back to property page
+        if (res.status === 201) { //if response is okay alert user and back to property page
           window.alert(`unit profile ${formData.location} has been created`)
           console.log(res);
           console.log(res.data);
@@ -85,23 +85,23 @@ const CreateUnit = () => {
           <Form.Group as={Col} controlId="formGridUnitLocation">
             <Form.Label>Unit Location</Form.Label>
             <Form.Control
-              type="text"
-              name="location"
-              placeholder="Enter Unit Location"
-              value={formData.id}
-              onChange={handleChange}
               data-testid="unit-location-input"
+              name="location"
+              onChange={handleChange}
+              placeholder="Enter Unit Location"
+              type="text"
+              value={formData.id}
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridUnitSize">
             <Form.Label>Unit Size</Form.Label>
             <Form.Control
-              type="text"
-              name="size"
-              placeholder="Enter Unit Size"
-              value={formData.size}
-              onChange={handleChange}
               data-testid="unit-size-input"
+              name="size"
+              onChange={handleChange}
+              placeholder="Enter Unit Size"
+              type="text"
+              value={formData.size}
             />
           </Form.Group>
         </Row>
@@ -110,23 +110,23 @@ const CreateUnit = () => {
           <Form.Group as={Col} controlId="formGridUnitPrice">
             <Form.Label>Unit Price</Form.Label>
             <Form.Control
-              type="text"
-              name="purchase_price"
-              placeholder="Enter Unit Price"
-              value={formData.purchase_price}
-              onChange={handleChange}
               data-testid="unit_purchase_price-input"
+              name="purchase_price"
+              onChange={handleChange}
+              placeholder="Enter Unit Price"
+              type="text"
+              value={formData.purchase_price}
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridUnitRentPrice">
             <Form.Label>Unit Rent</Form.Label>
             <Form.Control
-              type="text"
-              name="rent_price"
-              placeholder="Enter Unit Rent"
-              value={formData.rent_price}
-              onChange={handleChange}
               data-testid="unit_purchase_price-input"
+              name="rent_price"
+              onChange={handleChange}
+              placeholder="Enter Unit Rent"
+              type="text"
+              value={formData.rent_price}
             />
           </Form.Group>
         </Row>
@@ -134,23 +134,23 @@ const CreateUnit = () => {
         <Form.Group className="mb-3" controlId="formGridUnitPublicProfile">
           <Form.Label>Unit Owner</Form.Label>
           <Form.Control
-            type="text"
-            name="public_profile"
-            placeholder="Enter Unit Owner Name"
-            value={formData.public_profile}
-            onChange={handleChange}
             data-testid="unit-public_profile-input"
+            name="public_profile"
+            onChange={handleChange}
+            placeholder="Enter Unit Owner Name"
+            type="text"
+            value={formData.public_profile}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formGridUnitInfo">
           <Form.Label>Unit Occupant Info</Form.Label>
           <Form.Control
-            type="text"
-            name="extra_information"
-            placeholder="Enter Unit Occupant Info"
-            value={formData.extra_information}
-            onChange={handleChange}
             data-testid="unit-info-input"
+            name="extra_information"
+            onChange={handleChange}
+            placeholder="Enter Unit Occupant Info"
+            type="text"
+            value={formData.extra_information}
           />
         </Form.Group>
         <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToPropertyPage}>

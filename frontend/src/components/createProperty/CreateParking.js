@@ -80,23 +80,23 @@ const CreateParking = () => {
           <Form.Group as={Col} controlId="formGridParkingLocation">
             <Form.Label>Parking Location</Form.Label>
             <Form.Control
-              type="text"
-              name="location"
-              placeholder="####"
-              value={formData.location}
-              onChange={handleChange}
               data-testid="parking-location-input"
+              name="location"
+              onChange={handleChange}
+              placeholder="####"
+              type="text"
+              value={formData.location}
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridParkingOwner">
             <Form.Label>Parking Size</Form.Label>
             <Form.Control
-              type="text"
-              name="size"
-              placeholder="Enter Parking Size"
-              value={formData.size}
-              onChange={handleChange}
               data-testid="parking-size-input"
+              name="size"
+              onChange={handleChange}
+              placeholder="Enter Parking Size"
+              type="text"
+              value={formData.size}
             />
           </Form.Group>
           {/* <Form.Group as={Col} controlId="formGridParkingOwner">
@@ -118,35 +118,35 @@ const CreateParking = () => {
           <Form.Group as={Col} className="mb-3" controlId="formGridParkingPurchasePrice">
             <Form.Label>Purchase Price</Form.Label>
             <Form.Control
-              type="text"
-              name="purchase_price"
-              placeholder="Enter Parking Purchase Price"
-              value={formData.purchase_price}
-              onChange={handleChange}
               data-testid="parking-purchase_price-input"
+              name="purchase_price"
+              onChange={handleChange}
+              placeholder="Enter Parking Purchase Price"
+              type="text"
+              value={formData.purchase_price}
             />
           </Form.Group>
           <Form.Group as={Col} className="mb-3" controlId="formGridParkingRentPrice">
             <Form.Label>Rent Price</Form.Label>
             <Form.Control
-              type="text"
-              name="rent_price"
-              placeholder="Enter Parking Renting Price"
-              value={formData.rent_price}
-              onChange={handleChange}
               data-testid="parking-rent_price-input"
+              name="rent_price"
+              onChange={handleChange}
+              placeholder="Enter Parking Renting Price"
+              type="text"
+              value={formData.rent_price}
             />
           </Form.Group>
         </Row>
         <Form.Group className="mb-3" controlId="formGridParkingExtraInfo">
           <Form.Label>Parking Info</Form.Label>
           <Form.Control
-            type="text"
-            name="extra_information"
-            placeholder="Enter Parking Owner Info"
-            value={formData.extra_information}
-            onChange={handleChange}
             data-testid="parking-extra_information-input"
+            name="extra_information"
+            onChange={handleChange}
+            placeholder="Enter Parking Owner Info"
+            type="text"
+            value={formData.extra_information}
           />
         </Form.Group>
         <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToPropertyPage}>
