@@ -1,8 +1,8 @@
-
-
 # Django REST Framework Project README
 
-Welcome to the Django REST Framework project! This project is built using Django and Django REST Framework (DRF) to create a robust RESTful API.
+Welcome to the Django REST Framework project! This 
+project is built using Django and Django REST Framework (DRF) 
+to create a robust RESTful API.
 
 ## Getting Started
 
@@ -24,7 +24,8 @@ cd backend
 ```
 ### 3. Set Up Virtual Environment
 
-Navigate to the project directory and set up a virtual environment using `venv`:
+Navigate to the project directory and 
+set up a virtual environment using `venv`:
 
 ```bash
 python -m venv venv
@@ -47,7 +48,8 @@ source env/bin/activate
 
 ### 4. Install Dependencies
 
-Once the virtual environment is activated, install the project dependencies using `pip` and the `requirements.txt` file:
+Once the virtual environment is activated, install the project 
+dependencies using `pip` and the `requirements.txt` file:
 
 ```bash
 pip install -r requirements.txt
@@ -71,47 +73,63 @@ This will start the development server at `http://127.0.0.1:8000/`.
 
 ### 7. Accessing the API
 
-Once the server is running, you can access the API endpoints through your web browser or a tool like Postman. The base URL for API endpoints will be `http://127.0.0.1:8000/`.
+Once the server is running, you can access the API endpoints 
+through your web browser or a tool like Postman. The base 
+URL for API endpoints will be `http://127.0.0.1:8000/`.
 
 ## Database Migrations
 
-This project utilizes Django's built-in migration system to manage changes to the database schema. Here's how to handle migrations:
+This project utilizes Django's built-in migration system to manage 
+changes to the database schema. Here's how to handle migrations:
 
 ### 1. Make Migrations
 
-Whenever you make changes to the models in your Django project, you need to create migration files that represent those changes. To do this, run:
+Whenever you make changes to the models in your Django project, 
+you need to create migration files that represent those changes. 
+To do this, run:
 
 ```bash
 python manage.py makemigrations
 ```
 
-This command will analyze the changes you've made to your models and create migration files in the `migrations` directory of each app within your project.
+This command will analyze the changes you've made to your 
+models and create migration files in the `migrations` directory 
+of each app within your project.
 
 ### 2. Apply Migrations
 
-After creating migration files, you need to apply those changes to your database. To do this, run:
+After creating migration files, you need to apply those changes to your database. 
+To do this, run:
 
 ```bash
 python manage.py migrate
 ```
 
-This command will execute the migrations and modify the database schema to match the changes you've made to your models. It will create tables, add or remove fields, and perform other necessary operations.
+This command will execute the migrations and modify the database 
+schema to match the changes you've made to your models. It will 
+create tables, add or remove fields, and perform other necessary operations.
 
 ### 3. Viewing Migration Status
 
-You can view the status of migrations to see which migrations have been applied and which are pending by running:
+You can view the status of migrations to see which migrations have been 
+applied and which are pending by running:
 
 ```bash
 python manage.py showmigrations
 ```
 
-This command will display a list of all migrations and their status (applied or not applied).
+This command will display a list of all migrations and their status 
+(applied or not applied).
 
-By following these steps, you can effectively manage your database schema changes and keep your database in sync with your Django project's models.
+By following these steps, you can effectively manage your 
+database schema changes and keep your database in sync with 
+your Django project's models.
 
 ## Contributing
 
-If you would like to contribute to this project, feel free to fork the repository and submit pull requests. Make sure to follow the contribution guidelines outlined in the `CONTRIBUTING.md` file.
+If you would like to contribute to this project, feel free to fork the repository 
+and submit pull requests. Make sure to follow the contribution guidelines 
+outlined in the `CONTRIBUTING.md` file.
 
 ## License
 
@@ -119,9 +137,11 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 ## Acknowledgments
 
-Special thanks to the Django and DRF communities for their excellent documentation and resources.
+Special thanks to the Django and DRF communities for 
+their excellent documentation and resources.
 
-Thank you for using our Django REST Framework project! If you have any questions or issues, please don't hesitate to reach out.
+Thank you for using our Django REST Framework project! 
+If you have any questions or issues, please don't hesitate to reach out.
 
 <!-- TODO: add admin login ..... -->
 <!-- TODO: specify cd to backend  ..... -->
@@ -215,4 +235,6 @@ This comprehensive guide provides detailed steps for setting up a Django project
 
    This is essential after cloning the repository to set up the environment with the required packages.
 
-By following these detailed instructions, you'll have a well-structured Django project with virtual environment isolation, Django installation, Django Rest Framework integration, and proper dependency management. -->
+By following these detailed instructions, you'll have a well-structured 
+Django project with virtual environment isolation, Django installation, 
+Django Rest Framework integration, and proper dependency management. -->
