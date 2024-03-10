@@ -17,11 +17,13 @@ git clone https://github.com/your_username/django-rest-project.git
 ```
 
 ### 2. Navigate to the Backend Folder
+
 Navigate to the backend folder in the project directory using the terminal:
 
 ```bash
 cd backend
 ```
+
 ### 3. Set Up Virtual Environment
 
 Navigate to the project directory and 
@@ -30,7 +32,6 @@ set up a virtual environment using `venv`:
 ```bash
 python -m venv venv
 ```
-
 
 Activate the virtual environment:
 
@@ -56,11 +57,13 @@ pip install -r requirements.txt
 ```
 
 ### 5. Apply Database Migrations
+
 Before running the server, apply the database migrations:
 
 ```
 python manage.py migrate
 ```
+
 ### 6. Run the Server
 
 After installing the dependencies, you can run the Django development server:
