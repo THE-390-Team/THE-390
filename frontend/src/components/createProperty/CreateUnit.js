@@ -52,7 +52,7 @@ const CreateUnit = () => {
         rent_price: formData.rent_price,
         size: formData.size,
         extra_information: formData.extra_information,
-      }) 
+      })
       .then((res) => {
         if (res.status === 201) { //if response is okay alert user and back to property page
           window.alert(`unit profile ${formData.location} has been created`)
@@ -121,7 +121,7 @@ const CreateUnit = () => {
           <Form.Group as={Col} controlId="formGridUnitRentPrice">
             <Form.Label>Unit Rent</Form.Label>
             <Form.Control
-              data-testid="unit_purchase_price-input"
+              data-testid="unit_rental_price-input"
               name="rent_price"
               onChange={handleChange}
               placeholder="Enter Unit Rent"

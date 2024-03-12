@@ -121,16 +121,16 @@ const CreateProperty = () => {
               name="property_province"
               value={formData.property_province}
               onChange={handleChange}
-              data-testid="province-select">
-              <option value="British Colombia">BC</option>
-              <option value="Prince Edward Island">PE</option>
-              <option value="Nova Scotia">NS</option>
-              <option value="New Brunswick">NB</option>
-              <option value="Quebec">QC</option>
-              <option value="Ontario">ON</option>
-              <option value="Manitoba">MB</option>
-              <option value="Saskatchuwan">SK</option>
-              <option value="Alberta">AB</option>
+              data-testid="province-select-test">
+              <option value="British Colombia" data-testid="BC-test">BC</option>
+              <option value="Prince Edward Island" data-testid="PE-test">PE</option>
+              <option value="Nova Scotia" data-testid="NS-test">NS</option>
+              <option value="New Brunswick" data-testid="NB-test">NB</option>
+              <option value="Quebec" data-testid="QC-test">QC</option>
+              <option value="Ontario" data-testid="ON-test">ON</option>
+              <option value="Manitoba" data-testid="MB-test">MB</option>
+              <option value="Saskatchuwan" data-testid="SK-test">SK</option>
+              <option value="Alberta" data-testid="AB-test">AB</option>
               {/* <option value="British Colombia">BC</option>
                 <option value="British Colombia">YT</option>
                 <option value="British Colombia">NT</option>
