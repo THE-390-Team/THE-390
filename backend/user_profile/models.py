@@ -5,7 +5,9 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from registration_key.models import RegistrationKey
 from properties.models import PropertyProfile
+from django.core.mail import send_mail
 
 
 class CustomUserManager(BaseUserManager):
@@ -108,3 +110,13 @@ class CompanyProfile(Profile):
     
     def property_profiles(self):
         return PropertyProfile.objects.filter(company=self)
+    
+    def send_registration_key(self, key, user):
+        email = user.email
+        send_mail(
+            "unit registration_key",
+            str(key),
+            "patrickmaceachen78@gmail.com",
+            ["patrickmaceachen78@gmail.com"],
+            fail_silently=False
+        )

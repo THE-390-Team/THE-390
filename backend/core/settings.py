@@ -197,3 +197,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Default location for images and reference URL
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'patrickmaceachen78@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'patrickmaceachen78@gmail.com'
+EMAIL_HOST_PASSWORD = 'mktd rbzi lbmm iuqm'
+EMAIL_USE_SSL = False
