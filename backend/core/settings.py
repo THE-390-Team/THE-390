@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'user_profile',
     'jwt_auth_token',
     'properties',
+    'registration_key',
 ]
 
 MIDDLEWARE = [
