@@ -11,8 +11,14 @@ from django.core.mail import send_mail
 
 
 class CustomUserManager(BaseUserManager):
-    
+    """
+    Custom user manager for creating and managing user accounts.
+    """
+
     def create_superuser(self, email, password,  **other_fields):
+        """
+        Create a superuser with the given email, password, and other fields.
+        """
         other_fields.setdefault('is_staff', True)
         other_fields.setdefault('is_superuser', True)
         other_fields.setdefault('is_active', True)
@@ -23,6 +29,9 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password,  **other_fields)
     
     def create_user(self, email, password, **other_fields):
+        """
+        Create a user with the given email, password, and other fields.
+        """
         if not email:
             raise ValueError('You must provide an email address')
         email = self.normalize_email(email)
@@ -33,8 +42,9 @@ class CustomUserManager(BaseUserManager):
     
 class User(AbstractBaseUser, PermissionsMixin):
     """
-        Schema for User (authentication model)  
+    Custom user model for authentication.
     """
+
     class Role(models.TextChoices):
         PUBLIC = 'PUBLIC', 'Public'
         EMPLOYEE = 'EMPLOYEE','Employee'
@@ -53,12 +63,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['role', 'first_name', 'last_name']
     
     def __str__(self):
+        """
+        Return a string representation of the user.
+        """
         return self.first_name + " " + self.last_name
     
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     """
-        When User is created, an associated profile is created depending on the user role  
+    Signal receiver function to create associated profile based on user role.
     """
     if created and instance.is_superuser:
         return
@@ -71,10 +84,12 @@ def create_user_profile(sender, instance, created, **kwargs):
     
 class Profile(models.Model):
     """
-        Abstract Profile Model whos propreties are inherited by Public, Employee and Company Profiles  
+    Abstract profile model that is inherited by Public, Employee, and Company profiles.
     """
+
     class Meta:
         abstract = True
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)    
     address = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=100, blank=True)
@@ -84,34 +99,63 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to="avatar_images", default="avatar_images/pp.jpg")
     
     def __str__(self):
+        """
+        Return a string representation of the profile.
+        """
         return str(self.user)
     
 class PublicProfile(Profile):
+    """
+    Profile model for public users.
+    """
+
     class Type(models.TextChoices):
         OWNER = 'OWNER', 'Owner'
         RENTER = 'RENTER', 'Renter'
-    type = models.CharField(max_length =100, choices=Type.choices, default=Type.OWNER)
+    
+    type = models.CharField(max_length=100, choices=Type.choices, default=Type.OWNER)
     registration_key = models.CharField(max_length=50, null=True)
 
 class EmployeeProfile(Profile):
+    """
+    Profile model for employee users.
+    """
+
     class Position(models.TextChoices):
         MANAGER = 'MANAGER', 'Manager'
         FINANCE = 'FINANCE', 'Finance'
         DAILY_OPERATIONS = 'DAILY_OPERATIONS', 'Daily_Operations'
-    position = models.CharField(max_length =100, choices=Position.choices, default=Position.DAILY_OPERATIONS)
     
-    
+    position = models.CharField(max_length=100, choices=Position.choices, default=Position.DAILY_OPERATIONS)
     
 class CompanyProfileManager(models.Manager):
+    """
+    Manager for the CompanyProfile model.
+    """
+
     def property_profiles(self):
+        """
+        Return the property profiles associated with the company.
+        """
         return PropertyProfile.objects.filter(company=self)
     
 class CompanyProfile(Profile):
+    """
+    Profile model for company users.
+    """
+
+    objects = CompanyProfileManager()
     
     def property_profiles(self):
+        """
+        Return the property profiles associated with the company.
+        """
         return PropertyProfile.objects.filter(company=self)
     
     def send_registration_key(self, key, user):
+        """
+        Send a registration key to the user's email.
+        """
         email = user.email
         send_mail(
             "unit registration_key",

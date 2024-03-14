@@ -1,21 +1,41 @@
-import hashlib
-from django.db import models
-import random
-from django.db import models
 from .models import RegistrationKeyManager
+from django.db import models
+import hashlib
+import random
+
 
 class RegistrationKeyManager(models.Manager):
-    
+    """
+    A custom manager for the RegistrationKey model.
+    """
+
     def get_queryset(self):
+        """
+        Returns a queryset of RegistrationKey objects that are activated.
+        """
         return super().get_queryset().filter(is_activate=True)
     
     def create_key(self, user, unit):
+        """
+        Creates a new RegistrationKey object with the specified user and unit.
+        
+        Args:
+            user (User): The user associated with the key.
+            unit (Unit): The unit associated with the key.
+        
+        Returns:
+            RegistrationKey: The newly created RegistrationKey object.
+        """
         key = self.model(user=user, unit=unit)
         key.generate_key(user, unit)
         key.save(using=self._db)
         return key
 
 class RegistrationKey(models.Model):
+    """
+    An abstract base class for registration keys.
+    """
+
     class Meta:
         abstract = True
         
@@ -25,9 +45,22 @@ class RegistrationKey(models.Model):
     is_activate = models.BooleanField(default=True)
     
     def __str__(self):
+        """
+        Returns a string representation of the registration key.
+        """
         return self.key
     
     def generate_key(self, user, unit):
+        """
+        Generates a unique key based on the user's email and the unit's ID.
+        
+        Args:
+            user (User): The user associated with the key.
+            unit (Unit): The unit associated with the key.
+        
+        Returns:
+            str: The generated key.
+        """
         email = user.email
         unit_id = unit.id
         
@@ -38,21 +71,38 @@ class RegistrationKey(models.Model):
         return self.key
     
     def deactivate(self):
+        """
+        Deactivates the registration key.
+        """
         self.is_activate = False
 
     
 class CondoRegistrationKey(RegistrationKey):
+    """
+    A registration key for a condo unit.
+    """
+
     unit = models.ForeignKey('properties.CondoUnit', on_delete=models.CASCADE, blank=False)
     objects = RegistrationKeyManager()
    
     def __str__(self):
+        """
+        Returns a string representation of the condo registration key.
+        """
         return self.key
     
 class ParkingRegistrationKey(RegistrationKey):
+    """
+    A registration key for a parking unit.
+    """
+
     unit = models.ForeignKey('properties.ParkingUnit', on_delete=models.CASCADE, blank=False)
     objects = RegistrationKeyManager()
        
 class StorageUnitRegistrationKey(RegistrationKey):
+    """
+    A registration key for a storage unit.
+    """
+
     unit = models.ForeignKey('properties.StorageUnit', on_delete=models.CASCADE, blank=False)
     objects = RegistrationKeyManager()
-    
