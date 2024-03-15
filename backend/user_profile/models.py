@@ -5,7 +5,6 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from registration_key.models import RegistrationKey
 from properties.models import PropertyProfile
 from django.core.mail import send_mail
 

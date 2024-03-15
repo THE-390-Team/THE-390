@@ -1,4 +1,4 @@
-from .models import RegistrationKeyManager
+
 from django.db import models
 import hashlib
 import random
@@ -8,12 +8,6 @@ class RegistrationKeyManager(models.Manager):
     """
     A custom manager for the RegistrationKey model.
     """
-
-    def get_queryset(self):
-        """
-        Returns a queryset of RegistrationKey objects that are activated.
-        """
-        return super().get_queryset().filter(is_activate=True)
     
     def create_key(self, user, unit):
         """
@@ -39,7 +33,7 @@ class RegistrationKey(models.Model):
     class Meta:
         abstract = True
         
-    key = models.CharField(max_length=20, unique=True)
+    key = models.CharField(max_length=100, unique=True)
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, null=False, blank=False)
     owner = models.BooleanField(default=True)
     is_activate = models.BooleanField(default=True)
@@ -99,7 +93,7 @@ class ParkingRegistrationKey(RegistrationKey):
     unit = models.ForeignKey('properties.ParkingUnit', on_delete=models.CASCADE, blank=False)
     objects = RegistrationKeyManager()
        
-class StorageUnitRegistrationKey(RegistrationKey):
+class StorageRegistrationKey(RegistrationKey):
     """
     A registration key for a storage unit.
     """
