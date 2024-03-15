@@ -1,11 +1,17 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import CarouselHomeScreen from "./homeScreenCarousel/CarouselHomeScreen"
+
 
 const HomeScreen = () => {
     return (
-
-        <div> <h1>Welcome to CondoCare</h1></div>
-
+        <div className="container">
+            <div className="row justify-content-center">
+                <div className="col-lg-10 col-md-13">
+                    <CarouselHomeScreen />
+                </div>
+            </div>
+        </div>
 
     )
 }
