@@ -13,7 +13,7 @@ class RegistrationKeyManager(models.Manager):
         """
         Returns a queryset of RegistrationKey objects that are activated.
         """
-        return super().get_queryset().filter(is_activate=True)
+        return super().get_queryset().filter(is_active=True)
     
     def create_key(self, user, unit):
         """
@@ -41,8 +41,8 @@ class RegistrationKey(models.Model):
         
     key = models.CharField(max_length=20, unique=True)
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, null=False, blank=False)
-    owner = models.BooleanField(default=True)
-    is_activate = models.BooleanField(default=True)
+    is_owner = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
     
     def __str__(self):
         """
@@ -74,7 +74,7 @@ class RegistrationKey(models.Model):
         """
         Deactivates the registration key.
         """
-        self.is_activate = False
+        self.is_active = False
 
     
 class CondoRegistrationKey(RegistrationKey):
@@ -98,6 +98,13 @@ class ParkingRegistrationKey(RegistrationKey):
 
     unit = models.ForeignKey('properties.ParkingUnit', on_delete=models.CASCADE, blank=False)
     objects = RegistrationKeyManager()
+    
+    def __str__(self):
+        """
+        Returns a string representation of the parking registration key.
+        """
+        return self.key
+    
        
 class StorageUnitRegistrationKey(RegistrationKey):
     """
@@ -106,3 +113,9 @@ class StorageUnitRegistrationKey(RegistrationKey):
 
     unit = models.ForeignKey('properties.StorageUnit', on_delete=models.CASCADE, blank=False)
     objects = RegistrationKeyManager()
+    
+    def __str__(self):
+        """
+        Returns a string representation of the storage registration key.
+        """
+        return self.key
