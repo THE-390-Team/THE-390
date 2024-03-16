@@ -96,12 +96,12 @@ jobs:
             echo "[Coverage Report](./backend/coverage_report.json)" >> README.md
             echo "[Jest Report](./frontend/jest-report.json)" >> README.md
             echo "[Cypress Report](./frontend/reports_cypress.json)" >> README.md
+            git checkout -b update-readme   # Create a new branch for updating readme
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git add README.md
             git commit -m "Update test reports in README"
-            git push
-
+            git push origin update-readme
           
 
       
