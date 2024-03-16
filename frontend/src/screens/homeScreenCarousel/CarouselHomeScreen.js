@@ -8,7 +8,7 @@ function CarouselFadeExample() {
     return (
         <Carousel fade>
             <Carousel.Item>
-                <div className="carousel-image-container" style={{ width: '100%', overflow: 'hidden', paddingTop: '56.25%' /* 16:9 Aspect Ratio */ }}>
+                <div className="carousel-image-container" style={{ width: '100%', overflow: 'hidden', paddingTop: '56.25%'}}>
                     <img
                         src={property}
                         alt="First slide"
