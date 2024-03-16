@@ -1,4 +1,3 @@
-from .models import RegistrationKeyManager
 from django.db import models
 import hashlib
 import random
