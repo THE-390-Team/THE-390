@@ -160,6 +160,7 @@ class CompanyProfile(Profile):
         send_mail(
             "unit registration_key",
             str(key),
+            # TODO: change destination email address
             "patrickmaceachen78@gmail.com",
             ["patrickmaceachen78@gmail.com"],
             fail_silently=False
