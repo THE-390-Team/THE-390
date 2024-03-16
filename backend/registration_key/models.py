@@ -105,7 +105,7 @@ class ParkingRegistrationKey(RegistrationKey):
         return self.key
     
        
-class StorageUnitRegistrationKey(RegistrationKey):
+class StorageRegistrationKey(RegistrationKey):
     """
     A registration key for a storage unit.
     """
