@@ -103,7 +103,47 @@ class ParkingRegistrationKeyView(ModelViewSet):
         except User.DoesNotExist:
             return Response({"details": "There is no user with the given email"}, status=status.HTTP_400_BAD_REQUEST)
         except ParkingUnit.DoesNotExist:
-            return Response({"details": "There is no condo unit associated with the given id"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"details": "There is no parking unit associated with the given id"}, status=status.HTTP_400_BAD_REQUEST)
+        except CompanyProfile.DoesNotExist:
+            return Response({"details": "There is no Company Profile associated with the given id"}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({"details": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class StorageRegistrationKeyView(ModelViewSet):
+    queryset = StorageRegistrationKey.objects.all()
+    serializer_class = StorageRegistrationKeySerializer
+    
+    def create(self, request, *args, **kwargs):
+        try:
+            unit = StorageUnit.objects.get(id=self.request.data.get('unit', None))
+            company = CompanyProfile.objects.get(user_id=self.request.data.get('company', None))
+            user = User.objects.get(email=self.request.data.get('user', None))
+            
+            if unit.public_profile is not None:
+                raise Exception("this unit is already in use.")
+            if user.role != 'PUBLIC':
+                return Response({"details": "The user associated with this email is not a public user"})
+            
+            serializer_data = {
+                'key': StorageRegistrationKey.generate_key(user, unit),
+                'user': user.id,
+                'unit': unit.id
+            }
+            
+            is_owner = self.request.data.get('is_owner', None)
+            
+            if is_owner is not None: 
+                serializer_data['is_owner'] = is_owner
+                
+            serializer = StorageRegistrationKeySerializer(data=serializer_data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data)
+        
+        except User.DoesNotExist:
+            return Response({"details": "There is no user with the given email"}, status=status.HTTP_400_BAD_REQUEST)
+        except StorageUnit.DoesNotExist:
+            return Response({"details": "There is no storage unit associated with the given id"}, status=status.HTTP_400_BAD_REQUEST)
         except CompanyProfile.DoesNotExist:
             return Response({"details": "There is no Company Profile associated with the given id"}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
