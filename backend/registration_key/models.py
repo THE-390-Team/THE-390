@@ -38,8 +38,8 @@ class RegistrationKey(models.Model):
     class Meta:
         abstract = True
         
-    key = models.CharField(max_length=20, unique=True)
-    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, null=False, blank=False)
+    key = models.CharField(max_length=100, unique=True)
+    user = models.ForeignKey('user_profile.PublicProfile', on_delete=models.CASCADE, null=False, blank=False)
     is_owner = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     
@@ -49,7 +49,8 @@ class RegistrationKey(models.Model):
         """
         return self.key
     
-    def generate_key(self, user, unit):
+    @staticmethod
+    def generate_key(user, unit):
         """
         Generates a unique key based on the user's email and the unit's ID.
         
@@ -59,15 +60,12 @@ class RegistrationKey(models.Model):
         
         Returns:
             str: The generated key.
-        """
-        email = user.email
-        unit_id = unit.id
-        
+        """ 
         salt = hashlib.sha256(str(random.random()).encode()).hexdigest()[:5]
-        email = email.encode('utf-8')
-        unit_id = str(unit_id).encode('utf-8')
-        self.key = hashlib.sha256(salt.encode() + email + unit_id).hexdigest()
-        return self.key
+        email = user.email.encode('utf-8')
+        unit_id = str(unit.id).encode('utf-8')
+        key = hashlib.sha256(salt.encode() + email + unit_id).hexdigest()
+        return key
     
     def deactivate(self):
         """
@@ -82,7 +80,7 @@ class CondoRegistrationKey(RegistrationKey):
     """
 
     unit = models.ForeignKey('properties.CondoUnit', on_delete=models.CASCADE, blank=False)
-    objects = RegistrationKeyManager()
+    # objects = RegistrationKeyManager()
    
     def __str__(self):
         """
