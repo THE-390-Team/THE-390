@@ -89,6 +89,15 @@ jobs:
           name: cypress-report
           path: ./frontend/reports_cypress.json
 
+       # Add links to reports in readme.md
+      - name: Update Readme with Report Links
+        run: |
+          echo "## Test Reports" >> README.md
+          echo "[Coverage Report](./backend/coverage_report.json)" >> README.md
+          echo "[Jest Report](./frontend/jest-report.json)" >> README.md
+          echo "[Cypress Report](./frontend/reports_cypress.json)" >> README.md
+          cat README.md
+
           
 
       
