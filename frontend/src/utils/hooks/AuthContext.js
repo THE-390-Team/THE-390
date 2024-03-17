@@ -14,19 +14,20 @@ export function AuthProvider(props) {
     })
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+    // check local storage for token, and update the login state
+    // accordingly to avoid loss of login state on refresh
     const checkAuthState = () => {
         const access_token = localStorage.getItem("access_token");
         if (access_token) {
             axiosInstance.defaults.headers["Authorization"] = "JWT " + access_token;
-            setIsLoggedIn(true); // Assuming you have a state to manage this
-            setAuthUser(localStorage.getItem("ID")); // Update accordingly if you store the username or email
+            setIsLoggedIn(true);
+            setAuthUser(localStorage.getItem("ID"));
         } else {
-            // No token found, user is not logged in
             setIsLoggedIn(false);
             setAuthUser(null);
         }
     };
-    
+
     const value = {
         authUser,
         setAuthUser,
