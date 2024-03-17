@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../api/axios";
+import { useProperty } from "../../utils/hooks/PropertyContext"
 import {
   Container,
   Row,
@@ -10,6 +11,8 @@ import {
 } from "react-bootstrap";
 
 const CreateUnit = () => {
+
+  const { properties } = useProperty();
 
   // receive the containing property id from the url
   let { propertyId } = useParams();
@@ -25,6 +28,12 @@ const CreateUnit = () => {
     size: "",
     extra_information: ""
   });
+
+  const findPropertyById = (propertyId) => {
+    if (Array.isArray(properties)) {
+      return properties.find(property => property.id.toString() === propertyId);
+    }
+  };
 
   //handle change from the user input and save to state
   const handleChange = (e) => {
@@ -81,6 +90,8 @@ const CreateUnit = () => {
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
       {/* input forms to get the condo information */}
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
+        {/*TODOchange to name instead of id*/}
+        <h2>Add a Unit to Property {findPropertyById(propertyId)?.id}</h2>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridUnitLocation">
             <Form.Label>Unit Location</Form.Label>

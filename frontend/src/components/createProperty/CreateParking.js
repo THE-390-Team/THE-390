@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../api/axios";
+import { useProperty } from "../../utils/hooks/PropertyContext"
 import {
   Container,
   Row,
@@ -10,6 +11,8 @@ import {
 } from "react-bootstrap";
 
 const CreateParking = () => {
+
+  const {properties} = useProperty();
 
   let { propertyId } = useParams();
   const navigate = useNavigate();
@@ -24,6 +27,11 @@ const CreateParking = () => {
     parking_owner: ""
   });
 
+  const findPropertyById = (propertyId) => {
+    if (Array.isArray(properties)) {
+      return properties.find(property => property.id.toString() === propertyId);
+    }
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -75,7 +83,7 @@ const CreateParking = () => {
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
-
+      <h2>Add a Parking Spot to Property {findPropertyById(propertyId)?.id}</h2>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridParkingLocation">
             <Form.Label>Parking Location</Form.Label>

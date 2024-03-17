@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axiosInstance from "../../api/axios";
+import { useProperty } from "../../utils/hooks/PropertyContext"
 import {
   Container,
   Row,
@@ -10,7 +11,7 @@ import {
 } from "react-bootstrap";
 
 const CreateLocker = () => {
-
+  const {properties} = useProperty();
   let { propertyId } = useParams();
   const navigate = useNavigate();
   // unit information, should extend to match all info needed
@@ -23,6 +24,11 @@ const CreateLocker = () => {
     extra_information: null,
   });
 
+  const findPropertyById = (propertyId) => {
+    if (Array.isArray(properties)) {
+      return properties.find(property => property.id.toString() === propertyId);
+    }
+  };
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -82,7 +88,7 @@ const CreateLocker = () => {
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
-
+      <h2>Add a Locker to Property {findPropertyById(propertyId)?.id}</h2>
         <Row classname="mb-3">
           <Form.Group as={Col} controlId="formGridLockerLocation">
             <Form.Label>Locker Location</Form.Label>
