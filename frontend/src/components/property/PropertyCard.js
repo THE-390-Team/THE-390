@@ -43,7 +43,7 @@ const PropertyCard = ({ property }) => {
 
 
   return (
-    <Card className="mb-3" style={{ width: '25rem', textAlign: 'center' }}>
+    <Card className="mb-3" style={{ maxWidth: '25rem', width: '100%', textAlign: 'center' }}>
       <Card.Img
         variant="top"
         src={property.image}

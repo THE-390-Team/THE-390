@@ -15,20 +15,22 @@ const DashBoard = () => {
         navigate('/create-property');
     }
     return (
-        <Container className="mt-5">
-            <Row>
-                <Col style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                    <UserInfo />
+        <Container>
+            {/* <UserInfo /> */}
+            <div className="d-flex justify-content-center">
+                <h1>Properties</h1>
+            </div>
+            <PropertyContainer />
+            <Button variant="primary" style={{ width: "150px", marginLeft: "20px", marginTop: "10px" }} onClick={handleGoToProperty}>Add Property</Button>
+            <Row className="mt-5">
+                <Col>
                     <Financial />
-                    <SubmittedRequests />
-                    <Button variant="primary" style={{width: "150px", marginLeft: "120px"}} onClick={handleGoToProperty}>Add Property</Button>
                 </Col>
                 <Col>
-                    <PropertyContainer />
+                    <SubmittedRequests />
                 </Col>
             </Row>
         </Container>
-
     );
 }
 
