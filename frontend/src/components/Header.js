@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axios";
 import { useAuth } from "../utils/hooks/AuthContext";
 import NavigationBar from "./nagivationBar/NavigationBar";
-import NavigationBarr from "./nagivationBar/NavigationBarr";
 
 
 
@@ -14,8 +13,7 @@ const Header = () => {
   const { isLoggedIn } = useAuth();
   return (
     <>
-      {/* <NavigationBar /> */}
-      <NavigationBarr />
+      <NavigationBar />
     </>
 
   );
