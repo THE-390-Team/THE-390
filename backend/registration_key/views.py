@@ -5,6 +5,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response 
 from rest_framework import status 
 
+
 from properties.models import (
     CondoUnit, 
     ParkingUnit, 
@@ -57,6 +58,7 @@ class CondoRegistrationKeyView(ModelViewSet):
             serializer = CondoRegistrationKeySerializer(data=serializer_data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            company.send_registration_key(serializer.data, user)
             return Response(serializer.data)
         
         except User.DoesNotExist:
@@ -98,6 +100,7 @@ class ParkingRegistrationKeyView(ModelViewSet):
             serializer = ParkingRegistrationKeySerializer(data=serializer_data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            company.send_registration_key(serializer.data, user)
             return Response(serializer.data)
         
         except User.DoesNotExist:
@@ -138,6 +141,7 @@ class StorageRegistrationKeyView(ModelViewSet):
             serializer = StorageRegistrationKeySerializer(data=serializer_data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
+            company.send_registration_key(serializer.data, user)
             return Response(serializer.data)
         
         except User.DoesNotExist:
