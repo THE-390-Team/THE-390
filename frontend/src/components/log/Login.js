@@ -46,7 +46,7 @@ const Login = () => {
         localStorage.setItem("ID", res.data.id);
         axiosInstance.defaults.headers["Authorization"] =
           "JWT " + localStorage.getItem("access_token");
-        history("/profile");
+        history("/home");
         console.log(res);
         console.log(res.data);
         setIsLoggedIn(true);
