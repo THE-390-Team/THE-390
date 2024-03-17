@@ -10,6 +10,7 @@ import axiosInstance from '../../api/axios.js';
 
 
 const DashBoard = () => {
+    //state to hold the role of the signed in user
     const [role, setRole] = useState(null)
     let navigate = useNavigate();
 
@@ -17,6 +18,7 @@ const DashBoard = () => {
         navigate('/create-property');
     }
 
+    // make a call to get the role of the user based on the stored id in the local storage
     useEffect(() => {
         let role = ''
         const id = localStorage.getItem("ID");
@@ -36,6 +38,7 @@ const DashBoard = () => {
                     <UserInfo />
                     <Financial />
                     <SubmittedRequests />
+                    {/* the button to create a property is only accessible to company profiles */}
                     {
                         role === "COMPANY" &&
                         <div>

@@ -11,11 +11,12 @@ const PropertyPage = () => {
   let navigate = useNavigate();
 
   const { propertyId } = useParams();
-  const { property, fetchPropertyById } = useProperty();
+  const { property, fetchPropertyById } = useProperty(); //receive needed functions from the property context
 
   useEffect(() => {
     if (propertyId) {
       //this is useful only for company accounts
+      // make the api call from the backend
       fetchPropertyById(propertyId);
     }
   }, []);
