@@ -68,7 +68,7 @@ class CondoRegistrationKeyView(ModelViewSet):
             serializer = CondoRegistrationKeySerializer(data=serializer_data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
-            company.send_registration_key(serializer.data, user)
+            company.send_registration_key(serializer.data['key'], user)
             return Response(serializer.data)
         
         except User.DoesNotExist:
@@ -122,7 +122,7 @@ class ParkingRegistrationKeyView(ModelViewSet):
             serializer = ParkingRegistrationKeySerializer(data=serializer_data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
-            company.send_registration_key(serializer.data, user)
+            company.send_registration_key(serializer.data['key'], user)
             return Response(serializer.data)
         
         except User.DoesNotExist:
@@ -175,7 +175,7 @@ class StorageRegistrationKeyView(ModelViewSet):
             serializer = StorageRegistrationKeySerializer(data=serializer_data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
-            company.send_registration_key(serializer.data, user)
+            company.send_registration_key(serializer.data['key'], user)
             return Response(serializer.data)
         
         except User.DoesNotExist:
