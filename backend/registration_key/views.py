@@ -5,7 +5,6 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response 
 from rest_framework import status 
 
-
 from properties.models import (
     CondoUnit, 
     ParkingUnit, 
@@ -29,11 +28,22 @@ from .serializers import (
 )
 
 class CondoRegistrationKeyView(ModelViewSet):
-
+    """
+    Viewset for managing condo registration keys.
+    """
     queryset = CondoRegistrationKey.objects.all()
     serializer_class = CondoRegistrationKeySerializer
     
     def create(self, request, *args, **kwargs):
+        """
+        Create a new condo registration key.
+        
+        Parameters:
+        - request: The HTTP request object.
+        
+        Returns:
+        - Response: The HTTP response object.
+        """
         try:
             unit = CondoUnit.objects.get(id=self.request.data.get('unit', None))
             company = CompanyProfile.objects.get(user_id=self.request.data.get('company', None))
@@ -72,10 +82,22 @@ class CondoRegistrationKeyView(ModelViewSet):
         
         
 class ParkingRegistrationKeyView(ModelViewSet):
+    """
+    Viewset for managing parking registration keys.
+    """
     queryset = ParkingRegistrationKey.objects.all()
     serializer_class = ParkingRegistrationKeySerializer
     
     def create(self, request, *args, **kwargs):
+        """
+        Create a new parking registration key.
+        
+        Parameters:
+        - request: The HTTP request object.
+        
+        Returns:
+        - Response: The HTTP response object.
+        """
         try:
             unit = ParkingUnit.objects.get(id=self.request.data.get('unit', None))
             company = CompanyProfile.objects.get(user_id=self.request.data.get('company', None))
@@ -113,10 +135,22 @@ class ParkingRegistrationKeyView(ModelViewSet):
             return Response({"details": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class StorageRegistrationKeyView(ModelViewSet):
+    """
+    Viewset for managing storage registration keys.
+    """
     queryset = StorageRegistrationKey.objects.all()
     serializer_class = StorageRegistrationKeySerializer
     
     def create(self, request, *args, **kwargs):
+        """
+        Create a new storage registration key.
+        
+        Parameters:
+        - request: The HTTP request object.
+        
+        Returns:
+        - Response: The HTTP response object.
+        """
         try:
             unit = StorageUnit.objects.get(id=self.request.data.get('unit', None))
             company = CompanyProfile.objects.get(user_id=self.request.data.get('company', None))
