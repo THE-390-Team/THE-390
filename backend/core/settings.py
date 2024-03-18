@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'jwt_auth_token',
     'properties',
     'registration_key',
+    'finance',
 ]
 
 MIDDLEWARE = [
