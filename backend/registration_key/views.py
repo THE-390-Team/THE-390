@@ -52,7 +52,7 @@ class CondoRegistrationKeyView(ModelViewSet):
             if unit.public_profile is not None:
                 raise Exception("this unit is already in use.")
             if user.role != 'PUBLIC':
-                return Response({"details": "The user associated with this email is not a public user"})
+                return Response({"details": "The user associated with this email is not a public user"}, status=status.HTTP_400_BAD_REQUEST)
             
             serializer_data = {
                 'key': CondoRegistrationKey.generate_key(user, unit),
@@ -106,7 +106,7 @@ class ParkingRegistrationKeyView(ModelViewSet):
             if unit.public_profile is not None:
                 raise Exception("this unit is already in use.")
             if user.role != 'PUBLIC':
-                return Response({"details": "The user associated with this email is not a public user"})
+                return Response({"details": "The user associated with this email is not a public user"}, status=status.HTTP_400_BAD_REQUEST)
             
             serializer_data = {
                 'key': ParkingRegistrationKey.generate_key(user, unit),
@@ -159,7 +159,7 @@ class StorageRegistrationKeyView(ModelViewSet):
             if unit.public_profile is not None:
                 raise Exception("this unit is already in use.")
             if user.role != 'PUBLIC':
-                return Response({"details": "The user associated with this email is not a public user"})
+                return Response({"details": "The user associated with this email is not a public user"}, status=status.HTTP_400_BAD_REQUEST)
             
             serializer_data = {
                 'key': StorageRegistrationKey.generate_key(user, unit),
