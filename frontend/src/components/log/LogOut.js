@@ -17,6 +17,7 @@ const LogOut = () => {
 
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
+    localStorage.removeItem("ID"); // added this line to remove the user id from local storage
     axiosInstance.defaults.headers["Authorization"] = null;
     setIsLoggedIn(false);
     setAuthUser("");
