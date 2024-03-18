@@ -23,6 +23,15 @@ export const PropertyProvider = ({ children }) => {
         storage_units: []
     }
     );
+
+    // clear all property states on logout to avoid showing the previous user's data
+    const clearAllPropertyStatesOnLogout = () => [
+        setProperties({}),
+        setCondoUnits({}),
+        setParkingUnits({}),
+        setStorageUnits({}),
+    ]
+
     // create state for condo units, parking units, and storage units
     // they will store the units to show for public user
     const [condoUnits, setCondoUnits] = useState({});
@@ -136,7 +145,8 @@ export const PropertyProvider = ({ children }) => {
         parkingUnits,
         fetchAllParkingUnitsForProfile,
         StorageUnits,
-        fetchAllStorageUnitsForProfile
+        fetchAllStorageUnitsForProfile,
+        clearAllPropertyStatesOnLogout
     }
 
     return (

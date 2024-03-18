@@ -18,7 +18,7 @@ const PropertyContainer = () => {
         parkingUnits
     } = useProperty();
     // get role of the user from the profile context
-    const { role, fetchProfileRole } = useProfile();
+    const { role} = useProfile();
 
     // get information on db properties
     useEffect(() => {

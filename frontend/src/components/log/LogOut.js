@@ -3,11 +3,13 @@ import React, { useContext, useEffect } from "react";
 import axiosInstance from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/hooks/AuthContext";
+import { useProperty } from "../../utils/hooks/PropertyContext";
 
 
 const LogOut = () => {
   const history = useNavigate();
   const { setIsLoggedIn, setAuthUser } = useAuth();
+  const { clearAllPropertyStatesOnLogout } = useProperty(); // added this line to clear all states on logout
 
 
   useEffect(() => {
@@ -21,6 +23,7 @@ const LogOut = () => {
     axiosInstance.defaults.headers["Authorization"] = null;
     setIsLoggedIn(false);
     setAuthUser("");
+    clearAllPropertyStatesOnLogout(); // added this line to clear all states on logout so that the next login won't hold pervious user's data
     history("/login");
   });
 
