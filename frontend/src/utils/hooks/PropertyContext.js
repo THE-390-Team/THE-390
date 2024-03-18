@@ -23,9 +23,16 @@ export const PropertyProvider = ({ children }) => {
         storage_units: []
     }
     );
+    // create state for condo units, parking units, and storage units
+    // they will store the units to show for public user
+    const [condoUnits, setCondoUnits] = useState({});
+    const [parkingUnits, setParkingUnits] = useState({})
+    const [StorageUnits, setStorageUnits] = useState({})
 
-    //TODO check if this is good to fetch all properties
-    const fetchAllProperties = async () => {
+    // fetch all properties for a specific company, to be used in the dashboard 
+    // of a company employee to see all the properties they have
+    const fetchCompanyProperties = async (company_id) => {
+        const parsedCompanyId = parseInt(company_id, 10); // 10 is the radix parameter to specify decimal base
         axiosInstance
             .get(`profiles/company-profile/${parsedCompanyId}/property-profiles/`) //endpoint for fetching all properties for a company
             .then((response) => {
