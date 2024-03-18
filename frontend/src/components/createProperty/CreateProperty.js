@@ -13,8 +13,8 @@ import {
 const CreateProperty = () => {
 
   let navigate = useNavigate();
-  // unit information, should extend to match all info needed
-
+  
+  // property information, should extend to match all info needed
   const [formData, setFormData] = useState({
     property_name: "",
     property_company: "",
@@ -25,49 +25,119 @@ const CreateProperty = () => {
     property_image: propertyPhoto,
   });
 
+  const [errors, setErrors] = useState({});
+
+  //handle change from the user input and save to state
   const handleChange = (e) => {
     setFormData({
       ...formData,
       // Trimming any whitespace
       [e.target.name]: e.target.value,
     });
+
+    //Clear existing error if there is change to input
+    setErrors({ ...errors, [e.target.name]: '' });
     console.log(formData);
   };
 
+  //Validate input form
+  const validateForm = () => {
+    const errors = {};
+    let isValid = true;
+
+    //Validate input fields
+    //Re-add property_name validation when backend supports property_name input
+    //Property name must be filled, and must not exceed 100 chars
+    // if (!formData.property_name.trim()) {
+    //   errors.property_name = 'Name field required';
+    //   isValid = false;
+    // } else if (formData.property_name.length > 100) {
+    //   errors.property_name = 'Name must be under 100 characters';
+    //   isValid = false;
+    // }
+    //Property address must be filled, and must not exceed 100 chars
+    if (!formData.property_address.trim()) {
+      errors.property_address = 'Name field required';
+      isValid = false;
+    } else if (formData.property_name.length > 100) {
+      errors.property_address = 'Name must be under 100 characters';
+      isValid = false;
+    }
+    //City name must be filled, not contain a number, and must not exceed 100 chars
+    if (!formData.property_city.trim()) {
+      errors.property_city = 'City name field required';
+      isValid = false;
+    } else if (formData.property_city.length > 50) {
+      errors.property_city = 'City name must be under 50 characters';
+      isValid = false;
+    } else if (/\d/.test(formData.property_city)) {
+      errors.property_city = 'City name must not contain numbers';
+      isValid = false;
+    }
+    //Postal code must be filled, and must not exceed 10 chars
+    if (!formData.property_postal_code.trim()){
+      errors.property_postal_code = 'Postal code field required';
+      isValid = false;
+    } else if (formData.property_postal_code > 10) {
+      errors.property_postal_code = 'Postal code must not exceed 10 characters';
+      isValid = false;
+    }
+    //TODO: Add validation for image field: Image field must not be empty
+
+    //If there are errors, set errors in state and prevent submit
+    if (Object.keys(errors).length >0){
+      setErrors(errors);
+    }
+
+    return isValid;
+
+  }
+
+  //handle form submission to create a new property
   const handleSubmit = (e) => {
     const companyID = localStorage.getItem("ID");
     e.preventDefault();
-    console.log(formData);
 
-    axiosInstance
-      .post(`/profiles/company-profile/${companyID}/property-profiles/`, {
-        //TODO await model updates with name and image
-        // name: formData.property_name, 
-        company: companyID,
-        address: formData.property_address,
-        city: formData.property_city,
-        province: formData.property_province,
-        postal_code: formData.property_postal_code,
+    //If form is valid, post the form
+    if (validateForm())
+    {
+      console.log(formData);
 
-        // image: formData.property_image, //TODO await model updates with name and image
-      })
-      .then((res) => {
-        if (res.status == 201) {
-          window.alert(`Property profile ${formData.property_name} has been created`)
-          console.log(res);
-          console.log(res.data);
-          navigate("/dashboard");
-        }
-      })
-      .catch((error) => {
-        //TODO check if this error handling is enough
-        console.log(error);
-        console.log(error.data);
-        window.alert(`${error} `)
-        // navigate("/dashboard")
-      });
+      //post form
+      axiosInstance
+        .post(`/profiles/company-profile/${companyID}/property-profiles/`, {
+          //TODO await model updates with name and image
+          // name: formData.property_name, 
+          company: companyID,
+          address: formData.property_address.trim(),
+          city: formData.property_city.trim(),
+          province: formData.property_province,
+          postal_code: formData.property_postal_code.trim(),
+
+          // image: formData.property_image, //TODO: await model updates with name and image
+        })
+        .then((res) => {
+          if (res.status == 201) {
+            // Create new property if successful and go back to property dashboard
+            window.alert(`Property profile ${formData.property_name} has been created`)
+            console.log(res);
+            console.log(res.data);
+            navigate("/dashboard");
+          }
+        })
+        .catch((error) => {
+          //Show popup of error encountered
+          console.log(error);
+          console.log(error.data);
+          window.alert(`${error} `)
+        });
+    }else{
+      //Do not post form if there is error in input
+      return;
+    }
   };
 
+  //Go back to property dashboard
   function handleBackToDashboard() {
     navigate('/dashboard');
   }
@@ -75,20 +145,20 @@ const CreateProperty = () => {
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
-
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridPropertyName">
-            <Form.Label>Property Name</Form.Label>
-            <Form.Control
-              type="text"
-              name="property_name"
-              placeholder="Enter Property Name"
-              value={formData.name}
-              onChange={handleChange}
-              data-testid="property-name-input"
-            />
-          </Form.Group>
-        </Row>
+        <Form.Group as={Col} controlId="formGridPropertyName">
+          <Form.Label>Property Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="property_name"
+            placeholder="Enter Property Name"
+            value={formData.name}
+            onChange={handleChange}
+            data-testid="property-name-input"
+          />
+          {/*Show error if submitting invalid input*/}
+          {/*errors.property_name && <span style={{color: "red"}}>{errors.property_name}</span>*/}
+          {/*Add in error message when property_name is supported */}
+        </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPropertyAddress">
           <Form.Label>Property Address</Form.Label>
@@ -100,10 +170,10 @@ const CreateProperty = () => {
             onChange={handleChange}
             data-testid="property-address-input"
           />
+          {errors.property_address && <span style={{color: "red"}}>{errors.property_address}</span>}
         </Form.Group>
 
         <Row className="mb-3">
-
           <Form.Group as={Col} controlId="formGridPropertyCity">
             <Form.Label>Property City</Form.Label>
             <Form.Control
@@ -111,9 +181,10 @@ const CreateProperty = () => {
               name="property_city"
               value={formData.city}
               onChange={handleChange}
-              data-testid="property-city-input" />
+              data-testid="property-city-input"
+            />
+            {errors.property_city && <span style={{color: "red"}}>{errors.property_city}</span>}
           </Form.Group>
-
           <Form.Group as={Col} controlId="formGridPropertyProvince">
             <Form.Label>Property Province</Form.Label>
             <Form.Select
@@ -145,7 +216,9 @@ const CreateProperty = () => {
               name="property_postal_code"
               value={formData.postal_code}
               onChange={handleChange}
-              data-testid="property-postal-code-input" />
+              data-testid="property-postal-code-input"
+            />
+            {errors.property_city && <span style={{color: "red"}}>{errors.property_city}</span>}
           </Form.Group>
         </Row>
 
@@ -158,6 +231,7 @@ const CreateProperty = () => {
             onChange={handleChange}
             data-testid="property-image-file"
           />
+          {errors.property_image && <span style={{color: "red"}}>{errors.property_image}</span>}
         </Form.Group>
 
         <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToDashboard}>
