@@ -54,15 +54,16 @@ const CreateLocker = () => {
 
     //Validate input fields 
     //Location must be filled, length less than 50 chars
-    if (!formData.location.trim()){
+    if (!formData.location){
       errors.location = "Location field required";
       isValid = false;
-    } else if (formData.location.trim().length > 50){
+    } else if (formData.location.length > 50){
       errors.location = "Location field must be under 50 characters";
       isValid = false;
     }
+    
     //Purchase price must be filled, must be a non-negative number
-    if (!formData.purchase_price.trim()){
+    if (!formData.purchase_price){
       errors.purchase_price = "Purchase price required";
       isValid = false;
     } else if (isNaN(formData.purchase_price)){
@@ -72,8 +73,9 @@ const CreateLocker = () => {
       errors.purchase_price = "Invalid number";
       isValid = false;
     }
+    
     //Rent price must be filled, must be a non-negative number
-    if (!formData.rent_price.trim()){
+    if (!formData.rent_price){
       errors.rent_price = "Rent price required";
       isValid = false;
     } else if (isNaN(formData.rent_price)){
@@ -83,8 +85,9 @@ const CreateLocker = () => {
       errors.rent_price = "Invalid number";
       isValid = false;
     }
+    
     //Size must be filled, must be a non-negative number
-    if (!formData.size.trim()){
+    if (!formData.size){
       errors.size = "Size required";
       isValid = false;
     } else if (isNaN(formData.size)){
@@ -94,8 +97,9 @@ const CreateLocker = () => {
       errors.size = "Invalid number";
       isValid = false;
     }
+    
     //Extra information must be not exceed 100 chars
-    if (formData.extra_information.trim().length > 100){
+    if (formData.extra_information.length > 100){
       errors.extra_information = "Extra information field must be less than 100 characters";
       isValid = false;
     }
@@ -120,11 +124,11 @@ const CreateLocker = () => {
       //post form
       axiosInstance
         .post(`properties/property-profile/${propertyId}/storage-unit/`, {
-          location: formData.location.trim(),
-          purchase_price: formData.purchase_price.trim(),
-          rent_price: formData.rent_price.trim(),
-          size: formData.size.trim(),
-          extra_information: formData.extra_information.trim(),
+          location: formData.location,
+          purchase_price: formData.purchase_price,
+          rent_price: formData.rent_price,
+          size: formData.size,
+          extra_information: formData.extra_information,
         })
         .then((res) => {
           if (res.status == 201) {

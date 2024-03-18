@@ -48,23 +48,25 @@ const CreateProperty = () => {
     //Validate input fields
     //Re-add property_name validation when backend supports property_name input
     //Property name must be filled, and must not exceed 100 chars
-    // if (!formData.property_name.trim()) {
+    // if (!formData.property_name) {
     //   errors.property_name = 'Name field required';
     //   isValid = false;
     // } else if (formData.property_name.length > 100) {
     //   errors.property_name = 'Name must be under 100 characters';
     //   isValid = false;
     // }
+
     //Property address must be filled, and must not exceed 100 chars
-    if (!formData.property_address.trim()) {
-      errors.property_address = 'Name field required';
+    if (!formData.property_address) {
+      errors.property_address = 'Address field required';
       isValid = false;
-    } else if (formData.property_name.length > 100) {
-      errors.property_address = 'Name must be under 100 characters';
+    } else if (formData.property_address.length > 100) {
+      errors.property_address = 'Address must be under 100 characters';
       isValid = false;
     }
+
     //City name must be filled, not contain a number, and must not exceed 100 chars
-    if (!formData.property_city.trim()) {
+    if (!formData.property_city) {
       errors.property_city = 'City name field required';
       isValid = false;
     } else if (formData.property_city.length > 50) {
@@ -74,8 +76,9 @@ const CreateProperty = () => {
       errors.property_city = 'City name must not contain numbers';
       isValid = false;
     }
+    
     //Postal code must be filled, and must not exceed 10 chars
-    if (!formData.property_postal_code.trim()){
+    if (!formData.property_postal_code){
       errors.property_postal_code = 'Postal code field required';
       isValid = false;
     } else if (formData.property_postal_code > 10) {
@@ -109,10 +112,10 @@ const CreateProperty = () => {
           //TODO await model updates with name and image
           // name: formData.property_name, 
           company: companyID,
-          address: formData.property_address.trim(),
-          city: formData.property_city.trim(),
+          address: formData.property_address,
+          city: formData.property_city,
           province: formData.property_province,
-          postal_code: formData.property_postal_code.trim(),
+          postal_code: formData.property_postal_code,
 
           // image: formData.property_image, //TODO: await model updates with name and image
         })
