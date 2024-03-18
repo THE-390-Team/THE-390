@@ -1,10 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import axiosInstance from '../../api/axios';
 
-//temporary import until not hard coded
-import propertyPhoto from "../../assets/condo-photo.jpg"
-import propertyPhoto1 from "../../assets/condo-photo1.png"
-import propertyPhoto2 from "../../assets/condo-photo2.png"
 const PropertyContext = createContext();
 
 export const useProperty = () => useContext(PropertyContext);
@@ -31,10 +27,11 @@ export const PropertyProvider = ({ children }) => {
     //TODO check if this is good to fetch all properties
     const fetchAllProperties = async () => {
         axiosInstance
-            .get(`/properties/property-profile/`)
+            .get(`profiles/company-profile/${parsedCompanyId}/property-profiles/`) //endpoint for fetching all properties for a company
             .then((response) => {
-                console.log(response);
-                setProperties(response.data);
+                console.log("fetching properties for company id: ", parsedCompanyId) //confirmation to console
+                console.log(response); //send response to console
+                setProperties(response.data); // use the properties state to store the response data
                 console.log(response.data);
                 console.log(properties);
             })
@@ -43,10 +40,43 @@ export const PropertyProvider = ({ children }) => {
             });
     };
 
-    //to be used when seeing propperties on the compnay dashboard
+    // call to get all the condo units present for a specific user profile
+    // to be used when seeing condo units on the user dashboard
+    const fetchAllCondoUnitsForProfile = async (user_id) => {
+        try { //get the condo units for a specific user from the backend
+            const response = await axiosInstance.get(`profiles/public-profile/${user_id}/condo-units/`);
+            console.log(response); //output the response for confirmation
+            setCondoUnits(response.data); //set local state to the response data
+        } catch (error) {
+            console.error("Error fetching property profile:", error.message);
+        }
+    };
+    // call to get all the parking units present for a specific user profile
+    // to be used when seeing parking units on the user dashboard
+    const fetchAllParkingUnitsForProfile = async (user_id) => {
+        try {
+            const response = await axiosInstance.get(`profiles/public-profile/${user_id}/parking-units/`);
+            console.log(response);
+            setParkingUnits(response.data);
+        } catch (error) {
+            console.error("Error fetching property profile:", error.message);
+        }
+    };
+    // call to get all the parking units present for a specific user profile
+    // to be used when seeing storage units on the user dashboard
+    const fetchAllStorageUnitsForProfile = async (user_id) => {
+        try {
+            const response = await axiosInstance.get(`profiles/public-profile/${user_id}/storage-units/`);
+            console.log(response);
+            setStorageUnits(response.data);
+        } catch (error) {
+            console.error("Error fetching property profile:", error.message);
+        }
+    };
+
+    //to be used when seeing properties on the compnay dashboard
     const fetchPropertyById = async (id) => {
         axiosInstance
-
             .get(`/properties/property-profile/${id}`)
             .then((response) => {
                 console.log(response);
@@ -67,7 +97,7 @@ export const PropertyProvider = ({ children }) => {
                 console.log(response.data);
             })
             .catch((error) => {
-                console.error("Error fetching user profile:", error.message);
+                console.error("Error fetching property profile:", error.message);
             });
     };
 
@@ -83,8 +113,27 @@ export const PropertyProvider = ({ children }) => {
         // Implement deleting a property
     };
 
+    // add a value object to the provider for clarity
+    const value = {
+        properties,
+        setProperties,
+        fetchCompanyProperties,
+        addProperty,
+        updateProperty,
+        deleteProperty,
+        property,
+        setProperty,
+        fetchPropertyById,
+        fetchAllCondoUnitsForProfile,
+        condoUnits,
+        parkingUnits,
+        fetchAllParkingUnitsForProfile,
+        StorageUnits,
+        fetchAllStorageUnitsForProfile
+    }
+
     return (
-        <PropertyContext.Provider value={{ properties, fetchAllProperties, addProperty, updateProperty, deleteProperty, property, setProperty, fetchPropertyById }}>
+        <PropertyContext.Provider value={value}>
             {children}
         </PropertyContext.Provider>
     );
