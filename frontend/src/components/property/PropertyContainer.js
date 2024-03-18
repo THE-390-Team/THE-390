@@ -2,79 +2,80 @@ import React, { useEffect } from 'react';
 import PropertyCard from './PropertyCard';
 import { useState } from "react";
 import { useProperty } from "../../utils/hooks/PropertyContext"
-import propertyPhoto from "../../assets/condo-photo.jpg"
-import propertyPhoto1 from "../../assets/condo-photo1.png"
-import propertyPhoto2 from "../../assets/condo-photo2.png"
+import { useProfile } from "../../utils/hooks/ProfileContext"
 
 const PropertyContainer = () => {
-    
-    const { properties , fetchAllProperties} = useProperty();
-    // Sample data array
-    const [propertiesData, setPropertiesData] = useState({
-        // property1: {
-        //     id: "1",
-        //     name: "Estate Alpha",
-        //     location: "Greenwich, London",
-        //     image: propertyPhoto,
-        //     units: [
-        //         { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
-        //         { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 1200000, size: 1000 },
-        //         { id: 1, name: "The Buckingham Suite", address: '123 Main St', location: 'Downtown', price: 3100000, size: 1000 },
-        //     ],
-        //     parkingSpots: [
-        //         { id: 1, level: 2, size: 200, price: 50000, slotNumber: 12 },
-        //     ],
-        //     lockers: [
-        //         { id: 1, location: 'Basement', size: 50, number: 3, price: 10000 },
-        //     ],
-        // },
-        // property2: {
-        //     id: "2",
-        //     name: "Villa Beta",
-        //     location: "Beverly Hills, California",
-        //     image: propertyPhoto1,
-        //     units: [
-        //         { id: 1, name: "Sunset Manor", address: '456 Grand Ave', location: 'Hills', price: 2500000, size: 1500 },
-        //     ],
-        //     parkingSpots: [
-        //         { id: 1, level: 1, size: 250, price: 75000, slotNumber: 8 },
-        //     ],
-        //     lockers: [
-        //         { id: 1, location: 'Sub-basement', size: 60, number: 5, price: 20000 },
-        //     ],
-        // },
-        // property3: {
-        //     id: "3",
-        //     name: "Condo Gamma",
-        //     location: "Manhattan, New York",
-        //     image: propertyPhoto2,
-        //     units: [
-        //         { id: 1, name: "The Empire Loft", address: '789 Broadway St', location: 'Midtown', price: 900000, size: 800 },
-        //     ],
-        //     parkingSpots: [
-        //         { id: 1, level: 3, size: 180, price: 60000, slotNumber: 20 },
-        //     ],
-        //     lockers: [
-        //         { id: 1, location: 'Lower Level', size: 40, number: 7, price: 15000 },
-        //     ],
-        // }
-    });
+    // receive property states and property methods from the property context
+    const {
+        properties,
+        fetchCompanyProperties,
+        setProperties,
+        fetchAllCondoUnitsForProfile,
+        condoUnits,
+        fetchAllStorageUnitsForProfile,
+        storageUnits,
+        fetchAllParkingUnitsForProfile,
+        parkingUnits
+    } = useProperty();
+    // get role of the user from the profile context
+    const { role, fetchProfileRole } = useProfile();
 
     // get information on db properties
     useEffect(() => {
-        fetchAllProperties()
+        // get the id from local storage
+        const id = localStorage.getItem("ID");
+        if (role === "COMPANY") {
+            // fetch all the properties for the company if the user is a company employee
+            fetchCompanyProperties(id)
+        } else if (role === "PUBLIC") {
+            // fetch all the units for the user if the user is a public user
+            console.log("fetching properties for public user")
+            fetchAllCondoUnitsForProfile(id)
+            fetchAllParkingUnitsForProfile(id)
+            fetchAllStorageUnitsForProfile(id)
+        }
     }, []);
 
     return (
         <div className="d-flex flex-column align-items-center" style={{
-            width: '30rem', maxHeight: '75vh',
+            maxHeight: '75vh',
             overflowY: 'auto',
             width: '30rem',
         }}>
-            {/* <h1 >Properties</h1> */}
-            {Object.values(properties).map((property) => (
-                <PropertyCard key={property.id} property={property} />
-            ))}
+            {/* if properties don't exist for a company or user show message, if not show properties */}
+            {/* {   show the property cards based on the type passed to be able to recycle the same card for properties and units */}
+            {/* {if it's a company, show properties, if it's a user show units */}
+            {
+                role === "COMPANY" && Object.values(properties).length === 0
+                    ? <h1>No properties found</h1>
+                    : Object.values(properties).map((property) => (
+                        <PropertyCard key={property.id} property={property} type={"Property"} />
+                    ))
+            }
+            {
+                role === "PUBLIC" && Object.values(condoUnits).length === 0
+                    ? <h1>No Condo Units</h1>
+                    : Object.values(condoUnits).map((condoUnit) => (
+                        <PropertyCard key={condoUnit.id} property={condoUnit} type={"Condo"} />
+                    ))
+            }
+            { //TODO insure that the storage and parking units are being fetched when the models can support them
+                //TODO test the storage and parking units to make sure they are being fetched
+                /* {
+                    role === "PUBLIC" && parkingUnits && Object.values(parkingUnits).length === 0
+                        ? <h1>No Parking Units Found</h1>
+                        : Object.values(parkingUnits).map((parkingUnit) => (
+                            <PropertyCard key={parkingUnit.id} property={parkingUnit} type ={"Parking"}/>
+                        ))
+                }
+                {
+                    role === "PUBLIC" && storageUnits && Object.values(storageUnits).length === 0
+                        ? <h1>No Storage Units Found</h1>
+                        : Object.values(storageUnits).map((storageUnit) => (
+                            <PropertyCard key={storageUnit.id} property={storageUnit} type ={"Storage"}/>
+                        ))
+                } */
+            }
         </div>
     );
 };
