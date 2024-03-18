@@ -5,19 +5,9 @@ from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit, Unit
 
     
 class UnitSerializer(serializers.ModelSerializer):
-    property_fee = serializers.DecimalField(decimal_places=2, max_digits=20)
-    
     class Meta:
         model = Unit
         fields = ['id', 'public_profile','location', 'purchase_price', 'rent_price', 'property_fee', 'size', 'extra_information']
-        
-    # def get_property_fee(self, obj):
-    #     return FinanceModel.calculate_fee(obj)
-    
-    def to_representation(self, instance):
-        representation = self.super().to_representation(instance)
-        representation['property_fee'] = FinanceModel.calculate_fee(instance)
-        return representation
 
 class CondoUnitSerializer(serializers.ModelSerializer):
     class Meta(UnitSerializer.Meta):
