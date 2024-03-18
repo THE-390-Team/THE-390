@@ -11,44 +11,13 @@ const PropertyPage = () => {
   let navigate = useNavigate();
 
   const { propertyId } = useParams();
-  const { property, setProperty, fetchProperty } = useProperty();
+  const { property, fetchPropertyById } = useProperty(); //receive needed functions from the property context
 
-  function findPropertyById(propertiesObj, propertyId) {
-    // Convert the properties object into an array of its values
-    const propertiesArray = Object.values(propertiesObj);
-    console.log(propertiesObj)
-    console.log(propertiesArray)
-    const matchingProperty = propertiesArray.find(property => property.id === parseInt(propertyId, 10));
-    console.log(matchingProperty)
-    return matchingProperty;
-  }
-
-  // get information on active user
   useEffect(() => {
     if (propertyId) {
-      axiosInstance
-        .get(`/properties/property-profile/${propertyId}/`)
-        .then((response) => {
-          console.log("the response from the get property with id :" + response);
-          setProperty({
-            id: response.data.id,
-            company: response.data.company,
-            num_condo_units: response.data.num_condo_units,
-            num_parking_units: response.data.num_parking_units,
-            num_storage_units: response.data.num_storage_units,
-            address: response.data.address,
-            city: response.data.city,
-            province: response.data.province,
-            postal_code: response.data.postal_code,
-            condo_units: response.data.condo_units,
-            parking_units: response.data.parking_units,
-            storage_units: response.data.storage_units,
-          });
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching user profile:", error.message);
-        });
+      //this is useful only for company accounts
+      // make the api call from the backend
+      fetchPropertyById(propertyId);
     }
   }, []);
 
