@@ -24,6 +24,8 @@ const SignUpCompany = () => {
     role: "COMPANY"
   });
 
+  const [errors, setErrors] = useState({});
+
   // update formData as input is given
   const handleChange = (e) => {
     setFormData({
@@ -31,39 +33,147 @@ const SignUpCompany = () => {
       // Trimming any whitespace
       [e.target.name]: e.target.value,
     });
+    
+    //Clear existing error if there is change to input
+    setErrors({ ...errors, [e.target.name]: '' });
+
     console.log(formData);
   };
+
+  const validateForm = () => {
+    const errors = {};
+    let isValid = true;
+
+    //Validate input fields
+    //Email must be filled, must not exceed 30 chars, and must be a valid email-form input
+    if (!formData.email){
+      errors.email = "Email field required";
+      isValid = false;
+    } else if (formData.email.length > 30){
+      errors.email = "Your email must be under 30 characters";
+      isValid = false;
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.email)) { //Make sure email format is correct
+      errors.email = 'Invalid email address';
+      isValid = false;
+    }
+    
+    //First name must be filled, must not exceed 20 chars, and must not contain numbers
+    if (!formData.first_name) {
+      errors.first_name = 'First name field required';
+      isValid = false;
+    } else if (formData.first_name.length > 20) {
+      errors.first_name = 'First name must be under 20 characters';
+      isValid = false;
+    } else if (/\d/.test(formData.first_name)) {
+      errors.first_name = 'First name must not contain numbers';
+      isValid = false;
+    }
+    
+    //Last name must be filled, must not exceed 20 chars, and must not contain numbers
+    if (!formData.last_name) {
+      errors.last_name = 'Last name field required';
+      isValid = false;
+    } else if (formData.last_name.length > 20) {
+      errors.last_name = 'Last name must be under 20 characters';
+      isValid = false;
+    } else if (/\d/.test(formData.last_name)) {
+      errors.last_name = 'Last name must not contain numbers';
+      isValid = false;
+    }
+    
+    //Password must be filled, and must not exceed 20 chars
+    if (!formData.password){
+      errors.password = "Please enter your password";
+      isValid = false;
+    } else if (formData.password.length > 20){
+      errors.password = "Your password must be under 20 characters";
+      isValid = false;
+    } // Possible to validate that password include a symbol, number and capital letter in future sprints
+    
+    //Phone number must be filled, must consist only of numbers, and must be shorter than 12 characters and longer than 2
+    if (!formData.phone_number){
+      errors.phone_number = "Please enter your phone number";
+      isValid = false;
+    } else if (isNaN(parseInt(formData.phone_number))){
+      errors.phone_number = "Your phone number must consist of numbers only";
+      isValid = false;
+    } else if (formData.phone_number.length > 12 || formData.phone_number.length < 2){
+      errors.phone_number = "Your phone number must be shorter than 12 characters and longer than 2";
+      isValid = false;
+    }
+    
+    //Address must be filled, and must not exceed 100 chars
+    if (!formData.address){
+      errors.address = "Please enter your Address";
+      isValid = false;
+    } else if (formData.address.length > 100) {
+      errors.address = 'Address must be under 100 characters';
+      isValid = false;
+    }
+
+    //City must be filled, must not exceed 100 chars
+    if (!formData.city){
+      errors.city = "Please enter your city";
+      isValid = false;
+    } else if (formData.city.length > 100) {
+      errors.city = 'City must be under 100 characters';
+      isValid = false;
+    }
+
+    //Postal code must be filled, must not exceed 10 chars
+    if (!formData.postal_code){
+      errors.postal_code = "Please enter your postal_code";
+      isValid = false;
+    } else if (formData.postal_code.length > 10) {
+      errors.postal_code = 'Postal code must be under 10 characters';
+      isValid = false;
+    }
+
+    //TODO: Add validation for profile_image
+
+    //If there are errors, set errors in state and prevent submit
+    if (Object.keys(errors).length >0){
+      setErrors(errors);
+    }
+
+    return isValid;
+  }
 
   // handle submit form
   const handleSubmit = (e) => {
 
     e.preventDefault();
 
-    console.log(formData);
-
-    axiosInstance
-      .post(`profiles/user/`, {
-        email: formData.email,
-        first_name: formData.first_name,
-        last_name: formData.last_name,
-        password: formData.password,
-        role: formData.role,
-      })
-      .then((res) => {
-        if (res.status == 201) {
-          console.log(res);
-          console.log(res.data);
-          updateProfileInfo(res.data.id)
-          window.alert(`profile ${formData.email} has been created as a(n) ${res.data.role} user`);
-          history("/login");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log(error.data);
-        window.alert(`${error} `)
-        history(SignUpCompany)
-      });
+    //If form is valid then post the form
+    if (validateForm()){
+      console.log(formData);
+      axiosInstance
+        .post(`profiles/user/`, {
+          email: formData.email,
+          first_name: formData.first_name,
+          last_name: formData.last_name,
+          password: formData.password,
+          role: formData.role,
+        })
+        .then((res) => {
+          if (res.status == 201) {
+            console.log(res);
+            console.log(res.data);
+            updateProfileInfo(res.data.id)
+            window.alert(`profile ${formData.email} has been created as a(n) ${res.data.role} user`);
+            history("/login");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(error.data);
+          window.alert(`1${error} `)
+          history(SignUpCompany)
+        });
+    } else {
+      //If form input is not valid then do not post
+      return;
+    }
   };
 
   const updateProfileInfo = (id) => {
@@ -87,10 +197,9 @@ const SignUpCompany = () => {
       .catch((error) => {
         console.log(error);
         console.log(error.data);
-        window.alert(`${error} `)
+        window.alert(`2${error} `)
         history(SignUpCompany)
       });
-
   }
   //match the input with the backend parameters (ex: first last and all the other fields)
   return (
@@ -107,8 +216,9 @@ const SignUpCompany = () => {
               onChange={handleChange}
               data-testid="first-name-input"
             />
+            {/*Show error if submitting invalid input*/}
+            {errors.first_name && <span style={{color: "red"}}>{errors.first_name}</span>}
           </Form.Group>
-
           <Form.Group as={Col} controlId="formGridLastName">
             <Form.Label>Last Name</Form.Label>
             <Form.Control
@@ -119,6 +229,7 @@ const SignUpCompany = () => {
               onChange={handleChange}
               data-testid="last-name-input"
             />
+            {errors.last_name && <span style={{color: "red"}}>{errors.last_name}</span>}
           </Form.Group>
         </Row>
 
@@ -133,6 +244,7 @@ const SignUpCompany = () => {
               onChange={handleChange}
               data-testid="email-input"
             />
+            {errors.email && <span style={{color: "red"}}>{errors.email}</span>}
           </Form.Group>
           <Form.Group as={Col} controlId="formGridPhoneNumber">
             <Form.Label>Phone Number</Form.Label>
@@ -144,8 +256,10 @@ const SignUpCompany = () => {
               onChange={handleChange}
               data-testid="phone-number-input"
             />
+            {errors.phone_number && <span style={{color: "red"}}>{errors.phone_number}</span>}
           </Form.Group>
         </Row>
+
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridPassword">
             <Form.Label>Password</Form.Label>
@@ -157,8 +271,8 @@ const SignUpCompany = () => {
               onChange={handleChange}
               data-testid="password-input"
             />
+            {errors.password && <span style={{color: "red"}}>{errors.password}</span>}
           </Form.Group>
-
           <Form.Group as={Col} controlId="formGridPasswordConfirmation">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
@@ -169,6 +283,7 @@ const SignUpCompany = () => {
             />
           </Form.Group>
         </Row>
+
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridFile" className="mb-3">
             <Form.Label>Profile Photo</Form.Label>
@@ -180,8 +295,12 @@ const SignUpCompany = () => {
               onChange={handleChange}
               data-testid="profile_photo-input"
             />
+            {/*
+              TODO: Add image error message
+              */}
           </Form.Group>
         </Row>
+
         <Form.Group className="mb-3" controlId="formGridAddress">
           <Form.Label>Address</Form.Label>
           <Form.Control
@@ -192,17 +311,29 @@ const SignUpCompany = () => {
             onChange={handleChange}
             data-testid="address-input"
           />
+          {errors.address && <span style={{color: "red"}}>{errors.address}</span>}
         </Form.Group>
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>City</Form.Label>
-            <Form.Control type="text" name="city" value={formData.city} onChange={handleChange} data-testid="city-input" />
+            <Form.Control
+              type="text"
+              placeholder="City"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              data-testid="city-input"
+            />
+            {errors.city && <span style={{color: "red"}}>{errors.city}</span>}
           </Form.Group>
-
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Province</Form.Label>
-            <Form.Select defaultValue={formData.province} name="province" value={formData.province} onChange={handleChange}
+            <Form.Select
+              defaultValue={formData.province}
+              name="province"
+              value={formData.province}
+              onChange={handleChange}
               data-testid="province-select"  >
               <option value="British Colombia">BC</option>
               <option value="Prince Edward Island">PE</option>
@@ -219,16 +350,19 @@ const SignUpCompany = () => {
               <option value="British Colombia">NJ</option> */}
             </Form.Select>
           </Form.Group>
-
           <Form.Group as={Col} controlId="formGridZip">
             <Form.Label>Postal Code</Form.Label>
-            <Form.Control type="text" name="postal_code" value={formData.postal_code} onChange={handleChange} data-testid="postal-code-input" />
+            <Form.Control
+              type="text"
+              name="postal_code"
+              placeholder="H3G 1M8"
+              value={formData.postal_code}
+              onChange={handleChange}
+              data-testid="postal-code-input"
+            />
+            {errors.postal_code && <span style={{color: "red"}}>{errors.postal_code}</span>}
           </Form.Group>
         </Row>
-
-        {/* <Form.Group className="mb-3" id="formGridCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group> */}
 
         <Button variant="primary" type="submit" data-testid="submit-button">
           Submit
