@@ -21,6 +21,23 @@ export function ProfileProvider(props) {
         registration_key: "",
         postal_code: "",
     });
+    const [role, setRole] = useState(null)
+    const fetchProfileRole = () => {
+        const id = localStorage.getItem("ID");
+        if (id) {
+            axiosInstance.get(`profiles/user/${id}/`)
+                .then((response) => {
+                    if (response && response.data) {
+                        const role = response.data.role;
+                        setRole(role);
+                        console.log(role);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching user profile:", error);
+                });
+        }
+    }
 
     const getProfileInformation = async () => {
         let role = ''
@@ -38,7 +55,6 @@ export function ProfileProvider(props) {
                             setProfileInfo({
                                 //TODO check where the photo is? user vs profile
                                 // avatar: response.data.profile_photo,
-        
                                 // get information from the user model
                                 first_name: response.data.user.first_name,
                                 last_name: response.data.user.last_name,
@@ -63,7 +79,6 @@ export function ProfileProvider(props) {
                             setProfileInfo({
                                 //TODO check where the photo is? user vs profile
                                 // avatar: response.data.profile_photo,
-        
                                 // get information from the user model
                                 first_name: response.data.user.first_name,
                                 last_name: response.data.user.last_name,
@@ -87,8 +102,6 @@ export function ProfileProvider(props) {
                 console.error("Error fetching user profile:", error.message);
             });
 
-        
-
     }
 
     const setProfileInformation = (profile) => {
@@ -96,6 +109,6 @@ export function ProfileProvider(props) {
     }
 
     return (
-        <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation }} > {props.children} </ProfileContext.Provider>
+        <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation, fetchProfileRole, role}} > {props.children} </ProfileContext.Provider>
     )
 }
