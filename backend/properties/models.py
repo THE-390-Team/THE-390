@@ -1,5 +1,7 @@
 from django.db import models
 
+from finance.models import FinanceModel
+
 
 
 class PropertyProfile(models.Model):
@@ -8,6 +10,7 @@ class PropertyProfile(models.Model):
     city = models.CharField(max_length=100)
     province = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=12)
+    fee_rate = models.DecimalField(decimal_places=2, max_digits=20)
     
     def __str__(self):
         return str(self.company)
@@ -36,6 +39,7 @@ class PropertyProfile(models.Model):
 
     
 class Unit(models.Model):
+    
     class Meta:
         abstract=True
     location = models.CharField(max_length=4)
@@ -43,6 +47,11 @@ class Unit(models.Model):
     purchase_price = models.DecimalField(decimal_places=2, max_digits=20)
     rent_price = models.DecimalField(decimal_places=2, max_digits=20)
     extra_information = models.TextField(null=True)
+    # fees = models.DecimalField(decimal_places=2, max_digits=20, default=property_fee)
+    
+    @property
+    def property_fee(self):
+        return FinanceModel.calculate_fee(self.objects.get(pk=self.pk))
     
 
     

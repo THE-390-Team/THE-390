@@ -1,11 +1,23 @@
 from rest_framework import serializers
+
+from finance.models import FinanceModel
 from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit, Unit
 
     
 class UnitSerializer(serializers.ModelSerializer):
+    property_fee = serializers.DecimalField(decimal_places=2, max_digits=20)
+    
     class Meta:
         model = Unit
-        fields = ['id', 'public_profile','location', 'purchase_price', 'rent_price', 'size', 'extra_information']
+        fields = ['id', 'public_profile','location', 'purchase_price', 'rent_price', 'property_fee', 'size', 'extra_information']
+        
+    # def get_property_fee(self, obj):
+    #     return FinanceModel.calculate_fee(obj)
+    
+    def to_representation(self, instance):
+        representation = self.super().to_representation(instance)
+        representation['property_fee'] = FinanceModel.calculate_fee(instance)
+        return representation
 
 class CondoUnitSerializer(serializers.ModelSerializer):
     class Meta(UnitSerializer.Meta):
@@ -32,7 +44,7 @@ class PropertyProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = PropertyProfile
-        fields = ['id', 'company', 
+        fields = ['id', 'company', 'fee_rate', 
                   'num_condo_units', 'num_parking_units',
                   'num_storage_units', 'address', 'city', 
                   'province', 'postal_code', 'condo_units',
