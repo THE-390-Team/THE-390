@@ -82,7 +82,7 @@ const CreateProperty = () => {
     if (!formData.property_postal_code){
       errors.property_postal_code = 'Postal code field required';
       isValid = false;
-    } else if (formData.property_postal_code > 12) {
+    } else if (formData.property_postal_code.length > 12) {
       errors.property_postal_code = 'Postal code must not exceed 12 characters';
       isValid = false;
     }
