@@ -35,10 +35,7 @@ export function ProfileProvider(props) {
                         .get(`profiles/company-profile/${id}/`)
                         .then((response) => {
                             console.log(response);
-                            setProfileInfo({
-                                //TODO check where the photo is? user vs profile
-                                // avatar: response.data.profile_photo,
-        
+                            setProfileInfo({        
                                 // get information from the user model
                                 first_name: response.data.user.first_name,
                                 last_name: response.data.user.last_name,
@@ -49,6 +46,7 @@ export function ProfileProvider(props) {
                                 city: response.data.city,
                                 province: response.data.province,
                                 postal_code: response.data.postal_code,
+                                avatar: response.data.avatar,
                             });
                             console.log(response.data);
                         })
@@ -61,9 +59,6 @@ export function ProfileProvider(props) {
                         .then((response) => {
                             console.log(response);
                             setProfileInfo({
-                                //TODO check where the photo is? user vs profile
-                                // avatar: response.data.profile_photo,
-        
                                 // get information from the user model
                                 first_name: response.data.user.first_name,
                                 last_name: response.data.user.last_name,
@@ -74,7 +69,7 @@ export function ProfileProvider(props) {
                                 city: response.data.city,
                                 province: response.data.province,
                                 postal_code: response.data.postal_code,
-                                // avatar: response.data.avatar
+                                avatar: response.data.avatar
                             });
                             console.log(response.data);
                         })
