@@ -1,9 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button, Overlay, Popover, ListGroup, Card } from 'react-bootstrap';
 import { Link, NavLink } from "react-router-dom";
+import axiosInstance from '../../api/axios';
+import { useProfile } from '../../utils/hooks/ProfileContext';
 
 
-const PropertyCard = ({ property }) => {
+const PropertyCard = ({ property, type}) => {
+  //get the role of the user form the ProfileContext
+  const { role } = useProfile();
   // Refs for the buttons
   const unitsRef = useRef(null);
   const parkingRef = useRef(null);
@@ -41,8 +45,9 @@ const PropertyCard = ({ property }) => {
     return total;
   }
 
-
   return (
+    // if the user is a company, show the property card as a property card, if not show unit cards
+    role === "COMPANY" ? (
     <Card className="mb-3" style={{ maxWidth: '25rem', width: '100%', textAlign: 'center' }}>
       <Card.Img
         variant="top"
@@ -96,6 +101,22 @@ const PropertyCard = ({ property }) => {
         </Overlay>
       </Card.Body>
     </Card>
+    ) : (
+      // if the user is a public user, show the property card as a unit card
+      // this card will be outputted for condo_units, parking and locker_units 
+      // the type will dynamically change based on the type of the property in the title
+    <Card className="mb-3" style={{ width: '18rem' }}>
+    <Card.Header as="h5">{type} number {property.location}</Card.Header>
+    <ListGroup variant="flush">
+      <ListGroup.Item>Location: {property.location}</ListGroup.Item>
+      <ListGroup.Item>Purchase Price: ${parseFloat(property.purchase_price).toLocaleString()}</ListGroup.Item>
+      <ListGroup.Item>Rent Price: ${parseFloat(property.rent_price).toLocaleString()} / month</ListGroup.Item>
+      <ListGroup.Item>Size: {parseFloat(property.size).toFixed(2)} sqft</ListGroup.Item>
+      {/* to be implemented when the financial model is ready */}
+      {/* <ListGroup.Item>Unit Fees: {parseFloat(property.fees).toFixed(2)} sqft</ListGroup.Item> */}
+      {property.extra_information && <ListGroup.Item>Extra Information: {property.extra_information}</ListGroup.Item>}
+    </ListGroup>
+  </Card>)
   );
 };
 
