@@ -3,10 +3,11 @@ import { Container, Card, ListGroup } from "react-bootstrap"
 
 const Financial = () => {
     return (
-        <Container style={{ width: '400px' }}>
+        <Container style={{ width: '100%' }}>
             <Card>
                 <div className="d-flex justify-content-center">
-                    <Card.Title><h1>Financial Details</h1></Card.Title>
+                    {/* title for the financial details with styling */}
+                    <Card.Title><h1 style = {{fontSize: "40px", fontWeight: "bold", marginTop: "15px"}}>Financial Details</h1></Card.Title>
                 </div>
                 <ListGroup>
                     <ListGroup.Item>

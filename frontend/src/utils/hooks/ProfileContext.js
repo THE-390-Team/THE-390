@@ -21,6 +21,23 @@ export function ProfileProvider(props) {
         registration_key: "",
         postal_code: "",
     });
+    const [role, setRole] = useState(null)
+    const fetchProfileRole = () => {
+        const id = localStorage.getItem("ID");
+        if (id) {
+            axiosInstance.get(`profiles/user/${id}/`)
+                .then((response) => {
+                    if (response && response.data) {
+                        const role = response.data.role;
+                        setRole(role);
+                        console.log(role);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching user profile:", error);
+                });
+        }
+    }
 
     const getProfileInformation = async () => {
         let role = ''
@@ -82,8 +99,6 @@ export function ProfileProvider(props) {
                 console.error("Error fetching user profile:", error.message);
             });
 
-        
-
     }
 
     const setProfileInformation = (profile) => {
@@ -91,6 +106,6 @@ export function ProfileProvider(props) {
     }
 
     return (
-        <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation }} > {props.children} </ProfileContext.Provider>
+        <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation, fetchProfileRole, role}} > {props.children} </ProfileContext.Provider>
     )
 }

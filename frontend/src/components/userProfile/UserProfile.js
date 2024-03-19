@@ -13,7 +13,7 @@ import {
 import { useProfile } from "../../utils/hooks/ProfileContext";
 
 const UserProfile = () => {
-  const { profileInfo, getProfileInformation, setProfileInformation } =
+  const { profileInfo, getProfileInformation, setProfileInformation , fetchProfileRole, role} =
     useProfile();
 
   // // user information
@@ -53,7 +53,7 @@ const UserProfile = () => {
       .then((response) => {
         console.log(response);
         handleCloseModal();
-        if(response.status == 200) {
+        if (response.status == 200) {
           alert("Successfully saved changes")
           window.location.reload();
         }
@@ -85,11 +85,17 @@ const UserProfile = () => {
   // get information on active user
   useEffect(() => {
     getProfileInformation();
+    //TODO this might be a problem, if the homepage is the default start of the website, then the user will not have a role
+    fetchProfileRole(); //fetch the role of the user from the profile context
   }, []);
 
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
+        {/* a page title */}
+        <div className="d-flex flex-column align-items-center">
+          <h1 style={{ fontSize: "40px", marginBottom: "30px", fontWeight: "bold" }}>Your Profile</h1>
+        </div>
         <Col md={4}>
           <Card>
             <Card.Img
@@ -133,9 +139,10 @@ const UserProfile = () => {
             <Card.Body>
               <Col>
                 <p>
-                  <strong>Address:</strong> {profileInfo.address},{" "}
-                  {profileInfo.city}, {profileInfo.province},{" "}
-                  {profileInfo.postal_code}
+                  <strong>Address: </strong> {profileInfo.address}<br />
+                  <strong>City: </strong>{profileInfo.city}<br />
+                  <strong>Province: </strong>{profileInfo.province}<br />
+                  <strong>Postal Code: </strong>{profileInfo.postal_code}
                 </p>
                 <p>more details to come...</p>
               </Col>

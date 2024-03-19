@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import './bootstrap.min.css'
+import './bootstrap.min-3.css'
 import { AuthProvider } from './utils/hooks/AuthContext';
 import { ProfileProvider } from './utils/hooks/ProfileContext';
 import { PropertyProvider } from './utils/hooks/PropertyContext';

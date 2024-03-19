@@ -7,11 +7,12 @@ import Financial from './Financial.js';
 import SubmittedRequests from './SubmittedRequests.js';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../api/axios.js';
+import { useProfile } from '../../utils/hooks/ProfileContext.js';
 
 
 const DashBoard = () => {
     //state to hold the role of the signed in user
-    const [role, setRole] = useState(null)
+    const { role, fetchProfileRole } = useProfile();
     let navigate = useNavigate();
 
     function handleGoToProperty() {
@@ -19,41 +20,39 @@ const DashBoard = () => {
     }
 
     // make a call to get the role of the user based on the stored id in the local storage
+    // using the profile role context instead of making the complete fetch request here
     useEffect(() => {
-        let role = ''
-        const id = localStorage.getItem("ID");
-        axiosInstance
-            .get(`profiles/user/${id}/`)
-            .then((response) => {
-                role = response.data.role;
-                setRole(role);
-                console.log(role);
-            }, []);
-    })
+        const id = localStorage.getItem("ID"); //get the id from local storage
+        //fetch profile role from the profile context
+        fetchProfileRole();
+    }, []);
 
     return (
-        <Container className="mt-5">
-            <Row>
-                <Col style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                    <UserInfo />
+        <Container>
+            {/* <UserInfo /> */}
+            <div className="d-flex justify-content-center">
+                {/* title for properties with styling */}
+                <h1 style={{ fontSize: "40px", marginBottom: "30px", fontWeight: "bold" }}>Properties</h1>
+            </div>
+            <PropertyContainer style={{}} />
+            {/* the button to create a property is only accessible to company profiles */}
+            {
+                role === "COMPANY" &&
+                <div className="mt-5 diplay-flex text-center">
+                    <Button variant="primary" style={{ width: "150px" }} onClick={handleGoToProperty}>Add Property</Button>
+                    <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Send Key</Button>
+                </div>
+
+            }            <Row className="mt-5">
+                <Col>
                     <Financial />
                     <SubmittedRequests />
-                    {/* the button to create a property is only accessible to company profiles */}
-                    {
-                        role === "COMPANY" &&
-                        <div>
-                            <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Add Property</Button>
-                            <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Send Key</Button>
-                        </div>
-
-                    }
                 </Col>
-                <Col>
-                    <PropertyContainer />
-                </Col>
+                {/* <Col>
+                    <SubmittedRequests />
+                </Col> */}
             </Row>
         </Container>
-
     );
 }
 
