@@ -75,7 +75,7 @@ const CreateLocker = () => {
     } else if (!formData.purchase_price.match(/^(\d*\.{0,1}\d{0,2}$)/)){
       errors.purchase_price = "Purchase price can only have 2 decimal places";
       isValid = false;
-    } else if (formData.purchase_price > 20){
+    } else if (formData.purchase_price.length > 20){
       errors.purchase_price = "Purchase price must be less than 20 characters";
       isValid = false;
     }
@@ -93,7 +93,7 @@ const CreateLocker = () => {
     } else if (!formData.rent_price.match(/^(\d*\.{0,1}\d{0,2}$)/)){
       errors.rent_price = "Rent price can only have 2 decimal places";
       isValid = false;
-    } else if (formData.rent_price > 20){
+    } else if (formData.rent_price.length > 20){
       errors.rent_price = "Rent price must be less than 20 characters";
       isValid = false;
     }
@@ -111,7 +111,7 @@ const CreateLocker = () => {
     } else if (!formData.size.match(/^(\d*\.{0,1}\d{0,2}$)/)){
       errors.size = "Size can only have 2 decimal places";
       isValid = false;
-    } else if (formData.size > 20){
+    } else if (formData.size.length > 20){
       errors.size = "Size must be less than 20 characters";
       isValid = false;
     }
