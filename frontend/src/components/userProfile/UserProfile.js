@@ -90,6 +90,9 @@ const UserProfile = () => {
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
+        <div className = "d-flex flex-column align-items-center">
+          <h1 style = {{fontSize: "40px", marginBottom: "30px", fontWeight: "bold" }}>Profile</h1>
+        </div>
         <Col md={4}>
           <Card>
             <Card.Img
