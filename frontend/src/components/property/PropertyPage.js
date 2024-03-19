@@ -41,6 +41,7 @@ const PropertyPage = () => {
   const renderParkingSpots = () => {
     return property.parking_units.map((spot) => (
       <ListGroup variant="flush" key={spot.id} style={{ width: '250px', height: '150px', margin: '5px', fontSize: '13px' }} className=" h-25 shadow">
+        <ListGroup.Item style={{ marginBottom: "-10px" }}><img src={spot.image} style={{width: '220px', height: '180px'}}/></ListGroup.Item>        
         <ListGroup.Item style={{ marginBottom: "-15px" }}>Location: {spot.location}</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-15px" }}>Size: {spot.size} sqft</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-15px" }}>Purchase Price: ${spot.purchase_price}</ListGroup.Item>
@@ -53,6 +54,7 @@ const PropertyPage = () => {
   const renderLockers = () => {
     return property.storage_units.map((locker) => (
       <ListGroup key={locker.id} style={{ width: '250px', height: '110px', margin: '5px', fontSize: '13px' }} className=" h-25 shadow">
+        <ListGroup.Item style={{ marginBottom: "-10px" }}><img src={locker.image} style={{width: '220px', height: '180px'}}/></ListGroup.Item>        
         <ListGroup.Item style={{ marginBottom: "-15px" }}>Location: {locker.location}</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-15px" }}>Size: {locker.size} sqft</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-15px" }}>Purchase Price: ${locker.purchase_price}</ListGroup.Item>
