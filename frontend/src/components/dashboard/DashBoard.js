@@ -48,6 +48,19 @@ const DashBoard = () => {
                     <Financial />
                     <SubmittedRequests />
 
+                    {/* the button to create a property is only accessible to company profiles */}
+                    {
+                        role === "COMPANY" &&
+                        <div>
+                            <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Add Property</Button>
+                            <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Send Key</Button>
+                        </div>
+
+                    }
+                </Col>
+                <Col>
+                    <PropertyContainer />
+
                 </Col>
                 {/* <Col>
                     <SubmittedRequests />

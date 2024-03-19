@@ -49,6 +49,7 @@ const PropertyCard = ({ property, type}) => {
     // if the user is a company, show the property card as a property card, if not show unit cards
     role === "COMPANY" ? (
     <Card className="mb-3" style={{ maxWidth: '25rem', width: '100%', textAlign: 'center' }}>
+
       <Card.Img
         variant="top"
         src={property.image}

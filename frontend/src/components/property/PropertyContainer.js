@@ -5,6 +5,7 @@ import { useProperty } from "../../utils/hooks/PropertyContext"
 import { useProfile } from "../../utils/hooks/ProfileContext"
 import "../../index.css"
 
+
 const PropertyContainer = () => {
     // receive property states and property methods from the property context
     const {
@@ -39,6 +40,7 @@ const PropertyContainer = () => {
 
     return (
         <div className="grid-container">
+
             {/* if properties don't exist for a company or user show message, if not show properties */}
             {/* {   show the property cards based on the type passed to be able to recycle the same card for properties and units */}
             {/* {if it's a company, show properties, if it's a user show units */}
