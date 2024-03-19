@@ -28,6 +28,7 @@ const PropertyPage = () => {
     return property.condo_units.map((unit) => (
       //FIXME unique key prop error in the console
       <ListGroup variant="flush" key={unit.id} style={{ width: '250px', height: '180px', margin: '5px', fontSize: '13px' }} className=" h-25 shadow">
+        <ListGroup.Item style={{ marginBottom: "-10px" }}><img src={unit.image} style={{width: '220px', height: '180px'}}/></ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}><strong>unit name place holder{/*{unit.name}*/}</strong></ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-15px" }}>Location: {unit.location}</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-15px" }}>Purchase Price: ${unit.purchase_price}</ListGroup.Item>
@@ -82,7 +83,7 @@ const PropertyPage = () => {
       <Row>
         <Col md={4} style={{ padding: '0' }}>
           {/* FIXME there's no image in db yet */}
-          {/* <img src={property.image} alt={property.name} style={{ width: '100%', height: '40vh', objectFit: 'cover', marginTop: '28px' }} /> */}
+          <img src={property.image} alt={property.name} style={{ width: '100%', height: '40vh', objectFit: 'cover', marginTop: '28px' }} />
           <Card className="mt-4 h-25 shadow">
             <Card.Title className="fw-bold">This is where property finances go?</Card.Title>
             This is where the finanical details will go

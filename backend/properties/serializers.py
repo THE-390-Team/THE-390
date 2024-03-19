@@ -12,17 +12,17 @@ class UnitSerializer(serializers.ModelSerializer):
 class CondoUnitSerializer(serializers.ModelSerializer):
     class Meta(UnitSerializer.Meta):
         model = CondoUnit
-        fields = UnitSerializer.Meta.fields + ['property']
+        fields = UnitSerializer.Meta.fields + ['property', 'image']
 
 class ParkingUnitSerializer(serializers.ModelSerializer):
         class Meta(UnitSerializer.Meta):
             model = ParkingUnit
-            fields = UnitSerializer.Meta.fields + ['property']
+            fields = UnitSerializer.Meta.fields + ['property', 'image']
 
 class StorageUnitSerializer(serializers.ModelSerializer):
     class Meta(UnitSerializer.Meta):
         model = StorageUnit
-        fields = UnitSerializer.Meta.fields + ['property']
+        fields = UnitSerializer.Meta.fields + ['property', 'image']
         
 class PropertyProfileSerializer(serializers.ModelSerializer):
     num_condo_units = serializers.IntegerField(read_only=True)
