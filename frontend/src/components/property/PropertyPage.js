@@ -31,7 +31,8 @@ const PropertyPage = () => {
     }
     return property.condo_units.map((unit) => (
       //FIXME unique key prop error in the console
-      <ListGroup variant="flush" key={unit.id} style={{ width: '225px', height: '180px', margin: '5px', fontSize: '13px' }} className=" h-25 shadow">
+      <ListGroup variant="flush" key={unit.id} style={{ width: '250px', height: '180px', margin: '5px', fontSize: '13px' }} className=" h-25 shadow">
+        <ListGroup.Item style={{ marginBottom: "-10px" }}><img src={unit.image} style={{width: '220px', height: '180px'}}/></ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}><strong>unit name place holder{/*{unit.name}*/}</strong></ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Location: {unit.location}</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Purchase Price: ${unit.purchase_price}</ListGroup.Item>
@@ -47,7 +48,8 @@ const PropertyPage = () => {
       return <div>This Property Doesn't Have Parking Spots Yet.</div>; // You can customize this message or component as needed
     }
     return property.parking_units.map((spot) => (
-      <ListGroup variant="flush" key={spot.id} style={{ width: '225px', height: '150px', margin: '5px', fontSize: '13px' }} className=" h-25 shadow">
+      <ListGroup variant="flush" key={spot.id} style={{ width: '250px', height: '150px', margin: '5px', fontSize: '13px' }} className=" h-25 shadow">
+        <ListGroup.Item style={{ marginBottom: "-10px" }}><img src={spot.image} style={{width: '220px', height: '180px'}}/></ListGroup.Item>        
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Location: {spot.location}</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Size: {spot.size} sqft</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Purchase Price: ${spot.purchase_price}</ListGroup.Item>
@@ -63,7 +65,8 @@ const PropertyPage = () => {
       return <div>This Property Doesn't Have Lockers Yet.</div>; // You can customize this message or component as needed
     }
     return property.storage_units.map((locker) => (
-      <ListGroup key={locker.id} style={{ width: '225px', height: '110px', margin: '5px', fontSize: '13px' }} className=" h-25 shadow">
+      <ListGroup key={locker.id} style={{ width: '250px', height: '110px', margin: '5px', fontSize: '13px' }} className=" h-25 shadow">
+        <ListGroup.Item style={{ marginBottom: "-10px" }}><img src={locker.image} style={{width: '220px', height: '180px'}}/></ListGroup.Item>        
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Location: {locker.location}</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Size: {locker.size} sqft</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Purchase Price: ${locker.purchase_price}</ListGroup.Item>
@@ -92,10 +95,10 @@ const PropertyPage = () => {
   return (
     <Container fluid >
       <Row>
-        {/* <Col md={4} style={{ padding: '0' }}> */}
-        {/* FIXME there's no image in db yet */}
-        {/* <img src={property.image} alt={property.name} style={{ width: '100%', height: '40vh', objectFit: 'cover', marginTop: '28px' }} /> */}
-        {/* <Card className="mt-4 h-25 shadow">
+        <Col md={4} style={{ padding: '0' }}>
+          {/* FIXME there's no image in db yet */}
+          <img src={property.image} alt={property.name} style={{ width: '100%', height: '40vh', objectFit: 'cover', marginTop: '28px' }} />
+          <Card className="mt-4 h-25 shadow">
             <Card.Title className="fw-bold">This is where property finances go?</Card.Title>
             This is where the finanical details will go
           </Card>
@@ -103,7 +106,7 @@ const PropertyPage = () => {
             <Card.Title className="fw-bold">This is where property Requests go?</Card.Title>
             This is where the requests details will go
           </Card>
-        </Col> */}
+        </Col>
         <Col style={{ padding: '20px', overflowY: 'auto' }}>
           <Row>
             <Col>
@@ -154,20 +157,6 @@ const PropertyPage = () => {
           <div style={renderStyle}>
             {renderLockers()}
           </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col md={4} style={{ padding: '0' }}>
-          {/* FIXME there's no image in db yet */}
-          {/* <img src={property.image} alt={property.name} style={{ width: '100%', height: '40vh', objectFit: 'cover', marginTop: '28px' }} /> */}
-          <Card className="mt-4 shadow">
-            <Card.Title className="fw-bold">This is where property finances go?</Card.Title>
-            This is where the finanical details will go
-          </Card>
-          <Card className="mt-4 shadow">
-            <Card.Title className="fw-bold">This is where property Requests go?</Card.Title>
-            This is where the requests details will go
-          </Card>
         </Col>
       </Row>
     </Container>

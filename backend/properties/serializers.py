@@ -12,17 +12,17 @@ class UnitSerializer(serializers.ModelSerializer):
 class CondoUnitSerializer(serializers.ModelSerializer):
     class Meta(UnitSerializer.Meta):
         model = CondoUnit
-        fields = UnitSerializer.Meta.fields + ['property']
+        fields = UnitSerializer.Meta.fields + ['property', 'image']
 
 class ParkingUnitSerializer(serializers.ModelSerializer):
         class Meta(UnitSerializer.Meta):
             model = ParkingUnit
-            fields = UnitSerializer.Meta.fields + ['property']
+            fields = UnitSerializer.Meta.fields + ['property', 'image']
 
 class StorageUnitSerializer(serializers.ModelSerializer):
     class Meta(UnitSerializer.Meta):
         model = StorageUnit
-        fields = UnitSerializer.Meta.fields + ['property']
+        fields = UnitSerializer.Meta.fields + ['property', 'image']
         
 class PropertyProfileSerializer(serializers.ModelSerializer):
     num_condo_units = serializers.IntegerField(read_only=True)
@@ -38,7 +38,7 @@ class PropertyProfileSerializer(serializers.ModelSerializer):
                   'num_condo_units', 'num_parking_units',
                   'num_storage_units', 'address', 'city', 
                   'province', 'postal_code', 'condo_units',
-                  'parking_units','storage_units']
+                  'parking_units','storage_units', 'image']
 
 def to_representation(self, instance):
     representation = self.super().to_representation(instance)
