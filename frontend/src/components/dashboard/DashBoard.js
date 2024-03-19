@@ -18,7 +18,7 @@ const DashBoard = () => {
         <Container>
             {/* <UserInfo /> */}
             <div className="d-flex justify-content-center">
-                <h1>Properties</h1>
+                <h1 style = {{ fontSize: "40px", marginBottom: "30px", fontWeight: "bold"}}>Properties</h1>
             </div>
             <PropertyContainer />
             <Button variant="primary" style={{ width: "150px", marginLeft: "20px", marginTop: "10px" }} onClick={handleGoToProperty}>Add Property</Button>
