@@ -134,6 +134,7 @@ class CondoUnit(Unit):
 
     property = models.ForeignKey('PropertyProfile', on_delete=models.CASCADE, related_name='condo_units')
     public_profile = models.ForeignKey('user_profile.PublicProfile', on_delete=models.SET_NULL, related_name='condo_units', null=True)
+    image = models.ImageField(upload_to='condoUnit_images', default="condoUnit_images/defaultCondoUnit.jpg")
 
     def __str__(self):
         """
@@ -156,6 +157,7 @@ class ParkingUnit(Unit):
 
     property = models.ForeignKey('PropertyProfile', on_delete=models.CASCADE, related_name='parking_units')
     public_profile = models.ForeignKey('user_profile.PublicProfile', on_delete=models.SET_NULL, related_name='parking_units', null=True)
+    image = models.ImageField(upload_to='parkingUnit_images', default="parkingUnit_images/defaultParkingUnit.jpg")
 
     def __str__(self):
         """
@@ -178,6 +180,7 @@ class StorageUnit(Unit):
 
     property = models.ForeignKey('PropertyProfile', on_delete=models.CASCADE, related_name='storage_units')
     public_profile = models.ForeignKey('user_profile.PublicProfile', on_delete=models.SET_NULL, related_name='storage_units', null=True)
+    image = models.ImageField(upload_to='storageUnit_images', default="storageUnit_images/defaultStorageUnit.jpg")
 
     def __str__(self):
         """
