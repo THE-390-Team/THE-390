@@ -6,6 +6,7 @@ const Financial = () => {
         <Container style={{ width: '100%' }}>
             <Card>
                 <div className="d-flex justify-content-center">
+                    {/* title for the financial details with styling */}
                     <Card.Title><h1 style = {{fontSize: "40px", fontWeight: "bold", marginTop: "15px"}}>Financial Details</h1></Card.Title>
                 </div>
                 <ListGroup>

@@ -18,6 +18,7 @@ const DashBoard = () => {
         <Container>
             {/* <UserInfo /> */}
             <div className="d-flex justify-content-center">
+                {/* title for properties with styling */}
                 <h1 style = {{ fontSize: "40px", marginBottom: "30px", fontWeight: "bold"}}>Properties</h1>
             </div>
             <PropertyContainer />
