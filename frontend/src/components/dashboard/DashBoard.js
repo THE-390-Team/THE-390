@@ -28,28 +28,31 @@ const DashBoard = () => {
     }, []);
 
     return (
-        <Container className="mt-5">
-            <Row>
-                <Col style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                    <UserInfo />
+        <Container>
+            {/* <UserInfo /> */}
+            <div className="d-flex justify-content-center">
+                {/* title for properties with styling */}
+                <h1 style={{ fontSize: "40px", marginBottom: "30px", fontWeight: "bold" }}>Properties</h1>
+            </div>
+            <PropertyContainer style={{}} />
+            {/* the button to create a property is only accessible to company profiles */}
+            {
+                role === "COMPANY" &&
+                <div className="mt-5 diplay-flex text-center">
+                    <Button variant="primary" style={{ width: "150px" }} onClick={handleGoToProperty}>Add Property</Button>
+                    <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Send Key</Button>
+                </div>
+
+            }            <Row className="mt-5">
+                <Col>
                     <Financial />
                     <SubmittedRequests />
-                    {/* the button to create a property is only accessible to company profiles */}
-                    {
-                        role === "COMPANY" &&
-                        <div>
-                            <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Add Property</Button>
-                            <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Send Key</Button>
-                        </div>
-
-                    }
                 </Col>
-                <Col>
-                    <PropertyContainer />
-                </Col>
+                {/* <Col>
+                    <SubmittedRequests />
+                </Col> */}
             </Row>
         </Container>
-
     );
 }
 

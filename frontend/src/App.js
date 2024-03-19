@@ -46,6 +46,7 @@ function App() {
             <Route path="/property-page/:propertyId/create-locker-unit" element={<CreateLocker />} />
             <Route path="/property-page/:propertyId" element={<PropertyPage />} />
             <Route path="/create-property" element={<CreateProperty />} />
+            <Route path="/home" element={<HomeScreen />} />
           </Routes>
         </Container>
       </main>
