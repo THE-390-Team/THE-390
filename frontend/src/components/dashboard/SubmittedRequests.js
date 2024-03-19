@@ -6,7 +6,7 @@ const SubmittedRequests = () => {
         <Container style={{ width: '100%' }}>
             <Card>
                 <div className="d-flex justify-content-center">
-                    <Card.Title><h1>Your Requests</h1></Card.Title>
+                    <Card.Title><h1 style = {{fontSize: "40px", fontWeight: "bold", marginTop: "15px"}}>Your Requests</h1></Card.Title>
                 </div>
                 <ListGroup>
                     <ListGroup.Item>
