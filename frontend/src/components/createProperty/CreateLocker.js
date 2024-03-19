@@ -33,7 +33,7 @@ const CreateLocker = () => {
       return properties.find(property => property.id.toString() === propertyId);
     }
   };
-
+  
   //handle change from the user input and save to state
   const handleChange = (e) => {
     setFormData({
