@@ -38,7 +38,7 @@ class PropertyProfileSerializer(serializers.ModelSerializer):
                   'num_condo_units', 'num_parking_units',
                   'num_storage_units', 'address', 'city', 
                   'province', 'postal_code', 'condo_units',
-                  'parking_units','storage_units']
+                  'parking_units','storage_units', 'propertyImage']
 
 def to_representation(self, instance):
     representation = self.super().to_representation(instance)

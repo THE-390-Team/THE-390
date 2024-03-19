@@ -22,6 +22,7 @@ class PropertyProfile(models.Model):
     province = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=12)
     fee_rate = models.DecimalField(decimal_places=2, max_digits=20)
+    propertyImage = models.ImageField(upload_to="property_images", default="property_images/defaultProperty.jpg")
 
     def __str__(self):
         """
