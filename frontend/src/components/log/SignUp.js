@@ -17,7 +17,7 @@ const SignUp = () => {
     phone_number: "",
     address: "",
     city: "",
-    province: "",
+    province: "British Colombia",
     postal_code: "",
     registration_key: "",
     profile_photo: ""
@@ -43,36 +43,37 @@ const SignUp = () => {
     let isValid = true;
 
     //Validate input fields
-    //Email must be filled, must not exceed 30 chars, and must be a valid email-form input
+    //Email must be filled, must not exceed 64 chars, must be unique, and must be a valid email-form input
     if (!formData.email){
       errors.email = "Email field required";
       isValid = false;
-    } else if (formData.email.length > 30){
-      errors.email = "Your email must be under 30 characters";
+    } else if (formData.email.length > 64){
+      errors.email = "Your email must be under 64 characters";
       isValid = false;
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.email)) { //Make sure email format is correct
       errors.email = 'Invalid email address';
       isValid = false;
     }
+    //TODO: Check if email is already associated with an existing profile
     
-    //First name must be filled, must not exceed 20 chars, and must not contain numbers
+    //First name must be filled, must not exceed 100 chars, and must not contain numbers
     if (!formData.first_name) {
       errors.first_name = 'First name field required';
       isValid = false;
-    } else if (formData.first_name.length > 20) {
-      errors.first_name = 'First name must be under 20 characters';
+    } else if (formData.first_name.length > 100) {
+      errors.first_name = 'First name must be under 100 characters';
       isValid = false;
     } else if (/\d/.test(formData.first_name)) {
       errors.first_name = 'First name must not contain numbers';
       isValid = false;
     }
     
-    //Last name must be filled, must not exceed 20 chars, and must not contain numbers
+    //Last name must be filled, must not exceed 100 chars, and must not contain numbers
     if (!formData.last_name) {
       errors.last_name = 'Last name field required';
       isValid = false;
-    } else if (formData.last_name.length > 20) {
-      errors.last_name = 'Last name must be under 20 characters';
+    } else if (formData.last_name.length > 100) {
+      errors.last_name = 'Last name must be under 100 characters';
       isValid = false;
     } else if (/\d/.test(formData.last_name)) {
       errors.last_name = 'Last name must not contain numbers';
@@ -118,12 +119,12 @@ const SignUp = () => {
       isValid = false;
     }
 
-    //Postal code must be filled, must not exceed 10 chars
+    //Postal code must be filled, must not exceed 12 chars
     if (!formData.postal_code){
       errors.postal_code = "Please enter your postal_code";
       isValid = false;
-    } else if (formData.postal_code.length > 10) {
-      errors.postal_code = 'Postal code must be under 10 characters';
+    } else if (formData.postal_code.length > 12) {
+      errors.postal_code = 'Postal code must be under 12 characters';
       isValid = false;
     }
 

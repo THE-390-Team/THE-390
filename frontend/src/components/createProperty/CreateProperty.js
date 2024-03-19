@@ -20,7 +20,7 @@ const CreateProperty = () => {
     property_company: "",
     property_address: "",
     property_city: "",
-    property_province: "",
+    property_province: "British Colombia",
     property_postal_code: "",
     property_image: propertyPhoto,
   });
@@ -45,18 +45,19 @@ const CreateProperty = () => {
     const errors = {};
     let isValid = true;
 
-    //Validate input fields
-    //Re-add property_name validation when backend supports property_name input
-    //Property name must be filled, and must not exceed 100 chars
-    // if (!formData.property_name) {
-    //   errors.property_name = 'Name field required';
-    //   isValid = false;
-    // } else if (formData.property_name.length > 100) {
-    //   errors.property_name = 'Name must be under 100 characters';
-    //   isValid = false;
-    // }
+    // Validate input fields
 
-    //Property address must be filled, and must not exceed 100 chars
+    // Property field is not yet submitted through form
+    // Property name must be filled, and must not exceed 100 chars
+    if (!formData.property_name) {
+      errors.property_name = 'Name field required';
+      isValid = false;
+    } else if (formData.property_name.length > 100) {
+      errors.property_name = 'Name must be under 100 characters';
+      isValid = false;
+    }
+
+    // Property address must be filled, and must not exceed 100 chars
     if (!formData.property_address) {
       errors.property_address = 'Address field required';
       isValid = false;
@@ -69,8 +70,8 @@ const CreateProperty = () => {
     if (!formData.property_city) {
       errors.property_city = 'City name field required';
       isValid = false;
-    } else if (formData.property_city.length > 50) {
-      errors.property_city = 'City name must be under 50 characters';
+    } else if (formData.property_city.length > 100) {
+      errors.property_city = 'City name must be under 100 characters';
       isValid = false;
     } else if (/\d/.test(formData.property_city)) {
       errors.property_city = 'City name must not contain numbers';
@@ -81,8 +82,8 @@ const CreateProperty = () => {
     if (!formData.property_postal_code){
       errors.property_postal_code = 'Postal code field required';
       isValid = false;
-    } else if (formData.property_postal_code > 10) {
-      errors.property_postal_code = 'Postal code must not exceed 10 characters';
+    } else if (formData.property_postal_code > 12) {
+      errors.property_postal_code = 'Postal code must not exceed 12 characters';
       isValid = false;
     }
     //TODO: Add validation for image field: Image field must not be empty
@@ -159,8 +160,7 @@ const CreateProperty = () => {
             data-testid="property-name-input"
           />
           {/*Show error if submitting invalid input*/}
-          {/*errors.property_name && <span style={{color: "red"}}>{errors.property_name}</span>*/}
-          {/*Add in error message when property_name is supported */}
+          {errors.property_name && <span style={{color: "red"}}>{errors.property_name}</span>}
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPropertyAddress">
@@ -182,6 +182,7 @@ const CreateProperty = () => {
             <Form.Control
               type="text"
               name="property_city"
+              placeholder="Enter City"
               value={formData.city}
               onChange={handleChange}
               data-testid="property-city-input"
@@ -217,11 +218,12 @@ const CreateProperty = () => {
             <Form.Control
               type="text"
               name="property_postal_code"
+              placeholder="Enter Postal Code"
               value={formData.postal_code}
               onChange={handleChange}
               data-testid="property-postal-code-input"
             />
-            {errors.property_city && <span style={{color: "red"}}>{errors.property_city}</span>}
+            {errors.property_postal_code && <span style={{color: "red"}}>{errors.property_postal_code}</span>}
           </Form.Group>
         </Row>
 
@@ -230,6 +232,7 @@ const CreateProperty = () => {
           <Form.Control
             type="file"
             name="property_image"
+            placeholder="H3G 1M8"
             multiple
             onChange={handleChange}
             data-testid="property-image-file"

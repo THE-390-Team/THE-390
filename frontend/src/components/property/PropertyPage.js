@@ -99,7 +99,7 @@ const PropertyPage = () => {
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Size: {locker.size} sqft</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Purchase Price: ${locker.purchase_price}</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Rent Price: ${locker.rent_price}</ListGroup.Item>
-        <ListGroup.Item >Number: {locker.number}</ListGroup.Item>
+        {/*<ListGroup.Item >Number: {locker.number}</ListGroup.Item>*/}
       </ListGroup>
     ));
   };

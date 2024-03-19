@@ -67,16 +67,16 @@ const CreateParking = () => {
     let isValid = true;
     
     //Validate input fields
-    //Location must be filled, length less than 50 chars
+    //Location must be filled, length less than 4 chars
     if (!formData.location){
       errors.location = "Location field required";
       isValid = false;
-    } else if (formData.location.length > 50){
-      errors.location = "Location field must be under 50 characters";
+    } else if (formData.location.length > 4){
+      errors.location = "Location field must be under 4 characters";
       isValid = false;
     }
 
-    //Purchase price must be filled, must be a non-negative number
+    //Purchase price must be filled, must be a non-negative number, can only have 2 decimal places, and less than 20 characters
     if (!formData.purchase_price){
       errors.purchase_price = "Purchase price required";
       isValid = false;
@@ -86,9 +86,15 @@ const CreateParking = () => {
     } else if (parseFloat(formData.purchase_price) < 0){
       errors.purchase_price = "Invalid number";
       isValid = false;
+    } else if (!formData.purchase_price.match(/^(\d*\.{0,1}\d{0,2}$)/)){
+      errors.purchase_price = "Purchase price can only have 2 decimal places";
+      isValid = false;
+    } else if (formData.purchase_price > 20){
+      errors.purchase_price = "Purchase price must be less than 20 characters";
+      isValid = false;
     }
 
-    //Rent price must be filled, must be a non-negative number
+    //Rent price must be filled, must be a non-negative number, can only have 2 decimal places, and less than 20 characters
     if (!formData.rent_price){
       errors.rent_price = "Rent price required";
       isValid = false;
@@ -98,23 +104,38 @@ const CreateParking = () => {
     } else if (parseFloat(formData.rent_price) < 0){
       errors.rent_price = "Invalid number";
       isValid = false;
+    } else if (!formData.rent_price.match(/^(\d*\.{0,1}\d{0,2}$)/)){
+      errors.rent_price = "Rent price can only have 2 decimal places";
+      isValid = false;
+    } else if (formData.rent_price > 20){
+      errors.rent_price = "Rent price must be less than 20 characters";
+      isValid = false;
     }
 
-    //Size must be filled, must be a non-negative number
+    //Size must be filled, must be a non-negative number, can only have 2 decimal places, and less than 20 characters
     if (!formData.size){
       errors.size = "Size required";
       isValid = false;
     } else if (isNaN(formData.size)){
       errors.size = "Size must be a number";
       isValid = false;
-    } else if (parseFloat(formData.size) < 0){
+    } else if (parseFloat(formData.size) <= 0){
       errors.size = "Invalid number";
+      isValid = false;
+    } else if (!formData.size.match(/^(\d*\.{0,1}\d{0,2}$)/)){
+      errors.size = "Size can only have 2 decimal places";
+      isValid = false;
+    } else if (formData.size > 20){
+      errors.size = "Size must be less than 20 characters";
       isValid = false;
     }
     
-    //Extra information must be not exceed 100 chars
-    if (formData.extra_information.length > 100){
-      errors.extra_information = "Extra information field must be less than 100 characters";
+    //Extra information must be filled, must be not exceed 200 chars
+    if (formData.extra_information.length > 200){
+      errors.extra_information = "Extra information field must be less than 200 characters";
+      isValid = false;
+    } else if (!formData.extra_information){
+      errors.extra_information = "Extra information required";
       isValid = false;
     }
 
@@ -141,6 +162,7 @@ const CreateParking = () => {
           rent_price: formData.rent_price,
           purchase_price: formData.purchase_price,
           extra_information: formData.extra_information,
+          //TODO: causes bad request without form input check
         })
         .then((res) => {
           if (res.status == 201) {
@@ -153,6 +175,7 @@ const CreateParking = () => {
         })
         .catch((error) => {
           //Print error if encountered
+          console.log(error);
           console.log(error.data);
           window.alert(`${error} `)
         });
@@ -231,6 +254,7 @@ const CreateParking = () => {
             type="text"
             value={formData.extra_information}
           />
+          {errors.extra_information && <span style={{color: "red"}}>{errors.extra_information}</span>}
         </Form.Group>
 
         <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToPropertyPage}>
