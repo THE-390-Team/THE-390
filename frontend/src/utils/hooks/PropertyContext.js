@@ -24,7 +24,8 @@ export const PropertyProvider = ({ children }) => {
         postal_code: "",
         condo_units: [],
         parking_units: [],
-        storage_units: []
+        storage_units: [],
+        propertyImage: ""
     }
     );
 
@@ -63,6 +64,7 @@ export const PropertyProvider = ({ children }) => {
                     condo_units: response.data.condo_units,
                     parking_units: response.data.parking_units,
                     storage_units: response.data.storage_units,
+                    propertyImage: response.data.propertyImage
                 });
                 console.log(response.data);
             })
