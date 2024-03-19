@@ -7,11 +7,12 @@ import Financial from './Financial.js';
 import SubmittedRequests from './SubmittedRequests.js';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../api/axios.js';
+import { useProfile } from '../../utils/hooks/ProfileContext.js';
 
 
 const DashBoard = () => {
     //state to hold the role of the signed in user
-    const [role, setRole] = useState(null)
+    const { role, fetchProfileRole } = useProfile();
     let navigate = useNavigate();
 
     function handleGoToProperty() {
@@ -19,17 +20,12 @@ const DashBoard = () => {
     }
 
     // make a call to get the role of the user based on the stored id in the local storage
+    // using the profile role context instead of making the complete fetch request here
     useEffect(() => {
-        let role = ''
-        const id = localStorage.getItem("ID");
-        axiosInstance
-            .get(`profiles/user/${id}/`)
-            .then((response) => {
-                role = response.data.role;
-                setRole(role);
-                console.log(role);
-            }, []);
-    })
+        const id = localStorage.getItem("ID"); //get the id from local storage
+        //fetch profile role from the profile context
+        fetchProfileRole();
+    }, []);
 
     return (
         <Container className="mt-5">

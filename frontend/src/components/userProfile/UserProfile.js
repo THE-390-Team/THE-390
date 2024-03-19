@@ -13,7 +13,7 @@ import {
 import { useProfile } from "../../utils/hooks/ProfileContext";
 
 const UserProfile = () => {
-  const { profileInfo, getProfileInformation, setProfileInformation } =
+  const { profileInfo, getProfileInformation, setProfileInformation , fetchProfileRole, role} =
     useProfile();
 
   // // user information
@@ -85,6 +85,8 @@ const UserProfile = () => {
   // get information on active user
   useEffect(() => {
     getProfileInformation();
+    //TODO this might be a problem, if the homepage is the default start of the website, then the user will not have a role
+    fetchProfileRole(); //fetch the role of the user from the profile context
   }, []);
 
   return (
