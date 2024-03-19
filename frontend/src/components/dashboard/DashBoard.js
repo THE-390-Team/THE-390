@@ -34,7 +34,7 @@ const DashBoard = () => {
                 {/* title for properties with styling */}
                 <h1 style={{ fontSize: "40px", marginBottom: "30px", fontWeight: "bold" }}>Properties</h1>
             </div>
-            <PropertyContainer style={{}}/>
+            <PropertyContainer style={{}} />
             {/* the button to create a property is only accessible to company profiles */}
             {
                 role === "COMPANY" &&
@@ -47,20 +47,6 @@ const DashBoard = () => {
                 <Col>
                     <Financial />
                     <SubmittedRequests />
-
-                    {/* the button to create a property is only accessible to company profiles */}
-                    {
-                        role === "COMPANY" &&
-                        <div>
-                            <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Add Property</Button>
-                            <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Send Key</Button>
-                        </div>
-
-                    }
-                </Col>
-                <Col>
-                    <PropertyContainer />
-
                 </Col>
                 {/* <Col>
                     <SubmittedRequests />
