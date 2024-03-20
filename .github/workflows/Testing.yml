@@ -25,6 +25,11 @@ jobs:
         working-directory: ./backend
         run: python -m venv venv
 
+      - name: Set up Environment
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
       - name: Activate python environment
         working-directory: ./backend
         run: source venv/bin/activate
@@ -33,13 +38,19 @@ jobs:
         working-directory: ./backend
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        run: pip install --no-cache-dir -r requirements.txt
+        run: | 
+          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+          pip install --no-cache-dir -r requirements.txt
 
       - name: Start backend server
         working-directory: ./backend
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        run: python manage.py runserver &
+        run: |
+          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+          python manage.py runserver &
 
     # Install Cypress and run tests
       - name: Install Cypress
@@ -52,6 +63,8 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         run: |
+          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
           coverage run manage.py test 
           coverage report --omit '*/dist-packages/*' > coverage_report.json
 
