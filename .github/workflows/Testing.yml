@@ -2,9 +2,9 @@ name: Testing
 # This workflows simulates an environment to test the entire application using unit testing, integration testing and system testing.
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main","development ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main","development" ]
 
 jobs:
   install:
@@ -89,24 +89,20 @@ jobs:
           name: cypress-report
           path: ./frontend/reports_cypress.json
           
-      - name:  commit
-        run:  | 
-          git config --local user.email "action@github.com"
-          git config --local user.name "github-actions"
-          git add --all
-          if [-z "$(git status --porcelain)"]; then
-             echo "::set-output name=push::false"
-          else
-             git commit -m "Add changes" -a
-             echo "::set-output name=push::true"
-          fi
-        shell: bash
+       - name: Setup the release version and overwrite the existing major version tag
+        run: |
+          cat coverage_report.json > README.md
+          git init
+          git branch
+          git pull origin 
+          git status
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          touch README.md
+          git add README.md
+          git commit -m "initial commit"
+          git push origin --force
 
-      - name: Push changes
-        if: steps.commit.outputs.push == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-           github_token: ${{ secrets.GITHUB_TOKEN }}
           
 
       
