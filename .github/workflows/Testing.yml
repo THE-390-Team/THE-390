@@ -49,6 +49,8 @@ jobs:
       # Run Unit tests Django (Backend)
       - name: Run Unit tests Django
         working-directory: ./backend
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         run: |
           coverage run manage.py test 
           coverage report --omit '*/dist-packages/*' > coverage_report.json
