@@ -90,18 +90,18 @@ jobs:
           path: ./frontend/reports_cypress.json
           
        - name: Setup the release version and overwrite the existing major version tag
-        run: |
-          cat coverage_report.json > README.md
-          git init
-          git branch
-          git pull origin 
-          git status
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          touch README.md
-          git add README.md
-          git commit -m "initial commit"
-          git push origin --force
+         run: |
+            cat coverage_report.json > README.md
+            git init
+            git branch
+            git pull origin 
+            git status
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            touch README.md
+            git add README.md
+            git commit -m "initial commit"
+            git push origin --force
 
           
 
