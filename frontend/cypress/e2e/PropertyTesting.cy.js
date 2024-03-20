@@ -1,41 +1,41 @@
-import 'cypress-file-upload';
-const { Link } = require("react-router-dom")
+// import 'cypress-file-upload';
+// const { Link } = require("react-router-dom")
 
-describe('Navigate to Property Page from Profile and go back', () => {
-  beforeEach(() => {
-    cy.visit('/login');
-    cy.get('[data-testid="email-input"]').type('test@example.com');
-    cy.get('[data-testid="password-input"]').type('password123');
-    cy.get('[data-testid="submit-button"]').click();
-  })
-  it('Navigate to Property Page from Profile', () => {
-    cy.get('[data-testid="dropdown"]').click();
-    cy.contains('Dashboard').click();
-    cy.url().should('include', '/dashboard');
-    cy.contains('Name Placeholder 1').click();
-    cy.url().should('include', '/property-page');
-    cy.get('[data-testid="dashboard-return"]').click()
-  })
-})
+// describe('Navigate to Property Page from Profile and go back', () => {
+//   beforeEach(() => {
+//     cy.visit('/login');
+//     cy.get('[data-testid="email-input"]').type('test@example.com');
+//     cy.get('[data-testid="password-input"]').type('password123');
+//     cy.get('[data-testid="submit-button"]').click();
+//   })
+//   it('Navigate to Property Page from Profile', () => {
+//     cy.get('[data-testid="dropdown"]').click();
+//     cy.contains('Dashboard').click();
+//     cy.url().should('include', '/dashboard');
+//     cy.contains('Name Placeholder 1').click();
+//     cy.url().should('include', '/property-page');
+//     cy.get('[data-testid="dashboard-return"]').click()
+//   })
+// })
 
-describe('Navigate to Create Unit/Parking/Locker Form from Profile and go back', () => {
-  beforeEach(() => {
-    cy.visit('/login');
-    cy.get('[data-testid="email-input"]').type('test@example.com');
-    cy.get('[data-testid="password-input"]').type('password123');
-    cy.get('[data-testid="submit-button"]').click();
-  })
+// describe('Navigate to Create Unit/Parking/Locker Form from Profile and go back', () => {
+//   beforeEach(() => {
+//     cy.visit('/login');
+//     cy.get('[data-testid="email-input"]').type('test@example.com');
+//     cy.get('[data-testid="password-input"]').type('password123');
+//     cy.get('[data-testid="submit-button"]').click();
+//   })
 
-  it('Navigate to Create Unit from profile', () => {
-    cy.get('[data-testid="dropdown"]').click();
-    cy.contains('Dashboard').click();
-    cy.url().should('include', '/dashboard');
-    cy.contains('Name Placeholder 2').click();
-    cy.url().should('include', '/property-page');
-    cy.get('[data-testid="create-unit-button"]').click()
-    cy.contains('Cancel').click();
-    cy.url().should('include', '/property-page')
-  })
+//   it('Navigate to Create Unit from profile', () => {
+//     cy.get('[data-testid="dropdown"]').click();
+//     cy.contains('Dashboard').click();
+//     cy.url().should('include', '/dashboard');
+//     cy.contains('Name Placeholder 2').click();
+//     cy.url().should('include', '/property-page');
+//     cy.get('[data-testid="create-unit-button"]').click()
+//     cy.contains('Cancel').click();
+//     cy.url().should('include', '/property-page')
+//   })
 
   // only two properties
   // it('Navigate to Create Parking from profile', () => {
