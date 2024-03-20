@@ -60,7 +60,7 @@
   //   cy.url().should('include', '/property-page')
   // })
 
-})
+// })
 
 // describe('Navigate to Create Property Form from Profile and go back', () => {
 //   beforeEach(() => {
