@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Card, ListGroup, Table } from "react-bootstrap"
+import { Container, Card, ListGroup, Table, ListGroupItem } from "react-bootstrap"
 import { Accordion } from 'react-bootstrap'
 
 const Financial = () => {
@@ -44,7 +44,7 @@ const Financial = () => {
                     {accordionData.map((item, index) => ( 
                         <Accordion key={index}>
                             <Accordion.Item eventKey={index}>
-                                <Accordion.Header>{item.title}</Accordion.Header>
+                                <Accordion.Header>{item.title}: $0.00</Accordion.Header>
                                 <Accordion.Body>
                                     <Table striped bordered hover>
                                         <thead>
@@ -66,14 +66,11 @@ const Financial = () => {
                             </Accordion.Item>
                         </Accordion>
                     ))}
-                    <Accordion>
-                        <Accordion.Item eventKey={accordionData.length}>
-                            <Accordion.Header>Total</Accordion.Header>
-                            <Accordion.Body>
-                                <p>$0.00</p>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                    </Accordion>
+                    <ListGroup>
+                        <ListGroupItem>
+                            Total: $0.00
+                        </ListGroupItem>
+                    </ListGroup>
                 </ListGroup>
             </Card>
         </Container>

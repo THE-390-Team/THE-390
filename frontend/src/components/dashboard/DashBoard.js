@@ -47,11 +47,10 @@ const DashBoard = () => {
             <Row className="mt-5">
                 <Col>
                     <FinancialPublic />
+                </Col>
+                <Col>
                     <SubmittedRequests />
                 </Col>
-                {/* <Col>
-                    <SubmittedRequests />
-                </Col> */}
             </Row>
         </Container>
     );
