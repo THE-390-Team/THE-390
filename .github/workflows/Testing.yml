@@ -90,7 +90,7 @@ jobs:
           path: ./frontend/reports_cypress.json
           
       - name: Add coverage_report.json
-         run: |
+        run: |
             cat coverage_report.json > README.md
             git init
             git branch
