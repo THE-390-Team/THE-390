@@ -88,20 +88,25 @@ jobs:
         with:
           name: cypress-report
           path: ./frontend/reports_cypress.json
+          
+      - name:  commit
+        run:  | 
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+          git add --all
+          if [-z "$(git status --porcelain)"]; then
+             echo "::set-output name=push::false"
+          else
+             git commit -m "Add changes" -a
+             echo "::set-output name=push::true"
+          fi
+        shell: bash
 
-       # Add links to reports in readme.md
-      - name: Update Readme with Report Links
-        run: |
-            echo "## Test Reports" >> README.md
-            echo "[Coverage Report](./backend/coverage_report.json)" >> README.md
-            echo "[Jest Report](./frontend/jest-report.json)" >> README.md
-            echo "[Cypress Report](./frontend/reports_cypress.json)" >> README.md
-            git checkout -b update-readme   # Create a new branch for updating readme
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git add README.md
-            git commit -m "Update test reports in README"
-            git push origin update-readme
+      - name: Push changes
+        if: steps.commit.outputs.push == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
           
 
       
