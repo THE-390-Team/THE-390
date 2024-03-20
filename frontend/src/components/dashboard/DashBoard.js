@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import PropertyContainer from '../property/PropertyContainer.js'
 import UserInfo from './UserInfo.js';
 import { Container, Col, Row, Button } from "react-bootstrap";
-import Financial from './Financial.js';
+import FinancialPublic from './FinancialPublic.js';
 import SubmittedRequests from './SubmittedRequests.js';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../api/axios.js';
@@ -43,9 +43,10 @@ const DashBoard = () => {
                     <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Send Key</Button>
                 </div>
 
-            }            <Row className="mt-5">
+            }            
+            <Row className="mt-5">
                 <Col>
-                    <Financial />
+                    <FinancialPublic />
                     <SubmittedRequests />
                 </Col>
                 {/* <Col>
