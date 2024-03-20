@@ -39,18 +39,18 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         run: | 
-          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
-          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
-          pip install --no-cache-dir -r requirements.txt
+            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+            pip install --no-cache-dir -r requirements.txt
 
       - name: Start backend server
         working-directory: ./backend
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         run: |
-          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
-          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
-          python manage.py runserver &
+            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+            python manage.py runserver &
 
     # Install Cypress and run tests
       - name: Install Cypress
@@ -63,10 +63,10 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         run: |
-          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
-          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
-          coverage run manage.py test 
-          coverage report --omit '*/dist-packages/*' > coverage_report.json
+            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+            coverage run manage.py test 
+            coverage report --omit '*/dist-packages/*' > coverage_report.json
 
       # Save coverage report to repository
       - name: Save coverage report 
