@@ -2,9 +2,9 @@ name: Testing
 # This workflows simulates an environment to test the entire application using unit testing, integration testing and system testing.
 on:
   push:
-    branches: [ "main","development ]
+    branches: [ "main", "development" ]
   pull_request:
-    branches: [ "main","development" ]
+    branches: [ "main", "development" ]
 
 jobs:
   install:
