@@ -89,7 +89,7 @@ jobs:
           name: cypress-report
           path: ./frontend/reports_cypress.json
           
-       - name: Setup the release version and overwrite the existing major version tag
+      - name: Add coverage_report.json
          run: |
             cat coverage_report.json > README.md
             git init
