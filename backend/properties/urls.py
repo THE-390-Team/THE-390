@@ -1,7 +1,6 @@
 from django.urls import include, path
 from rest_framework import routers
 
-from finance.views import FinanceModelView
 from .views import PropertyProfileViewSet, CondoUnitViewSet, ParkingUnitViewSet, StorageUnitViewSet 
 
 
@@ -18,7 +17,6 @@ urlpatterns = [
     path('property-profile/<int:property_id>/condo-unit/', CondoUnitViewSet.as_view({'post': 'create', 'get':'list'})),
     path('property-profile/<int:property_id>/parking-unit/', ParkingUnitViewSet.as_view({'post': 'create', 'get':'list'})),
     path('property-profile/<int:property_id>/storage-unit/', StorageUnitViewSet.as_view({'post': 'create', 'get':'list'})),
-    path('property-profile/<int:property_id>/fees/',FinanceModelView.as_view()),
 ]
 
 urlpatterns += router.urls

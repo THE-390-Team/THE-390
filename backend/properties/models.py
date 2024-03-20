@@ -24,6 +24,7 @@ class PropertyProfile(models.Model):
     fee_rate = models.DecimalField(decimal_places=2, max_digits=20)
     image = models.ImageField(upload_to="property_images", default="property_images/defaultProperty.jpg")
 
+    name = models.CharField(max_length=100, blank=True)
     def __str__(self):
         """
         Returns a string representation of the property profile.
