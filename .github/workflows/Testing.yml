@@ -118,17 +118,17 @@ jobs:
       - name: Add coverage_report.json
         run: |
             cd frontend
+            ls
             cat jest-report.json > README.md
             git init
             git branch
-            git pull origin 
             git status
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
             touch README.md
             git add README.md
-            git commit -m "initial commit"
-            git push origin --force
+            git commit -m "Update README.md with Jest report"  # Modify commit message as needed
+            git push origin HEAD:$GITHUB_REF --force
 
 
       
