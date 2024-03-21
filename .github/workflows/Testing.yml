@@ -126,7 +126,7 @@ jobs:
               git config --local user.name "github-actions[bot]"
               git add README.md
               git commit -m "Testing & sending reports to README.md!"
-              git push origin --force
+              git push origin development --force
 
       # # Save Jest tests as artifacts
       # - name: Save Jest report
