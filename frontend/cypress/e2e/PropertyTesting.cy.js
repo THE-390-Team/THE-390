@@ -1,12 +1,6 @@
-// import 'cypress-file-upload';
-// const { Link } = require("react-router-dom")
-
 describe('As a Company employee Navigate to Property Page from Profile and go back', () => {
   beforeEach(() => {
-    cy.visit('/login');
-    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
-    cy.get('[data-testid="password-input"]').type('123qweasd');
-    cy.get('[data-testid="submit-button"]').click();
+    cy.login('joud.babik@gmail.com', '123qweasd');
   })
   it('Navigate to Property Page from Profile', () => {
     cy.contains('Dashboard').click();
@@ -21,10 +15,7 @@ describe('As a Company employee Navigate to Property Page from Profile and go ba
 
 describe('Navigate to Create Unit/Parking/Locker Form from Profile and go back', () => {
   beforeEach(() => {
-    cy.visit('/login');
-    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
-    cy.get('[data-testid="password-input"]').type('123qweasd');
-    cy.get('[data-testid="submit-button"]').click();
+    cy.login('joud.babik@gmail.com', '123qweasd');
   })
 
   it('Navigate to Create Unit from profile', () => {
@@ -42,10 +33,7 @@ describe('Navigate to Create Unit/Parking/Locker Form from Profile and go back',
 
 describe('Navigate to Create Property Form from Profile and go back', () => {
   beforeEach(() => {
-    cy.visit('/login');
-    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
-    cy.get('[data-testid="password-input"]').type('123qweasd');
-    cy.get('[data-testid="submit-button"]').click();
+    cy.login('joud.babik@gmail.com', '123qweasd');
   })
   it('Navigate to Create Property from Profile', () => {
     cy.contains('Dashboard').click();
@@ -61,10 +49,7 @@ describe('Navigate to Create Property Form from Profile and go back', () => {
 
 describe('Sign in as company and Navigate to Create property and create condo unit', () => {
   beforeEach(() => {
-    cy.visit('/login');
-    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
-    cy.get('[data-testid="password-input"]').type('123qweasd');
-    cy.get('[data-testid="submit-button"]').click();
+    cy.login('joud.babik@gmail.com', '123qweasd');
   })
   it('Navigate to Create Property from Profile', () => {
     cy.contains('Dashboard').click();
@@ -99,10 +84,7 @@ describe('Sign in as company and Navigate to Create property and create condo un
 
 describe('Sign in as company and Navigate to create a parking unit', () => {
   before(() => {
-    cy.visit('/login');
-    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
-    cy.get('[data-testid="password-input"]').type('123qweasd');
-    cy.get('[data-testid="submit-button"]').click();
+    cy.login('joud.babik@gmail.com', '123qweasd');
   })
   it('Navigate to create parking unit from property page', () => {
     cy.contains('Profile').click();
@@ -122,10 +104,7 @@ describe('Sign in as company and Navigate to create a parking unit', () => {
 
 describe('Sign in as company and Navigate to create a storage unit', () => {
   before(() => {
-    cy.visit('/login');
-    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
-    cy.get('[data-testid="password-input"]').type('123qweasd');
-    cy.get('[data-testid="submit-button"]').click();
+    cy.login('joud.babik@gmail.com', '123qweasd');
   })
   it('Navigate to create parking unit from property page', () => {
     cy.contains('Profile').click();
