@@ -36,22 +36,44 @@ const UserProfile = () => {
       .catch(error => {
         console.log(error);
       })
-    axiosInstance
-      .patchForm(`profiles/public-profile/${id}/`, formData)
-      .then((response) => {
-        console.log(response);
-        handleCloseModal();
-        if (response.status == 200) {
-          alert("Successfully saved changes")
-          window.location.reload();
-        }
-        else {
-          alert("Error occured while saving changes")
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+
+    if (role === "PUBLIC") {
+      axiosInstance
+        .patchForm(`profiles/public-profile/${id}/`, formData)
+        .then((response) => {
+          console.log(response);
+          handleCloseModal();
+          if (response.status == 200) {
+            alert("Successfully saved changes")
+            window.location.reload();
+          }
+          else {
+            alert("Error occured while saving changes")
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else if (role === "COMPANY") {
+      axiosInstance
+        .patchForm(`profiles/company-profile/${id}/`, formData)
+        .then((response) => {
+          console.log(response);
+          handleCloseModal();
+          if (response.status == 200) {
+            alert("Successfully saved changes")
+            window.location.reload();
+          }
+          else {
+            alert("Error occured while saving changes")
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+
+
   };
 
   // Update formData when change occurs
