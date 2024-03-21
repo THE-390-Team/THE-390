@@ -81,7 +81,7 @@ jobs:
         working-directory: ./frontend
         run: |
              npm run coverage > jest-report.json
-             cat jest_report.json > README.md
+             cat jest-report.json > README.md
              git init
              git branch
              git pull origin 
