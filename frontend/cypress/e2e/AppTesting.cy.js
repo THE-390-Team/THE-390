@@ -75,7 +75,6 @@ describe('Logout', () => {
     cy.get('[data-testid="email-input"]').type('test@example.com')
     cy.get('[data-testid="password-input"]').type('password123')
     cy.get('[data-testid="submit-button"]').click()
-    cy.get('[data-testid="dropdown"]').click()
     cy.get('[data-testid ="logout"]').click();
     cy.url().should('include', '/login');
   });

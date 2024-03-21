@@ -13,7 +13,7 @@ import {
 const CreateProperty = () => {
 
   let navigate = useNavigate();
-  
+
   // property information, should extend to match all info needed
   const [formData, setFormData] = useState({
     property_name: "",
@@ -23,7 +23,6 @@ const CreateProperty = () => {
     property_province: "British Colombia",
     property_postal_code: "",
     property_fee_rate: "",
-    property_image: propertyPhoto,
   });
 
   const [errors, setErrors] = useState({});
@@ -39,6 +38,14 @@ const CreateProperty = () => {
     //Clear existing error if there is change to input
     setErrors({ ...errors, [e.target.name]: '' });
     console.log(formData);
+  };
+
+  // Update formData when image changes
+  const handleImageChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.files[0],
+    });
   };
 
   //Validate input form
@@ -78,9 +85,9 @@ const CreateProperty = () => {
       errors.property_city = 'City name must not contain numbers';
       isValid = false;
     }
-    
+
     //Postal code must be filled, and must not exceed 10 chars
-    if (!formData.property_postal_code){
+    if (!formData.property_postal_code) {
       errors.property_postal_code = 'Postal code field required';
       isValid = false;
     } else if (formData.property_postal_code.length > 10) {
@@ -89,20 +96,20 @@ const CreateProperty = () => {
     }
 
     //Condo Fees must be filled, must be greater than 0 and must not exceed 10 chars
-    if (!formData.property_fee_rate){
+    if (!formData.property_fee_rate) {
       errors.property_condo_fees = 'Condo Fees field required';
       isValid = false;
     } else if (formData.property_fee_rate.length > 10) {
       errors.property_fee_rate = 'Condo Fees must not exceed 10 characters';
       isValid = false;
-    } else if (formData.property_fee_rate <=0){
+    } else if (formData.property_fee_rate <= 0) {
       errors.property_fee_rate = 'Condo Fees must be greter than 0'
     }
 
     //TODO: Add validation for image field: Image field must not be empty
 
     //If there are errors, set errors in state and prevent submit
-    if (Object.keys(errors).length >0){
+    if (Object.keys(errors).length > 0) {
       setErrors(errors);
     }
 
@@ -116,13 +123,12 @@ const CreateProperty = () => {
     e.preventDefault();
 
     //If form is valid, post the form
-    if (validateForm())
-    {
+    if (validateForm()) {
       console.log(formData);
 
       //post form
       axiosInstance
-        .post(`/profiles/company-profile/${companyID}/property-profiles/`, {
+        .postForm(`/properties/property-profile/`, {
           //TODO await model updates with name and image
           // name: formData.property_name, 
           company: companyID,
@@ -130,8 +136,8 @@ const CreateProperty = () => {
           city: formData.property_city,
           province: formData.property_province,
           postal_code: formData.property_postal_code,
-
-          // image: formData.property_image, //TODO: await model updates with name and image
+          fee_rate: 0.12, // TODO Implement input for fee rate. This is a temp value
+          image: formData.property_image, //TODO: await model updates with name and image
         })
         .then((res) => {
           if (res.status == 201) {
@@ -148,7 +154,7 @@ const CreateProperty = () => {
           console.log(error.data);
           window.alert(`${error} `)
         });
-    }else{
+    } else {
       //Do not post form if there is error in input
       return;
     }
@@ -173,7 +179,7 @@ const CreateProperty = () => {
             data-testid="property-name-input"
           />
           {/*Show error if submitting invalid input*/}
-          {errors.property_name && <span style={{color: "red"}}>{errors.property_name}</span>}
+          {errors.property_name && <span style={{ color: "red" }}>{errors.property_name}</span>}
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPropertyAddress">
@@ -186,7 +192,7 @@ const CreateProperty = () => {
             onChange={handleChange}
             data-testid="property-address-input"
           />
-          {errors.property_address && <span style={{color: "red"}}>{errors.property_address}</span>}
+          {errors.property_address && <span style={{ color: "red" }}>{errors.property_address}</span>}
         </Form.Group>
 
         <Row className="mb-3">
@@ -200,7 +206,7 @@ const CreateProperty = () => {
               onChange={handleChange}
               data-testid="property-city-input"
             />
-            {errors.property_city && <span style={{color: "red"}}>{errors.property_city}</span>}
+            {errors.property_city && <span style={{ color: "red" }}>{errors.property_city}</span>}
           </Form.Group>
           <Form.Group as={Col} controlId="formGridPropertyProvince">
             <Form.Label>Property Province</Form.Label>
@@ -236,48 +242,46 @@ const CreateProperty = () => {
               onChange={handleChange}
               data-testid="property-postal-code-input"
             />
-            {errors.property_postal_code && <span style={{color: "red"}}>{errors.property_postal_code}</span>}
+            {errors.property_postal_code && <span style={{ color: "red" }}>{errors.property_postal_code}</span>}
           </Form.Group>
-      
+
         </Row>
 
-        <Row className="mb-4">
+        <Form.Group controlId="formGridPropertyImage" className="mb-4">
           <Form.Group as={Col} controlId="formGridPropertyFees">
-              <Form.Label>Fee Rate</Form.Label>
-              <Form.Control
-                type="text"
-                name="property_fee_rate"
-                placeholder="Enter Fee Rate"
-                value={formData.fee_rate}
-                onChange={handleChange}
-                data-testid="property-fee_rate-input"
-              />
-              {errors.property_fee_rate && <span style={{color: "red"}}>{errors.property_fee_rate}</span>}
+            <Form.Label>Fee Rate</Form.Label>
+            <Form.Control
+              type="text"
+              name="property_fee_rate"
+              placeholder="Enter Fee Rate"
+              value={formData.fee_rate}
+              onChange={handleChange}
+              data-testid="property-fee_rate-input"
+            />
+            {errors.property_fee_rate && <span style={{ color: "red" }}>{errors.property_fee_rate}</span>}
           </Form.Group>
+          <Form.Label>Upload Property Image</Form.Label>
+          <Form.Control
+            type="file"
+            name="property_image"
+            placeholder="H3G 1M8"
+            multiple
+            onChange={handleImageChange}
+            data-testid="property-image-file"
+          />
+          {errors.property_image && <span style={{ color: "red" }}>{errors.property_image}</span>}
+        </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridPropertyImage">
-              <Form.Label>Upload Property Image</Form.Label>
-              <Form.Control
-                type="file"
-                name="property_image"
-                placeholder="H3G 1M8"
-                multiple
-                onChange={handleChange}  
-                data-testid="property-image-file"
-              />
-              {errors.property_image && <span style={{color: "red"}}>{errors.property_image}</span>}
-          </Form.Group>
+      </Row>
 
-        </Row>
-
-        <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToDashboard}>
-          Cancel
-        </Button>
-        <Button style={{ marginLeft: "20px", marginTop: "20px" }} variant="primary" type="submit" data-testid="submit-button">
-          Submit
-        </Button>
-      </Form>
-    </Container>
+      <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToDashboard}>
+        Cancel
+      </Button>
+      <Button style={{ marginLeft: "20px", marginTop: "20px" }} variant="primary" type="submit" data-testid="submit-button">
+        Submit
+      </Button>
+    </Form>
+    </Container >
   )
 }
 

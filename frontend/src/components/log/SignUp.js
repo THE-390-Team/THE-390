@@ -3,6 +3,7 @@ import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axiosInstance from "../../api/axios.js";
+import LargeTitle from "../LargeTitle.js";
 
 const SignUp = () => {
 
@@ -44,10 +45,10 @@ const SignUp = () => {
 
     //Validate input fields
     //Email must be filled, must not exceed 64 chars, must be unique, and must be a valid email-form input
-    if (!formData.email){
+    if (!formData.email) {
       errors.email = "Email field required";
       isValid = false;
-    } else if (formData.email.length > 64){
+    } else if (formData.email.length > 64) {
       errors.email = "Your email must be under 64 characters";
       isValid = false;
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.email)) { //Make sure email format is correct
@@ -55,7 +56,7 @@ const SignUp = () => {
       isValid = false;
     }
     //TODO: Check if email is already associated with an existing profile
-    
+
     //First name must be filled, must not exceed 100 chars, and must not contain numbers
     if (!formData.first_name) {
       errors.first_name = 'First name field required';
@@ -67,7 +68,7 @@ const SignUp = () => {
       errors.first_name = 'First name must not contain numbers';
       isValid = false;
     }
-    
+
     //Last name must be filled, must not exceed 100 chars, and must not contain numbers
     if (!formData.last_name) {
       errors.last_name = 'Last name field required';
@@ -79,30 +80,30 @@ const SignUp = () => {
       errors.last_name = 'Last name must not contain numbers';
       isValid = false;
     }
-    
+
     //Password must be filled, and must not exceed 20 chars
-    if (!formData.password){
+    if (!formData.password) {
       errors.password = "Please enter your password";
       isValid = false;
-    } else if (formData.password.length > 20){
+    } else if (formData.password.length > 20) {
       errors.password = "Your password must be under 20 characters";
       isValid = false;
     } // Possible to validate that password include a symbol, number and capital letter in future sprints
-    
+
     //Phone number must be filled, must consist only of numbers, and must be shorter than 12 characters and longer than 2
-    if (!formData.phone_number){
+    if (!formData.phone_number) {
       errors.phone_number = "Please enter your phone number";
       isValid = false;
-    } else if (formData.phone_number.length > 12 || formData.phone_number.length < 2){
+    } else if (formData.phone_number.length > 12 || formData.phone_number.length < 2) {
       errors.phone_number = "Your phone number must be shorter than 12 characters and longer than 2";
       isValid = false;
-    } else if (isNaN(parseInt(formData.phone_number))){
+    } else if (isNaN(parseInt(formData.phone_number))) {
       errors.phone_number = "Your phone number must consist of numbers only";
       isValid = false;
     }
-    
+
     //Address must be filled, and must not exceed 100 chars
-    if (!formData.address){
+    if (!formData.address) {
       errors.address = "Please enter your Address";
       isValid = false;
     } else if (formData.address.length > 100) {
@@ -111,7 +112,7 @@ const SignUp = () => {
     }
 
     //City must must be filled, not exceed 100 chars
-    if (!formData.city){
+    if (!formData.city) {
       errors.city = "Please enter your city";
       isValid = false;
     } else if (formData.city.length > 100) {
@@ -120,7 +121,7 @@ const SignUp = () => {
     }
 
     //Postal code must be filled, must not exceed 12 chars
-    if (!formData.postal_code){
+    if (!formData.postal_code) {
       errors.postal_code = "Please enter your postal_code";
       isValid = false;
     } else if (formData.postal_code.length > 12) {
@@ -131,7 +132,7 @@ const SignUp = () => {
     //TODO: Add validation for profile_image
 
     //If there are errors, set errors in state and prevent submit
-    if (Object.keys(errors).length >0){
+    if (Object.keys(errors).length > 0) {
       setErrors(errors);
     }
 
@@ -144,7 +145,7 @@ const SignUp = () => {
     e.preventDefault();
 
     //If form is valid then post the form
-    if (validateForm()){
+    if (validateForm()) {
       console.log(formData);
       //Fields needed to create user
       axiosInstance
@@ -206,6 +207,7 @@ const SignUp = () => {
   //match the input with the backend parameters (ex: first last and all the other fields)
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
+      <LargeTitle title="Sign Up Now!" />
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridFirstName">
@@ -219,7 +221,7 @@ const SignUp = () => {
               data-testid="first-name-input"
             />
             {/*Show error if submitting invalid input*/}
-            {errors.first_name && <span style={{color: "red"}}>{errors.first_name}</span>}
+            {errors.first_name && <span style={{ color: "red" }}>{errors.first_name}</span>}
           </Form.Group>
           <Form.Group as={Col} controlId="formGridLastName">
             <Form.Label>Last Name</Form.Label>
@@ -231,7 +233,7 @@ const SignUp = () => {
               onChange={handleChange}
               data-testid="last-name-input"
             />
-            {errors.last_name && <span style={{color: "red"}}>{errors.last_name}</span>}
+            {errors.last_name && <span style={{ color: "red" }}>{errors.last_name}</span>}
           </Form.Group>
         </Row>
 
@@ -246,7 +248,7 @@ const SignUp = () => {
               onChange={handleChange}
               data-testid="email-input"
             />
-            {errors.email && <span style={{color: "red"}}>{errors.email}</span>}
+            {errors.email && <span style={{ color: "red" }}>{errors.email}</span>}
           </Form.Group>
           <Form.Group as={Col} controlId="formGridPhoneNumber">
             <Form.Label>Phone Number</Form.Label>
@@ -258,7 +260,7 @@ const SignUp = () => {
               onChange={handleChange}
               data-testid="phone-number-input"
             />
-            {errors.phone_number && <span style={{color: "red"}}>{errors.phone_number}</span>}
+            {errors.phone_number && <span style={{ color: "red" }}>{errors.phone_number}</span>}
           </Form.Group>
 
         </Row>
@@ -273,7 +275,7 @@ const SignUp = () => {
               onChange={handleChange}
               data-testid="password-input"
             />
-            {errors.password && <span style={{color: "red"}}>{errors.password}</span>}
+            {errors.password && <span style={{ color: "red" }}>{errors.password}</span>}
           </Form.Group>
           <Form.Group as={Col} controlId="formGridPasswordConfirmation">
             <Form.Label>Confirm Password</Form.Label>
@@ -313,7 +315,7 @@ const SignUp = () => {
             onChange={handleChange}
             data-testid="address-input"
           />
-          {errors.address && <span style={{color: "red"}}>{errors.address}</span>}
+          {errors.address && <span style={{ color: "red" }}>{errors.address}</span>}
         </Form.Group>
 
         <Row className="mb-3">
@@ -327,12 +329,11 @@ const SignUp = () => {
               onChange={handleChange}
               data-testid="city-input"
             />
-            {errors.city && <span style={{color: "red"}}>{errors.city}</span>}
+            {errors.city && <span style={{ color: "red" }}>{errors.city}</span>}
           </Form.Group>
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Province</Form.Label>
             <Form.Select
-              defaultValue={formData.province}
               name="province"
               value={formData.province}
               onChange={handleChange}
@@ -362,7 +363,7 @@ const SignUp = () => {
               onChange={handleChange}
               data-testid="postal-code-input"
             />
-            {errors.postal_code && <span style={{color: "red"}}>{errors.postal_code}</span>}
+            {errors.postal_code && <span style={{ color: "red" }}>{errors.postal_code}</span>}
           </Form.Group>
         </Row>
 

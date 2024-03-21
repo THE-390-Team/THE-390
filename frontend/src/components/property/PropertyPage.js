@@ -103,15 +103,15 @@ const PropertyPage = () => {
       <Row>
         <Col md={4} style={{ padding: '0' }}>
           {/* FIXME there's no image in db yet */}
-          <img src={property.image} alt={property.name} style={{ width: '100%', height: '40vh', objectFit: 'cover', marginTop: '28px' }} />
-          <Card className="mt-4 h-25 shadow">
+          <img src={property.image} alt={property.name} style={{ width: '100%', height: '80vh', objectFit: 'cover', marginTop: '28px' }} />
+          {/* <Card className="mt-4 h-25 shadow">
             <Card.Title className="fw-bold">This is where property finances go?</Card.Title>
             This is where the finanical details will go
           </Card>
           <Card className="mt-4 h-25 shadow">
             <Card.Title className="fw-bold">This is where property Requests go?</Card.Title>
             This is where the requests details will go
-          </Card>
+          </Card> */}
         </Col>
         <Col style={{ padding: '20px', overflowY: 'auto' }}>
           <Row>
@@ -158,7 +158,7 @@ const PropertyPage = () => {
               <h5 className="mt-3 me-2">Units</h5>
             </Col>
             <Col>
-              < Button className="mt-2" variant="primary" onClick={handleGoToUnitCreate} data-testid="create-unit-button">+</Button>
+              < Button className="mt-2" variant="primary" onClick={handleGoToUnitCreate} data-testid="create-condo-unit-button">+</Button>
             </Col>
           </Row>
           <div style={renderStyle}>
@@ -169,7 +169,7 @@ const PropertyPage = () => {
               <h5 className="mt-3">Parking Spots </h5>
             </Col>
             <Col>
-              <Button className="mt-2" variant="primary" onClick={handleGoToParkingCreate}>+</Button>
+              <Button className="mt-2" variant="primary" onClick={handleGoToParkingCreate} data-testid="create-parking-unit-button">+</Button>
             </Col>
           </Row>
           <div style={renderStyle}>
@@ -180,7 +180,7 @@ const PropertyPage = () => {
               <h5 className="mt-3">Lockers </h5>
             </Col>
             <Col>
-              <Button className="mt-2" data-testid="create-locker-button" onClick={handleGoToLockerCreate} variant="primary">+</Button>            </Col>
+              <Button className="mt-2" data-testid="create-storage-unit-button" onClick={handleGoToLockerCreate} variant="primary">+</Button>            </Col>
           </Row>
           <div style={renderStyle}>
             {renderLockers()}
