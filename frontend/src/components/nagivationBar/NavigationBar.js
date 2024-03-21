@@ -3,10 +3,12 @@ import { useAuth } from "../../utils/hooks/AuthContext";
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useLocation } from "react-router-dom";
+import { useProfile } from '../../utils/hooks/ProfileContext';
 
 const NavigationBar = () => {
   const { isLoggedIn } = useAuth();
   const location = useLocation();  // Using useLocation to access the current path
+  const { role } = useProfile();
 
   const getActiveKey = () => {
     // This function determines the active key based on the current pathname
@@ -36,9 +38,18 @@ const NavigationBar = () => {
                 </Nav.Link>
               </LinkContainer>}
             </Nav>
-            <Nav className="ms-auto" justifty variant="tabs" activeKey={getActiveKey}>
+            <Nav className="ms-auto justify-content-end" variant="tabs" activeKey={getActiveKey()}>
+              {isLoggedIn && role === "COMPANY" ?
+                <Nav.Item evenKey="/operation">
+                  <LinkContainer to="/operation">
+                    <Nav.Link>
+                      <i className="fas fa-user"></i> Operation
+                    </Nav.Link>
+                  </LinkContainer>
+                </Nav.Item>
+                : ''}
               {isLoggedIn ?
-                <Nav.Item evenKey="/profile">
+                <Nav.Item eventkey="/profile">
                   <LinkContainer to="/profile">
                     <Nav.Link>
                       <i className="fas fa-user"></i> Profile
@@ -47,7 +58,7 @@ const NavigationBar = () => {
                 </Nav.Item>
                 : ''}
               {isLoggedIn ?
-                <Nav.Item evenKey="/dashboard">
+                <Nav.Item eventkey="/dashboard">
                   <LinkContainer to="/dashboard">
                     <Nav.Link>
                       <i className="fas fa-user"></i> Dashboard
@@ -56,8 +67,8 @@ const NavigationBar = () => {
                 </Nav.Item>
                 : ''}
               {isLoggedIn ?
-                <Nav.Item evenKey="/logout">
-                  <LinkContainer to="/logout">
+                <Nav.Item eventkey="/logout">
+                  <LinkContainer to="/logout" data-testid="logout">
                     <Nav.Link>
                       <i className="fas fa-user"></i> LOGOUT
                     </Nav.Link>

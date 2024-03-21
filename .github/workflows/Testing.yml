@@ -21,6 +21,7 @@ jobs:
         working-directory: ./backend
         run: python -m venv venv
 
+      # Create a Python environment
       - name: Activate python environment
         working-directory: ./backend
         run: source venv/bin/activate
@@ -109,7 +110,13 @@ jobs:
               echo "[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
               echo "[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
               echo "" >> temp.md
-              echo "## Testing Reports" >> temp.md
+              echo "Code Coverage Tree" >> temp.md
+              echo "" >> temp.md
+              echo "[![codecov](https://codecov.io/gh/THE-390-Team/THE-390/graph/badge.svg?token=FW880JJXGB)](https://codecov.io/gh/THE-390-Team/THE-390)" >> temp.md
+              echo "" >> temp.md 
+              echo "View reports provided by codecov https://app.codecov.io/gh/THE-390-Team/THE-390"
+              echo "" >> temp.md
+              echo "## Testing Reports from Workflow" >> temp.md
               echo "" >> temp.md
               cat temp.md frontend/jest-report.json > temp_readme.md
               mv temp_readme.md README.md
@@ -123,6 +130,14 @@ jobs:
               git add README.md
               git commit -m "Testing & sending reports to README.md!"
               git push origin --force
+
+      # Uploads Code Coverage Report
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: THE-390-Team/THE-390
+
       # # Save Jest tests as artifacts
       # - name: Save Jest report
       #   uses: actions/upload-artifact@v2
