@@ -1,13 +1,10 @@
 name: Testing 
 # This workflows simulates an environment to test the entire application using unit testing, integration testing and system testing.
-on:
-  push:
-    branches: [ "main", "development" ]
-  pull_request:
-    branches: [ "main", "development" ]
-
+on: [push]
 jobs:
-  runs-on: ubuntu-latest
+  publish:
+    name: Publish the release version
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout
