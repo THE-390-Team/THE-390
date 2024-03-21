@@ -11,24 +11,12 @@ import {
   Form,
 } from "react-bootstrap";
 import { useProfile } from "../../utils/hooks/ProfileContext";
+import LargeTitle from "../LargeTitle.js";
+import SubmitRegistrationButton from "../registrationKey/SubmitRegistrationButton.js";
 
 const UserProfile = () => {
-  const { profileInfo, getProfileInformation, setProfileInformation , fetchProfileRole, role} =
+  const { profileInfo, getProfileInformation, fetchProfileRole, role } =
     useProfile();
-
-  // // user information
-  // const [profileInfo, setProfileInfo] = useState({
-  //   avatar: profilepic,
-  //   first_name: "",
-  //   last_name: "",
-  //   email: "",
-  //   phone_number: "",
-  //   address: "",
-  //   city: "",
-  //   province: "",
-  //   registration_key: "",
-  //   postal_code: "",
-  // });
 
   const [showModal, setShowModal] = useState(false);
   const id = localStorage.getItem("ID");
@@ -93,9 +81,7 @@ const UserProfile = () => {
     <Container className="mt-5">
       <Row className="justify-content-center">
         {/* a page title */}
-        <div className="d-flex flex-column align-items-center">
-          <h1 style={{ fontSize: "40px", marginBottom: "30px", fontWeight: "bold" }}>Your Profile</h1>
-        </div>
+        <LargeTitle title="Your Profile" />
         <Col md={4}>
           <Card>
             <Card.Img
@@ -125,9 +111,12 @@ const UserProfile = () => {
                 variant="primary"
                 onClick={handleShowModal}
                 data-testid="edit-profile"
+                style={{ marginRight: "30px" }}
               >
                 Edit Profile
               </Button>
+              {role === "PUBLIC" && <SubmitRegistrationButton />
+              }
             </Card.Body>
           </Card>
         </Col>
