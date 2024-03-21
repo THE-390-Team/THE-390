@@ -4,7 +4,7 @@ https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=sha
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Date: Thu Mar 21 21:56:46 UTC 2024
+Date: Thu Mar 21 22:12:39 UTC 2024
 
 Code Quality Indicators
 
@@ -33,9 +33,9 @@ Code Coverage Tree
 ------------------------------------|---------|----------|---------|---------|-------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------|---------|----------|---------|---------|-------------------
-All files                           |    0.89 |        0 |     2.6 |    0.91 |                   
+All files                           |    0.87 |        0 |    2.47 |    0.89 |                   
  src                                |       0 |      100 |       0 |       0 |                   
-  App.js                            |       0 |      100 |       0 |       0 | 25-30             
+  App.js                            |       0 |      100 |       0 |       0 | 26-31             
   index.js                          |       0 |      100 |     100 |       0 | 10-12             
  src/api                            |       0 |        0 |       0 |       0 |                   
   axios.js                          |       0 |        0 |       0 |       0 | 3-83              
@@ -51,7 +51,7 @@ All files                           |    0.89 |        0 |     2.6 |    0.91 |
   CreateUnit.js                     |       0 |        0 |       0 |       0 | 13-189            
  src/components/dashboard           |   11.11 |        0 |    12.5 |   11.11 |                   
   DashBoard.js                      |       0 |        0 |       0 |       0 | 14-31             
-  FinancialPublic.js                |       0 |      100 |       0 |       0 | 5-58              
+  FinancialPublic.js                |       0 |      100 |       0 |       0 | 5-67              
   SubmittedRequests.js              |     100 |      100 |     100 |     100 |                   
   UserInfo.js                       |       0 |      100 |       0 |       0 | 15-26             
  src/components/dashboard/financial |       0 |        0 |       0 |       0 |                   
@@ -63,7 +63,9 @@ All files                           |    0.89 |        0 |     2.6 |    0.91 |
   SignUp.js                         |       0 |        0 |       0 |       0 | 8-208             
   SignUpCompany.js                  |       0 |        0 |       0 |       0 | 8-207             
  src/components/nagivationBar       |       0 |        0 |       0 |       0 |                   
-  NavigationBar.js                  |       0 |        0 |       0 |       0 | 7-23              
+  NavigationBar.js                  |       0 |        0 |       0 |       0 | 8-25              
+ src/components/operationCost       |       0 |      100 |       0 |       0 |                   
+  Operation.js                      |       0 |      100 |       0 |       0 | 6-130             
  src/components/property            |       0 |        0 |       0 |       0 |                   
   PropertyCard.js                   |       0 |        0 |       0 |       0 | 8-93              
   PropertyContainer.js              |       0 |        0 |       0 |       0 | 9-58              
