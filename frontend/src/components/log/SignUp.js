@@ -3,6 +3,7 @@ import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axiosInstance from "../../api/axios.js";
+import LargeTitle from "../LargeTitle.js";
 
 const SignUp = () => {
 
@@ -206,6 +207,7 @@ const SignUp = () => {
   //match the input with the backend parameters (ex: first last and all the other fields)
   return (
     <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
+      <LargeTitle title="Sign Up Now!" />
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridFirstName">
