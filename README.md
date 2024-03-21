@@ -4,7 +4,7 @@ https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=sha
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Date: Thu Mar 21 03:13:10 UTC 2024
+Date: Thu Mar 21 18:00:49 UTC 2024
 
 Code Quality Indicators
 
@@ -28,7 +28,7 @@ Code Quality Indicators
 --------------------------------|---------|----------|---------|---------|-------------------
 File                            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------------------|---------|----------|---------|---------|-------------------
-All files                       |    1.23 |        0 |    3.89 |    1.25 |                   
+All files                       |    1.23 |        0 |    3.87 |    1.24 |                   
  src                            |       0 |      100 |       0 |       0 |                   
   App.js                        |       0 |      100 |       0 |       0 | 25-30             
   index.js                      |       0 |      100 |     100 |       0 | 10-12             
@@ -41,7 +41,7 @@ All files                       |    1.23 |        0 |    3.89 |    1.25 |
  src/components/createProperty  |       0 |        0 |       0 |       0 |                   
   CreateLocker.js               |       0 |        0 |       0 |       0 | 13-185            
   CreateParking.js              |       0 |        0 |       0 |       0 | 13-188            
-  CreateProperty.js             |       0 |        0 |       0 |       0 | 13-149            
+  CreateProperty.js             |       0 |        0 |       0 |       0 | 13-156            
   CreateUnit.js                 |       0 |        0 |       0 |       0 | 13-189            
  src/components/dashboard       |   26.66 |        0 |   33.33 |   26.66 |                   
   DashBoard.js                  |       0 |        0 |       0 |       0 | 13-30             
