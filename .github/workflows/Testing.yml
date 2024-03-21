@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       # Install frontend entrance dependencies and start server
       - name: Start frontend server
@@ -114,10 +114,13 @@ jobs:
         with:
           name: cypress-report
           path: ./frontend/reports_cypress.json
+
+      - name: Checkout the repository and the branch
+        uses: actions/checkout@v4
           
       - name: Add coverage_report.json
         run: |
-            echo "insert123 text here" > myfile.txt
+            echo "insert1234 text here" > myfile.txt
             git init
             git branch
             git pull origin 
@@ -128,32 +131,7 @@ jobs:
             git add myfile.txt
             git commit -m "initial commit"
             git push origin --force
-# name: Publish
 
-# on: [push]
-# jobs:
-
-#   publish:
-#     name: Publish the release version
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout the repository and the branch
-#         uses: actions/checkout@v4
-
-#       - name: Setup the release version and overwrite the existing major version tag
-#         run: |
-#           echo "insert123 text here" > myfile.txt
-#           git init
-#           git branch
-#           git pull origin 
-#           git status
-#           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-#           git config --local user.name "github-actions[bot]"
-#           touch myfile.txt
-#           git add myfile.txt
-#           git commit -m "initial commit"
-#           git push origin --force
 
 
       
