@@ -73,9 +73,9 @@ const SendRegistrationButton = () => {
         try {
             //FIXME i hard coded values and still didn't work. tried postman and stilll didn't work, might not be post.
             const response = await axiosInstance.post('/registration-keys/condo-registration-key/', {
-                unit: selectedUnit.id,
+                unit: parseInt(selectedUnit.id),
                 user: selectedUser.user.email,
-                company: companyId,
+                company: parseInt(companyId),
                 is_owner: isOwner
             });
             console.log(response);
@@ -84,7 +84,7 @@ const SendRegistrationButton = () => {
         }
 
     }
-
+    //TODO add a property name in the 
     useEffect(() => {
         if (properties) {
             getUnitsFromProperties(properties);
