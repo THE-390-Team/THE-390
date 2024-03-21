@@ -119,14 +119,23 @@ jobs:
               mv temp_readme.md README.md
               rm temp.md
               git init
-              git branch
               git pull origin 
               git status
               git config --local user.email "github-actions[bot]@users.noreply.github.com"
               git config --local user.name "github-actions[bot]"
               git add README.md
               git commit -m "Testing & sending reports to README.md!"
-              git push origin development --force
+              # Create a new branch for the changes
+              git checkout -b feature/submit-report
+              
+              # Push changes to the remote repository
+              git push origin feature/submit-report
+              
+              # Create a pull request
+              gh pr create --base development --head feature/submit-report --title "Testing & sending reports to README.md!" --body "This pull request includes updates to README.md with testing reports and code quality indicators."
+              
+              # Switch back to the development branch
+              git checkout development
 
       # # Save Jest tests as artifacts
       # - name: Save Jest report
