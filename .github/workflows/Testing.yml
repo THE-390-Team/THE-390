@@ -121,7 +121,7 @@ jobs:
               mv temp_readme.md README.md
               rm temp.md
 
-              # Initialize the repository
+                            # Initialize the repository
               git init
               
               # Add the changes
@@ -137,17 +137,25 @@ jobs:
               # Add the remote repository
               git remote add origin https://github.com/THE-390-Team/THE-390.git
               
-              # Fetch the latest changes from the remote development branch
-              git fetch origin development
+              # Push the changes to the remote feature branch
+              git push origin feature/branch
               
-              # Merge the changes from the remote development branch into the local development branch
-              git merge origin/development
+              # Switch to the feature branch
+              git checkout feature/branch
               
-              # Push the changes to the remote development branch
-              git push origin development
+              # Pull the latest changes from the development branch
+              git pull origin development
               
-              # Create a pull request (optional, if needed)
-              gh pr create --base development --head development --title "Testing & sending reports to README.md!" --body "This is an automated pull request from GitHub Bot"
+              # Resolve any merge conflicts if there are any
+              
+              # Add the changes
+              git add .
+              
+              # Commit the changes
+              git commit -m "Merged changes from development into feature/branch"
+              
+              # Push the merged changes to the remote feature branch
+              git push origin feature/branch
 
       # # Save Jest tests as artifacts
       # - name: Save Jest report
