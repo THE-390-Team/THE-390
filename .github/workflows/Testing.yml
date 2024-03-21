@@ -87,23 +87,30 @@ jobs:
           npm ci
 
       
-      # Run Unit tests Jest (Frontend)
       - name: Run Unit Tests (Frontend)
-        working-directory: ./frontend
-        run: |
-             npm run coverage > jest-report.json
-             cd ..
-             cat frontend/jest-report.json > README.md
-             git init
-             git branch
-             git pull origin 
-             git status
-             git config --local user.email "github-actions[bot]@users.noreply.github.com"
-             git config --local user.name "github-actions[bot]"
-             touch README.md
-             git add README.md
-             git commit -m "initial commit"
-             git push origin --force
+         working-directory: ./frontend
+         run: |
+          npm run coverage > jest-report.json
+          echo "Submission for team 18 sprint 1 link on google drive:" > temp.md
+          echo "" >> temp.md
+          echo "https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=share_link" >> temp.md
+          echo "" >> temp.md
+          echo "[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)" >> temp.md
+          echo "" >> temp.md
+          echo "## Testing Reports" >> temp.md
+          echo "" >> temp.md
+          cat temp.md README.md > temp_readme.md
+          mv temp_readme.md README.md
+          rm temp.md
+          git init
+          git branch
+          git pull origin 
+          git status
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          git commit -m "Add submission link, Codacy badge, and testing reports"
+          git push origin --force
 
       # # Save Jest tests as artifacts
       # - name: Save Jest report
