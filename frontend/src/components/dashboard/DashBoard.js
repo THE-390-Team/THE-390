@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import PropertyContainer from '../property/PropertyContainer.js'
 import UserInfo from './UserInfo.js';
 import { Container, Col, Row, Button } from "react-bootstrap";
-import Financial from './Financial.js';
+import Financial from './financial/Financial.js';
 import SubmittedRequests from './SubmittedRequests.js';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../api/axios.js';
@@ -34,7 +34,7 @@ const DashBoard = () => {
                 {/* title for properties with styling */}
                 <h1 style={{ fontSize: "40px", marginBottom: "30px", fontWeight: "bold" }}>Properties</h1>
             </div>
-            <PropertyContainer style={{}} />
+            <PropertyContainer />
             {/* the button to create a property is only accessible to company profiles */}
             {
                 role === "COMPANY" &&
@@ -44,13 +44,15 @@ const DashBoard = () => {
                 </div>
 
             }            <Row className="mt-5">
-                <Col>
-                    <Financial />
-                    <SubmittedRequests />
-                </Col>
-                {/* <Col>
-                    <SubmittedRequests />
-                </Col> */}
+                <Row>
+                    <Col>
+                        <Financial />
+                    </Col>
+                    <Col>
+                        <SubmittedRequests />
+                    </Col>
+                </Row>
+
             </Row>
         </Container>
     );

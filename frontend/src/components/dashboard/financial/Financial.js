@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Card, Accordion, Table, Row, Col } from "react-bootstrap";
+import Total from './Total.js';
 
 const Financial = () => {
     // Dummy variable to replicate JSON file 
@@ -52,20 +53,58 @@ const Financial = () => {
                 "storages": [],
                 "storage_total": 0,
                 "total": 0
-            }
+            },
+            "3": {
+                "property_name": "Property 1",
+                "condos": [
+                    {
+                        "id": 1,
+                        "condo": 101,
+                        "fee": 100000.0
+                    },
+                    {
+                        "id": 5,
+                        "condo": 101,
+                        "fee": 934.0
+                    }
+                ],
+                "condo_total": 100934.0,
+                "parkings": [
+                    {
+                        "id": 1,
+                        "parking_number": "A101",
+                        "fee": 500.0
+                    },
+                    {
+                        "id": 2,
+                        "parking_number": "B102",
+                        "fee": 600.0
+                    }
+                ],
+                "parking_total": 1100.0,
+                "storages": [
+                    {
+                        "id": 1,
+                        "storage_number": "C101",
+                        "fee": 200.0
+                    }
+                ],
+                "storage_total": 200.0,
+                "total": 102234.0
+            },
         },
         "TOTAL": 102234.0
     };
 
     return (
         <Container style={{ width: '100%' }}>
-            <Card>
+            <Card style={{ minHeight: "70vh", maxHeight: "70vh" }}>
                 <div className="d-flex justify-content-center">
                     {/* Title for the financial details with styling */}
                     <Card.Title><h1 style={{ fontSize: "40px", fontWeight: "bold", marginTop: "15px" }}>Financial Details</h1></Card.Title>
                 </div>
-            
-                <Accordion defaultActiveKey="0" style={{ maxHeight: '600px', overflowY: 'scroll' }}> 
+
+                <Accordion defaultActiveKey="0" style={{ maxHeight: '600px', overflowY: 'scroll' }}>
                     {/* Mapping through property objects to display financial information */}
                     {Object.keys(property.property).map(propertyKey => (
                         <Accordion.Item key={propertyKey} eventKey={propertyKey}>
@@ -150,9 +189,16 @@ const Financial = () => {
                 </Accordion>
 
                 {/* Div at the bottom showing the last total */}
-                <div style={{ textAlign: "left", marginTop: "20px", marginLeft:"20px", marginBottom:"20px"}}>
-                    <strong>Total fees for all properties: {property.TOTAL}</strong>
-                </div>
+                {/* <div style={{ position: "absolute", textAlign: "right", bottom: "0px", marginBottom: "20px", marginLeft: "20px" }}>
+                    <Row Style={{width:"100%"}}>
+                        <Col><strong>Total fees for all properties: </strong>
+                        </Col>
+                        <Col>{property.TOTAL}
+                        </Col>
+                    </Row>
+
+                </div> */}
+                <Total fee={property.TOTAL} />
             </Card>
         </Container>
     )
