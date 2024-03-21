@@ -131,8 +131,8 @@ jobs:
               git commit -m "Testing & sending reports to README.md!"
               
               # Set up git user configuration
-              git config --global user.email "ci-cd@example.com"
-              git config --global user.name "CI/CD Pipeline"
+              git config --global user.email "werugian@gmail.com"
+              git config --global user.name "Nicholas"
               
               # Add the remote repository
               git remote add origin https://github.com/THE-390-Team/THE-390.git
