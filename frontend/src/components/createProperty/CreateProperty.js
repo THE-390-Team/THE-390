@@ -246,41 +246,41 @@ const CreateProperty = () => {
           </Form.Group>
 
         </Row>
-
-        <Form.Group controlId="formGridPropertyImage" className="mb-4">
-          <Form.Group as={Col} controlId="formGridPropertyFees">
-            <Form.Label>Fee Rate</Form.Label>
+        <Row>
+          <Form.Group controlId="formGridPropertyImage" className="mb-4">
+            <Form.Group as={Col} controlId="formGridPropertyFees">
+              <Form.Label>Fee Rate</Form.Label>
+              <Form.Control
+                type="text"
+                name="property_fee_rate"
+                placeholder="Enter Fee Rate"
+                value={formData.fee_rate}
+                onChange={handleChange}
+                data-testid="property-fee_rate-input"
+              />
+              {errors.property_fee_rate && <span style={{ color: "red" }}>{errors.property_fee_rate}</span>}
+            </Form.Group>
+            <Form.Label>Upload Property Image</Form.Label>
             <Form.Control
-              type="text"
-              name="property_fee_rate"
-              placeholder="Enter Fee Rate"
-              value={formData.fee_rate}
-              onChange={handleChange}
-              data-testid="property-fee_rate-input"
+              type="file"
+              name="property_image"
+              placeholder="H3G 1M8"
+              multiple
+              onChange={handleImageChange}
+              data-testid="property-image-file"
             />
-            {errors.property_fee_rate && <span style={{ color: "red" }}>{errors.property_fee_rate}</span>}
+            {errors.property_image && <span style={{ color: "red" }}>{errors.property_image}</span>}
           </Form.Group>
-          <Form.Label>Upload Property Image</Form.Label>
-          <Form.Control
-            type="file"
-            name="property_image"
-            placeholder="H3G 1M8"
-            multiple
-            onChange={handleImageChange}
-            data-testid="property-image-file"
-          />
-          {errors.property_image && <span style={{ color: "red" }}>{errors.property_image}</span>}
-        </Form.Group>
 
-      </Row>
+        </Row>
 
-      <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToDashboard}>
-        Cancel
-      </Button>
-      <Button style={{ marginLeft: "20px", marginTop: "20px" }} variant="primary" type="submit" data-testid="submit-button">
-        Submit
-      </Button>
-    </Form>
+        <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToDashboard}>
+          Cancel
+        </Button>
+        <Button style={{ marginLeft: "20px", marginTop: "20px" }} variant="primary" type="submit" data-testid="submit-button">
+          Submit
+        </Button>
+      </Form>
     </Container >
   )
 }
