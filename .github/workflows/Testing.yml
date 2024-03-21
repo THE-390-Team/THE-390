@@ -8,7 +8,7 @@ jobs:
     
     steps:
       - name: Checkout the repository and the branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       # Install frontend entrance dependencies and start server
       - name: Start frontend server
@@ -75,6 +75,11 @@ jobs:
         with:
           name: coverage-report
           path: ./backend/coverage_report.json
+
+          
+      - name: Checkout the repository and the branch
+        uses: actions/checkout@v4
+
 
       # Run Unit tests Jest (Frontend)
       - name: Run Unit Tests (Frontend)
