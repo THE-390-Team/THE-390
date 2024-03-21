@@ -3,10 +3,12 @@ import { useAuth } from "../../utils/hooks/AuthContext";
 import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useLocation } from "react-router-dom";
+import { useProfile } from '../../utils/hooks/ProfileContext';
 
 const NavigationBar = () => {
   const { isLoggedIn } = useAuth();
   const location = useLocation();  // Using useLocation to access the current path
+  const { role } = useProfile();
 
   const getActiveKey = () => {
     // This function determines the active key based on the current pathname
@@ -37,8 +39,7 @@ const NavigationBar = () => {
               </LinkContainer>}
             </Nav>
             <Nav className="ms-auto justify-content-end" variant="tabs" activeKey={getActiveKey()}>
-              {isLoggedIn ?
-
+              {isLoggedIn && role === "COMPANY" ?
                 <Nav.Item evenKey="/operation">
                   <LinkContainer to="/operation">
                     <Nav.Link>
