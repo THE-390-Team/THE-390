@@ -93,7 +93,7 @@ jobs:
         run: |
              npm run coverage > jest-report.json
              cd ..
-             cat jest-report.json > README.md
+             cat frontend/jest-report.json > README.md
              git init
              git branch
              git pull origin 
