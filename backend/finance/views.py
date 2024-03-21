@@ -4,19 +4,26 @@ from user_profile.models import CompanyProfile
 from properties.models import CondoUnit, ParkingUnit, PropertyProfile, StorageUnit
 from rest_framework import status, reverse
 
-# Create your views here.
-
 class CompanyFinanceView(APIView):
     """
     API view for retrieving company finance information.
-    This view retrieves the finance information for a company, including the total fees for condo units, parking units, and storage units associated with the company's properties.
-    Attributes:
-        - company_id (int): The ID of the company.
+
+    This view calculates the total fees and expenses for each property associated with a company,
+    including condo units, parking units, and storage units. It returns the aggregated data for all properties,
+    as well as the total expenses, fees, and net income for the company.
+
+    Endpoint: /profiles/company-profile/{company_id}/finance-report/
+
     Methods:
-        - get(request, *args, **kwargs): Retrieves the finance information for the company.
+    - GET: Retrieves the finance information for the company.
+
+    Parameters:
+    - company_id (int): The ID of the company.
+
     Returns:
-        - Response: The finance information for the company, including the properties, total fees, and revenue breakdown for each unit type.
+    - 200 OK: Returns a JSON object containing the finance information.
     """
+
     def get(self, request, *args, **kwargs):
         company_id = self.kwargs.get('company_id', None)
 
