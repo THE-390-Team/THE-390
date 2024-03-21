@@ -88,8 +88,8 @@ jobs:
 
       
       - name: Run Unit Tests (Frontend)
-         working-directory: ./frontend
-         run: |
+        working-directory: ./frontend
+        run: |
           npm run coverage > jest-report.json
           echo "Submission for team 18 sprint 1 link on google drive:" > temp.md
           echo "" >> temp.md
