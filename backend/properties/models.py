@@ -15,13 +15,13 @@ class PropertyProfile(models.Model):
         postal_code (CharField): The postal code of the property.
         fee_rate (DecimalField): The fee rate of the property.
     """
-
+    name = models.CharField(max_length=100, blank=True)
     company = models.ForeignKey('user_profile.CompanyProfile', on_delete=models.CASCADE, related_name='property_profiles')
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     province = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=12)
-    fee_rate = models.DecimalField(decimal_places=2, max_digits=20)
+    fee_rate = models.DecimalField(decimal_places=2, max_digits=20, default=0)
     image = models.ImageField(upload_to="property_images", default="property_images/defaultProperty.jpg")
 
     def __str__(self):
