@@ -8,6 +8,8 @@ import SubmittedRequests from './SubmittedRequests.js';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../api/axios.js';
 import { useProfile } from '../../utils/hooks/ProfileContext.js';
+import SendRegistrationButton from '../registrationKey/SendRegistrationButton.js';
+import LargeTitle from '../LargeTitle.js';
 
 
 const DashBoard = () => {
@@ -30,17 +32,16 @@ const DashBoard = () => {
     return (
         <Container>
             {/* <UserInfo /> */}
-            <div className="d-flex justify-content-center">
-                {/* title for properties with styling */}
-                <h1 style={{ fontSize: "40px", marginBottom: "30px", fontWeight: "bold" }}>Properties</h1>
+            <div>
+                <LargeTitle title="Your Properties"/>
             </div>
             <PropertyContainer style={{}} />
             {/* the button to create a property is only accessible to company profiles */}
             {
                 role === "COMPANY" &&
                 <div className="mt-5 diplay-flex text-center">
-                    <Button variant="primary" style={{ width: "150px" }} onClick={handleGoToProperty}>Add Property</Button>
-                    <Button variant="primary" style={{ width: "150px", marginLeft: "120px" }} onClick={handleGoToProperty}>Send Key</Button>
+                    <Button variant="primary" style={{ width: "150px", marginRight: "60px" }} onClick={handleGoToProperty} data-testid="create-property-button">Add Property</Button>
+                    <SendRegistrationButton style={{ width: "150px" }} />
                 </div>
 
             }            <Row className="mt-5">
