@@ -125,8 +125,7 @@ jobs:
             git status
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
-            touch README.md
-            git add README.md
+            git add jest-report.json
             git commit -m "Update README.md with Jest report"  # Modify commit message as needed
             git push origin HEAD:$GITHUB_REF --force
 
