@@ -4,6 +4,21 @@ https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=sha
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
+Date: Thu Mar 21 03:13:10 UTC 2024
+
+Code Quality Indicators
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=bugs)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+
 ## Testing Reports
 
 
