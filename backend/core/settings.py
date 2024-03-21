@@ -209,7 +209,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'patrickmaceachen78@gmail.com'
-EMAIL_HOST_PASSWORD = 'mktd rbzi lbmm iuqm'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_SSL = False
 
 # Default location for images and reference URL
