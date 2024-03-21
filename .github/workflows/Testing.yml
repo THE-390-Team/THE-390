@@ -91,6 +91,7 @@ jobs:
         working-directory: ./frontend
         run: |
               npm run coverage > jest-report.json
+              cd ..
               echo "Submission for team 18 sprint 1 link on google drive:" > temp.md
               echo "" >> temp.md
               echo "https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=share_link" >> temp.md
