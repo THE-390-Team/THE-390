@@ -131,8 +131,8 @@ jobs:
               git commit -m "Testing & sending reports to README.md!"
               
               # Set up git user configuration
-              git config --local user.email "github-actions[bot]@users.noreply.github.com"
-              git config --local user.name "github-actions[bot]"
+              git config user.name github-actions
+              git config user.email github-actions@github.com
               
               # Add the remote repository
               git remote add origin https://github.com/THE-390-Team/THE-390.git
