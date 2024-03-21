@@ -6,6 +6,7 @@ https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=sha
 
 Date: Thu Mar 21 21:36:09 UTC 2024
 
+
 Code Quality Indicators
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
@@ -19,7 +20,12 @@ Code Quality Indicators
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
 
-## Testing Reports
+Code Coverage Tree
+
+[![codecov](https://codecov.io/gh/THE-390-Team/THE-390/graph/badge.svg?token=FW880JJXGB)](https://codecov.io/gh/THE-390-Team/THE-390)
+
+
+## Testing Reports from Workflow
 
 
 > frontend@0.1.0 coverage
