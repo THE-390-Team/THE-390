@@ -10,7 +10,7 @@ const Financial = () => {
 
   const FetchPropertiesFinacials = async () => {
     try {
-      const response = await axiosInstance.get(`/profiles/company-profile/${comapanyID}/property-fees/`);
+      const response = await axiosInstance.get(`/profiles/company-profile/${comapanyID}/finance-report/`);
       if (response.status === 200) {
         setProperty(response.data);
       }
@@ -43,7 +43,7 @@ const Financial = () => {
                       {`Financial Info ${property.properties[propertyKey].property_name}`}
                     </Col>
                     <Col style={{ textAlign: "right" }}>
-                      ${property.properties[propertyKey].total}
+                      ${property.properties[propertyKey].fee}
                     </Col>
                   </Row>
                 </Accordion.Header>
@@ -65,7 +65,7 @@ const Financial = () => {
                       ))}
                       <tr>
                         <td>Total Condo Fees</td>
-                        <td style={{ width: '50%', textAlign: "center" }}>${property.properties[propertyKey].condo_total}</td>
+                        <td style={{ width: '50%', textAlign: "center" }}>${property.properties[propertyKey].condo_fee}</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -86,7 +86,7 @@ const Financial = () => {
                       ))}
                       <tr>
                         <td>Total Parking Fees</td>
-                        <td style={{ width: '50%', textAlign: "center" }}>${property.properties[propertyKey].parking_total}</td>
+                        <td style={{ width: '50%', textAlign: "center" }}>${property.properties[propertyKey].parking_fee}</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -107,7 +107,7 @@ const Financial = () => {
                       ))}
                       <tr>
                         <td>Total Storage Fees</td>
-                        <td style={{ width: '50%', textAlign: "center" }}>${property.properties[propertyKey].storage_total}</td>
+                        <td style={{ width: '50%', textAlign: "center" }}>${property.properties[propertyKey].storage_fee}</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -127,7 +127,7 @@ const Financial = () => {
                     </Row>
 
                 </div> */}
-        <Total fee={property.total} />
+        <Total fee={property.fee} />
       </Card>
     </Container>
   )
