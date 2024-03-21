@@ -102,17 +102,17 @@ jobs:
               echo "" >> temp.md
               echo "Code Quality Indicators" >> temp.md
               echo "" >> temp.md
-              echo"[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
-              echo"[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=bugs)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
-              echo"[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
-              echo"[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
-              echo"[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
-              echo"[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
-              echo"[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
-              echo"[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
-              echo"[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
-              echo"[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
-              echo"" >> temp.md
+              echo "[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=bugs)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "" >> temp.md
               echo "## Testing Reports" >> temp.md
               echo "" >> temp.md
               cat temp.md frontend/jest-report.json > temp_readme.md
