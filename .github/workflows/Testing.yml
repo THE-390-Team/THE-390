@@ -120,22 +120,35 @@ jobs:
               cat temp.md frontend/jest-report.json > temp_readme.md
               mv temp_readme.md README.md
               rm temp.md
+              rm temp.md
+
+              # Initialize the repository
               git init
-              git pull origin 
-              git status
+              
+              # Add the changes
+              git add README.md
+              
+              # Commit the changes
+              git commit -m "Testing & sending reports to README.md!"
+              
+              # Set up git user configuration
               git config --local user.email "github-actions[bot]@users.noreply.github.com"
               git config --local user.name "github-actions[bot]"
-              git add README.md
-              git commit -m "Testing & sending reports to README.md!"
-              # Create a new branch for the changes
-              git checkout -b feature/submit-report
               
-              # Push changes to the remote repository
-              git push origin feature/submit-report
+              # Add the remote repository
+              git remote add origin https://github.com/THE-390-Team/THE-390.git
               
-              # Create a pull request
-              gh pr create --base development --head feature/submit-report --title "Testing & sending reports to README.md!" --body "This is an automated pull request from GitHub Bot"
+              # Fetch the latest changes from the remote development branch
+              git fetch origin development
               
+              # Merge the changes from the remote development branch into the local development branch
+              git merge origin/development
+              
+              # Push the changes to the remote development branch
+              git push origin development
+              
+              # Create a pull request (optional, if needed)
+              gh pr create --base development --head development --title "Testing & sending reports to README.md!" --body "This is an automated pull request from GitHub Bot"
 
       # # Save Jest tests as artifacts
       # - name: Save Jest report
