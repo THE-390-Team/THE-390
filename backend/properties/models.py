@@ -21,10 +21,10 @@ class PropertyProfile(models.Model):
     city = models.CharField(max_length=100)
     province = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=12)
-    fee_rate = models.DecimalField(decimal_places=2, max_digits=20)
     image = models.ImageField(upload_to="property_images", default="property_images/defaultProperty.jpg")
-
+    fee_rate = models.DecimalField(decimal_places=2, max_digits=20, default=0)
     name = models.CharField(max_length=100, blank=True)
+    
     def __str__(self):
         """
         Returns a string representation of the property profile.
