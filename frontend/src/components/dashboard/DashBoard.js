@@ -1,12 +1,11 @@
 import React from 'react'
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import PropertyContainer from '../property/PropertyContainer.js'
-import UserInfo from './UserInfo.js';
 import { Container, Col, Row, Button } from "react-bootstrap";
-import Financial from './Financial.js';
+import FinancialPublic from './FinancialPublic.js';
+import Financial from './financial/Financial.js';
 import SubmittedRequests from './SubmittedRequests.js';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../api/axios.js';
 import { useProfile } from '../../utils/hooks/ProfileContext.js';
 import SendRegistrationButton from '../registrationKey/SendRegistrationButton.js';
 import LargeTitle from '../LargeTitle.js';
@@ -33,9 +32,9 @@ const DashBoard = () => {
         <Container>
             {/* <UserInfo /> */}
             <div>
-                <LargeTitle title="Your Properties"/>
+                <LargeTitle title="Your Properties" />
             </div>
-            <PropertyContainer style={{}} />
+            <PropertyContainer />
             {/* the button to create a property is only accessible to company profiles */}
             {
                 role === "COMPANY" &&
@@ -43,15 +42,22 @@ const DashBoard = () => {
                     <Button variant="primary" style={{ width: "150px", marginRight: "60px" }} onClick={handleGoToProperty} data-testid="create-property-button">Add Property</Button>
                     <SendRegistrationButton style={{ width: "150px" }} />
                 </div>
+            }
+            <Row className="mt-5">
+                <Row>
+                    <Col>
+                        {
+                            role === "COMPANY"
+                                ? <Financial /> :
+                                <FinancialPublic />
+                        }
+                    </Col>
+                    <Col>
+                        <SubmittedRequests />
+                    </Col>
+                </Row>
 
-            }            <Row className="mt-5">
-                <Col>
-                    <Financial />
-                    <SubmittedRequests />
-                </Col>
-                {/* <Col>
-                    <SubmittedRequests />
-                </Col> */}
+
             </Row>
         </Container>
     );

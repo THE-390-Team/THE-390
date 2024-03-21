@@ -7,7 +7,7 @@ main {
   grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
   gap: 20px;
   padding: 20px;
-  max-height: 500px;
+  max-height: 700px;
   overflow-y: auto;
   border-color: black;
   border: 1px;
