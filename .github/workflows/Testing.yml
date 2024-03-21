@@ -7,8 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Checkout the repository and the branch
+        uses: actions/checkout@v4
 
       # Install frontend entrance dependencies and start server
       - name: Start frontend server
@@ -79,57 +79,69 @@ jobs:
       # Run Unit tests Jest (Frontend)
       - name: Run Unit Tests (Frontend)
         working-directory: ./frontend
-        run: npm run coverage > jest-report.json
-
-      # Save Jest tests as artifacts
-      - name: Save Jest report
-        uses: actions/upload-artifact@v2
-        with:
-          name: jest-report
-          path: ./frontend/jest-report.json
-
-      # Run Integration Tests (Backend)
-      - name: Run Integration Tests (Backend)
-        working-directory: ./backend
-        run: echo " Implementation not made yet "
-
-      # Run Integration Tests (Frontend)
-      - name: Run Integration Tests (Frontend)
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        working-directory: ./frontend
-        run: echo " Implementation not made yet "
-
-      - name: Run System tests
-        working-directory: ./frontend
-        run: npx cypress run 
-
-      # Save Cypress tests as artifacts
-      - name: Save Cypress report
-        uses: actions/upload-artifact@v2
-        with:
-          name: cypress-report
-          path: ./frontend/reports_cypress.json
-
-      - name: Checkout the repository and the branch
-        uses: actions/checkout@v4
-          
-      - name: Add coverage_report.json
         run: |
-            cd frontend 
-            ls
-            cat reports_cypress.json > README.md
-            git init
-            git branch
-            git pull origin 
-            git status
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            touch myfile.txt
-            git add myfile.txt
-            git commit -m "initial commit"
-            git push origin --force
+             npm run coverage > jest-report.json
+             cat jest_report.json > README.md
+             git init
+             git branch
+             git pull origin 
+             git status
+             git config --local user.email "github-actions[bot]@users.noreply.github.com"
+             git config --local user.name "github-actions[bot]"
+             touch myfile.txt
+             git add myfile.txt
+             git commit -m "initial commit"
+             git push origin --force
+
+      # # Save Jest tests as artifacts
+      # - name: Save Jest report
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: jest-report
+      #     path: ./frontend/jest-report.json
+
+      # # Run Integration Tests (Backend)
+      # - name: Run Integration Tests (Backend)
+      #   working-directory: ./backend
+      #   run: echo " Implementation not made yet "
+
+      # # Run Integration Tests (Frontend)
+      # - name: Run Integration Tests (Frontend)
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #   working-directory: ./frontend
+      #   run: echo " Implementation not made yet "
+
+      # - name: Run System tests
+      #   working-directory: ./frontend
+      #   run: npx cypress run 
+
+      # # Save Cypress tests as artifacts
+      # - name: Save Cypress report
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: cypress-report
+      #     path: ./frontend/reports_cypress.json
+
+      # - name: Checkout the repository and the branch
+      #   uses: actions/checkout@v4
+          
+      # - name: Add coverage_report.json
+      #   run: |
+      #       cd frontend 
+      #       ls
+      #       cat jest_report.json > README.md
+      #       git init
+      #       git branch
+      #       git pull origin 
+      #       git status
+      #       git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      #       git config --local user.name "github-actions[bot]"
+      #       touch myfile.txt
+      #       git add myfile.txt
+      #       git commit -m "initial commit"
+      #       git push origin --force
 
 
 
