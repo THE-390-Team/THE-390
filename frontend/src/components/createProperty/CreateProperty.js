@@ -22,6 +22,7 @@ const CreateProperty = () => {
     property_city: "",
     property_province: "British Colombia",
     property_postal_code: "",
+    property_fee_rate: "",
     property_image: propertyPhoto,
   });
 
@@ -82,10 +83,22 @@ const CreateProperty = () => {
     if (!formData.property_postal_code){
       errors.property_postal_code = 'Postal code field required';
       isValid = false;
-    } else if (formData.property_postal_code.length > 12) {
-      errors.property_postal_code = 'Postal code must not exceed 12 characters';
+    } else if (formData.property_postal_code.length > 10) {
+      errors.property_postal_code = 'Postal code must not exceed 10 characters';
       isValid = false;
     }
+
+    //Condo Fees must be filled, must be greater than 0 and must not exceed 10 chars
+    if (!formData.property_fee_rate){
+      errors.property_condo_fees = 'Condo Fees field required';
+      isValid = false;
+    } else if (formData.property_fee_rate.length > 10) {
+      errors.property_fee_rate = 'Condo Fees must not exceed 10 characters';
+      isValid = false;
+    } else if (formData.property_fee_rate <=0){
+      errors.property_fee_rate = 'Condo Fees must be greter than 0'
+    }
+
     //TODO: Add validation for image field: Image field must not be empty
 
     //If there are errors, set errors in state and prevent submit
@@ -225,20 +238,37 @@ const CreateProperty = () => {
             />
             {errors.property_postal_code && <span style={{color: "red"}}>{errors.property_postal_code}</span>}
           </Form.Group>
+      
         </Row>
 
-        <Form.Group controlId="formGridPropertyImage" className="mb-4">
-          <Form.Label>Upload Property Image</Form.Label>
-          <Form.Control
-            type="file"
-            name="property_image"
-            placeholder="H3G 1M8"
-            multiple
-            onChange={handleChange}
-            data-testid="property-image-file"
-          />
-          {errors.property_image && <span style={{color: "red"}}>{errors.property_image}</span>}
-        </Form.Group>
+        <Row className="mb-4">
+          <Form.Group as={Col} controlId="formGridPropertyFees">
+              <Form.Label>Fee Rate</Form.Label>
+              <Form.Control
+                type="text"
+                name="property_fee_rate"
+                placeholder="Enter Fee Rate"
+                value={formData.fee_rate}
+                onChange={handleChange}
+                data-testid="property-fee_rate-input"
+              />
+              {errors.property_fee_rate && <span style={{color: "red"}}>{errors.property_fee_rate}</span>}
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridPropertyImage">
+              <Form.Label>Upload Property Image</Form.Label>
+              <Form.Control
+                type="file"
+                name="property_image"
+                placeholder="H3G 1M8"
+                multiple
+                onChange={handleChange}  
+                data-testid="property-image-file"
+              />
+              {errors.property_image && <span style={{color: "red"}}>{errors.property_image}</span>}
+          </Form.Group>
+
+        </Row>
 
         <Button style={{ marginTop: "20px" }} variant="primary" onClick={handleBackToDashboard}>
           Cancel
