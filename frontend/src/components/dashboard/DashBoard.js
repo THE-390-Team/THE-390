@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../api/axios.js';
 import { useProfile } from '../../utils/hooks/ProfileContext.js';
 import SendRegistrationButton from '../registrationKey/SendRegistrationButton.js';
+import LargeTitle from '../LargeTitle.js';
 
 
 const DashBoard = () => {
@@ -31,9 +32,8 @@ const DashBoard = () => {
     return (
         <Container>
             {/* <UserInfo /> */}
-            <div className="d-flex justify-content-center">
-                {/* title for properties with styling */}
-                <h1 style={{ fontSize: "40px", marginBottom: "30px", fontWeight: "bold" }}>Properties</h1>
+            <div>
+                <LargeTitle title="Your Properties"/>
             </div>
             <PropertyContainer style={{}} />
             {/* the button to create a property is only accessible to company profiles */}
