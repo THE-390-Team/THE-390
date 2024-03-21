@@ -92,16 +92,16 @@ jobs:
         working-directory: ./frontend
         run: |
              npm run coverage > jest-report.json
-             cat jest-report.json > README.md
              cd ..
+             cat jest-report.json > README.md
              git init
              git branch
              git pull origin 
              git status
              git config --local user.email "github-actions[bot]@users.noreply.github.com"
              git config --local user.name "github-actions[bot]"
-             touch frontend/README.md
-             git add frontend/README.md
+             touch README.md
+             git add README.md
              git commit -m "initial commit"
              git push origin --force
 
