@@ -117,19 +117,17 @@ jobs:
           
       - name: Add coverage_report.json
         run: |
-            cd frontend
-            ls
-            cat jest-report.json > README.md
+            echo "insert123 text here" > myfile.txt
             git init
             git branch
+            git pull origin 
             git status
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
-            git remote set-url origin https://github.com/THE-390-Team/THE-390.git
-            git status
-            git add README.md
-            git commit -m "Update README.md with Jest report"  # Modify commit message as needed
-            git push origin HEAD:$GITHUB_REF --force
+            touch myfile.txt
+            git add myfile.txt
+            git commit -m "initial commit"
+            git push origin --force
 
 
       
