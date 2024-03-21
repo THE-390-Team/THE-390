@@ -1,172 +1,145 @@
 // import 'cypress-file-upload';
 // const { Link } = require("react-router-dom")
 
-// describe('Navigate to Property Page from Profile and go back', () => {
-//   beforeEach(() => {
-//     cy.visit('/login');
-//     cy.get('[data-testid="email-input"]').type('test@example.com');
-//     cy.get('[data-testid="password-input"]').type('password123');
-//     cy.get('[data-testid="submit-button"]').click();
-//   })
-//   it('Navigate to Property Page from Profile', () => {
-//     cy.get('[data-testid="dropdown"]').click();
-//     cy.contains('Dashboard').click();
-//     cy.url().should('include', '/dashboard');
-//     cy.contains('Name Placeholder 1').click();
-//     cy.url().should('include', '/property-page');
-//     cy.get('[data-testid="dashboard-return"]').click()
-//   })
-// })
+describe('As a Company employee Navigate to Property Page from Profile and go back', () => {
+  beforeEach(() => {
+    cy.visit('/login');
+    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
+    cy.get('[data-testid="password-input"]').type('123qweasd');
+    cy.get('[data-testid="submit-button"]').click();
+  })
+  it('Navigate to Property Page from Profile', () => {
+    cy.contains('Dashboard').click();
+    cy.contains('Profile').click();
+    cy.contains('Dashboard').click();
+    cy.url().should('include', '/dashboard');
+    cy.contains('Name Placeholder 3').click();// FIXME: this will change once we have a name attribute
+    cy.url().should('include', '/property-page');
+    cy.get('[data-testid="dashboard-return"]').click()
+  })
+})
 
-// describe('Navigate to Create Unit/Parking/Locker Form from Profile and go back', () => {
-//   beforeEach(() => {
-//     cy.visit('/login');
-//     cy.get('[data-testid="email-input"]').type('test@example.com');
-//     cy.get('[data-testid="password-input"]').type('password123');
-//     cy.get('[data-testid="submit-button"]').click();
-//   })
+describe('Navigate to Create Unit/Parking/Locker Form from Profile and go back', () => {
+  beforeEach(() => {
+    cy.visit('/login');
+    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
+    cy.get('[data-testid="password-input"]').type('123qweasd');
+    cy.get('[data-testid="submit-button"]').click();
+  })
 
-//   it('Navigate to Create Unit from profile', () => {
-//     cy.get('[data-testid="dropdown"]').click();
-//     cy.contains('Dashboard').click();
-//     cy.url().should('include', '/dashboard');
-//     cy.contains('Name Placeholder 2').click();
-//     cy.url().should('include', '/property-page');
-//     cy.get('[data-testid="create-unit-button"]').click()
-//     cy.contains('Cancel').click();
-//     cy.url().should('include', '/property-page')
-//   })
+  it('Navigate to Create Unit from profile', () => {
+    cy.contains('Dashboard').click();
+    cy.url().should('include', '/dashboard');
+    cy.contains('Profile').click();
+    cy.contains('Dashboard').click();
+    cy.contains('Name Placeholder 3').click(); // FIXME: this will change once we have a name attribute
+    cy.url().should('include', '/property-page');
+    cy.get('[data-testid="create-condo-unit-button"]').click()
+    cy.contains('Cancel').click();
+    cy.url().should('include', '/property-page')
+  })
+})
 
-  // only two properties
-  // it('Navigate to Create Parking from profile', () => {
-  //   cy.get('[data-testid="dropdown"]').click();
-  //   cy.contains('Dashboard').click();
-  //   cy.url().should('include', '/dashboard');
-  //   cy.contains('Estate Alpha').click();
-  //   cy.url().should('include', '/property-page');
-  //   cy.get('[data-testid="create-parking-button"]').click()
-  //   cy.contains('Cancel').click();
-  //   cy.url().should('include', '/property-page')
-  // })
+describe('Navigate to Create Property Form from Profile and go back', () => {
+  beforeEach(() => {
+    cy.visit('/login');
+    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
+    cy.get('[data-testid="password-input"]').type('123qweasd');
+    cy.get('[data-testid="submit-button"]').click();
+  })
+  it('Navigate to Create Property from Profile', () => {
+    cy.contains('Dashboard').click();
+    cy.contains('Profile').click();
+    cy.contains('Dashboard').click();
+    cy.url().should('include', '/dashboard');
+    cy.contains('Add Property').click();
+    cy.url().should('include', '/create-property');
+    cy.contains('Cancel').click();
+    cy.url().should('include', '/dashboard');
+  })
+})
 
-  // it('Navigate to Create Locker from profile', () => {
-  //   cy.get('[data-testid="dropdown"]').click();
-  //   cy.contains('Dashboard').click();
-  //   cy.url().should('include', '/dashboard');
-  //   cy.contains('Estate Alpha').click();
-  //   cy.url().should('include', '/property-page');
-  //   cy.get('[data-testid="create-locker-button"]').click()
-  //   cy.contains('Cancel').click();
-  //   cy.url().should('include', '/property-page')
-  // })
+describe('Sign in as company and Navigate to Create property and create condo unit', () => {
+  beforeEach(() => {
+    cy.visit('/login');
+    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
+    cy.get('[data-testid="password-input"]').type('123qweasd');
+    cy.get('[data-testid="submit-button"]').click();
+  })
+  it('Navigate to Create Property from Profile', () => {
+    cy.contains('Dashboard').click();
+    cy.url().should('include', '/dashboard');
+    cy.contains('Profile').click(); //can be removed once the slow loading bug is fixed
+    cy.contains('Dashboard').click();
+    cy.contains('Add Property').click();
+    cy.url().should('include', '/create-property');
+    cy.get('[data-testid="property-name-input"]').type('test')
+    cy.get('[data-testid="property-address-input"]').type('test')
+    cy.get('[data-testid="property-city-input"]').type('test')
+    cy.get('[data-testid="province-select-test"]').select("QC")
+    cy.get('[data-testid="property-city-input"]').type('test')
+    cy.get('[data-testid="property-postal-code-input"]').type('H3H3H3')
+    cy.get('[data-testid="submit-button"]').click()
+  })
+  it('Navigate to create condo unit from property page and creates a condo unit', () => {
+    cy.contains('Profile').click();
+    cy.contains('Dashboard').click();
+    cy.contains('Name Placeholder 3').click();// FIXME: this will change once we have a name attribute
+    cy.url().should('include', '/property-page');
+    cy.get('[data-testid="create-condo-unit-button"]').click()
+    cy.get('[data-testid="unit-location-input"]').type('1234')
+    cy.get('[data-testid="unit-size-input"]').type('1000')
+    cy.get('[data-testid="unit_purchase_price-input"]').type('1000')
+    cy.get('[data-testid="unit_rental_price-input"]').type('1000')
+    cy.get('[data-testid="unit-info-input"]').type('random info')
+    cy.get('[data-testid="submit-button"]').click()
+    cy.url().should('include', '/property-page')
+  })
+})
 
-// })
+describe('Sign in as company and Navigate to create a parking unit', () => {
+  before(() => {
+    cy.visit('/login');
+    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
+    cy.get('[data-testid="password-input"]').type('123qweasd');
+    cy.get('[data-testid="submit-button"]').click();
+  })
+  it('Navigate to create parking unit from property page', () => {
+    cy.contains('Profile').click();
+    cy.contains('Dashboard').click();
+    cy.contains('Name Placeholder 3').click();// FIXME: this will change once we have a name attribute
+    cy.url().should('include', '/property-page');
+    cy.get('[data-testid="create-parking-unit-button"]').click()
+    cy.get('[data-testid="parking-location-input"]').type('1234')
+    cy.get('[data-testid="parking-size-input"]').type('1000')
+    cy.get('[data-testid="parking-purchase_price-input"]').type('1000')
+    cy.get('[data-testid="parking-rent_price-input"]').type('1000')
+    cy.get('[data-testid="parking-extra_information-input"]').type('random info')
+    cy.get('[data-testid="submit-button"]').click()
+    cy.url().should('include', '/property-page')
+  })
+})
 
-// describe('Navigate to Create Property Form from Profile and go back', () => {
-//   beforeEach(() => {
-//     cy.visit('/login');
-//     cy.get('[data-testid="email-input"]').type('test@example.com');
-//     cy.get('[data-testid="password-input"]').type('password123');
-//     cy.get('[data-testid="submit-button"]').click();
-//   })
-//   it('Navigate to Create Property from Profile', () => {
-//     cy.get('[data-testid="dropdown"]').click();
-//     cy.contains('Dashboard').click();
-//     cy.url().should('include', '/dashboard');
-//     cy.contains('Add Property').click();
-//     cy.url().should('include', '/create-property');
-//     cy.contains('Cancel').click();
-//     cy.url().should('include', '/dashboard');
-//   })
-// })
+describe('Sign in as company and Navigate to create a storage unit', () => {
+  before(() => {
+    cy.visit('/login');
+    cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
+    cy.get('[data-testid="password-input"]').type('123qweasd');
+    cy.get('[data-testid="submit-button"]').click();
+  })
+  it('Navigate to create parking unit from property page', () => {
+    cy.contains('Profile').click();
+    cy.contains('Dashboard').click();
+    cy.contains('Name Placeholder 3').click();// FIXME: this will change once we have a name attribute
+    cy.url().should('include', '/property-page');
+    cy.get('[data-testid="create-storage-unit-button"]').click()
+    cy.get('[data-testid="locker-location-input"]').type('1234')
+    cy.get('[data-testid="locker-size-input"]').type('1000')
+    cy.get('[data-testid="locker-purchase_price-input"]').type('1000')
+    cy.get('[data-testid="locker-rent_price-input"]').type('1000')
+    cy.get('[data-testid="locker-extra_information-input"]').type('random info')
+    cy.get('[data-testid="submit-button"]').click()
+    cy.url().should('include', '/property-page')
+  })
+})
 
-// describe('Sign in as company and Navigate to Create property to create a property', () => {
-//   before(() => {
-//     cy.visit('/login');
-//     cy.get('[data-testid="email-input"]').type('joud.babik@gmail.com');
-//     cy.get('[data-testid="password-input"]').type('123qweasd');
-//     cy.get('[data-testid="submit-button"]').click();
-//   })
-//   it('Navigate to Create Property from Profile', () => {
-//     cy.get('[data-testid="dropdown"]').click();
-//     cy.contains('Dashboard').click();
-//     cy.url().should('include', '/dashboard');
-//     cy.contains('Add Property').click();
-//     cy.url().should('include', '/create-property');
-//     cy.get('[data-testid="property-name-input"]').type('test')
-//     cy.get('[data-testid="property-address-input"]').type('test')
-//     cy.get('[data-testid="property-city-input"]').type('test')
-//     cy.get('[data-testid="province-select-test"]').select("QC")
-//     cy.get('[data-testid="property-city-input"]').type('test')
-//     cy.get('[data-testid="property-postal-code-input"]').type('H3H3H3')
-//     cy.get('[data-testid="submit-button"]').click()
-//   })
-//   it('Fill out the create unit form and submit successfully', () => {
-//     cy.visit('/create-unit')
-//     cy.get('[data-testid="unit-location-input"]').type('1234')
-//     cy.get('[data-testid="unit-size-input"]').type('1000')
-//     cy.get('[data-testid="unit-owner-input"]').type('John Doe')
-//     cy.get('[data-testid="unit-info-input"]').type('random info')
-//     cy.get('[data-testid="submit-button"]').click()
-//   })
-// })
-
-// describe('Enter Create Parking Form', () => {
-//   beforeEach(() => {
-//     cy.visit('/login');
-//     cy.get('[data-testid="email-input"]').type('test@example.com');
-//     cy.get('[data-testid="password-input"]').type('password123');
-//     cy.get('[data-testid="submit-button"]').click();
-//   })
-//   it('Fill out the create parking form and submit successfully', () => {
-//     cy.visit('/create-parking')
-//     cy.get('[data-testid="parking-location-input"]').type('123')
-//     cy.get('[data-testid="parking-owner-input"]').type('100')
-//     cy.get('[data-testid="parking-info-input"]').type('John Doe')
-//     cy.get('[data-testid="parking-fee-input"]').type('999')
-//     cy.get('[data-testid="submit-button"]').click()
-//   })
-// })
-
-// describe('Enter Create Locker Form', () => {
-//   beforeEach(() => {
-//     cy.visit('/login');
-//     cy.get('[data-testid="email-input"]').type('test@example.com');
-//     cy.get('[data-testid="password-input"]').type('password123');
-//     cy.get('[data-testid="submit-button"]').click();
-//   })
-//   it('should fill out the create locker form and submit successfully', () => {
-//     cy.visit('/create-locker')
-//     cy.get('[data-testid="locker-id-input"]').type('654321')
-//     cy.get('[data-testid="locker-owner-input"]').type('999')
-//     cy.get('[data-testid="locker-info-input"]').type('Doe John')
-//     cy.get('[data-testid="locker-fee-input"]').type('100')
-//     cy.get('[data-testid="submit-button"]').click()
-//   })
-// })
-
-// describe('Enter Create Property Form', () => {
-//   beforeEach(() => {
-//     cy.visit('/login');
-//     cy.get('[data-testid="email-input"]').type('test@example.com');
-//     cy.get('[data-testid="password-input"]').type('password123');
-//     cy.get('[data-testid="submit-button"]').click();
-//   })
-//   it('should fill out the create locker form and submit successfully', () => {
-//     cy.visit('/create-property')
-//     cy.get('[data-testid="property-name-input"]').type('Hall Building');
-//     cy.get('[data-testid="property-company-input"]').type('Real Estate Company');
-//     cy.get('[data-testid="property-address-input"]').type('123 Guy Street');
-//     cy.get('[data-testid="property-city-input"]').type('Montreal');
-//     cy.get('[data-testid="province-select"]').select('QC');
-//     cy.get('[data-testid="property-postal-code-input"]').type('1A1 2B2');
-//     cy.fixture('property-image.png').then(fileContent => {
-//       cy.get('[data-testid="property-image-file"]').attachFile({
-//         fileContent: fileContent,
-//         fileName: 'property-image.png',
-//         mimeType: 'image/png'
-//       })
-//     })
-//     cy.get('[data-testid="submit-button"]').click()
-//   })
-// })

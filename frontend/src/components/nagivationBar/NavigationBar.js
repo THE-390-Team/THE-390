@@ -57,7 +57,7 @@ const NavigationBar = () => {
                 : ''}
               {isLoggedIn ?
                 <Nav.Item eventkey="/logout">
-                  <LinkContainer to="/logout">
+                  <LinkContainer to="/logout" data-testid="logout">
                     <Nav.Link>
                       <i className="fas fa-user"></i> LOGOUT
                     </Nav.Link>

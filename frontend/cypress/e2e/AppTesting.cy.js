@@ -69,17 +69,16 @@ describe('Profile Editing Modal', () => {
     cy.get('[data-testid="edit-profile"]').click();
   });
 });
-// describe('Logout', () => {
-//   it('Login and then logout', () => {
-//     cy.visit('/login')
-//     cy.get('[data-testid="email-input"]').type('test@example.com')
-//     cy.get('[data-testid="password-input"]').type('password123')
-//     cy.get('[data-testid="submit-button"]').click()
-//     cy.get('[data-testid="dropdown"]').click()
-//     cy.get('[data-testid ="logout"]').click();
-//     cy.url().should('include', '/login');
-//   });
-// })
+describe('Logout', () => {
+  it('Login and then logout', () => {
+    cy.visit('/login')
+    cy.get('[data-testid="email-input"]').type('test@example.com')
+    cy.get('[data-testid="password-input"]').type('password123')
+    cy.get('[data-testid="submit-button"]').click()
+    cy.get('[data-testid ="logout"]').click();
+    cy.url().should('include', '/login');
+  });
+})
 
 
 

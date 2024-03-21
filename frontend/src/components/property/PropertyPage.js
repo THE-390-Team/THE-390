@@ -130,7 +130,7 @@ const PropertyPage = () => {
               <h5 className="mt-3 me-2">Units</h5>
             </Col>
             <Col>
-              < Button className="mt-2" variant="primary" onClick={handleGoToUnitCreate} data-testid="create-unit-button">+</Button>
+              < Button className="mt-2" variant="primary" onClick={handleGoToUnitCreate} data-testid="create-condo-unit-button">+</Button>
             </Col>
           </Row>
           <div style={renderStyle}>
@@ -141,7 +141,7 @@ const PropertyPage = () => {
               <h5 className="mt-3">Parking Spots </h5>
             </Col>
             <Col>
-              <Button className="mt-2" variant="primary" onClick={handleGoToParkingCreate}>+</Button>
+              <Button className="mt-2" variant="primary" onClick={handleGoToParkingCreate} data-testid="create-parking-unit-button">+</Button>
             </Col>
           </Row>
           <div style={renderStyle}>
@@ -152,7 +152,7 @@ const PropertyPage = () => {
               <h5 className="mt-3">Lockers </h5>
             </Col>
             <Col>
-              <Button className="mt-2" data-testid="create-locker-button" onClick={handleGoToLockerCreate} variant="primary">+</Button>            </Col>
+              <Button className="mt-2" data-testid="create-storage-unit-button" onClick={handleGoToLockerCreate} variant="primary">+</Button>            </Col>
           </Row>
           <div style={renderStyle}>
             {renderLockers()}
