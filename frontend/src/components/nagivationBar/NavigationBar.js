@@ -36,8 +36,9 @@ const NavigationBar = () => {
                 </Nav.Link>
               </LinkContainer>}
             </Nav>
-            <Nav className="ms-auto" justifty variant="tabs" activeKey={getActiveKey}>
+            <Nav className="ms-auto justify-content-end" variant="tabs" activeKey={getActiveKey()}>
               {isLoggedIn ?
+
                 <Nav.Item evenKey="/operation">
                   <LinkContainer to="/operation">
                     <Nav.Link>
@@ -47,7 +48,7 @@ const NavigationBar = () => {
                 </Nav.Item>
                 : ''}
               {isLoggedIn ?
-                <Nav.Item evenKey="/profile">
+                <Nav.Item eventkey="/profile">
                   <LinkContainer to="/profile">
                     <Nav.Link>
                       <i className="fas fa-user"></i> Profile
@@ -56,7 +57,7 @@ const NavigationBar = () => {
                 </Nav.Item>
                 : ''}
               {isLoggedIn ?
-                <Nav.Item evenKey="/dashboard">
+                <Nav.Item eventkey="/dashboard">
                   <LinkContainer to="/dashboard">
                     <Nav.Link>
                       <i className="fas fa-user"></i> Dashboard
@@ -65,8 +66,8 @@ const NavigationBar = () => {
                 </Nav.Item>
                 : ''}
               {isLoggedIn ?
-                <Nav.Item evenKey="/logout">
-                  <LinkContainer to="/logout">
+                <Nav.Item eventkey="/logout">
+                  <LinkContainer to="/logout" data-testid="logout">
                     <Nav.Link>
                       <i className="fas fa-user"></i> LOGOUT
                     </Nav.Link>

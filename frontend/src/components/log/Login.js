@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axios.js";
 import { useAuth } from "../../utils/hooks/AuthContext.js";
 import PropertyCard from "../property/PropertyCard.js";
+import LargeTitle from "../LargeTitle.js";
 // Login Page
 
 const Login = () => {
@@ -111,6 +112,7 @@ const Login = () => {
 
   return (
     <Container className="w-75 p-3 bg-secondary mt-5">
+      <LargeTitle title="Welcome Back!" />
       <Form className="py-5 text-dark" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formGridEmailAddress">
           <Form.Label>Email</Form.Label>

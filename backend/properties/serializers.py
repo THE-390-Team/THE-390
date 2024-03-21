@@ -7,7 +7,7 @@ from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit, Unit
 class UnitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Unit
-        fields = ['id', 'public_profile','location', 'purchase_price', 'rent_price', 'property_fee', 'size', 'extra_information']
+        fields = ['id', 'public_profile','location', 'purchase_price', 'rent_price', 'property_fee', 'operational_expense' ,'size', 'extra_information', 'image']
 
 class CondoUnitSerializer(serializers.ModelSerializer):
     class Meta(UnitSerializer.Meta):
@@ -34,7 +34,7 @@ class PropertyProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = PropertyProfile
-        fields = ['id', 'company', 'fee_rate', 
+        fields = ['id','name',  'company', 'fee_rate', 
                   'num_condo_units', 'num_parking_units',
                   'num_storage_units', 'address', 'city', 
                   'province', 'postal_code', 'condo_units',
