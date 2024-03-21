@@ -14,11 +14,8 @@ jobs:
       - name: Start frontend server
         working-directory: ./frontend
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
           npm ci
           npm start &
-
       # Install backend dependencies and start server
       - name: Create python environment
         working-directory: ./backend
@@ -39,7 +36,6 @@ jobs:
             echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
             echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
             pip install --no-cache-dir -r requirements.txt
-
       - name: Start backend server
         working-directory: ./backend
         env:
@@ -51,7 +47,6 @@ jobs:
             echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
             echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
             python manage.py runserver &
-
     # Install Cypress and run tests
       - name: Install Cypress
         working-directory: ./frontend
@@ -87,12 +82,9 @@ jobs:
         working-directory: ./frontend
         run: |
           npm ci
-
       
       - name: Run Unit Tests (Frontend)
         working-directory: ./frontend
-        env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
               npm run coverage > jest-report.json
               cd ..
@@ -122,42 +114,15 @@ jobs:
               cat temp.md frontend/jest-report.json > temp_readme.md
               mv temp_readme.md README.md
               rm temp.md
-
-                            # Initialize the repository
               git init
-              
-              # Add the changes
+              git branch
+              git pull origin 
+              git status
+              git config --local user.email "github-actions[bot]@users.noreply.github.com"
+              git config --local user.name "github-actions[bot]"
               git add README.md
-              
-              # Commit the changes
               git commit -m "Testing & sending reports to README.md!"
-              
-              # Set up git user configuration
-              git config user.name github-actions
-              git config user.email github-actions@github.com
-              
-              # Add the remote repository
-              git remote add origin https://github.com/THE-390-Team/THE-390.git
-              
-              # Push the changes to the remote feature branch
-              git push origin feature/branch
-              
-              # Switch to the feature branch
-              git checkout feature/branch
-              
-              # Pull the latest changes from the development branch
-              git pull origin development
-              
-              # Resolve any merge conflicts if there are any
-              
-              # Add the changes
-              git add .
-              
-              # Commit the changes
-              git commit -m "Merged changes from development into feature/branch"
-              
-              # Push the merged changes to the remote feature branch
-              git push origin feature/branch
+              git push origin --force
 
       # # Save Jest tests as artifacts
       # - name: Save Jest report
