@@ -125,9 +125,9 @@ jobs:
             git status
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
+            git remote add origin https://github.com/THE-390-Team/THE-390
             git add jest-report.json
             git commit -m "Update README.md with Jest report"  # Modify commit message as needed
-            git remote add origin https://github.com/THE-390-Team/THE-390
             git push origin HEAD:$GITHUB_REF --force
 
 
