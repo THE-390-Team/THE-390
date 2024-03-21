@@ -38,6 +38,15 @@ const NavigationBar = () => {
             </Nav>
             <Nav className="ms-auto" justifty variant="tabs" activeKey={getActiveKey}>
               {isLoggedIn ?
+                <Nav.Item evenKey="/operation">
+                  <LinkContainer to="/operation">
+                    <Nav.Link>
+                      <i className="fas fa-user"></i> Operation
+                    </Nav.Link>
+                  </LinkContainer>
+                </Nav.Item>
+                : ''}
+              {isLoggedIn ?
                 <Nav.Item evenKey="/profile">
                   <LinkContainer to="/profile">
                     <Nav.Link>
