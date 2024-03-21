@@ -1,9 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom'; // Assuming you're using React Router for navigation
-import { Container, Row, Col, ListGroup, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, ListGroup, Card, Button, Form, Modal } from 'react-bootstrap';
 import { useProperty } from '../../utils/hooks/PropertyContext';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react"
+import { useState } from 'react';
 import axiosInstance from '../../api/axios';
 
 
@@ -21,6 +22,10 @@ const PropertyPage = () => {
     }
   }, []);
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const renderStyle = { display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginBottom: '15px' }
 
@@ -31,13 +36,14 @@ const PropertyPage = () => {
     }
     return property.condo_units.map((unit) => (
       //FIXME unique key prop error in the console
-      <ListGroup variant="flush" key={unit.id} style={{ width: '250px', height: '180px', margin: '5px', fontSize: '13px' }} className=" h-25 shadow">
+      <ListGroup variant="flush" key={unit.id} style={{ width: '250px', height: '150px', margin: '5px', fontSize: '13px' }} className=" h-25 shadow">
         <ListGroup.Item style={{ marginBottom: "-10px" }}><img src={unit.image} style={{width: '220px', height: '180px'}}/></ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}><strong>unit name place holder{/*{unit.name}*/}</strong></ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Location: {unit.location}</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Purchase Price: ${unit.purchase_price}</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Rental Price: ${unit.rent_price}</ListGroup.Item>
-        <ListGroup.Item >Size: {unit.size} sqft</ListGroup.Item>
+        <ListGroup.Item style={{ marginBottom: "-10px" }}>Size: {unit.size} sqft</ListGroup.Item>
+        <ListGroup.Item>Unit Fees: {parseFloat(300).toFixed(2)} $</ListGroup.Item>
       </ListGroup>
     ));
   };
@@ -116,9 +122,31 @@ const PropertyPage = () => {
             </Col>
 
             <Col className="d-flex justify-content-end">
-              <Button style={{ marginRight: "10px" }}>
-                Make Request?
+
+              <Button variant="primary" onClick={handleShow} style = {{ marginRight: "40px"}}>
+                Upload Files
               </Button>
+
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Upload Files</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Form.Group controlId="formFileMultiple" className="mb-3" style = {{ marginRight: "50px"}}>
+                    <Form.Label>Add your documents here.</Form.Label>
+                    <Form.Control type="file" multiple />
+                  </Form.Group>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={handleClose}>
+                    Save Changes
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+
               <Button onClick={handleBackToDashboard} data-testid="dashboard-return">
                 Dashboard
               </Button>
