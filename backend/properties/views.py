@@ -6,6 +6,7 @@ from rest_framework import status
 from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit
 from .serializers import PropertyProfileSerializer, CondoUnitSerializer, StorageUnitSerializer, ParkingUnitSerializer
 from user_profile.models import CompanyProfile
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
 
 class PropertyProfileViewSet(ModelViewSet):
@@ -14,7 +15,7 @@ class PropertyProfileViewSet(ModelViewSet):
     """
     queryset = PropertyProfile.objects.all()
     serializer_class = PropertyProfileSerializer
-    
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
     
     def list(self, request, **kwargs):
         """  

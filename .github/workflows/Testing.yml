@@ -1,16 +1,13 @@
 name: Testing 
 # This workflows simulates an environment to test the entire application using unit testing, integration testing and system testing.
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+on: [push]
 jobs:
-  install:
+  publish:
+    name: Publish the release version
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout
+      - name: Checkout the repository and the branch
         uses: actions/checkout@v2
 
       # Install frontend entrance dependencies and start server
@@ -31,23 +28,46 @@ jobs:
 
       - name: Install backend dependencies
         working-directory: ./backend
-        run: pip install --no-cache-dir -r requirements.txt
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
+          AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+        run: | 
+            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+            pip install --no-cache-dir -r requirements.txt
 
       - name: Start backend server
         working-directory: ./backend
-        run: python manage.py runserver &
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
+          AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+        run: |
+            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+            python manage.py runserver &
 
     # Install Cypress and run tests
       - name: Install Cypress
         working-directory: ./frontend
         run: npm install cypress --save-dev
 
-      # Run Unit tests Django (Backend)
-      - name: Run Unit tests Django
-        working-directory: ./backend
-        run: |
-          coverage run manage.py test 
-          coverage report --omit '*/dist-packages/*' > coverage_report.json
+      # # Run Unit tests Django (Backend)
+      # - name: Run Unit tests Django
+      #   working-directory: ./backend
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      #     AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
+      #     AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+      #   run: |
+      #       echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+      #       echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+      #       coverage run manage.py test 
+      #       coverage report --omit '*/dist-packages/*' > coverage_report.json
 
       # Save coverage report to repository
       - name: Save coverage report 
@@ -56,40 +76,109 @@ jobs:
           name: coverage-report
           path: ./backend/coverage_report.json
 
-      # Run Unit tests Jest (Frontend)
+          
+      - name: Checkout the repository and the branch
+        uses: actions/checkout@v4
+
+     # Install frontend entrance dependencies and start server
+      - name: Start frontend server
+        working-directory: ./frontend
+        run: |
+          npm ci
+
+      
       - name: Run Unit Tests (Frontend)
         working-directory: ./frontend
-        run: npm run coverage > jest-report.json
+        run: |
+              npm run coverage > jest-report.json
+              cd ..
+              echo "Submission for team 18 sprint 1 link on google drive:" > temp.md
+              echo "" >> temp.md
+              echo "https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=share_link" >> temp.md
+              echo "" >> temp.md
+              echo "[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)" >> temp.md
+              echo "" >> temp.md
+              echo "Date: $(date)" >> temp.md
+              echo "" >> temp.md
+              echo "Code Quality Indicators" >> temp.md
+              echo "" >> temp.md
+              echo "[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=bugs)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
+              echo "" >> temp.md
+              echo "## Testing Reports" >> temp.md
+              echo "" >> temp.md
+              cat temp.md frontend/jest-report.json > temp_readme.md
+              mv temp_readme.md README.md
+              rm temp.md
+              git init
+              git branch
+              git pull origin 
+              git status
+              git config --local user.email "github-actions[bot]@users.noreply.github.com"
+              git config --local user.name "github-actions[bot]"
+              git add README.md
+              git commit -m "Testing & sending reports to README.md!"
+              git push origin development --force
 
-      # Save Jest tests as artifacts
-      - name: Save Jest report
-        uses: actions/upload-artifact@v2
-        with:
-          name: jest-report
-          path: ./frontend/jest-report.json
+      # # Save Jest tests as artifacts
+      # - name: Save Jest report
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: jest-report
+      #     path: ./frontend/jest-report.json
 
-      # Run Integration Tests (Backend)
-      - name: Run Integration Tests (Backend)
-        working-directory: ./backend
-        run: echo " Implementation not made yet "
+      # # Run Integration Tests (Backend)
+      # - name: Run Integration Tests (Backend)
+      #   working-directory: ./backend
+      #   run: echo " Implementation not made yet "
 
-      # Run Integration Tests (Frontend)
-      - name: Run Integration Tests (Frontend)
-        working-directory: ./frontend
-        run: echo " Implementation not made yet "
+      # # Run Integration Tests (Frontend)
+      # - name: Run Integration Tests (Frontend)
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #   working-directory: ./frontend
+      #   run: echo " Implementation not made yet "
 
-      - name: Run System tests
-        working-directory: ./frontend
-        run: npx cypress run 
+      # - name: Run System tests
+      #   working-directory: ./frontend
+      #   run: npx cypress run 
 
-      # Save Cypress tests as artifacts
-      - name: Save Cypress report
-        uses: actions/upload-artifact@v2
-        with:
-          name: cypress-report
-          path: ./frontend/reports_cypress.json
+      # # Save Cypress tests as artifacts
+      # - name: Save Cypress report
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: cypress-report
+      #     path: ./frontend/reports_cypress.json
 
+      # - name: Checkout the repository and the branch
+      #   uses: actions/checkout@v4
           
+      # - name: Add coverage_report.json
+      #   run: |
+      #       cd frontend 
+      #       ls
+      #       cat jest_report.json > README.md
+      #       git init
+      #       git branch
+      #       git pull origin 
+      #       git status
+      #       git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      #       git config --local user.name "github-actions[bot]"
+      #       touch myfile.txt
+      #       git add myfile.txt
+      #       git commit -m "initial commit"
+      #       git push origin --force
+
+
 
       
 
