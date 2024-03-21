@@ -120,7 +120,6 @@ jobs:
               cat temp.md frontend/jest-report.json > temp_readme.md
               mv temp_readme.md README.md
               rm temp.md
-              rm temp.md
 
               # Initialize the repository
               git init
