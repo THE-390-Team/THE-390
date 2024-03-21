@@ -110,7 +110,13 @@ jobs:
               echo "[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
               echo "[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)" >> temp.md
               echo "" >> temp.md
-              echo "## Testing Reports" >> temp.md
+              echo "Code Coverage Tree" >> temp.md
+              echo "" >> temp.md
+              echo "[![codecov](https://codecov.io/gh/THE-390-Team/THE-390/graph/badge.svg?token=FW880JJXGB)](https://codecov.io/gh/THE-390-Team/THE-390)" >> temp.md
+              echo "" >> temp.md 
+              echo "View reports provided by codecov https://app.codecov.io/gh/THE-390-Team/THE-390"
+              echo "" >> temp.md
+              echo "## Testing Reports from Workflow" >> temp.md
               echo "" >> temp.md
               cat temp.md frontend/jest-report.json > temp_readme.md
               mv temp_readme.md README.md
