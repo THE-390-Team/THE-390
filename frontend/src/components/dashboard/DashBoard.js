@@ -40,7 +40,7 @@ const DashBoard = () => {
             {
                 role === "COMPANY" &&
                 <div className="mt-5 diplay-flex text-center">
-                    <Button variant="primary" style={{ width: "150px", marginRight: "60px" }} onClick={handleGoToProperty}>Add Property</Button>
+                    <Button variant="primary" style={{ width: "150px", marginRight: "60px" }} onClick={handleGoToProperty} data-testid="create-property-button">Add Property</Button>
                     <SendRegistrationButton style={{ width: "150px" }} />
                 </div>
 

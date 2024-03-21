@@ -3,12 +3,7 @@ describe('As a Company employee Navigate to Property Page from Profile and go ba
     cy.login('joud.babik@gmail.com', '123qweasd');
   })
   it('Navigate to Property Page from Profile', () => {
-    cy.contains('Dashboard').click();
-    cy.contains('Profile').click();
-    cy.contains('Dashboard').click();
-    cy.url().should('include', '/dashboard');
-    cy.contains('Name Placeholder 3').click();// FIXME: this will change once we have a name attribute
-    cy.url().should('include', '/property-page');
+    cy.goToProperty3();
     cy.get('[data-testid="dashboard-return"]').click()
   })
 })
@@ -19,12 +14,7 @@ describe('Navigate to Create Unit/Parking/Locker Form from Profile and go back',
   })
 
   it('Navigate to Create Unit from profile', () => {
-    cy.contains('Dashboard').click();
-    cy.url().should('include', '/dashboard');
-    cy.contains('Profile').click();
-    cy.contains('Dashboard').click();
-    cy.contains('Name Placeholder 3').click(); // FIXME: this will change once we have a name attribute
-    cy.url().should('include', '/property-page');
+    cy.goToProperty3();
     cy.get('[data-testid="create-condo-unit-button"]').click()
     cy.contains('Cancel').click();
     cy.url().should('include', '/property-page')
@@ -36,13 +26,8 @@ describe('Navigate to Create Property Form from Profile and go back', () => {
     cy.login('joud.babik@gmail.com', '123qweasd');
   })
   it('Navigate to Create Property from Profile', () => {
+    cy.goToProperty3();
     cy.contains('Dashboard').click();
-    cy.contains('Profile').click();
-    cy.contains('Dashboard').click();
-    cy.url().should('include', '/dashboard');
-    cy.contains('Add Property').click();
-    cy.url().should('include', '/create-property');
-    cy.contains('Cancel').click();
     cy.url().should('include', '/dashboard');
   })
 })
@@ -53,10 +38,9 @@ describe('Sign in as company and Navigate to Create property and create condo un
   })
   it('Navigate to Create Property from Profile', () => {
     cy.contains('Dashboard').click();
-    cy.url().should('include', '/dashboard');
-    cy.contains('Profile').click(); //can be removed once the slow loading bug is fixed
+    cy.contains('Profile').click();
     cy.contains('Dashboard').click();
-    cy.contains('Add Property').click();
+    cy.get('[data-testid="create-property-button"]').click();
     cy.url().should('include', '/create-property');
     cy.get('[data-testid="property-name-input"]').type('test')
     cy.get('[data-testid="property-address-input"]').type('test')
@@ -67,10 +51,7 @@ describe('Sign in as company and Navigate to Create property and create condo un
     cy.get('[data-testid="submit-button"]').click()
   })
   it('Navigate to create condo unit from property page and creates a condo unit', () => {
-    cy.contains('Profile').click();
-    cy.contains('Dashboard').click();
-    cy.contains('Name Placeholder 3').click();// FIXME: this will change once we have a name attribute
-    cy.url().should('include', '/property-page');
+    cy.goToProperty3();
     cy.get('[data-testid="create-condo-unit-button"]').click()
     cy.get('[data-testid="unit-location-input"]').type('1234')
     cy.get('[data-testid="unit-size-input"]').type('1000')
@@ -87,10 +68,7 @@ describe('Sign in as company and Navigate to create a parking unit', () => {
     cy.login('joud.babik@gmail.com', '123qweasd');
   })
   it('Navigate to create parking unit from property page', () => {
-    cy.contains('Profile').click();
-    cy.contains('Dashboard').click();
-    cy.contains('Name Placeholder 3').click();// FIXME: this will change once we have a name attribute
-    cy.url().should('include', '/property-page');
+    cy.goToProperty3();
     cy.get('[data-testid="create-parking-unit-button"]').click()
     cy.get('[data-testid="parking-location-input"]').type('1234')
     cy.get('[data-testid="parking-size-input"]').type('1000')
@@ -107,10 +85,7 @@ describe('Sign in as company and Navigate to create a storage unit', () => {
     cy.login('joud.babik@gmail.com', '123qweasd');
   })
   it('Navigate to create parking unit from property page', () => {
-    cy.contains('Profile').click();
-    cy.contains('Dashboard').click();
-    cy.contains('Name Placeholder 3').click();// FIXME: this will change once we have a name attribute
-    cy.url().should('include', '/property-page');
+    cy.goToProperty3();
     cy.get('[data-testid="create-storage-unit-button"]').click()
     cy.get('[data-testid="locker-location-input"]').type('1234')
     cy.get('[data-testid="locker-size-input"]').type('1000')

@@ -25,8 +25,17 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('login', (email, password) => {
-    cy.visit('/login');
-    cy.get('[data-testid="email-input"]').type(email);
-    cy.get('[data-testid="password-input"]').type(password);
-    cy.get('[data-testid="submit-button"]').click();
-  });
+  cy.visit('/login');
+  cy.get('[data-testid="email-input"]').type(email);
+  cy.get('[data-testid="password-input"]').type(password);
+  cy.get('[data-testid="submit-button"]').click();
+});
+
+Cypress.Commands.add('goToProperty3', () => {
+  cy.contains('Dashboard').click();
+  cy.contains('Profile').click();
+  cy.contains('Dashboard').click();
+  cy.url().should('include', '/dashboard');
+  cy.contains('Name Placeholder 3').click();// FIXME: this will change once we have a name attribute
+  cy.url().should('include', '/property-page');
+});
