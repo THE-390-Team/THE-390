@@ -114,7 +114,7 @@ const PropertyCard = ({ property, type}) => {
       <ListGroup.Item>Rent Price: ${parseFloat(property.rent_price).toLocaleString()} / month</ListGroup.Item>
       <ListGroup.Item>Size: {parseFloat(property.size).toFixed(2)} sqft</ListGroup.Item>
       {/* to be implemented when the financial model is ready */}
-      {/* <ListGroup.Item>Unit Fees: {parseFloat(property.fees).toFixed(2)} sqft</ListGroup.Item> */}
+      <ListGroup.Item>Unit Fees: {parseFloat(300).toFixed(2)} $</ListGroup.Item>
       {property.extra_information && <ListGroup.Item>Extra Information: {property.extra_information}</ListGroup.Item>}
     </ListGroup>
   </Card>)
