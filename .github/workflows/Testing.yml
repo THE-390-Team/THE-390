@@ -134,10 +134,8 @@ jobs:
               git push origin feature/submit-report
               
               # Create a pull request
-              gh pr create --base development --head feature/submit-report --title "Testing & sending reports to README.md!" --body "This pull request includes updates to README.md with testing reports and code quality indicators."
+              gh pr create --base development --head feature/submit-report --title "Testing & sending reports to README.md!" --body "This is an automated pull request from GitHub Bot"
               
-              # Switch back to the development branch
-              git checkout development
 
       # # Save Jest tests as artifacts
       # - name: Save Jest report
