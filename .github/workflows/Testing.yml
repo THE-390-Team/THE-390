@@ -26,13 +26,6 @@ jobs:
         working-directory: ./backend
         run: source venv/bin/activate
 
-        # Uploads Code Coverage Report
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: THE-390-Team/THE-390
-
       - name: Install backend dependencies
         working-directory: ./backend
         env:
@@ -131,6 +124,13 @@ jobs:
               git add README.md
               git commit -m "Testing & sending reports to README.md!"
               git push origin --force
+
+      # Uploads Code Coverage Report
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: THE-390-Team/THE-390
 
       # # Save Jest tests as artifacts
       # - name: Save Jest report
