@@ -22,7 +22,6 @@ const CreateProperty = () => {
     property_city: "",
     property_province: "British Colombia",
     property_postal_code: "",
-    property_image: propertyPhoto,
   });
 
   const [errors, setErrors] = useState({});
@@ -39,6 +38,14 @@ const CreateProperty = () => {
     setErrors({ ...errors, [e.target.name]: '' });
     console.log(formData);
   };
+
+    // Update formData when image changes
+    const handleImageChange = (e) => {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.files[0],
+      });
+    };
 
   //Validate input form
   const validateForm = () => {
@@ -109,7 +116,7 @@ const CreateProperty = () => {
 
       //post form
       axiosInstance
-        .post(`/profiles/company-profile/${companyID}/property-profiles/`, {
+        .postForm(`/properties/property-profile/`, {
           //TODO await model updates with name and image
           // name: formData.property_name, 
           company: companyID,
@@ -117,8 +124,8 @@ const CreateProperty = () => {
           city: formData.property_city,
           province: formData.property_province,
           postal_code: formData.property_postal_code,
-
-          // image: formData.property_image, //TODO: await model updates with name and image
+          fee_rate: 0.12, // TODO Implement input for fee rate. This is a temp value
+          image: formData.property_image, //TODO: await model updates with name and image
         })
         .then((res) => {
           if (res.status == 201) {
@@ -234,7 +241,7 @@ const CreateProperty = () => {
             name="property_image"
             placeholder="H3G 1M8"
             multiple
-            onChange={handleChange}
+            onChange={handleImageChange}
             data-testid="property-image-file"
           />
           {errors.property_image && <span style={{color: "red"}}>{errors.property_image}</span>}
