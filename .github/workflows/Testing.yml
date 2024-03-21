@@ -21,9 +21,17 @@ jobs:
         working-directory: ./backend
         run: python -m venv venv
 
+      # Create a Python environment
       - name: Activate python environment
         working-directory: ./backend
         run: source venv/bin/activate
+
+        # Uploads Code Coverage Report
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: THE-390-Team/THE-390
 
       - name: Install backend dependencies
         working-directory: ./backend
