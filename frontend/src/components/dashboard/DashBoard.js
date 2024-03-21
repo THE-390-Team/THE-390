@@ -1,12 +1,10 @@
 import React from 'react'
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import PropertyContainer from '../property/PropertyContainer.js'
-import UserInfo from './UserInfo.js';
 import { Container, Col, Row, Button } from "react-bootstrap";
 import Financial from './financial/Financial.js';
 import SubmittedRequests from './SubmittedRequests.js';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../api/axios.js';
 import { useProfile } from '../../utils/hooks/ProfileContext.js';
 
 
@@ -46,7 +44,10 @@ const DashBoard = () => {
             }            <Row className="mt-5">
                 <Row>
                     <Col>
-                        <Financial />
+                        {
+                            role === "COMPANY" &&
+                            <Financial />
+                        }
                     </Col>
                     <Col>
                         <SubmittedRequests />
