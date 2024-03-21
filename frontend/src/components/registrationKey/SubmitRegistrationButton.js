@@ -52,7 +52,7 @@ function SubmitRegistrationButton() {
     return (
         <>
             <Button variant="primary" onClick={handleShow}>
-                Request Key
+                Submit Key
             </Button>
 
             <Modal show={show} onHide={handleClose}>

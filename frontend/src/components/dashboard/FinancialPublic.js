@@ -1,8 +1,8 @@
 import React from 'react'
-import { Container, Card, ListGroup, Table, ListGroupItem } from "react-bootstrap"
+import { Container, Card, ListGroup, Table, ListGroupItem, Row, Col, } from "react-bootstrap"
 import { Accordion } from 'react-bootstrap'
 
-const Financial = () => {
+const FinancialPublic = () => {
     const accordionData = [
         {
             title: 'Condo',
@@ -44,7 +44,16 @@ const Financial = () => {
                     {accordionData.map((item, index) => ( 
                         <Accordion key={index}>
                             <Accordion.Item eventKey={index}>
-                                <Accordion.Header>{item.title}: $0.00</Accordion.Header>
+                                <Accordion.Header>
+                                    <Row style={{ width: '100%' }}>
+                                        <Col>
+                                            {item.title}
+                                        </Col>
+                                        <Col style={{ textAlign: "right" }}>
+                                            $0.00
+                                        </Col>
+                                    </Row>
+                                </Accordion.Header>
                                 <Accordion.Body>
                                     <Table striped bordered hover>
                                         <thead>
@@ -77,4 +86,4 @@ const Financial = () => {
     );
 }
 
-export default Financial
+export default FinancialPublic;
