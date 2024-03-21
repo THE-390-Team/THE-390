@@ -1,5 +1,7 @@
 from django.urls import path
 from rest_framework import routers
+
+from finance.views import CompanyFinanceView
 from .views import PublicProfileViewSet, EmployeeProfileViewSet, CompanyProfileViewSet, UserViewSet
 from properties.views import PropertyProfileViewSet
 
@@ -22,7 +24,9 @@ urlpatterns = [
     # register unit to public profile with registration key 
     path('public-profile/register-condo/', PublicProfileViewSet.as_view({'get': 'register_condo'})),
     path('public-profile/register-storage/', PublicProfileViewSet.as_view({'get': 'register_storage'})),
-    path('public-profile/register-parking/', PublicProfileViewSet.as_view({'get': 'register_parking'}))
+    path('public-profile/register-parking/', PublicProfileViewSet.as_view({'get': 'register_parking'})),
+    # finance 
+    path('company-profile/<int:company_id>/finance-report/', CompanyFinanceView.as_view())
 ]
 
 urlpatterns += router.urls
