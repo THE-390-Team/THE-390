@@ -26,7 +26,7 @@ urlpatterns = [
     path('public-profile/register-storage/', PublicProfileViewSet.as_view({'get': 'register_storage'})),
     path('public-profile/register-parking/', PublicProfileViewSet.as_view({'get': 'register_parking'})),
     # finance 
-    path('company-profile/<int:company_id>/property-fees/', CompanyFinanceView.as_view())
+    path('company-profile/<int:company_id>/finance-report/', CompanyFinanceView.as_view())
 ]
 
 urlpatterns += router.urls
