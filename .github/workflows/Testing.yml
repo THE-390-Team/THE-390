@@ -101,7 +101,7 @@ jobs:
               cd backend
               # coverage run --omit='/venv/' manage.py test > coverage_report.json
               cd ..
-              cd frontend
+              # cd frontend
               # npx cypress run > cypress-report.json
               echo "Submission for team 18 sprint 1 link on google drive:" > temp.md
               echo "" >> temp.md
