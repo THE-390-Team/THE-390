@@ -19,13 +19,14 @@ import CreateLocker from "./components/createProperty/CreateLocker.js";
 import CreateProperty from "./components/createProperty/CreateProperty.js";
 import { useAuth } from "./utils/hooks/AuthContext.js";
 import { useEffect } from "react";
+import OperationCost from "./components/operationCost/Operation.js";
 
 function App() {
   //check for the token in case of a refresh
   let { checkAuthState } = useAuth();
   useEffect(() => {
     checkAuthState();
-  },[])
+  }, [])
 
   return (
     <Router>
@@ -47,6 +48,7 @@ function App() {
             <Route path="/property-page/:propertyId" element={<PropertyPage />} />
             <Route path="/create-property" element={<CreateProperty />} />
             <Route path="/home" element={<HomeScreen />} />
+            <Route path='/operation' element={<OperationCost />} />
           </Routes>
         </Container>
       </main>
