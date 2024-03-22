@@ -99,7 +99,8 @@ jobs:
               npm run coverage > jest-report.json
               cd ..
               cd backend
-              coverage run --omit='/venv/' manage.py test > coverage_report.json
+              coverage run manage.py test 
+              coverage report --omit '/dist-packages/' > coverage_report.json
               cd ..
               # cd frontend
               # npx cypress run > cypress-report.json
