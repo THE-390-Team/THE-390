@@ -102,8 +102,7 @@ jobs:
               python manage.py makemigrations 
               python manage.py migrate 
               python manage.py runserver &
-              coverage run manage.py test 
-              coverage report --omit '/dist-packages/' > coverage_report.json
+              coverage run --omit='/venv/' manage.py test > coverage_report.json
               cd ..
               # cd frontend
               # npx cypress run > cypress-report.json
@@ -137,8 +136,9 @@ jobs:
               echo "## Testing Reports from Workflow" >> temp.md
               echo "" >> temp.md
               cat temp.md frontend/jest-report.json > temp_readme.md
-              cat temp_readme.md backend/coverage_report.json > temp_readme.md
+              cat temp_readme.md backend/coverage_report.json > temp1_readme.md
               # cat temp.md frontend/cypress-report.json > temp_readme.md
+              mv temp1_readme.md temp_readme.md
               mv temp_readme.md README.md
               rm temp.md
               git init
