@@ -22,7 +22,7 @@ describe('Financial component', () => {
   test('renders total amount in each accordion section', () => {
     const { getAllByText } = render(<Financial />);
     const totalAmounts = getAllByText('$0.00');
-    expect(totalAmounts).toHaveLength(12);
+    expect(totalAmounts).toHaveLength(15);
   });
 
   test('renders total amount in the bottom list group item', () => {
