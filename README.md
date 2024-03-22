@@ -4,7 +4,7 @@ https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=sha
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Date: Thu Mar 21 22:12:39 UTC 2024
+Date: Fri Mar 22 04:02:18 UTC 2024
 
 Code Quality Indicators
 
@@ -33,7 +33,7 @@ Code Coverage Tree
 ------------------------------------|---------|----------|---------|---------|-------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------|---------|----------|---------|---------|-------------------
-All files                           |    0.87 |        0 |    2.47 |    0.89 |                   
+All files                           |    1.63 |        0 |    4.41 |    1.66 |                   
  src                                |       0 |      100 |       0 |       0 |                   
   App.js                            |       0 |      100 |       0 |       0 | 26-31             
   index.js                          |       0 |      100 |     100 |       0 | 10-12             
@@ -47,16 +47,16 @@ All files                           |    0.87 |        0 |    2.47 |    0.89 |
  src/components/createProperty      |       0 |        0 |       0 |       0 |                   
   CreateLocker.js                   |       0 |        0 |       0 |       0 | 13-185            
   CreateParking.js                  |       0 |        0 |       0 |       0 | 13-188            
-  CreateProperty.js                 |       0 |        0 |       0 |       0 | 13-156            
+  CreateProperty.js                 |       0 |        0 |       0 |       0 | 13-168            
   CreateUnit.js                     |       0 |        0 |       0 |       0 | 13-189            
- src/components/dashboard           |   11.11 |        0 |    12.5 |   11.11 |                   
+ src/components/dashboard           |   38.88 |        0 |      50 |   38.88 |                   
   DashBoard.js                      |       0 |        0 |       0 |       0 | 14-31             
-  FinancialPublic.js                |       0 |      100 |       0 |       0 | 5-67              
+  FinancialPublic.js                |     100 |      100 |     100 |     100 |                   
   SubmittedRequests.js              |     100 |      100 |     100 |     100 |                   
   UserInfo.js                       |       0 |      100 |       0 |       0 | 15-26             
- src/components/dashboard/financial |       0 |        0 |       0 |       0 |                   
+ src/components/dashboard/financial |   15.78 |        0 |    12.5 |   15.78 |                   
   Financial.js                      |       0 |        0 |       0 |       0 | 7-103             
-  Total.js                          |       0 |      100 |       0 |       0 | 4-18              
+  Total.js                          |     100 |      100 |     100 |     100 |                   
  src/components/log                 |       0 |        0 |       0 |       0 |                   
   LogOut.js                         |       0 |      100 |       0 |       0 | 9-30              
   Login.js                          |       0 |        0 |       0 |       0 | 11-113            
@@ -69,7 +69,7 @@ All files                           |    0.87 |        0 |    2.47 |    0.89 |
  src/components/property            |       0 |        0 |       0 |       0 |                   
   PropertyCard.js                   |       0 |        0 |       0 |       0 | 8-93              
   PropertyContainer.js              |       0 |        0 |       0 |       0 | 9-58              
-  PropertyPage.js                   |       0 |        0 |       0 |       0 | 10-95             
+  PropertyPage.js                   |       0 |        0 |       0 |       0 | 11-101            
  src/components/registrationKey     |       0 |        0 |       0 |       0 |                   
   SendRegistrationButton.js         |       0 |        0 |       0 |       0 | 6-135             
   SubmitRegistrationButton.js       |       0 |        0 |       0 |       0 | 6-52              
@@ -84,3 +84,5 @@ All files                           |    0.87 |        0 |    2.47 |    0.89 |
   ProfileContext.js                 |       0 |        0 |       0 |       0 | 5-108             
   PropertyContext.js                |       0 |      100 |       0 |       0 | 4-154             
 ------------------------------------|---------|----------|---------|---------|-------------------
+Found 37 test(s).
+System check identified no issues (0 silenced).
