@@ -1,178 +1,88 @@
-Name                                                                                             Stmts   Miss  Cover
---------------------------------------------------------------------------------------------------------------------
-/usr/lib/python3/dist-packages/certifi/__init__.py                                                   2      0   100%
-/usr/lib/python3/dist-packages/certifi/core.py                                                      20      8    60%
-/usr/lib/python3/dist-packages/chardet/__init__.py                                                  33     27    18%
-/usr/lib/python3/dist-packages/chardet/big5freq.py                                                   3      0   100%
-/usr/lib/python3/dist-packages/chardet/big5prober.py                                                16      6    62%
-/usr/lib/python3/dist-packages/chardet/chardistribution.py                                         117     83    29%
-/usr/lib/python3/dist-packages/chardet/charsetgroupprober.py                                        73     62    15%
-/usr/lib/python3/dist-packages/chardet/charsetprober.py                                             55     36    35%
-/usr/lib/python3/dist-packages/chardet/codingstatemachine.py                                        28     18    36%
-/usr/lib/python3/dist-packages/chardet/cp949prober.py                                               16      6    62%
-/usr/lib/python3/dist-packages/chardet/enums.py                                                     35      1    97%
-/usr/lib/python3/dist-packages/chardet/escprober.py                                                 58     45    22%
-/usr/lib/python3/dist-packages/chardet/escsm.py                                                     17      0   100%
-/usr/lib/python3/dist-packages/chardet/eucjpprober.py                                               49     34    31%
-/usr/lib/python3/dist-packages/chardet/euckrfreq.py                                                  3      0   100%
-/usr/lib/python3/dist-packages/chardet/euckrprober.py                                               16      6    62%
-/usr/lib/python3/dist-packages/chardet/euctwfreq.py                                                  3      0   100%
-/usr/lib/python3/dist-packages/chardet/euctwprober.py                                               16      6    62%
-/usr/lib/python3/dist-packages/chardet/gb2312freq.py                                                 3      0   100%
-/usr/lib/python3/dist-packages/chardet/gb2312prober.py                                              16      6    62%
-/usr/lib/python3/dist-packages/chardet/hebrewprober.py                                              77     48    38%
-/usr/lib/python3/dist-packages/chardet/jisfreq.py                                                    3      0   100%
-/usr/lib/python3/dist-packages/chardet/jpcntx.py                                                    81     61    25%
-/usr/lib/python3/dist-packages/chardet/langbulgarianmodel.py                                         6      0   100%
-/usr/lib/python3/dist-packages/chardet/langgreekmodel.py                                             6      0   100%
-/usr/lib/python3/dist-packages/chardet/langhebrewmodel.py                                            4      0   100%
-/usr/lib/python3/dist-packages/chardet/langrussianmodel.py                                          14      0   100%
-/usr/lib/python3/dist-packages/chardet/langthaimodel.py                                              4      0   100%
-/usr/lib/python3/dist-packages/chardet/langturkishmodel.py                                           4      0   100%
-/usr/lib/python3/dist-packages/chardet/latin1prober.py                                              52     29    44%
-/usr/lib/python3/dist-packages/chardet/mbcharsetprober.py                                           44     33    25%
-/usr/lib/python3/dist-packages/chardet/mbcsgroupprober.py                                           14      3    79%
-/usr/lib/python3/dist-packages/chardet/mbcssm.py                                                    41      0   100%
-/usr/lib/python3/dist-packages/chardet/sbcharsetprober.py                                           76     59    22%
-/usr/lib/python3/dist-packages/chardet/sbcsgroupprober.py                                           18      7    61%
-/usr/lib/python3/dist-packages/chardet/sjisprober.py                                                49     34    31%
-/usr/lib/python3/dist-packages/chardet/universaldetector.py                                        124    104    16%
-/usr/lib/python3/dist-packages/chardet/utf8prober.py                                                43     29    33%
-/usr/lib/python3/dist-packages/chardet/version.py                                                    2      0   100%
-/usr/lib/python3/dist-packages/colorama/__init__.py                                                  4      0   100%
-/usr/lib/python3/dist-packages/colorama/ansi.py                                                     74      8    89%
-/usr/lib/python3/dist-packages/colorama/ansitowin32.py                                             132    101    23%
-/usr/lib/python3/dist-packages/colorama/initialise.py                                               48     32    33%
-/usr/lib/python3/dist-packages/colorama/win32.py                                                    78     68    13%
-/usr/lib/python3/dist-packages/colorama/winterm.py                                                 119     90    24%
-/usr/lib/python3/dist-packages/idna/__init__.py                                                      4      0   100%
-/usr/lib/python3/dist-packages/idna/core.py                                                        291    256    12%
-/usr/lib/python3/dist-packages/idna/idnadata.py                                                      4      0   100%
-/usr/lib/python3/dist-packages/idna/intranges.py                                                    30     24    20%
-/usr/lib/python3/dist-packages/idna/package_data.py                                                  1      0   100%
-/usr/lib/python3/dist-packages/jinja2/__init__.py                                                   40      0   100%
-/usr/lib/python3/dist-packages/jinja2/_identifier.py                                                 2      0   100%
-/usr/lib/python3/dist-packages/jinja2/async_utils.py                                                43     19    56%
-/usr/lib/python3/dist-packages/jinja2/bccache.py                                                   151    110    27%
-/usr/lib/python3/dist-packages/jinja2/compiler.py                                                 1176    999    15%
-/usr/lib/python3/dist-packages/jinja2/defaults.py                                                   23      1    96%
-/usr/lib/python3/dist-packages/jinja2/environment.py                                               600    439    27%
-/usr/lib/python3/dist-packages/jinja2/exceptions.py                                                 66     45    32%
-/usr/lib/python3/dist-packages/jinja2/filters.py                                                   531    377    29%
-/usr/lib/python3/dist-packages/jinja2/idtracking.py                                                213    157    26%
-/usr/lib/python3/dist-packages/jinja2/lexer.py                                                     345    225    35%
-/usr/lib/python3/dist-packages/jinja2/loaders.py                                                   257    198    23%
-/usr/lib/python3/dist-packages/jinja2/nodes.py                                                     558    236    58%
-/usr/lib/python3/dist-packages/jinja2/optimizer.py                                                  19     11    42%
-/usr/lib/python3/dist-packages/jinja2/parser.py                                                    667    598    10%
-/usr/lib/python3/dist-packages/jinja2/runtime.py                                                   508    336    34%
-/usr/lib/python3/dist-packages/jinja2/tests.py                                                      66     33    50%
-/usr/lib/python3/dist-packages/jinja2/utils.py                                                     342    227    34%
-/usr/lib/python3/dist-packages/jinja2/visitor.py                                                    44     34    23%
-/usr/lib/python3/dist-packages/markupsafe/__init__.py                                              136     76    44%
-/usr/lib/python3/dist-packages/pygments/__init__.py                                                 24     17    29%
-/usr/lib/python3/dist-packages/pygments/filter.py                                                   21     12    43%
-/usr/lib/python3/dist-packages/pygments/filters/__init__.py                                        168    128    24%
-/usr/lib/python3/dist-packages/pygments/formatter.py                                                28      6    79%
-/usr/lib/python3/dist-packages/pygments/formatters/__init__.py                                      84     49    42%
-/usr/lib/python3/dist-packages/pygments/formatters/_mapping.py                                       1      0   100%
-/usr/lib/python3/dist-packages/pygments/formatters/html.py                                         407    286    30%
-/usr/lib/python3/dist-packages/pygments/lexer.py                                                   468    388    17%
-/usr/lib/python3/dist-packages/pygments/lexers/__init__.py                                         189    146    23%
-/usr/lib/python3/dist-packages/pygments/lexers/_mapping.py                                           1      0   100%
-/usr/lib/python3/dist-packages/pygments/lexers/special.py                                           71     43    39%
-/usr/lib/python3/dist-packages/pygments/modeline.py                                                 19     14    26%
-/usr/lib/python3/dist-packages/pygments/plugin.py                                                   22     13    41%
-/usr/lib/python3/dist-packages/pygments/regexopt.py                                                 42     32    24%
-/usr/lib/python3/dist-packages/pygments/style.py                                                    98     23    77%
-/usr/lib/python3/dist-packages/pygments/styles/__init__.py                                          25     13    48%
-/usr/lib/python3/dist-packages/pygments/styles/default.py                                            6      0   100%
-/usr/lib/python3/dist-packages/pygments/token.py                                                    58     14    76%
-/usr/lib/python3/dist-packages/pygments/util.py                                                    159    116    27%
-/usr/lib/python3/dist-packages/requests/__init__.py                                                 58     21    64%
-/usr/lib/python3/dist-packages/requests/__version__.py                                              10      0   100%
-/usr/lib/python3/dist-packages/requests/_internal_utils.py                                          16     12    25%
-/usr/lib/python3/dist-packages/requests/adapters.py                                                222    169    24%
-/usr/lib/python3/dist-packages/requests/api.py                                                      22     12    45%
-/usr/lib/python3/dist-packages/requests/auth.py                                                    174    141    19%
-/usr/lib/python3/dist-packages/requests/certs.py                                                     4      1    75%
-/usr/lib/python3/dist-packages/requests/compat.py                                                   38     13    66%
-/usr/lib/python3/dist-packages/requests/cookies.py                                                 241    177    27%
-/usr/lib/python3/dist-packages/requests/exceptions.py                                               32      6    81%
-/usr/lib/python3/dist-packages/requests/hooks.py                                                    15     11    27%
-/usr/lib/python3/dist-packages/requests/models.py                                                  458    374    18%
-/usr/lib/python3/dist-packages/requests/packages.py                                                  6      0   100%
-/usr/lib/python3/dist-packages/requests/sessions.py                                                283    231    18%
-/usr/lib/python3/dist-packages/requests/status_codes.py                                             15      0   100%
-/usr/lib/python3/dist-packages/requests/structures.py                                               40     19    52%
-/usr/lib/python3/dist-packages/requests/utils.py                                                   451    382    15%
-/usr/lib/python3/dist-packages/yaml/__init__.py                                                    184    129    30%
-/usr/lib/python3/dist-packages/yaml/composer.py                                                     92     76    17%
-/usr/lib/python3/dist-packages/yaml/constructor.py                                                 479    370    23%
-/usr/lib/python3/dist-packages/yaml/cyaml.py                                                        46     24    48%
-/usr/lib/python3/dist-packages/yaml/dumper.py                                                       23     12    48%
-/usr/lib/python3/dist-packages/yaml/emitter.py                                                     838    769     8%
-/usr/lib/python3/dist-packages/yaml/error.py                                                        58     48    17%
-/usr/lib/python3/dist-packages/yaml/events.py                                                       61     32    48%
-/usr/lib/python3/dist-packages/yaml/loader.py                                                       47     30    36%
-/usr/lib/python3/dist-packages/yaml/nodes.py                                                        29     17    41%
-/usr/lib/python3/dist-packages/yaml/parser.py                                                      352    312    11%
-/usr/lib/python3/dist-packages/yaml/reader.py                                                      122    105    14%
-/usr/lib/python3/dist-packages/yaml/representer.py                                                 248    176    29%
-/usr/lib/python3/dist-packages/yaml/resolver.py                                                    135     97    28%
-/usr/lib/python3/dist-packages/yaml/scanner.py                                                     758    677    11%
-/usr/lib/python3/dist-packages/yaml/serializer.py                                                   85     70    18%
-/usr/lib/python3/dist-packages/yaml/tokens.py                                                       76     27    64%
-core/__init__.py                                                                                     0      0   100%
-core/settings.py                                                                                    41      0   100%
-core/urls.py                                                                                         7      0   100%
-finance/admin.py                                                                                     1      0   100%
-finance/apps.py                                                                                      4      0   100%
-finance/models.py                                                                                    5      1    80%
-finance/views.py                                                                                    55     48    13%
-jwt_auth_token/__init__.py                                                                           0      0   100%
-jwt_auth_token/admin.py                                                                              1      0   100%
-jwt_auth_token/apps.py                                                                               4      0   100%
-jwt_auth_token/migrations/__init__.py                                                                0      0   100%
-jwt_auth_token/models.py                                                                             1      0   100%
-jwt_auth_token/tests.py                                                                              0      0   100%
-jwt_auth_token/views.py                                                                             16      7    56%
-manage.py                                                                                           12      2    83%
-properties/__init__.py                                                                               0      0   100%
-properties/admin.py                                                                                  6      0   100%
-properties/apps.py                                                                                   4      0   100%
-properties/migrations/0001_initial.py                                                                5      0   100%
-properties/migrations/0002_initial.py                                                                6      0   100%
-properties/migrations/0003_propertyprofile_fee_rate_and_more.py                                      4      0   100%
-properties/migrations/0004_rename_propertyimage_propertyprofile_image.py                             4      0   100%
-properties/migrations/0005_condounit_image_parkingunit_image_storageunit_image.py                    4      0   100%
-properties/migrations/0006_condounit_operational_expense_and_more.py                                 4      0   100%
-properties/migrations/__init__.py                                                                    0      0   100%
-properties/models.py                                                                                58      5    91%
-properties/serializers.py                                                                           35      5    86%
-properties/tests.py                                                                                 26      0   100%
-properties/urls.py                                                                                  12      0   100%
-properties/views.py                                                                                 89     61    31%
-registration_key/__init__.py                                                                         0      0   100%
-registration_key/admin.py                                                                            5      0   100%
-registration_key/apps.py                                                                             4      0   100%
-registration_key/migrations/0001_initial.py                                                          7      0   100%
-registration_key/migrations/0002_rename_is_activate_condoregistrationkey_is_active_and_more.py       5      0   100%
-registration_key/migrations/__init__.py                                                              0      0   100%
-registration_key/models.py                                                                          43      9    79%
-registration_key/serializers.py                                                                     21      0   100%
-registration_key/tests.py                                                                          177      0   100%
-registration_key/urls.py                                                                             8      0   100%
-registration_key/views.py                                                                           97      0   100%
-user_profile/__init__.py                                                                             0      0   100%
-user_profile/admin.py                                                                                7      0   100%
-user_profile/apps.py                                                                                 4      0   100%
-user_profile/migrations/0001_initial.py                                                              8      0   100%
-user_profile/migrations/__init__.py                                                                  0      0   100%
-user_profile/models.py                                                                              88      5    94%
-user_profile/serializers.py                                                                         38      0   100%
-user_profile/tests.py                                                                               65      0   100%
-user_profile/urls.py                                                                                14      0   100%
-user_profile/views.py                                                                               97     63    35%
---------------------------------------------------------------------------------------------------------------------
-TOTAL                                                                                            16514  11497    30%
+Submission for team 18 sprint 1 link on google drive:
+
+https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=share_link
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
+Date: Fri Mar 22 04:02:18 UTC 2024
+
+Code Quality Indicators
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=bugs)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
+
+Code Coverage Tree
+
+[![codecov](https://codecov.io/gh/THE-390-Team/THE-390/graph/badge.svg?token=FW880JJXGB)](https://codecov.io/gh/THE-390-Team/THE-390)
+
+
+## Testing Reports from Workflow
+
+
+> frontend@0.1.0 coverage
+> react-scripts test --watchAll=false --coverage
+
+------------------------------------|---------|----------|---------|---------|-------------------
+File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+------------------------------------|---------|----------|---------|---------|-------------------
+All files                           |    1.63 |        0 |    4.41 |    1.66 |                   
+ src                                |       0 |      100 |       0 |       0 |                   
+  App.js                            |       0 |      100 |       0 |       0 | 26-31             
+  index.js                          |       0 |      100 |     100 |       0 | 10-12             
+ src/api                            |       0 |        0 |       0 |       0 |                   
+  axios.js                          |       0 |        0 |       0 |       0 | 3-83              
+ src/components                     |   44.44 |      100 |      50 |   44.44 |                   
+  Content.js                        |     100 |      100 |     100 |     100 |                   
+  Footer.js                         |     100 |      100 |     100 |     100 |                   
+  Header.js                         |       0 |      100 |       0 |       0 | 12-14             
+  LargeTitle.js                     |       0 |      100 |       0 |       0 | 4-5               
+ src/components/createProperty      |       0 |        0 |       0 |       0 |                   
+  CreateLocker.js                   |       0 |        0 |       0 |       0 | 13-185            
+  CreateParking.js                  |       0 |        0 |       0 |       0 | 13-188            
+  CreateProperty.js                 |       0 |        0 |       0 |       0 | 13-168            
+  CreateUnit.js                     |       0 |        0 |       0 |       0 | 13-189            
+ src/components/dashboard           |   38.88 |        0 |      50 |   38.88 |                   
+  DashBoard.js                      |       0 |        0 |       0 |       0 | 14-31             
+  FinancialPublic.js                |     100 |      100 |     100 |     100 |                   
+  SubmittedRequests.js              |     100 |      100 |     100 |     100 |                   
+  UserInfo.js                       |       0 |      100 |       0 |       0 | 15-26             
+ src/components/dashboard/financial |   15.78 |        0 |    12.5 |   15.78 |                   
+  Financial.js                      |       0 |        0 |       0 |       0 | 7-103             
+  Total.js                          |     100 |      100 |     100 |     100 |                   
+ src/components/log                 |       0 |        0 |       0 |       0 |                   
+  LogOut.js                         |       0 |      100 |       0 |       0 | 9-30              
+  Login.js                          |       0 |        0 |       0 |       0 | 11-113            
+  SignUp.js                         |       0 |        0 |       0 |       0 | 8-208             
+  SignUpCompany.js                  |       0 |        0 |       0 |       0 | 8-207             
+ src/components/nagivationBar       |       0 |        0 |       0 |       0 |                   
+  NavigationBar.js                  |       0 |        0 |       0 |       0 | 8-25              
+ src/components/operationCost       |       0 |      100 |       0 |       0 |                   
+  Operation.js                      |       0 |      100 |       0 |       0 | 6-130             
+ src/components/property            |       0 |        0 |       0 |       0 |                   
+  PropertyCard.js                   |       0 |        0 |       0 |       0 | 8-93              
+  PropertyContainer.js              |       0 |        0 |       0 |       0 | 9-58              
+  PropertyPage.js                   |       0 |        0 |       0 |       0 | 11-101            
+ src/components/registrationKey     |       0 |        0 |       0 |       0 |                   
+  SendRegistrationButton.js         |       0 |        0 |       0 |       0 | 6-135             
+  SubmitRegistrationButton.js       |       0 |        0 |       0 |       0 | 6-52              
+ src/components/userProfile         |       0 |        0 |       0 |       0 |                   
+  UserProfile.js                    |       0 |        0 |       0 |       0 | 17-102            
+ src/screens                        |     100 |      100 |     100 |     100 |                   
+  HomeScreen.js                     |     100 |      100 |     100 |     100 |                   
+ src/screens/homeScreenCarousel     |     100 |      100 |     100 |     100 |                   
+  CarouselHomeScreen.js             |     100 |      100 |     100 |     100 |                   
+ src/utils/hooks                    |       0 |        0 |       0 |       0 |                   
+  AuthContext.js                    |       0 |        0 |       0 |       0 | 4-39              
+  ProfileContext.js                 |       0 |        0 |       0 |       0 | 5-108             
+  PropertyContext.js                |       0 |      100 |       0 |       0 | 4-154             
+------------------------------------|---------|----------|---------|---------|-------------------
+Found 37 test(s).
+System check identified no issues (0 silenced).
