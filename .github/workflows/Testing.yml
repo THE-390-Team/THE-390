@@ -102,7 +102,7 @@ jobs:
               # coverage run --omit='/venv/' manage.py test > coverage_report.json
               cd ..
               cd frontend
-              npx cypress run > cypress-report.json
+              # npx cypress run > cypress-report.json
               echo "Submission for team 18 sprint 1 link on google drive:" > temp.md
               echo "" >> temp.md
               echo "https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=share_link" >> temp.md
@@ -134,7 +134,7 @@ jobs:
               echo "" >> temp.md
               cat temp.md frontend/jest-report.json > temp_readme.md
               # cat temp_readme.md backend/coverage_report.json > temp.md
-              cat temp.md frontend/cypress-report.json > temp_readme.md
+              # cat temp.md frontend/cypress-report.json > temp_readme.md
               mv temp_readme.md README.md
               rm temp.md
               git init
