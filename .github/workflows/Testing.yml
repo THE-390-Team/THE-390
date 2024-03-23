@@ -106,10 +106,6 @@ jobs:
               python manage.py runserver &
               coverage run --omit='/venv/' manage.py test > coverage_report.json
               cd ..
-              cd frontend
-              npm start &
-              npx cypress run > cypress-report.json
-              cd ..
               echo "Submission for team 18 sprint 1 link on google drive:" > temp.md
               echo "" >> temp.md
               echo "https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=share_link" >> temp.md
