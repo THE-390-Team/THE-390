@@ -51,6 +51,7 @@
     "@babel/core": "^7.24.0",
     "@babel/preset-react": "^7.23.3",
     "@cypress/instrument-cra": "^1.4.0",
+    "axios-mock-adapter": "^1.22.0",
     "babel-jest": "^29.7.0",
     "cypress": "^13.6.4",
     "cypress-file-upload": "^5.0.8",
