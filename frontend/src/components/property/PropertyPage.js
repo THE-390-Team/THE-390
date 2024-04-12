@@ -89,6 +89,10 @@ const PropertyPage = () => {
     goBack()
   }
 
+  function handleGoToCommonFacilities(){
+    navigate(`/property-page/${propertyId}/common-facilities`);
+  }
+
   function handleGoToUnitCreate() {
     navigate(`/property-page/${propertyId}/create-condo-unit`);
   }
@@ -123,6 +127,10 @@ const PropertyPage = () => {
 
             <Col className="d-flex justify-content-end">
 
+              <Button variant="primary" onClick={handleGoToCommonFacilities} style = {{ marginRight: "40px"}} data-testid="to-common-facilities" >
+                CommonFacilities
+              </Button>
+
               <Button variant="primary" onClick={handleShow} style = {{ marginRight: "40px"}}>
                 Upload Files
               </Button>
@@ -150,6 +158,7 @@ const PropertyPage = () => {
               <Button onClick={handleBackToDashboard} data-testid="dashboard-return">
                 Dashboard
               </Button>
+
             </Col>
           </Row>
 

@@ -13,7 +13,7 @@ function SubmitRegistrationButton() {
 
     const sendKey = async () => {
         try {
-            const response = await axiosInstance.get('profiles/public-profile/register-condo/', {
+            const response = await axiosInstance.patch('profiles/public-profile/register-condo/', {
                 key: regKey,
                 user: parseInt(localStorage.getItem('ID')),
             });

@@ -20,6 +20,7 @@ import CreateProperty from "./components/createProperty/CreateProperty.js";
 import { useAuth } from "./utils/hooks/AuthContext.js";
 import { useEffect } from "react";
 import OperationCost from "./components/operationCost/Operation.js";
+import CommonFacilities from "./components/commonFacilities/CommonFacilities.js";
 
 function App() {
   //check for the token in case of a refresh
@@ -46,6 +47,7 @@ function App() {
             <Route path="/property-page/:propertyId/create-parking-unit" element={<CreateParking />} />
             <Route path="/property-page/:propertyId/create-locker-unit" element={<CreateLocker />} />
             <Route path="/property-page/:propertyId" element={<PropertyPage />} />
+            <Route path="/property-page/:propertyId/common-facilities" element={<CommonFacilities />} />
             <Route path="/create-property" element={<CreateProperty />} />
             <Route path="/home" element={<HomeScreen />} />
             <Route path='/operation' element={<OperationCost />} />
