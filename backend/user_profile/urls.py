@@ -22,9 +22,9 @@ urlpatterns = [
     path('public-profile/<int:user_id>/parking-units/', PublicProfileViewSet.as_view({'get':'get_parking_units'})),
     path('public-profile/<int:user_id>/storage-units/', PublicProfileViewSet.as_view({'get':'get_storage_units'})),
     # register unit to public profile with registration key 
-    path('public-profile/register-condo/', PublicProfileViewSet.as_view({'get': 'register_condo'})),
-    path('public-profile/register-storage/', PublicProfileViewSet.as_view({'get': 'register_storage'})),
-    path('public-profile/register-parking/', PublicProfileViewSet.as_view({'get': 'register_parking'})),
+    path('public-profile/register-condo/', PublicProfileViewSet.as_view({'patch': 'register_condo'})),
+    path('public-profile/register-storage/', PublicProfileViewSet.as_view({'patch': 'register_storage'})),
+    path('public-profile/register-parking/', PublicProfileViewSet.as_view({'patch': 'register_parking'})),
     # finance 
     path('company-profile/<int:company_id>/finance-report/', CompanyFinanceView.as_view())
 ]
