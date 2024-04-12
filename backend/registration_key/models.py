@@ -1,32 +1,118 @@
 from django.db import models
+import hashlib
 import random
-import string
-from user_profile.models import PublicProfile
 
-class generateKeys(models.Model):
-    
-    #There is no need to check keys from a table because probability of overlapping keys is negligible
-    #Each key has 9 random characters chosen from all 26 alphabet letters and 10 digits
-    #This means there are 36^9 or 10^14 possible combination of keys for any user type
 
-    user = models.OneToOneField('User', ...)
-    # Owners will have a key that start with 1
-    @staticmethod
-    def generate_key_owner() -> str:
-        return '1'.join(random.choices(string.ascii.uppercase + string.digits, k=9))
-    
-    # Renters will have a key that start with 2
-    @staticmethod
-    def generate_key_renter() -> str:
-        return '2'.join(random.choices(string.ascii.uppercase + string.digits, k=9))
-    
-    # Take a string "owner" or "renter" and generate key with corresponding prefix
-    @staticmethod
-    def generate_key(user):
-        if (user.type == 'Owner'):
-            return generateKeys.generate_key_owner()
-        elif (user.type == 'Renter'):
-            return generateKeys.generate_key_renter()
-        else:
-            return '-1'
+class RegistrationKeyManager(models.Manager):
+    """
+    A custom manager for the RegistrationKey model.
+    """
 
+    def get_queryset(self):
+        """
+        Returns a queryset of RegistrationKey objects that are activated.
+        """
+        return super().get_queryset().filter(is_active=True)
+    
+    def create_key(self, user, unit):
+        """
+        Creates a new RegistrationKey object with the specified user and unit.
+        
+        Args:
+            user (User): The user associated with the key.
+            unit (Unit): The unit associated with the key.
+        
+        Returns:
+            RegistrationKey: The newly created RegistrationKey object.
+        """
+        key = self.model(user=user, unit=unit)
+        key.generate_key(user, unit)
+        key.save(using=self._db)
+        return key
+
+class RegistrationKey(models.Model):
+    """
+    An abstract base class for registration keys.
+    """
+
+    class Meta:
+        abstract = True
+        
+    key = models.CharField(max_length=100, unique=True)
+    user = models.ForeignKey('user_profile.PublicProfile', on_delete=models.CASCADE, null=False, blank=False)
+    is_owner = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        """
+        Returns a string representation of the registration key.
+        """
+        return self.key
+    
+    @staticmethod
+    def generate_key(user, unit):
+        """
+        Generates a unique key based on the user's email and the unit's ID.
+        
+        Args:
+            user (User): The user associated with the key.
+            unit (Unit): The unit associated with the key.
+        
+        Returns:
+            str: The generated key.
+        """ 
+        salt = hashlib.sha256(str(random.random()).encode()).hexdigest()[:5]
+        email = user.email.encode('utf-8')
+        unit_id = str(unit.id).encode('utf-8')
+        key = hashlib.sha256(salt.encode() + email + unit_id).hexdigest()
+        return key
+    
+    def deactivate(self):
+        """
+        Deactivates the registration key.
+        """
+        self.is_active = False
+
+    
+class CondoRegistrationKey(RegistrationKey):
+    """
+    A registration key for a condo unit.
+    """
+
+    unit = models.ForeignKey('properties.CondoUnit', on_delete=models.CASCADE, blank=False)
+    # objects = RegistrationKeyManager()
+   
+    def __str__(self):
+        """
+        Returns a string representation of the condo registration key.
+        """
+        return self.key
+    
+class ParkingRegistrationKey(RegistrationKey):
+    """
+    A registration key for a parking unit.
+    """
+
+    unit = models.ForeignKey('properties.ParkingUnit', on_delete=models.CASCADE, blank=False)
+    objects = RegistrationKeyManager()
+    
+    def __str__(self):
+        """
+        Returns a string representation of the parking registration key.
+        """
+        return self.key
+    
+       
+class StorageRegistrationKey(RegistrationKey):
+    """
+    A registration key for a storage unit.
+    """
+
+    unit = models.ForeignKey('properties.StorageUnit', on_delete=models.CASCADE, blank=False)
+    objects = RegistrationKeyManager()
+    
+    def __str__(self):
+        """
+        Returns a string representation of the storage registration key.
+        """
+        return self.key

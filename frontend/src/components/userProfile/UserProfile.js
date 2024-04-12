@@ -11,24 +11,12 @@ import {
   Form,
 } from "react-bootstrap";
 import { useProfile } from "../../utils/hooks/ProfileContext";
+import LargeTitle from "../LargeTitle.js";
+import SubmitRegistrationButton from "../registrationKey/SubmitRegistrationButton.js";
 
 const UserProfile = () => {
-  const { profileInfo, getProfileInformation, setProfileInformation } =
+  const { profileInfo, getProfileInformation, fetchProfileRole, role } =
     useProfile();
-
-  // // user information
-  // const [profileInfo, setProfileInfo] = useState({
-  //   avatar: profilepic,
-  //   first_name: "",
-  //   last_name: "",
-  //   email: "",
-  //   phone_number: "",
-  //   address: "",
-  //   city: "",
-  //   province: "",
-  //   registration_key: "",
-  //   postal_code: "",
-  // });
 
   const [showModal, setShowModal] = useState(false);
   const id = localStorage.getItem("ID");
@@ -48,22 +36,44 @@ const UserProfile = () => {
       .catch(error => {
         console.log(error);
       })
-    axiosInstance
-      .patchForm(`profiles/public-profile/${id}/`, formData)
-      .then((response) => {
-        console.log(response);
-        handleCloseModal();
-        if(response.status == 200) {
-          alert("Successfully saved changes")
-          window.location.reload();
-        }
-        else {
-          alert("Error occured while saving changes")
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+
+    if (role === "PUBLIC") {
+      axiosInstance
+        .patchForm(`profiles/public-profile/${id}/`, formData)
+        .then((response) => {
+          console.log(response);
+          handleCloseModal();
+          if (response.status == 200) {
+            alert("Successfully saved changes")
+            window.location.reload();
+          }
+          else {
+            alert("Error occured while saving changes")
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else if (role === "COMPANY") {
+      axiosInstance
+        .patchForm(`profiles/company-profile/${id}/`, formData)
+        .then((response) => {
+          console.log(response);
+          handleCloseModal();
+          if (response.status == 200) {
+            alert("Successfully saved changes")
+            window.location.reload();
+          }
+          else {
+            alert("Error occured while saving changes")
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+
+
   };
 
   // Update formData when change occurs
@@ -85,11 +95,15 @@ const UserProfile = () => {
   // get information on active user
   useEffect(() => {
     getProfileInformation();
+    //TODO this might be a problem, if the homepage is the default start of the website, then the user will not have a role
+    fetchProfileRole(); //fetch the role of the user from the profile context
   }, []);
 
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
+        {/* a page title */}
+        <LargeTitle title="Your Profile" />
         <Col md={4}>
           <Card>
             <Card.Img
@@ -119,9 +133,12 @@ const UserProfile = () => {
                 variant="primary"
                 onClick={handleShowModal}
                 data-testid="edit-profile"
+                style={{ marginRight: "30px" }}
               >
                 Edit Profile
               </Button>
+              {role === "PUBLIC" && <SubmitRegistrationButton />
+              }
             </Card.Body>
           </Card>
         </Col>
@@ -133,9 +150,10 @@ const UserProfile = () => {
             <Card.Body>
               <Col>
                 <p>
-                  <strong>Address:</strong> {profileInfo.address},{" "}
-                  {profileInfo.city}, {profileInfo.province},{" "}
-                  {profileInfo.postal_code}
+                  <strong>Address: </strong> {profileInfo.address}<br />
+                  <strong>City: </strong>{profileInfo.city}<br />
+                  <strong>Province: </strong>{profileInfo.province}<br />
+                  <strong>Postal Code: </strong>{profileInfo.postal_code}
                 </p>
                 <p>more details to come...</p>
               </Col>
