@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import LargeTitle from './LargeTitle';
+import '@testing-library/jest-dom';
+
 
 describe('LargeTitle', () => {
     it('renders the title prop inside an h1 tag', () => {

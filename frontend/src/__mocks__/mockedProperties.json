@@ -68,7 +68,7 @@
         ],
         "parking_units": [
             {
-                "id": 1,
+                "id": 111,
                 "public_profile": null,
                 "location": "2",
                 "purchase_price": "10000.00",
@@ -83,7 +83,7 @@
         ],
         "storage_units": [
             {
-                "id": 1,
+                "id": 112,
                 "public_profile": null,
                 "location": "2",
                 "purchase_price": "10000.00",
@@ -96,7 +96,7 @@
                 "property": 1
             },
             {
-                "id": 2,
+                "id": 113,
                 "public_profile": null,
                 "location": "3",
                 "purchase_price": "10000.00",
