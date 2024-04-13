@@ -4,7 +4,7 @@ https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=sha
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Date: Fri Apr 12 14:54:06 UTC 2024
+Date: Sat Apr 13 21:12:12 UTC 2024
 
 Code Quality Indicators
 
@@ -33,12 +33,12 @@ Code Coverage Tree
 ------------------------------------|---------|----------|---------|---------|-------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------|---------|----------|---------|---------|-------------------
-All files                           |    2.85 |     1.05 |    5.79 |     2.9 |                   
+All files                           |    9.21 |        4 |   14.49 |    8.98 |                   
  src                                |       0 |      100 |       0 |       0 |                   
   App.js                            |       0 |      100 |       0 |       0 | 27-32             
   index.js                          |       0 |      100 |     100 |       0 | 10-12             
- src/api                            |      10 |     5.88 |       0 |      10 |                   
-  axios.js                          |      10 |     5.88 |       0 |      10 | 19-83             
+ src/api                            |   33.33 |    35.29 |      50 |   33.33 |                   
+  axios.js                          |   33.33 |    35.29 |      50 |   33.33 | 37-38,46-83       
  src/components                     |   66.66 |      100 |      75 |   66.66 |                   
   Content.js                        |     100 |      100 |     100 |     100 |                   
   Footer.js                         |     100 |      100 |     100 |     100 |                   
@@ -56,8 +56,8 @@ All files                           |    2.85 |     1.05 |    5.79 |     2.9 |
   FinancialPublic.js                |     100 |      100 |     100 |     100 |                   
   SubmittedRequests.js              |     100 |      100 |     100 |     100 |                   
   UserInfo.js                       |       0 |      100 |       0 |       0 | 15-26             
- src/components/dashboard/financial |   15.78 |        0 |    12.5 |   15.78 |                   
-  Financial.js                      |       0 |        0 |       0 |       0 | 7-103             
+ src/components/dashboard/financial |   21.05 |        0 |    12.5 |   21.05 |                   
+  Financial.js                      |    6.25 |        0 |       0 |    6.25 | 8-103             
   Total.js                          |     100 |      100 |     100 |     100 |                   
  src/components/log                 |       0 |        0 |       0 |       0 |                   
   LogOut.js                         |       0 |      100 |       0 |       0 | 9-30              
@@ -68,12 +68,12 @@ All files                           |    2.85 |     1.05 |    5.79 |     2.9 |
   NavigationBar.js                  |       0 |        0 |       0 |       0 | 8-25              
  src/components/operationCost       |       0 |      100 |       0 |       0 |                   
   Operation.js                      |       0 |      100 |       0 |       0 | 6-130             
- src/components/property            |       0 |        0 |       0 |       0 |                   
-  PropertyCard.js                   |       0 |        0 |       0 |       0 | 8-93              
-  PropertyContainer.js              |       0 |        0 |       0 |       0 | 9-58              
+ src/components/property            |    2.32 |        0 |       0 |    2.46 |                   
+  PropertyCard.js                   |    2.77 |        0 |       0 |    3.03 | 10-93             
+  PropertyContainer.js              |    6.66 |        0 |       0 |    6.66 | 21-58             
   PropertyPage.js                   |       0 |        0 |       0 |       0 | 11-105            
- src/components/registrationKey     |       0 |        0 |       0 |       0 |                   
-  SendRegistrationButton.js         |       0 |        0 |       0 |       0 | 6-135             
+ src/components/registrationKey     |   65.06 |    64.28 |   66.66 |   64.93 |                   
+  SendRegistrationButton.js         |   96.42 |       75 |   94.11 |   98.03 | 88                
   SubmitRegistrationButton.js       |       0 |        0 |       0 |       0 | 6-52              
  src/components/userProfile         |       0 |        0 |       0 |       0 |                   
   UserProfile.js                    |       0 |        0 |       0 |       0 | 17-102            
@@ -81,10 +81,10 @@ All files                           |    2.85 |     1.05 |    5.79 |     2.9 |
   HomeScreen.js                     |     100 |      100 |     100 |     100 |                   
  src/screens/homeScreenCarousel     |     100 |      100 |     100 |     100 |                   
   CarouselHomeScreen.js             |     100 |      100 |     100 |     100 |                   
- src/utils/hooks                    |    1.02 |        0 |       0 |    1.04 |                   
+ src/utils/hooks                    |    4.08 |        0 |       0 |    4.16 |                   
   AuthContext.js                    |       0 |        0 |       0 |       0 | 4-39              
   ProfileContext.js                 |    2.85 |        0 |       0 |    2.85 | 8-108             
-  PropertyContext.js                |       0 |      100 |       0 |       0 | 4-154             
+  PropertyContext.js                |    6.12 |      100 |       0 |    6.38 | 10-154            
 ------------------------------------|---------|----------|---------|---------|-------------------
 Found 37 test(s).
 System check identified no issues (0 silenced).
