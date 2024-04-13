@@ -14,8 +14,8 @@ import axiosInstance from '../../../api/axios.js';
 import '@testing-library/jest-dom';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import { useProperty } from '../../../utils/hooks/PropertyContext.js';
-import mockedpublicProfiles from '../../../__mocks__/mockedpublicProfiles.json';
-import mockedProperties from '../../../__mocks__/mockedProperties.json';
+import mockedpublicProfiles from '../../../mocks/mockedpublicProfiles.json';
+import mockedProperties from '../../../mocks/mockedProperties.json';
 
 // Create an instance of the mock adapter
 const AxiosMock = new AxiosMockAdapter(axiosInstance);
