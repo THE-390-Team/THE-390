@@ -4,7 +4,7 @@ https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=sha
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Date: Sat Apr 13 21:26:14 UTC 2024
+Date: Sat Apr 13 21:42:57 UTC 2024
 
 Code Quality Indicators
 
@@ -33,12 +33,12 @@ Code Coverage Tree
 ------------------------------------|---------|----------|---------|---------|-------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------|---------|----------|---------|---------|-------------------
-All files                           |    9.21 |        4 |   14.49 |    8.98 |                   
+All files                           |    9.02 |     3.79 |   14.49 |    8.79 |                   
  src                                |       0 |      100 |       0 |       0 |                   
   App.js                            |       0 |      100 |       0 |       0 | 27-32             
   index.js                          |       0 |      100 |     100 |       0 | 10-12             
- src/api                            |   33.33 |    35.29 |      50 |   33.33 |                   
-  axios.js                          |   33.33 |    35.29 |      50 |   33.33 | 37-38,46-83       
+ src/api                            |   26.66 |    29.41 |      50 |   26.66 |                   
+  axios.js                          |   26.66 |    29.41 |      50 |   26.66 | 25-30,37-38,46-83 
  src/components                     |   66.66 |      100 |      75 |   66.66 |                   
   Content.js                        |     100 |      100 |     100 |     100 |                   
   Footer.js                         |     100 |      100 |     100 |     100 |                   
