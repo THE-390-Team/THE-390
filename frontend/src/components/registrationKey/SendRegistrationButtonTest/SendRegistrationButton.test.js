@@ -15,6 +15,7 @@ import AxiosMockAdapter from 'axios-mock-adapter';
 import { useProperty } from '../../../utils/hooks/PropertyContext.js';
 import mockedpublicProfiles from '../../../mocks/mockedPublicProfiles.json';
 import mockedProperties from '../../../mocks/mockedProperties.json';
+import { act } from 'react-dom/test-utils';
 
 // Create an instance of the mock adapter
 const AxiosMock = new AxiosMockAdapter(axiosInstance);
@@ -25,42 +26,48 @@ jest.mock('../../../utils/hooks/PropertyContext.js');
 describe('SendRegistrationButton Content and User API', () => {
 
   // reset the mocks before each test
-  beforeEach(() => {
-
+  beforeEach(async () => {
     AxiosMock.reset();
     // localStorageMock.getItem.mockClear();
     jest.clearAllMocks();
     jest.resetModules();
     jest.resetAllMocks();
-
     // mock the useProfile hook to return a company role
     useProperty.mockImplementation(() => ({
       properties: mockedProperties.properties
     }));
-
-    AxiosMock.onGet('/profiles/public-profile/').reply(200, mockedpublicProfiles.profiles);
+    await act(async () => {
+      AxiosMock.onGet('/profiles/public-profile/').reply(200, mockedpublicProfiles.profiles);
+    })
   });
-  it('renders the button correctly', () => {
-    render(<SendRegistrationButton />);
-    const button = screen.getByText('Send a Key');
-    expect(button).toBeInTheDocument();
+  it('renders the button correctly', async () => {
+    await waitFor(() => { render(<SendRegistrationButton />); })
+    await waitFor(() => {
+      const button = screen.getByText('Send a Key');
+      expect(button).toBeInTheDocument();
+    })
+
   });
   it('opens modal and loads component correctly', async () => {
-    const { getByText } = render(<SendRegistrationButton />);
-    fireEvent.click(getByText('Send a Key'));
-    await waitFor(async () => {
-      expect(getByText('Select an Available Unit')).toBeInTheDocument();
-      expect(getByText('Select a User to Send Key To')).toBeInTheDocument(); // Assuming the dropdown renders the names
-      expect(getByText('Registration Key Details')).toBeInTheDocument();
-      expect(getByText('Owner')).toBeInTheDocument();
-      expect(getByText('Close')).toBeInTheDocument();
-      expect(getByText('Send')).toBeInTheDocument();
+    await waitFor(() => { render(<SendRegistrationButton />); })
+    await waitFor(() => { fireEvent.click(screen.getByText('Send a Key')); })
+
+
+    await waitFor(() => {
+      expect(screen.getByText('Select an Available Unit')).toBeInTheDocument();
+      expect(screen.getByText('Select a User to Send Key To')).toBeInTheDocument();
+      expect(screen.getByText('Registration Key Details')).toBeInTheDocument();
+      expect(screen.getByText('Owner')).toBeInTheDocument();
+      expect(screen.getByText('Close')).toBeInTheDocument();
+      expect(screen.getByText('Send')).toBeInTheDocument();
     });
-  })
+  });
   it('opens modal and loads the public users correctly', async () => {
     const { getByText } = render(<SendRegistrationButton />);
-    fireEvent.click(getByText('Send a Key'));
+
+    await waitFor(() => { fireEvent.click(screen.getByText('Send a Key')); })
     fireEvent.click(getByText('Your User'));
+
     await waitFor(() => {
       expect(getByText('John Doe')).toBeInTheDocument();
       expect(getByText('Public User')).toBeInTheDocument();
@@ -83,8 +90,9 @@ describe('SendRegistrationButton gets the correct units', () => {
   });
   it('open modal and looks for the correct units', async () => {
     const { getByText } = render(<SendRegistrationButton />);
-    fireEvent.click(getByText('Send a Key'));
+    await waitFor(() => { fireEvent.click(screen.getByText('Send a Key')); })
     fireEvent.click(getByText('Your Unit'));
+
     await waitFor(() => {
       //from the first property
       expect(getByText('Unit 121')).toBeInTheDocument();
@@ -101,7 +109,7 @@ describe('SendRegistrationButton gets the correct units', () => {
 })
 
 describe('SendRegistrationButton API Interactions', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     // Reset Axios and other mocks
     AxiosMock.reset();
     jest.resetAllMocks();
@@ -109,24 +117,24 @@ describe('SendRegistrationButton API Interactions', () => {
     useProperty.mockImplementation(() => ({
       properties: mockedProperties.properties
     }));
-
-    AxiosMock.onGet('/profiles/public-profile/').reply(200, mockedpublicProfiles.profiles);
+    await act(async () => {
+      AxiosMock.onGet('/profiles/public-profile/').reply(200, mockedpublicProfiles.profiles);
+    })
   });
-  
+
   afterEach(() => {
     jest.clearAllMocks(); // Resets all mocks
   });
 
   it('sends a registration key with correct data upon form submission', async () => {
-    render(<SendRegistrationButton />);
-    fireEvent.click(screen.getByText('Send a Key')); // Open modal
-
+    await waitFor(() => { render(<SendRegistrationButton />); })
+    await waitFor(() => { fireEvent.click(screen.getByText('Send a Key')) }); // Open modal
     // Open the dropdown for units
     fireEvent.click(screen.getByText('Your Unit'));
-
     // Select a unit by clicking on the dropdown item
-    await waitFor(() => fireEvent.click(screen.getByText('Unit 109')));
-
+    await waitFor(() => {
+      fireEvent.click(screen.getByText('Unit 109'))
+    });
     // Open the dropdown for users
     fireEvent.click(screen.getByText('Your User'));
 
@@ -137,7 +145,6 @@ describe('SendRegistrationButton API Interactions', () => {
     await waitFor(() => {
       fireEvent.click(screen.getByText('Send'));
     });
-
     // Wait and check if the POST request was sent with the correct data
     await waitFor(() => {
       expect(AxiosMock.history.post.length).toBe(1);
