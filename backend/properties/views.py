@@ -3,11 +3,26 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit
-from .serializers import PropertyProfileSerializer, CondoUnitSerializer, StorageUnitSerializer, ParkingUnitSerializer
+from .models import Facility, PropertyProfile, CondoUnit, ParkingUnit, Reservation, StorageUnit
+from .serializers import FacilitySerializer, PropertyProfileSerializer, CondoUnitSerializer, ReservationSerializer, StorageUnitSerializer, ParkingUnitSerializer
 from user_profile.models import CompanyProfile
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
+from user_profile.models import CompanyProfile
+
+
+# Define viewsets for managing facilities and reservations.
+class FacilityViewSet(ModelViewSet):
+    queryset = Facility.objects.all()
+    serializer_class = FacilitySerializer
+
+class ReservationViewSet(ModelViewSet):
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationSerializer
+    
+    """
+        add method for creating reservation that checks for overlapping reservations 
+    """
 
 class PropertyProfileViewSet(ModelViewSet):
     """  

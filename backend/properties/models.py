@@ -1,6 +1,45 @@
 from django.db import models
 
+from user_profile.models import User
 from finance.models import FinanceModel
+
+# define the models for Facility and Reservation
+class Facility(models.Model):
+    FACILITY_TYPES = (
+        ('gym', 'Gym'),
+        ('pool', 'Swimming Pool'),
+        ('meeting_room', 'Meeting Room'),
+        ('lounge', 'Lounge'),
+    )
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    capacity = models.IntegerField()
+    reservation_duration = models.IntegerField(help_text="Duration in minutes")
+    """ 
+    property = models.ForeignKey('PropertyProfile', on_delete=models.CASCADE, related_name='facilities')
+    """
+    def __str__(self):
+        return self.name
+    
+    
+class Reservation(models.Model):
+    STATUS_CHOICES = (
+        ('pending', 'Pending'),
+        ('confirmed', 'Confirmed'),
+        ('cancelled', 'Cancelled'),
+    )
+    """
+        user = models.ForeignKey('user_profile.PublicProfile', on_delete=models.CASCADE, related_name='reservations') 
+        facility = models.ForeignKey(Facility, on_delete=models.CASCADE, related_name='facility')
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    facility = models.ForeignKey('user_profile.PublicProfile', on_delete=models.CASCADE, related_name='reservations')
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+
+    def __str__(self):
+        return f"{self.facility.name} reservation for {self.user.username} on {self.start_time}"
 
 
 class PropertyProfile(models.Model):
