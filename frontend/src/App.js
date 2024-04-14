@@ -19,7 +19,7 @@ import CreateLocker from "./components/createProperty/CreateLocker.js";
 import CreateProperty from "./components/createProperty/CreateProperty.js";
 import { useAuth } from "./utils/hooks/AuthContext.js";
 import { useEffect } from "react";
-import OperationCost from "./components/operationCost/Operation.js";
+import OperationCost from "./components/operationCost/OperationCopy.js";
 import CommonFacilities from "./components/commonFacilities/CommonFacilities.js";
 
 function App() {

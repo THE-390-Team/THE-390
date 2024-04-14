@@ -130,7 +130,7 @@ const CreateProperty = () => {
       axiosInstance
         .postForm(`/properties/property-profile/`, {
           //TODO await model updates with name and image
-          // name: formData.property_name, 
+          name: formData.property_name, 
           company: companyID,
           address: formData.property_address,
           city: formData.property_city,
