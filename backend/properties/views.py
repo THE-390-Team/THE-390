@@ -8,6 +8,17 @@ from .serializers import PropertyProfileSerializer, CondoUnitSerializer, Storage
 from user_profile.models import CompanyProfile
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
+from user_profile.models import CompanyProfile
+
+
+# Define viewsets for managing facilities and reservations.
+class FacilityViewSet(viewsets.ModelViewSet):
+    queryset = Facility.objects.all()
+    serializer_class = FacilitySerializer
+
+class ReservationViewSet(viewsets.ModelViewSet):
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationSerializer
 
 class PropertyProfileViewSet(ModelViewSet):
     """  
