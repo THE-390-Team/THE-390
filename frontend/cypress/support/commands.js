@@ -31,12 +31,12 @@ Cypress.Commands.add('login', (email, password) => {
   cy.get('[data-testid="submit-button"]').click();
 });
 
-Cypress.Commands.add('goToProperty3', () => {
+Cypress.Commands.add('goToTajMahal', () => {
   cy.contains('Dashboard').click();
   cy.contains('Profile').click();
   cy.contains('Dashboard').click();
   cy.url().should('include', '/dashboard');
-  cy.contains('Name Placeholder 3').click();// FIXME: this will change once we have a name attribute
+  cy.contains('Taj Mahal').click();
   cy.url().should('include', '/property-page');
 });
 
