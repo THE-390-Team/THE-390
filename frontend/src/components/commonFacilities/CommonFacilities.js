@@ -26,6 +26,9 @@ const CommonFacilities = () => {
           fetchPropertyById(propertyId);
         }
       }, []);
+    function handleGoToCreateCommonFacilities(){
+      navigate(`/property-page/${propertyId}/create-common-facilities`);
+    }
     return (
         <Container className="mt-5">
           <Row className="justify-content-center">
@@ -60,7 +63,19 @@ const CommonFacilities = () => {
                 </ListGroup>
               </Card>
             </Col>
-            <Col md={8}>
+            <Col style={{ padding: '20px', overflowY: 'auto' }}>
+              <Row>
+                <Col>
+                  <h2>List of Common Facilities</h2>
+                </Col>
+                <Col>
+                  <div className="d-flex justify-content-end">
+                    <Button variant="primary" onClick={handleGoToCreateCommonFacilities} data-testid="to-create-common-facilities" >
+                    Create Common Facilities
+                    </Button>
+                  </div>
+                </Col>
+              </Row>
               <Row>
                 <Card className="mb-3">
                     <Card.Header>
