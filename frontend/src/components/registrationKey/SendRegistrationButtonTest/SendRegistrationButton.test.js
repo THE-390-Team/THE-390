@@ -129,22 +129,12 @@ describe('SendRegistrationButton API Interactions', () => {
   it('sends a registration key with correct data upon form submission', async () => {
     await waitFor(() => { render(<SendRegistrationButton />); })
     await waitFor(() => { fireEvent.click(screen.getByText('Send a Key')) }); // Open modal
-    // Open the dropdown for units
-    fireEvent.click(screen.getByText('Your Unit'));
-    // Select a unit by clicking on the dropdown item
-    await waitFor(() => {
-      fireEvent.click(screen.getByText('Unit 109'))
-    });
-    // Open the dropdown for users
-    fireEvent.click(screen.getByText('Your User'));
-
-    // Select a user by clicking on the dropdown item
-    await waitFor(() => fireEvent.click(screen.getByText('John Doe')));
-
-    // Simulate clicking the send button
-    await waitFor(() => {
-      fireEvent.click(screen.getByText('Send'));
-    });
+    fireEvent.click(screen.getByText('Your Unit'));// Open the dropdown for units
+    await waitFor(() => {fireEvent.click(screen.getByText('Unit 109'))});// Select a unit by clicking on the dropdown item
+    fireEvent.click(screen.getByText('Your User'));// Open the dropdown for users
+    await waitFor(() => fireEvent.click(screen.getByText('John Doe')));// Select a user by clicking on the dropdown item
+    await waitFor(() => {fireEvent.click(screen.getByText('Send'));});// Simulate clicking the send button
+    
     // Wait and check if the POST request was sent with the correct data
     await waitFor(() => {
       expect(AxiosMock.history.post.length).toBe(1);
