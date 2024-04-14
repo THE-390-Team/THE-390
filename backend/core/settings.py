@@ -14,6 +14,7 @@ import environ
 from pathlib import Path
 from datetime import timedelta
 import os
+import dj_database_url
 
 env = environ.Env(
     # set casting, default value
@@ -30,12 +31,12 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ml2p)mrgwd7fw223q4$#-ejge8^%b^xtou5=920#^hhny^$tv*'
-
+# SECRET_KEY = 'django-insecure-ml2p)mrgwd7fw223q4$#-ejge8^%b^xtou5=920#^hhny^$tv*'
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
 
 
 # Application definition
@@ -98,10 +99,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        # default='postgres://condo_management_system_user:lPoTldP5MvopHLJVc9f7EnCULBerbyBo@dpg-coct5663e1ms739lmprg-a.oregon-postgres.render.com/condo_management_system',
+        default= env('DATABASE_URL'),
+        conn_max_age=600
+    )
 }
 
 
@@ -150,9 +153,10 @@ REST_FRAMEWORK = {
     )
 }
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-]
+CORS_ALLOWED_ORIGINS= os.environ.get('CORS_ALLOWED_ORIGINS').split(" ")
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3000',
+# ]
 
 AUTH_USER_MODEL = 'user_profile.User'
 
@@ -202,15 +206,23 @@ SIMPLE_JWT = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Email settings
+# # Email settings
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# # EMAIL_HOST = 'patrickmaceachen78@gmail.com'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'patrickmaceachen78@gmail.com'
+# EMAIL_HOST_PASSWORD = 'uvjx lzqn mrbb xgur'
+# EMAIL_USE_SSL = False
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'patrickmaceachen78@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'patrickmaceachen78@gmail.com'
-EMAIL_HOST_PASSWORD = 'uvjx lzqn mrbb xgur'
-EMAIL_USE_SSL = False
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = env('EMAIL_USE_SSL')
 
 # Default location for images and reference URL
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
