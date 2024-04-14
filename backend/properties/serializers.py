@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from finance.models import FinanceModel
-from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit, Unit
+from .models import Facility, PropertyProfile, CondoUnit, ParkingUnit, Reservation, StorageUnit, Unit
 
 # created serializers for these models. Include custom validation in the ReservationSerializer
 # to prevent overlapping reservations.

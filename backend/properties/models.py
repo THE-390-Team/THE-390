@@ -1,5 +1,6 @@
 from django.db import models
 
+from user_profile.models import User
 from finance.models import FinanceModel
 
 # define the models for Facility and Reservation
@@ -14,16 +15,23 @@ class Facility(models.Model):
     description = models.TextField(blank=True)
     capacity = models.IntegerField()
     reservation_duration = models.IntegerField(help_text="Duration in minutes")
-
+    """ 
+    property = models.ForeignKey('PropertyProfile', on_delete=models.CASCADE, related_name='facilities')
+    """
     def __str__(self):
         return self.name
-
+    
+    
 class Reservation(models.Model):
     STATUS_CHOICES = (
         ('pending', 'Pending'),
         ('confirmed', 'Confirmed'),
         ('cancelled', 'Cancelled'),
     )
+    """
+        user = models.ForeignKey('user_profile.PublicProfile', on_delete=models.CASCADE, related_name='reservations') 
+        facility = models.ForeignKey(Facility, on_delete=models.CASCADE, related_name='facility')
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     facility = models.ForeignKey('user_profile.PublicProfile', on_delete=models.CASCADE, related_name='reservations')
     start_time = models.DateTimeField()
