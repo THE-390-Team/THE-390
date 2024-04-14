@@ -1,7 +1,7 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Date: Sun Apr 14 16:25:40 UTC 2024
+Date: Sun Apr 14 21:49:05 UTC 2024
 
 Code Quality Indicators
 
@@ -30,7 +30,7 @@ Code Coverage Tree
 ------------------------------------|---------|----------|---------|---------|-------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------|---------|----------|---------|---------|-------------------
-All files                           |    2.85 |     1.05 |    5.79 |     2.9 |                   
+All files                           |    2.77 |     1.04 |    5.52 |    2.81 |                   
  src                                |       0 |      100 |       0 |       0 |                   
   App.js                            |       0 |      100 |       0 |       0 | 27-32             
   index.js                          |       0 |      100 |     100 |       0 | 10-12             
@@ -63,8 +63,9 @@ All files                           |    2.85 |     1.05 |    5.79 |     2.9 |
   SignUpCompany.js                  |       0 |        0 |       0 |       0 | 8-207             
  src/components/nagivationBar       |       0 |        0 |       0 |       0 |                   
   NavigationBar.js                  |       0 |        0 |       0 |       0 | 8-25              
- src/components/operationCost       |       0 |      100 |       0 |       0 |                   
+ src/components/operationCost       |       0 |        0 |       0 |       0 |                   
   Operation.js                      |       0 |      100 |       0 |       0 | 6-130             
+  OperationCopy.js                  |       0 |        0 |       0 |       0 | 9-84              
  src/components/property            |       0 |        0 |       0 |       0 |                   
   PropertyCard.js                   |       0 |        0 |       0 |       0 | 8-93              
   PropertyContainer.js              |       0 |        0 |       0 |       0 | 9-58              
@@ -78,10 +79,10 @@ All files                           |    2.85 |     1.05 |    5.79 |     2.9 |
   HomeScreen.js                     |     100 |      100 |     100 |     100 |                   
  src/screens/homeScreenCarousel     |     100 |      100 |     100 |     100 |                   
   CarouselHomeScreen.js             |     100 |      100 |     100 |     100 |                   
- src/utils/hooks                    |    1.02 |        0 |       0 |    1.04 |                   
+ src/utils/hooks                    |    0.88 |        0 |       0 |     0.9 |                   
   AuthContext.js                    |       0 |        0 |       0 |       0 | 4-39              
   ProfileContext.js                 |    2.85 |        0 |       0 |    2.85 | 8-108             
-  PropertyContext.js                |       0 |      100 |       0 |       0 | 4-154             
+  PropertyContext.js                |       0 |      100 |       0 |       0 | 4-186             
 ------------------------------------|---------|----------|---------|---------|-------------------
 Found 37 test(s).
 System check identified no issues (0 silenced).
