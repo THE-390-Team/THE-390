@@ -38,7 +38,7 @@ Cypress.Commands.add('goToTajMahal', () => {
   cy.url().should('include', '/dashboard');
   cy.wait(1000); // Waits for 1000 milliseconds
   cy.contains('Taj Mahal').click();
-  // cy.url().should('include', '/property-page');
+  cy.url().should('include', '/property-page');
 });
 
 Cypress.Commands.add('createProperty', () => {
