@@ -20,8 +20,8 @@ pip install -r requirements.txt
 echo
 
 # Pass the superuser information as arguments to the createsuperuser command
-python manage.py createsuperuser --username $username --email $email --noinput
-echo "Superuser created successfully!"
+# python manage.py createsuperuser --username $username --email $email --noinput
+# echo "Superuser created successfully!"
 
 
 # Apply any outstanding database migrations
