@@ -1,12 +1,3 @@
-describe('As a Company employee Navigate to Property Page from Profile and go back', () => {
-  beforeEach(() => {
-    cy.login('joud.babik@gmail.com', '123qweasd');
-  })
-  it('Navigate to Property Page from Profile', () => {
-    cy.goToTajMahal();
-    cy.get('[data-testid="dashboard-return"]').click()
-  })
-})
 
 describe('Navigate to Create Unit/Parking/Locker Form from Profile and go back', () => {
   beforeEach(() => {
@@ -20,7 +11,15 @@ describe('Navigate to Create Unit/Parking/Locker Form from Profile and go back',
     cy.url().should('include', '/property-page')
   })
 })
-
+describe('As a Company employee Navigate to Property Page from Profile and go back', () => {
+  beforeEach(() => {
+    cy.login('joud.babik@gmail.com', '123qweasd');
+  })
+  it('Navigate to Property Page from Profile', () => {
+    cy.goToTajMahal();
+    cy.get('[data-testid="dashboard-return"]').click()
+  })
+})
 describe('Navigate to Create Property Form from Profile and go back', () => {
   beforeEach(() => {
     cy.login('joud.babik@gmail.com', '123qweasd');
