@@ -100,8 +100,6 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        # default='postgres://condo_management_system_pl6c_user:BO5DsrCiuPVm0M5ndQaxCVbAoYirkQtn@dpg-cocvdpa0si5c738n4v3g-a.oregon-postgres.render.com/condo_management_system_pl6c',
         default= env('DATABASE_URL'),
         conn_max_age=600
     )
