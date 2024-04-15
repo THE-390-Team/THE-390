@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
 
-const Calendar = (onTimeSelected) => {
+const Calendar = ({onTimeSelected}) => {
 
     const [date, setDate] = useState(new Date());
     const [reservationConfirmed, setReservationConfirmed] = useState(false);
@@ -25,8 +25,8 @@ const Calendar = (onTimeSelected) => {
             minTime={new Date(0, 0, 0, 12, 30)}
             maxTime={new Date(0, 0, 0, 19, 0)}
             selected={date}
-            onChange={handleTimeSelected}
-            // onChange={(date) => setDate(date)}
+            //onChange={handleTimeSelected}
+            onChange={(date) => setDate(date)}
             dateFormat="MMMM d, yyyy h:mmaa"
             disabled={reservationConfirmed}
             />
