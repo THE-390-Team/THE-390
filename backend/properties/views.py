@@ -18,10 +18,15 @@ class FacilityViewSet(ModelViewSet):
 class ReservationViewSet(ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    
-    """
-        add method for creating reservation that checks for overlapping reservations 
-    """
+    def create(self, request, *args, **kwargs):
+        """
+        Create a reservation. The serializer handles checking for overlapping reservations.
+        """
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)  # This will raise an error if there's an overlap
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 class PropertyProfileViewSet(ModelViewSet):
     """  
