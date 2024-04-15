@@ -1,7 +1,7 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Date: Mon Apr 15 03:03:59 UTC 2024
+Date: Mon Apr 15 03:28:43 UTC 2024
 
 Code Quality Indicators
 
@@ -30,7 +30,7 @@ Code Coverage Tree
 ------------------------------------|---------|----------|---------|---------|--------------------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s              
 ------------------------------------|---------|----------|---------|---------|--------------------------------
-All files                           |   15.38 |      5.9 |   20.28 |   15.26 |                                
+All files                           |   14.64 |     5.51 |   19.53 |   14.52 |                                
  src                                |   66.66 |      100 |     100 |   66.66 |                                
   App.js                            |     100 |      100 |     100 |     100 |                                
   index.js                          |       0 |      100 |     100 |       0 | 10-12                          
@@ -41,8 +41,9 @@ All files                           |   15.38 |      5.9 |   20.28 |   15.26 |
   Footer.js                         |     100 |      100 |     100 |     100 |                                
   Header.js                         |     100 |      100 |     100 |     100 |                                
   LargeTitle.js                     |     100 |      100 |     100 |     100 |                                
- src/components/commonFacilities    |    12.5 |        0 |       0 |    12.5 |                                
-  CommonFacilities.js               |    12.5 |        0 |       0 |    12.5 | 19-29                          
+ src/components/commonFacilities    |    2.94 |        0 |       0 |    2.94 |                                
+  CommonFacilities.js               |   11.11 |        0 |       0 |   11.11 | 19-32                          
+  CreateCommonFacilities.js         |    1.69 |        0 |       0 |    1.69 | 18-143                         
  src/components/createProperty      |    1.14 |        0 |       0 |    1.15 |                                
   CreateLocker.js                   |    1.06 |        0 |       0 |    1.07 | 14-185                         
   CreateParking.js                  |    1.06 |        0 |       0 |    1.07 | 15-188                         
