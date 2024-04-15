@@ -2,6 +2,39 @@ from django.test import TestCase
 from user_profile.models import CompanyProfile, User
 from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit
 
+
+class PropertyModelTest(TestCase):
+
+    def setUp(self):
+        # Setup a company and property profile to use in tests
+        self.company = CompanyProfile.objects.create(name="Test Company")
+        self.property = PropertyProfile.objects.create(
+            name="Test Property",
+            company=self.company,
+            address="123 Test St",
+            city="Test City",
+            province="Test State",
+            postal_code="12345"
+        )
+
+    def test_str_representation(self):
+        """
+        Test the string representation of the PropertyProfile model.
+        """
+        self.assertEqual(str(self.property), "Test Property")
+
+    def test_get_condo_units(self):
+        """
+        Test that get_condo_units method returns correct queryset.
+        """
+        # Assuming CondoUnit is a model linked to PropertyProfile
+        # and you have a method in PropertyProfile model to retrieve related condo units
+        CondoUnit.objects.create(property=self.property, location='Unit 101')
+        units = self.property.get_condo_units()
+        self.assertEqual(units.count(), 1)
+        self.assertEqual(units.first().location, 'Unit 101')
+
+
 class PropertyProfileTest(TestCase):
 
     @classmethod

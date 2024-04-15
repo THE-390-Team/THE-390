@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
-from .views import PropertyProfileViewSet, CondoUnitViewSet, ParkingUnitViewSet, StorageUnitViewSet 
-
+from .views import PropertyProfileViewSet, CondoUnitViewSet, ParkingUnitViewSet, StorageUnitViewSet, FacilityViewSet, \
+    ReservationViewSet
 
 """  urls for the endpoints relating to the various models of this app  """
 router = routers.SimpleRouter()

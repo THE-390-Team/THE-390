@@ -14,10 +14,9 @@ class Facility(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     capacity = models.IntegerField()
-    reservation_duration = models.IntegerField(help_text="Duration in minutes")
-    """ 
+    start_time = models.TimeField(help_text="Opening time of the facility")
+    end_time = models.TimeField(help_text="Closing time of the facility")
     property = models.ForeignKey('PropertyProfile', on_delete=models.CASCADE, related_name='facilities')
-    """
     def __str__(self):
         return self.name
     
@@ -28,12 +27,9 @@ class Reservation(models.Model):
         ('confirmed', 'Confirmed'),
         ('cancelled', 'Cancelled'),
     )
-    """
-        user = models.ForeignKey('user_profile.PublicProfile', on_delete=models.CASCADE, related_name='reservations') 
-        facility = models.ForeignKey(Facility, on_delete=models.CASCADE, related_name='facility')
-    """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    facility = models.ForeignKey('user_profile.PublicProfile', on_delete=models.CASCADE, related_name='reservations')
+
+    user = models.ForeignKey('user_profile.PublicProfile', on_delete=models.CASCADE, related_name='reservations')
+    facility = models.ForeignKey(Facility, on_delete=models.CASCADE, related_name='facility')
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
