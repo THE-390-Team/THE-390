@@ -8,7 +8,6 @@ from .serializers import FacilitySerializer, PropertyProfileSerializer, CondoUni
 from user_profile.models import CompanyProfile
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
-from user_profile.models import CompanyProfile
 
 
 # Define viewsets for managing facilities and reservations.
