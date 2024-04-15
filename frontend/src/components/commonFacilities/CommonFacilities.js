@@ -79,11 +79,13 @@ const CommonFacilities = () => {
               <Row>
                 <Card className="mb-3">
                     <Card.Header>
-                    <h1>Common Facility #1</h1>
+                    <h1>Concordia Gym</h1>
                     </Card.Header>
                     <Card.Body>
                     <Col>
-                        <p>more details to come...</p>
+                        <Row>Description: The Concordia Gym</Row>
+                        <Row>Capacity: 50</Row>
+                        <Row>Reservation duration: 6 hours</Row>
                     </Col>
                     </Card.Body>
                 </Card>
@@ -91,11 +93,13 @@ const CommonFacilities = () => {
               <Row>
               <Card className="mb-3">
                     <Card.Header>
-                    <h1>Common Facility #2</h1>
+                    <h1>Hall Lounge</h1>
                     </Card.Header>
                     <Card.Body>
                     <Col>
-                        <p>more details to come...</p>
+                        <Row>Description: The Hall Lounge</Row>
+                        <Row>Capacity: 20</Row>
+                        <Row>Reservation duration: 3 hours</Row>
                     </Col>
                     </Card.Body>
                 </Card>
