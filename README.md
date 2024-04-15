@@ -1,7 +1,7 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Date: Sun Apr 14 21:55:29 UTC 2024
+Date: Mon Apr 15 00:44:58 UTC 2024
 
 Code Quality Indicators
 
@@ -30,7 +30,7 @@ Code Coverage Tree
 ------------------------------------|---------|----------|---------|---------|-------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------|---------|----------|---------|---------|-------------------
-All files                           |    2.77 |     1.04 |    5.52 |    2.81 |                   
+All files                           |    2.76 |     1.01 |    5.47 |    2.81 |                   
  src                                |       0 |      100 |       0 |       0 |                   
   App.js                            |       0 |      100 |       0 |       0 | 27-32             
   index.js                          |       0 |      100 |     100 |       0 | 10-12             
@@ -68,7 +68,7 @@ All files                           |    2.77 |     1.04 |    5.52 |    2.81 |
   OperationCopy.js                  |       0 |        0 |       0 |       0 | 9-84              
  src/components/property            |       0 |        0 |       0 |       0 |                   
   PropertyCard.js                   |       0 |        0 |       0 |       0 | 8-93              
-  PropertyContainer.js              |       0 |        0 |       0 |       0 | 9-58              
+  PropertyContainer.js              |       0 |        0 |       0 |       0 | 9-74              
   PropertyPage.js                   |       0 |        0 |       0 |       0 | 11-105            
  src/components/registrationKey     |       0 |        0 |       0 |       0 |                   
   SendRegistrationButton.js         |       0 |        0 |       0 |       0 | 6-135             
