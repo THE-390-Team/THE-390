@@ -41,7 +41,7 @@ const FinancialPublic = () => {
                 </div>
                 <ListGroup>
                     {/* Change key data */}
-                    {accordionData.map((item, index) => ( 
+                    {accordionData.map((item, index) => (
                         <Accordion key={index}>
                             <Accordion.Item eventKey={index}>
                                 <Accordion.Header>

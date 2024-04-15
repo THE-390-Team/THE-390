@@ -7,7 +7,7 @@ import axiosInstance from '../../../api/axios';
 const Financial = () => {
   const comapanyID = localStorage.getItem('ID');
   const [property, setProperty] = useState({});
-
+  
   const FetchPropertiesFinacials = async () => {
     try {
       const response = await axiosInstance.get(`/profiles/company-profile/${comapanyID}/finance-report/`);
