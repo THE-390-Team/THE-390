@@ -8,17 +8,16 @@ pip install -r requirements.txt
 # Apply any outstanding database migrations
 
 # Create a superuser in Django
-echo "Creating superuser..."
+# echo "Creating superuser..."
 
 
 # Provide specific information for the superuser
-email="admin@gmail.com"
-role="PUBLIC"
-first_name="Admin"
-last_name="User"
-password="adminpassword123"
+# email="admin@gmail.com"
+# role="PUBLIC"
+# first_name="Admin"
+# last_name="User"
+# password="adminpassword123"
 
-echo "user_profile.models import User; User.objects.create_superuser('edu@example.com',  'adminpassword123', role='PUBLIC' )" | python3 manage.py shell
 # echo "Attempting to create superuser..."
 # if python manage.py createsuperuser --email "$email" --role "$role" --first_name "$first_name" --last_name "$last_name" --password "$password" --password "$password"  --noinput; then
 #     echo "Superuser created successfully!"
