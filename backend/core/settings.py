@@ -31,8 +31,8 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-ml2p)mrgwd7fw223q4$#-ejge8^%b^xtou5=920#^hhny^$tv*'
 SECRET_KEY = env('SECRET_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -72,6 +72,7 @@ MIDDLEWARE = [
     #
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -155,12 +156,7 @@ REST_FRAMEWORK = {
 
 
 CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split()
-
-# Remove empty strings from the list, if any
 CORS_ALLOWED_ORIGINS = [origin for origin in CORS_ALLOWED_ORIGINS if origin]
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:3000',
-# ]
 
 AUTH_USER_MODEL = 'user_profile.User'
 
@@ -172,7 +168,7 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": False,
 
     "ALGORITHM": "HS256",
-    "SIGNING_KEY":  SECRET_KEY, #settings.SECRET_KEY,
+    "SIGNING_KEY":  SECRET_KEY,
     "VERIFYING_KEY": "",
     "AUDIENCE": None,
     "ISSUER": None,
@@ -210,17 +206,7 @@ SIMPLE_JWT = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# # Email settings
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# # EMAIL_HOST = 'patrickmaceachen78@gmail.com'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'patrickmaceachen78@gmail.com'
-# EMAIL_HOST_PASSWORD = 'uvjx lzqn mrbb xgur'
-# EMAIL_USE_SSL = False
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'patrickmaceachen78@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = env('EMAIL_PORT')
 EMAIL_USE_TLS = env('EMAIL_USE_TLS')
