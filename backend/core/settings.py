@@ -153,7 +153,11 @@ REST_FRAMEWORK = {
     )
 }
 
-CORS_ALLOWED_ORIGINS= os.environ.get('CORS_ALLOWED_ORIGINS').split(" ")
+
+CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split()
+
+# Remove empty strings from the list, if any
+CORS_ALLOWED_ORIGINS = [origin for origin in CORS_ALLOWED_ORIGINS if origin]
 # CORS_ALLOWED_ORIGINS = [
 #     'http://localhost:3000',
 # ]
