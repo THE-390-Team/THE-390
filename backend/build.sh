@@ -20,5 +20,16 @@ last_name="User"
 password="adminpassword123"
 
 
-# Create the superuser
-python manage.py createsuperuser --email "$email" --role "$role" --first_name "$first_name" --last_name "$last_name"  --noinput
+echo "Attempting to create superuser..."
+if python manage.py createsuperuser --email "$email" --role "$role" --first_name "$first_name" --last_name "$last_name" --noinput; then
+    echo "Superuser created successfully!"
+else
+    # Check if the error is due to the email already being in use
+    if [[ $? -ne 0 ]] && [[ $(python manage.py shell -c "from django.contrib.auth.models import User; print(User.objects.filter(email='$email').exists())") == "True" ]]; then
+        echo "Email '$email' is already in use. Skipping superuser creation."
+    else
+        # If the error is not due to email conflict, exit with error
+        echo "Failed to create superuser."
+        exit 1
+    fi
+fi
