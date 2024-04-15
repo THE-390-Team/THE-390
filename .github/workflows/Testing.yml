@@ -108,7 +108,7 @@ jobs:
               echo "" >> temp.md
               echo "View website at link below" >> temp.md
               echo "https://condo-management-system.vercel.app/"
-              echo "*The database is currently empty which could cause potential issues*
+              echo "*The database is currently empty which could cause potential issues*"
               echo "[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)" >> temp.md
               echo "" >> temp.md
               echo "Date: $(date)" >> temp.md
