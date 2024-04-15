@@ -43,7 +43,7 @@ const PropertyPage = () => {
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Purchase Price: ${unit.purchase_price}</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Rental Price: ${unit.rent_price}</ListGroup.Item>
         <ListGroup.Item style={{ marginBottom: "-10px" }}>Size: {unit.size} sqft</ListGroup.Item>
-        <ListGroup.Item>Unit Fees: {parseFloat(300).toFixed(2)} $</ListGroup.Item>
+        <ListGroup.Item>Unit Fees: {unit.property_fee} $</ListGroup.Item>
       </ListGroup>
     ));
   };
