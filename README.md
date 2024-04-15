@@ -4,7 +4,9 @@ https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=sha
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Date: Fri Apr 12 02:46:24 UTC 2024
+
+Date: Sat Apr 13 18:56:37 UTC 2024
+
 
 Code Quality Indicators
 
@@ -33,24 +35,26 @@ Code Coverage Tree
 ------------------------------------|---------|----------|---------|---------|-------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------------|---------|----------|---------|---------|-------------------
-All files                           |    1.63 |        0 |    4.41 |    1.66 |                   
+All files                           |    2.85 |     1.05 |    5.79 |     2.9 |                   
  src                                |       0 |      100 |       0 |       0 |                   
-  App.js                            |       0 |      100 |       0 |       0 | 26-31             
+  App.js                            |       0 |      100 |       0 |       0 | 27-32             
   index.js                          |       0 |      100 |     100 |       0 | 10-12             
- src/api                            |       0 |        0 |       0 |       0 |                   
-  axios.js                          |       0 |        0 |       0 |       0 | 3-83              
- src/components                     |   44.44 |      100 |      50 |   44.44 |                   
+ src/api                            |      10 |     5.88 |       0 |      10 |                   
+  axios.js                          |      10 |     5.88 |       0 |      10 | 19-83             
+ src/components                     |   66.66 |      100 |      75 |   66.66 |                   
   Content.js                        |     100 |      100 |     100 |     100 |                   
   Footer.js                         |     100 |      100 |     100 |     100 |                   
   Header.js                         |       0 |      100 |       0 |       0 | 12-14             
-  LargeTitle.js                     |       0 |      100 |       0 |       0 | 4-5               
+  LargeTitle.js                     |     100 |      100 |     100 |     100 |                   
+ src/components/commonFacilities    |       0 |        0 |       0 |       0 |                   
+  CommonFacilities.js               |       0 |        0 |       0 |       0 | 18-29             
  src/components/createProperty      |       0 |        0 |       0 |       0 |                   
   CreateLocker.js                   |       0 |        0 |       0 |       0 | 13-185            
   CreateParking.js                  |       0 |        0 |       0 |       0 | 13-188            
   CreateProperty.js                 |       0 |        0 |       0 |       0 | 13-168            
   CreateUnit.js                     |       0 |        0 |       0 |       0 | 13-189            
- src/components/dashboard           |   38.88 |        0 |      50 |   38.88 |                   
-  DashBoard.js                      |       0 |        0 |       0 |       0 | 14-31             
+ src/components/dashboard           |   77.77 |      100 |      75 |   77.77 |                   
+  DashBoard.js                      |    87.5 |      100 |   66.66 |    87.5 | 20                
   FinancialPublic.js                |     100 |      100 |     100 |     100 |                   
   SubmittedRequests.js              |     100 |      100 |     100 |     100 |                   
   UserInfo.js                       |       0 |      100 |       0 |       0 | 15-26             
@@ -69,7 +73,7 @@ All files                           |    1.63 |        0 |    4.41 |    1.66 |
  src/components/property            |       0 |        0 |       0 |       0 |                   
   PropertyCard.js                   |       0 |        0 |       0 |       0 | 8-93              
   PropertyContainer.js              |       0 |        0 |       0 |       0 | 9-58              
-  PropertyPage.js                   |       0 |        0 |       0 |       0 | 11-101            
+  PropertyPage.js                   |       0 |        0 |       0 |       0 | 11-105            
  src/components/registrationKey     |       0 |        0 |       0 |       0 |                   
   SendRegistrationButton.js         |       0 |        0 |       0 |       0 | 6-135             
   SubmitRegistrationButton.js       |       0 |        0 |       0 |       0 | 6-52              
@@ -79,9 +83,9 @@ All files                           |    1.63 |        0 |    4.41 |    1.66 |
   HomeScreen.js                     |     100 |      100 |     100 |     100 |                   
  src/screens/homeScreenCarousel     |     100 |      100 |     100 |     100 |                   
   CarouselHomeScreen.js             |     100 |      100 |     100 |     100 |                   
- src/utils/hooks                    |       0 |        0 |       0 |       0 |                   
+ src/utils/hooks                    |    1.02 |        0 |       0 |    1.04 |                   
   AuthContext.js                    |       0 |        0 |       0 |       0 | 4-39              
-  ProfileContext.js                 |       0 |        0 |       0 |       0 | 5-108             
+  ProfileContext.js                 |    2.85 |        0 |       0 |    2.85 | 8-108             
   PropertyContext.js                |       0 |      100 |       0 |       0 | 4-154             
 ------------------------------------|---------|----------|---------|---------|-------------------
 Found 37 test(s).
