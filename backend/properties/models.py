@@ -1,6 +1,5 @@
 from django.db import models
 
-from user_profile.models import User
 from finance.models import FinanceModel
 
 # define the models for Facility and Reservation

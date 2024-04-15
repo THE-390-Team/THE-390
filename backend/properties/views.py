@@ -18,6 +18,8 @@ class FacilityViewSet(ModelViewSet):
 class ReservationViewSet(ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
+    
+    
     def create(self, request, *args, **kwargs):
         """
         Create a reservation. The serializer handles checking for overlapping reservations.
