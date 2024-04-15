@@ -6,7 +6,6 @@ set -o errexit
 pip install -r requirements.txt
 
 # Apply any outstanding database migrations
-python manage.py migrate
 
 # Create a superuser in Django
 echo "Creating superuser..."
@@ -25,3 +24,6 @@ if python manage.py createsuperuser --email "$email" --role "$role" --first_name
 else
     echo "Failed to create superuser, but continuing..."
 fi
+
+
+python manage.py migrate
