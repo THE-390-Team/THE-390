@@ -22,11 +22,14 @@ const Calendar = ({onTimeSelected}) => {
         <div>
         <DatePicker
             showTimeSelect
-            minTime={new Date(0, 0, 0, 12, 30)}
+            minTime={new Date(0, 0, 0, 9, 0)}
             maxTime={new Date(0, 0, 0, 19, 0)}
+            // showIcon
             selected={date}
-            //onChange={handleTimeSelected}
+            // onChange={handleTimeSelected}
             onChange={(date) => setDate(date)}
+            inline
+            // showMonthDropdown
             dateFormat="MMMM d, yyyy h:mmaa"
             disabled={reservationConfirmed}
             />
