@@ -14,6 +14,7 @@ jobs:
       - name: Start frontend server
         working-directory: ./frontend
         run: |
+          npm cache clean --force
           npm ci
           npm start &
       # Install backend dependencies and start server
@@ -50,6 +51,9 @@ jobs:
             python manage.py makemigrations 
             python manage.py migrate 
             python manage.py runserver &
+      # Remove problematic directory
+      - name: Remove cache directory
+        run: rm -rf ./frontend/node_modules/.cache/babel-loader
       # Install Cypress and run tests
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
