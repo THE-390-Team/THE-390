@@ -1,6 +1,4 @@
 name: Testing
-
-# This workflows simulates an environment to test
 on: [push]
 
 jobs:
