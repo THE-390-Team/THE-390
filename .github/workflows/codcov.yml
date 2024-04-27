@@ -1,4 +1,11 @@
- - name: Checkout the code
+name: Testing 
+# This workflows simulates an environment to test the entire application using unit testing, integration testing and system testing.
+on: [push]
+jobs:
+  publish:
+    name: Publish the release version
+    runs-on: ubuntu-latest     
+      - name: Checkout the code
         uses: actions/checkout@v3
 
       - name: Cypress run
