@@ -11,10 +11,14 @@ jobs:
         uses: actions/checkout@v2
 
       # Install frontend entrance dependencies and start server
-      - name: Start frontend server
+       # Clear cache directory
+      - name: Clear cache directory
+        run: rm -rf ./frontend/node_modules/.cache
+
+      # Install frontend entrance dependencies
+      - name: Install frontend dependencies
         working-directory: ./frontend
         run: |
-          npm cache clean --force
           npm ci
           npm start &
       # Install backend dependencies and start server
