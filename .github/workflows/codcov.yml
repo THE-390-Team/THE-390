@@ -52,9 +52,9 @@ jobs:
             python manage.py runserver &
       # Install Cypress and run tests
       - name: Run Cypress tests
-        working-directory: ./frontend
         uses: cypress-io/github-action@v2
         with:
+          working-directory: ./frontend
           start: npm start
           wait-on: 'http://localhost:3000'
           browser: chrome
