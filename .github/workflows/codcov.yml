@@ -1,24 +1,94 @@
 name: Testing
 
-# This workflows simulates an environment to test the entire application using unit testing, integration testing, and system testing.
+# This workflows simulates an environment to test
 on: [push]
 
 jobs:
   publish:
     name: Publish the release version
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-        with:
-          start: npm run preview
-          wait-on: 'http://localhost:3000'
-          browser: chrome
+      - name: Checkout the repository and the branch
+        uses: actions/checkout@v2
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+      # Install frontend entrance dependencies and start server
+      - name: Start frontend server
+        working-directory: ./frontend
+        run: |
+          npm ci
+          npm start &
+      # Install backend dependencies and start server
+      - name: Create python environment
+        working-directory: ./backend
+        run: python -m venv venv
+
+      # Create a Python environment
+      - name: Activate python environment
+        working-directory: ./backend
+        run: source venv/bin/activate
+
+      - name: Install backend dependencies
+        working-directory: ./backend
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
+          AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+        run: | 
+            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+            pip install --no-cache-dir -r requirements.txt
+      - name: Start backend server
+        working-directory: ./backend
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
+          AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+        run: |
+            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+            python manage.py makemigrations 
+            python manage.py migrate 
+            python manage.py runserver &
+      # Install Cypress and run tests
+      - name: Install Cypress
+        working-directory: ./frontend
+        run: | 
+             npm install cypress --save-dev
+             npx cypress run 
+             
+      # Run Unit tests Django (Backend)
+      - name: Run Unit tests Django
+        working-directory: ./backend
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
+          AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+        run: |
+            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+            coverage run manage.py test 
+            coverage report --omit '*/dist-packages/*' > coverage_report.json
+            python manage.py makemigrations 
+            python manage.py migrate 
+      # Run Cypress tests
+      - name: Run Cypress tests
+        working-directory: ./frontend
+        run: npm run cy:run
+
+      # Save coverage report to repository
+      - name: Save coverage report 
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: ./backend/coverage_report.json
+
+      # Upload coverage reports to Codecov
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage
-          fail_ci_if_error: true
-          verbose: true
+          slug: THE-390-Team/THE-390
