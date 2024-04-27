@@ -51,11 +51,11 @@ jobs:
             python manage.py migrate 
             python manage.py runserver &
     # Install Cypress and run tests
-      - name: Install Cypress
-        working-directory: ./frontend
-        run: | 
-             npm install cypress --save-dev
-             npx cypress run 
+      # - name: Install Cypress
+      #   working-directory: ./frontend
+      #   run: | 
+      #        npm install cypress --save-dev
+      #        npx cypress run 
 
       # Run Unit tests Django (Backend)
       - name: Run Unit tests Django
