@@ -51,13 +51,14 @@ jobs:
             python manage.py migrate 
             python manage.py runserver &
       # Install Cypress and run tests
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
+      - name: Run Cypress tests
+        working-directory: ./frontend
+        uses: cypress-io/github-action@v2
         with:
-          start: npm run preview
+          start: npm start
           wait-on: 'http://localhost:3000'
           browser: chrome
-             
+
       # Run Unit tests Django (Backend)
       - name: Run Unit tests Django
         working-directory: ./backend
