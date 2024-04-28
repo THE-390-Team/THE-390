@@ -117,6 +117,9 @@ const PropertyCard = ({ property, type}) => {
       <ListGroup.Item>Unit Fees: {parseFloat(300).toFixed(2)} $</ListGroup.Item>
       {property.extra_information && <ListGroup.Item>Extra Information: {property.extra_information}</ListGroup.Item>}
     </ListGroup>
+    <NavLink to={`/booking-facility/${property.id}`} className="btn btn-primary">
+        Reserve Facility
+      </NavLink>
   </Card>)
   );
 };

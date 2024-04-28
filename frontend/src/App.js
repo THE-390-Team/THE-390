@@ -20,6 +20,7 @@ import CreateProperty from "./components/createProperty/CreateProperty.js";
 import { useAuth } from "./utils/hooks/AuthContext.js";
 import { useEffect } from "react";
 import OperationCost from "./components/operationCost/Operation.js";
+import FacilityBooking from "./components/bookingSystem/FacilityBooking.js";
 import CommonFacilities from "./components/commonFacilities/CommonFacilities.js";
 import CreateCommonFacilities from "./components/commonFacilities/CreateCommonFacilities.js";
 
@@ -53,6 +54,7 @@ function App() {
             <Route path="/create-property" element={<CreateProperty />} />
             <Route path="/home" element={<HomeScreen />} />
             <Route path='/operation' element={<OperationCost />} />
+            <Route path='/booking-facility/:propertyId' element = {<FacilityBooking />} />
           </Routes>
         </Container>
       </main>
