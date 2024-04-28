@@ -58,7 +58,7 @@ jobs:
              npm install @cypress/code-coverage --save-dev
              npm install --save-dev @cypress/instrument-cra
              npx cypress run 
-             npx nyc report --reporter=text-summary
+             npx nyc report --reporter=text
 
       # Run Unit tests Django (Backend)
       - name: Run Unit tests Django
