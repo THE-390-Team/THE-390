@@ -127,6 +127,9 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./frontend/frontend-test.txt
+          
+      - name: print frontend
+        run: cat ./frontend/frontend-test.txt
 
       - name: Upload backend coverage report to Codecov
         uses: codecov/codecov-action@v4.0.1
