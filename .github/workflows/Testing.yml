@@ -45,13 +45,14 @@ jobs:
           python manage.py migrate 
           python manage.py runserver &
           coverage run manage.py test 
-          coverage report --omit '*/dist-packages/*' > backend-test.txt
+          coverage report --omit '*/dist-packages/*'
+          # > backend-test.txt
           
-      - name: Save backend coverage report 
-        uses: actions/upload-artifact@v2
-        with:
-          name: backend-testing
-          path: ./backend/backend-test.txt
+      # - name: Save backend coverage report 
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: backend-testing
+      #     path: ./backend/backend-test.txt
 
 
   frontend:
@@ -93,13 +94,14 @@ jobs:
           npm install @cypress/code-coverage --save-dev
           npm install --save-dev @cypress/instrument-cra
           npx cypress run 
-          npx nyc report --reporter=text > frontend-test.txt
+          npx nyc report --reporter=text 
+          # > frontend-test.txt
           
-      - name: Save frontend coverage report 
-        uses: actions/upload-artifact@v2
-        with:
-          name: frontend-testing
-          path: ./frontend/frontend-test.txt
+      # - name: Save frontend coverage report 
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: frontend-testing
+      #     path: ./frontend/frontend-test.txt
 
   codecov:
     name: Upload Coverage Reports to Codecov
@@ -109,33 +111,12 @@ jobs:
     steps:
       - name: Checkout the repository and the branch
         uses: actions/checkout@v2
-
-      - name: Download frontend coverage report
-        uses: actions/download-artifact@v2
-        with:
-          name: frontend-testing
-          path: ./frontend
-
-      - name: Download backend coverage report
-        uses: actions/download-artifact@v2
-        with:
-          name: backend-testing
-          path: ./backend
-
-      - name: Upload frontend coverage report to Codecov
-        uses: codecov/codecov-action@v4.0.1
+        
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./frontend/frontend-test.txt
-          
-      - name: print frontend
-        run: cat ./frontend/frontend-test.txt
-
-      - name: Upload backend coverage report to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./backend/backend-test.txt
+          autoDetect: true
 
           
   
