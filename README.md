@@ -2,7 +2,7 @@
 View website at this link: https://condo-management-system.vercel.app/. The database is empty. As a heads up!
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-Date: Mon Apr 29 16:31:00 UTC 2024
+Date: Mon Apr 29 16:35:38 UTC 2024
 
 Code Quality Indicators
 
