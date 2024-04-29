@@ -3,37 +3,6 @@ name: Testing
 on: [push]
 
 jobs:
-  frontend:
-    name: Frontend Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout the repository and the branch
-        uses: actions/checkout@v2
-
-      - name: Install frontend entrance dependencies
-        working-directory: ./frontend
-        run: npm ci
-
-      - name: Start frontend server
-        working-directory: ./frontend
-        run: npm start &
-
-      - name: Install Cypress
-        working-directory: ./frontend
-        run: | 
-          npm install cypress --save-dev
-          npm install @cypress/code-coverage --save-dev
-          npm install --save-dev @cypress/instrument-cra
-          npx cypress run 
-          npx nyc report --reporter=text > frontend-test.json
-          
-      - name: Save frontend coverage report 
-        uses: actions/upload-artifact@v2
-        with:
-          name: cypress-report
-          path: ./frontend/frontend-test.json
-
   backend:
     name: Backend Tests
     runs-on: ubuntu-latest
@@ -74,7 +43,7 @@ jobs:
           echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
           python manage.py makemigrations 
           python manage.py migrate 
-          python manage.py runserver &
+          python manage.py runserver
 
       - name: Run Unit tests Django
         working-directory: ./backend
@@ -91,9 +60,42 @@ jobs:
           python manage.py makemigrations 
           python manage.py migrate 
 
+  frontend:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+    needs: backend
+
+    steps:
+      - name: Checkout the repository and the branch
+        uses: actions/checkout@v2
+
+      - name: Install frontend entrance dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Start frontend server
+        working-directory: ./frontend
+        run: npm start &
+
+      - name: Install Cypress
+        working-directory: ./frontend
+        run: | 
+          npm install cypress --save-dev
+          npm install @cypress/code-coverage --save-dev
+          npm install --save-dev @cypress/instrument-cra
+          npx cypress run 
+          npx nyc report --reporter=text > frontend-test.json
+          
+      - name: Save frontend coverage report 
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-report
+          path: ./frontend/frontend-test.json
+
   codecov:
     name: Upload Coverage Reports to Codecov
     runs-on: ubuntu-latest
+    needs: [frontend, backend]
 
     steps:
       - name: Checkout the repository and the branch
@@ -111,7 +113,6 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./backend/coverage_report.json
 
-   
 
 
           
