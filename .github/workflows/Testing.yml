@@ -102,9 +102,9 @@ jobs:
 
     steps:
       - name: Display frontend workspace contents
-        run: ls -R ./frontend
+        run: ls frontend
       - name: Display backend workspace contents
-        run: ls -R ./backend
+        run: ls backend
         
       - name: Checkout the repository and the branch
         uses: actions/checkout@v2
