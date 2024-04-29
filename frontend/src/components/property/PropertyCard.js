@@ -117,7 +117,10 @@ const PropertyCard = ({ property, type }) => {
           <ListGroup.Item>Unit Fees: {property.property_fee} $</ListGroup.Item>
           {property.extra_information && <ListGroup.Item>Extra Information: {property.extra_information}</ListGroup.Item>}
         </ListGroup>
-      </Card>)
+        <NavLink to={`/booking-facility/${property.id}`} className="btn btn-primary">
+        Reserve Facility
+      </NavLink>
+  </Card>)
   );
 };
 

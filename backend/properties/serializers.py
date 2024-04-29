@@ -1,7 +1,31 @@
 from rest_framework import serializers
 
 from finance.models import FinanceModel
-from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit, Unit
+from .models import Facility, PropertyProfile, CondoUnit, ParkingUnit, Reservation, StorageUnit, Unit
+
+# created serializers for these models. Include custom validation in the ReservationSerializer
+# to prevent overlapping reservations.
+class FacilitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Facility
+        fields = '__all__'
+
+class ReservationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reservation
+        fields = '__all__'
+
+    def validate(self, data):
+        # Example validation: Prevent overlapping reservations for the same facility
+        overlapping_reservations = Reservation.objects.filter(
+            facility=data['facility'],
+            start_time__lt=data['end_time'],
+            end_time__gt=data['start_time'],
+            status='confirmed'
+        ).exists()
+        if overlapping_reservations:
+            raise serializers.ValidationError("This time slot is already booked.")
+        return data
 
     
 class UnitSerializer(serializers.ModelSerializer):

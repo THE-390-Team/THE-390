@@ -67,4 +67,3 @@ describe('Sign in as company and Navigate to create a storage unit', () => {
     cy.createStorageUnit();
   })
 })
-
