@@ -60,7 +60,17 @@ jobs:
       - name: Install frontend entrance dependencies
         working-directory: ./frontend
         run: npm ci
-
+        
+      - name: Start backend server
+        working-directory: ./backend
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --no-cache-dir -r requirements.txt
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py runserver &
+          
       - name: Start frontend server
         working-directory: ./frontend
         run: npm start &
