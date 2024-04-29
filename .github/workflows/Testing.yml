@@ -108,16 +108,6 @@ jobs:
           AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
           AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
         run: |
-              cd ..
-              cd backend
-              python manage.py makemigrations 
-              python manage.py migrate 
-              python manage.py runserver &
-              cd ..
-              echo "" >> temp.md
-              echo "View website at this link: https://condo-management-system.vercel.app/. The database is empty. As a heads up!" >> temp.md
-              echo "https://condo-management-system.vercel.app/"
-              echo "*The database is currently empty which could cause potential issues*"
               echo "[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)" >> temp.md
               echo "" >> temp.md
               echo "Date: $(date)" >> temp.md
@@ -141,22 +131,6 @@ jobs:
               echo "" >> temp.md 
               echo "View reports provided by codecov https://app.codecov.io/gh/THE-390-Team/THE-390"
               echo "" >> temp.md
-              echo "## Testing Reports from Workflow" >> temp.md
-              echo "" >> temp.md
-              cat temp_readme.md backend/coverage_report.json > temp1_readme.md
-              mv temp1_readme.md temp_readme.md
-              mv temp_readme.md README.md
-              
-              rm temp.md
-              git init
-              git branch
-              git pull origin 
-              git status
-              git config --local user.email "github-actions[bot]@users.noreply.github.com"
-              git config --local user.name "github-actions[bot]"
-              git add README.md
-              git commit -m "Testing & sending reports to README.md!"
-              git push origin --force
       # Uploads Code Coverage Report
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
