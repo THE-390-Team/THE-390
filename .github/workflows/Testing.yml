@@ -51,7 +51,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: backend-testing
-          path: ./backen/backend-test.json
+          path: ./backend/backend-test.json
 
 
   frontend:
@@ -132,7 +132,7 @@ jobs:
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./backend/coverage_report.json
+          file: ./backend/backend-test.json
 
           
   
