@@ -1,14 +1,15 @@
 from django.db import models
 
 from user_profile.models import User
+from properties.models import Facility
 
-class Facility(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
-    location = models.CharField(max_length=255, blank=True)
+# class Facility(models.Model):
+#     name = models.CharField(max_length=100)
+#     description = models.TextField(blank=True)
+#     location = models.CharField(max_length=255, blank=True)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 class Reservation(models.Model):
     STATUS_CHOICES = (

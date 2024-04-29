@@ -2,13 +2,14 @@
 
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from .models import Facility, Reservation
-from .serializers import FacilitySerializer, ReservationSerializer
+from .models import Reservation
+
+from .serializers import ReservationSerializer
 from rest_framework.decorators import action
 
-class FacilityViewSet(viewsets.ModelViewSet):
-    queryset = Facility.objects.all()
-    serializer_class = FacilitySerializer
+# class FacilityViewSet(viewsets.ModelViewSet):
+#     queryset = Facility.objects.all()
+#     serializer_class = FacilitySerializer
 
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
