@@ -46,6 +46,12 @@ jobs:
           python manage.py runserver &
           coverage run manage.py test 
           coverage report --omit '*/dist-packages/*' > coverage_report.json 
+          
+      - name: Save backend coverage report 
+        uses: actions/upload-artifact@v2
+        with:
+          name: backend-testing
+          path: ./backen/backend-test.json
 
 
   frontend:
@@ -92,7 +98,7 @@ jobs:
       - name: Save frontend coverage report 
         uses: actions/upload-artifact@v2
         with:
-          name: cypress-report
+          name: frontend-testing
           path: ./frontend/frontend-test.json
 
   codecov:
@@ -104,21 +110,29 @@ jobs:
       - name: Checkout the repository and the branch
         uses: actions/checkout@v2
 
+      - name: Download frontend coverage report
+        uses: actions/download-artifact@v2
+        with:
+          name: frontend-testing
+          path: ./frontend
+
+      - name: Download backend coverage report
+        uses: actions/download-artifact@v2
+        with:
+          name: backend-testing
+          path: ./backend
+
       - name: Upload frontend coverage report to Codecov
         uses: codecov/codecov-action@v4.0.1
-        working-directory: ./frontend
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: frontend-test.json
+          file: ./frontend/frontend-test.json
 
       - name: Upload backend coverage report to Codecov
         uses: codecov/codecov-action@v4.0.1
-        working-directory: ./backend
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: coverage_report.json
-
-
+          file: ./backend/coverage_report.json
 
           
   
