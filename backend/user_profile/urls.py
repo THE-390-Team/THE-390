@@ -16,7 +16,7 @@ router.register(r'employee-profile', EmployeeProfileViewSet, basename='employee-
 
 urlpatterns = [
     # endpoint for listing all properties related to a company
-    path('company-profile/<int:company_id>/property-profiles/', PropertyProfileViewSet.as_view({'get': 'list', 'post':'create'})),
+    path('company-profile/<int:company_id>/property-profiles/', PropertyProfileViewSet.as_view({'get': 'list', 'post':'create'}), name='company-properties'),
     # endpoint for listing all units related to a public profile
     path('public-profile/<int:user_id>/condo-units/', PublicProfileViewSet.as_view({'get': 'get_condo_units'})),
     path('public-profile/<int:user_id>/parking-units/', PublicProfileViewSet.as_view({'get':'get_parking_units'})),
@@ -26,7 +26,7 @@ urlpatterns = [
     path('public-profile/register-storage/', PublicProfileViewSet.as_view({'patch': 'register_storage'})),
     path('public-profile/register-parking/', PublicProfileViewSet.as_view({'patch': 'register_parking'})),
     # finance 
-    path('company-profile/<int:company_id>/finance-report/', CompanyFinanceView.as_view())
+    path('company-profile/<int:company_id>/finance-report/', CompanyFinanceView.as_view(), name='company-finance')
 ]
 
 urlpatterns += router.urls
