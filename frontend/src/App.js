@@ -19,7 +19,7 @@ import CreateLocker from "./components/createProperty/CreateLocker.js";
 import CreateProperty from "./components/createProperty/CreateProperty.js";
 import { useAuth } from "./utils/hooks/AuthContext.js";
 import { useEffect } from "react";
-import OperationCost from "./components/operationCost/Operation.js";
+import OperationCost from "./components/operationCost/OperationCopy.js";
 import FacilityBooking from "./components/bookingSystem/FacilityBooking.js";
 import CommonFacilities from "./components/commonFacilities/CommonFacilities.js";
 import CreateCommonFacilities from "./components/commonFacilities/CreateCommonFacilities.js";
