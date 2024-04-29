@@ -55,7 +55,17 @@ jobs:
         working-directory: ./frontend
         run: | 
              npm install cypress --save-dev
+             npm install @cypress/code-coverage --save-dev
+             npm install --save-dev @cypress/instrument-cra
              npx cypress run 
+             npx nyc report --reporter=text > frontend-test.json
+             
+       # Save coverage report to repository
+      - name: Save coverage report 
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-report
+          path: ./frontend/frontend-test.json
 
       # Run Unit tests Django (Backend)
       - name: Run Unit tests Django
@@ -106,10 +116,10 @@ jobs:
               python manage.py runserver &
               coverage run --omit='/venv/' manage.py test > coverage_report.json
               cd ..
-              echo "Submission for team 18 sprint 1 link on google drive:" > temp.md
               echo "" >> temp.md
-              echo "https://drive.google.com/drive/folders/1PvXIhUKsRwX6eLFUD0lRPzZBL13F3WjT?usp=share_link" >> temp.md
-              echo "" >> temp.md
+              echo "View website at this link: https://condo-management-system.vercel.app/. The database is empty. As a heads up!" >> temp.md
+              echo "https://condo-management-system.vercel.app/"
+              echo "*The database is currently empty which could cause potential issues*"
               echo "[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)" >> temp.md
               echo "" >> temp.md
               echo "Date: $(date)" >> temp.md

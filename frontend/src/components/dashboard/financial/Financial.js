@@ -7,7 +7,7 @@ import axiosInstance from '../../../api/axios';
 const Financial = () => {
   const comapanyID = localStorage.getItem('ID');
   const [property, setProperty] = useState({});
-
+  
   const FetchPropertiesFinacials = async () => {
     try {
       const response = await axiosInstance.get(`/profiles/company-profile/${comapanyID}/finance-report/`);
@@ -40,7 +40,7 @@ const Financial = () => {
                   {/* Displaying property name and total */}
                   <Row style={{ width: '100%' }}>
                     <Col>
-                      {`Financial Info ${property.properties[propertyKey].property_name}`}
+                      {`${property.properties[propertyKey].property_name}`}
                     </Col>
                     <Col style={{ textAlign: "right" }}>
                       ${property.properties[propertyKey].fee}
