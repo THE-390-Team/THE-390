@@ -101,25 +101,22 @@ jobs:
     needs: [frontend, backend]
 
     steps:
-      - name: Display frontend workspace contents
-        run: ls frontend
-      - name: Display backend workspace contents
-        run: ls backend
-        
       - name: Checkout the repository and the branch
         uses: actions/checkout@v2
 
       - name: Upload frontend coverage report to Codecov
+        working-directory: ./frontend
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./frontend/frontend-test.json
+          file: frontend-test.json
 
       - name: Upload backend coverage report to Codecov
+        working-directory: ./backend
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./backend/coverage_report.json
+          file: coverage_report.json
 
 
 
