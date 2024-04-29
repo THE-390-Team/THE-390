@@ -108,13 +108,11 @@ jobs:
           AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
           AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
         run: |
-              npm run coverage > jest-report.json
               cd ..
               cd backend
               python manage.py makemigrations 
               python manage.py migrate 
               python manage.py runserver &
-              coverage run --omit='/venv/' manage.py test > coverage_report.json
               cd ..
               echo "" >> temp.md
               echo "View website at this link: https://condo-management-system.vercel.app/. The database is empty. As a heads up!" >> temp.md
@@ -145,7 +143,6 @@ jobs:
               echo "" >> temp.md
               echo "## Testing Reports from Workflow" >> temp.md
               echo "" >> temp.md
-              cat temp.md frontend/jest-report.json > temp_readme.md
               cat temp_readme.md backend/coverage_report.json > temp1_readme.md
               mv temp1_readme.md temp_readme.md
               mv temp_readme.md README.md
