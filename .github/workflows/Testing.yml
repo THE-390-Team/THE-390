@@ -105,15 +105,15 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Upload frontend coverage report to Codecov
-        working-directory: ./frontend
         uses: codecov/codecov-action@v4.0.1
+        working-directory: ./frontend
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: frontend-test.json
 
       - name: Upload backend coverage report to Codecov
-        working-directory: ./backend
         uses: codecov/codecov-action@v4.0.1
+        working-directory: ./backend
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: coverage_report.json
