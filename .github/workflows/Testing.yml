@@ -45,7 +45,7 @@ jobs:
           python manage.py migrate 
           python manage.py runserver &
           coverage run manage.py test 
-          coverage report --omit '*/dist-packages/*' > coverage_report.json 
+          coverage report --omit '*/dist-packages/*' > backend-test.json 
           
       - name: Save backend coverage report 
         uses: actions/upload-artifact@v2
