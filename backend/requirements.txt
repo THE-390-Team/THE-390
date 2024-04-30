@@ -69,6 +69,5 @@ uvicorn==0.29.0
 virtualenv==20.25.0
 virtualenvwrapper-win==1.2.7
 whitenoise==6.6.0
-winkerberos==0.10.0
 
 
