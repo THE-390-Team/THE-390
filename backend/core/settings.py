@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'properties',
     'registration_key',
     'finance',
+    'reservation'
 ]
 
 MIDDLEWARE = [
