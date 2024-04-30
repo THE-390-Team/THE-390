@@ -1,0 +1,7 @@
+{
+  "name": "CondoCare",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
