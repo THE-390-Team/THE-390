@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import { Container, Table, Form, Accordion, Dropdown, Row, Col } from "react-bootstrap";
@@ -10,20 +10,36 @@ const OperationCopy = () => {
 
   const { companyFinances, fetchCompanyFinance } = useProperty();
   const companyID = localStorage.getItem("ID");
+  const [tempUnitExpense, setTempUnitExpense] = useState(0);
 
   useEffect(() => {
     fetchCompanyFinance(companyID);
     console.log("Properties finances: ", companyFinances);
   }, [])
 
-  const handleSaveNewExpense = (propertyId, type, unitId, newExpense) => {
-    console.log(`Saving new expense for ${type} ${unitId} in property ${propertyId}: $${newExpense}`);
-    console.log(companyFinances.properties)
-    //FIXME confirm with backend if it's possible to update the expense for a specific unit
+  const inputRefs = useRef({});
+  const endpointMap = {
+    condos: 'condo-unit',
+    parkings: 'parking-unit',
+    storages: 'storage-unit'
+  }
+
+  const handleSaveNewExpense = async (propertyId, type, unitId, newExpense) => {
+    const endpoint = `properties/${endpointMap[type]}/${unitId}/`;
+
+    const unit = companyFinances.properties[propertyId][type].find(u => u.id === unitId);
+    const currentExpense = parseFloat(unit.expense || 0);
+    const additionalExpense = parseFloat(newExpense);
+    const finalExpense = currentExpense + additionalExpense;
+
     try {
-      axiosInstance.get(`profiles/company-profile/${companyID}/finance-report/`,
-        companyFinances
-      );
+      const response = await axiosInstance.patch(endpoint, {
+        operational_expense: finalExpense
+      });
+      await fetchCompanyFinance(companyID);
+      if (inputRefs.current[unitId]) {
+        inputRefs.current[unitId].value = '';  // Reset input field
+      }
     } catch (error) {
       console.error("Error saving new expense:", error.message);
     }
@@ -70,18 +86,25 @@ const OperationCopy = () => {
                       <td>{unit.fee}</td>
                       <td>{unit.expense}</td>
                       <td>
-                        <input type="number" placeholder="Enter value"
-                          onChange={
+                        <input
+                          type="number"
+                          placeholder="Enter value"
+                          ref={e1 => inputRefs.current[unit.id] = e1}
+                          onChange={(e) => {
+                            setTempUnitExpense(e.target.value)
+                            console.log(tempUnitExpense)
+                          }
 
-                            (e) => {
-                              unit.expense = e.target.value
-                              console.log(unit.expense)
-                            }
                           }
                         />
                       </td>
                       <td>
-                        <button onClick={() => handleSaveNewExpense(propertyId, type, unit.id, unit.newExpense)}>
+                        <button onClick={() => handleSaveNewExpense(
+                          propertyId,
+                          type,
+                          unit.id,
+                          tempUnitExpense
+                        )}>
                           Save
                         </button>
                       </td>
