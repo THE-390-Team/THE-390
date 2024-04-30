@@ -21,4 +21,5 @@ urlpatterns = [
     path('profiles/', include('user_profile.urls')),
     path('properties/', include('properties.urls')),
     path('registration-keys/', include('registration_key.urls')),
+    path('employees/', include('employee.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
