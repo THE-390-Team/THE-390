@@ -45,6 +45,27 @@ const OperationCopy = () => {
     }
   };
 
+  const handleDeleteNewExpense = async (propertyId, type, unitId, newExpense) => {
+    const endpoint = `properties/${endpointMap[type]}/${unitId}/`;
+
+    const unit = companyFinances.properties[propertyId][type].find(u => u.id === unitId);
+    const currentExpense = parseFloat(unit.expense || 0);
+    const additionalExpense = parseFloat(newExpense);
+    const finalExpense = currentExpense - additionalExpense;
+
+    try {
+      const response = await axiosInstance.patch(endpoint, {
+        operational_expense: finalExpense
+      });
+      await fetchCompanyFinance(companyID);
+      if (inputRefs.current[unitId]) {
+        inputRefs.current[unitId].value = '';  // Reset input field
+      }
+    } catch (error) {
+      console.error("Error saving new expense:", error.message);
+    }
+  };
+
 
   return (
     <div>
@@ -99,15 +120,26 @@ const OperationCopy = () => {
                         />
                       </td>
                       <td>
-                        <button onClick={() => handleSaveNewExpense(
+                        <button
+                          onClick={() => handleSaveNewExpense(
+                            propertyId,
+                            type,
+                            unit.id,
+                            tempUnitExpense
+                          )}
+                          style={{ marginRight: "5px" }}>
+                          Add
+                        </button>
+                        <button onClick={() => handleDeleteNewExpense(
                           propertyId,
                           type,
                           unit.id,
                           tempUnitExpense
                         )}>
-                          Save
+                          Delete
                         </button>
                       </td>
+
                     </tr>
                   ))
                 ) : (
