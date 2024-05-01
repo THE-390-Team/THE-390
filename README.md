@@ -1,7 +1,7 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 20:22:19 UTC 2024
+This repository was last updated Wed May  1 21:05:37 UTC 2024
 
 ## Visit our website at the following link:
 [CondoCare Website](https://condo-management-system.vercel.app/)
@@ -28,15 +28,15 @@ employee/urls.py                                                                
 employee/views.py                                                                                   35     24    31%
 finance/admin.py                                                                                     1      0   100%
 finance/apps.py                                                                                      4      0   100%
-finance/models.py                                                                                    5      1    80%
-finance/views.py                                                                                    55     48    13%
+finance/models.py                                                                                    5      0   100%
+finance/views.py                                                                                    56      3    95%
 jwt_auth_token/__init__.py                                                                           0      0   100%
 jwt_auth_token/admin.py                                                                              1      0   100%
 jwt_auth_token/apps.py                                                                               4      0   100%
 jwt_auth_token/migrations/__init__.py                                                                0      0   100%
 jwt_auth_token/models.py                                                                             1      0   100%
-jwt_auth_token/tests.py                                                                              0      0   100%
-jwt_auth_token/views.py                                                                             16      7    56%
+jwt_auth_token/tests.py                                                                             18      0   100%
+jwt_auth_token/views.py                                                                             16      0   100%
 manage.py                                                                                           12      2    83%
 properties/__init__.py                                                                               0      0   100%
 properties/admin.py                                                                                  6      0   100%
@@ -50,7 +50,7 @@ properties/migrations/0006_condounit_operational_expense_and_more.py            
 properties/migrations/0007_facility_reservation.py                                                   5      0   100%
 properties/migrations/0008_delete_reservation.py                                                     4      0   100%
 properties/migrations/__init__.py                                                                    0      0   100%
-properties/models.py                                                                                68      6    91%
+properties/models.py                                                                                68      5    93%
 properties/serializers.py                                                                           39      5    87%
 properties/tests.py                                                                                 26      0   100%
 properties/urls.py                                                                                  13      0   100%
@@ -83,11 +83,11 @@ user_profile/migrations/0001_initial.py                                         
 user_profile/migrations/__init__.py                                                                  0      0   100%
 user_profile/models.py                                                                             102      6    94%
 user_profile/serializers.py                                                                         38      0   100%
-user_profile/tests.py                                                                               65      0   100%
+user_profile/tests.py                                                                              108      0   100%
 user_profile/urls.py                                                                                15      0   100%
 user_profile/views.py                                                                               97     63    35%
 --------------------------------------------------------------------------------------------------------------------
-TOTAL                                                                                             1282    241    81%
+TOTAL                                                                                             1344    187    86%
   </pre>
 </details>
 
