@@ -155,7 +155,9 @@ jobs:
               echo "" >> temp.md
               echo "<details>" >> temp.md
               echo "  <summary>Frontend Coverage Report</summary>" >> temp.md
+              echo "<pre>" >> temp.md
               echo "$(cat frontend-summary/summary-test.txt)" >> temp.md
+              echo "</pre>" >> temp.md
               echo "  <pre>" >> temp.md
               echo "$(cat frontend-full/frontend-test.txt)" >> temp.md
               echo "  </pre>" >> temp.md
@@ -168,7 +170,6 @@ jobs:
               echo "" >> temp.md
               echo "### Indicators" >> temp.md
               echo "" >> temp.md
-              echo "[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=THE-390-Team_THE-390)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
               echo "[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
               echo "[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=bugs)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
               echo "[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
