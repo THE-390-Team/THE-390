@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'properties',
     'registration_key',
     'finance',
+    'employee',
     'reservation'
 ]
 

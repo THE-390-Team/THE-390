@@ -4,12 +4,14 @@ import axiosInstance from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/hooks/AuthContext";
 import { useProperty } from "../../utils/hooks/PropertyContext";
+import { useProfile } from "../../utils/hooks/ProfileContext";
 
 
 const LogOut = () => {
   const history = useNavigate();
   const { setIsLoggedIn, setAuthUser } = useAuth();
   const { clearAllPropertyStatesOnLogout } = useProperty(); // added this line to clear all states on logout
+  const { role, setRole } = useProfile(); // added this line to clear the user role on logout
 
 
   useEffect(() => {
@@ -25,6 +27,7 @@ const LogOut = () => {
     setAuthUser("");
     clearAllPropertyStatesOnLogout(); // added this line to clear all states on logout so that the next login won't hold pervious user's data
     history("/login");
+    setRole(""); // added this line to clear the user role on logout
   });
 
   return <div>logout</div>
