@@ -1,11 +1,9 @@
 # CondoCare
-
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May 1 18:01:43 UTC 2024
+This repository was last updated Wed May  1 18:28:44 UTC 2024
 
 ## Visit our website at the following link:
-
 [CondoCare Website](https://www.condocare.com)
 
 ## Reports Overviews
@@ -93,23 +91,23 @@ TOTAL                                                                           
   </pre>
 </details>
 
+
 <details>
   <summary>Frontend Coverage Report</summary>
 <pre>
 
 =============================== Coverage summary ===============================
-Statements : 44.63% ( 532/1192 )
-Branches : 40.77% ( 221/542 )
-Functions : 47.67% ( 113/237 )
-Lines : 44.63% ( 524/1174 )
+Statements   : 45.54% ( 593/1302 )
+Branches     : 39.38% ( 230/584 )
+Functions    : 49.8% ( 130/261 )
+Lines        : 45.79% ( 583/1273 )
 ================================================================================
-
 </pre>
   <pre>
 ------------------------------------|---------|----------|---------|---------|----------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
 ------------------------------------|---------|----------|---------|---------|----------------------
-All files                           |   44.63 |    40.77 |   47.67 |   44.63 |                      
+All files                           |   45.54 |    39.38 |    49.8 |   45.79 |                      
  src                                |     100 |      100 |     100 |     100 |                      
   App.js                            |     100 |      100 |     100 |     100 |                      
   index.js                          |     100 |      100 |     100 |     100 |                      
@@ -119,17 +117,20 @@ All files                           |   44.63 |    40.77 |   47.67 |   44.63 |
   Footer.js                         |     100 |      100 |     100 |     100 |                      
   Header.js                         |     100 |      100 |     100 |     100 |                      
   LargeTitle.js                     |     100 |      100 |     100 |     100 |                      
- src/components/bookingSystem       |      10 |      100 |       0 |      10 |                      
-  Calendar.js                       |   14.28 |      100 |       0 |   14.28 | 8-30                 
-  FacilityBooking.js                |    7.69 |      100 |       0 |    7.69 | 10-71                
- src/components/commonFacilities    |    2.94 |        0 |       0 |    2.94 |                      
-  CommonFacilities.js               |   11.11 |        0 |       0 |   11.11 | 19-32                
-  CreateCommonFacilities.js         |    1.69 |        0 |       0 |    1.69 | 18-143               
- src/components/createProperty      |   51.14 |    48.09 |   73.68 |   50.72 |                      
+ src/components/bookingSystem       |     3.4 |        0 |       0 |    3.75 |                      
+  Calendar.js                       |    5.88 |        0 |       0 |    6.25 | 8-28                 
+  FacilityBooking.js                |    1.47 |        0 |       0 |    1.63 | 12-134               
+  ReservationTable.js               |   33.33 |      100 |       0 |   33.33 | 6-17                 
+ src/components/commonFacilities    |    5.33 |        0 |       0 |     5.4 |                      
+  CommonFacilities.js               |    8.33 |        0 |       0 |    9.09 | 20-83                
+  CreateCommonFacilities.js         |    1.72 |        0 |       0 |    1.72 | 10-121               
+  FacilitiesList.js                 |   33.33 |        0 |       0 |   33.33 | 5-8                  
+  FacilityCard.js                   |      50 |      100 |       0 |      50 | 4                    
+ src/components/createProperty      |   52.57 |    48.57 |   76.31 |   52.16 |                      
   CreateLocker.js                   |   53.19 |       50 |      80 |   52.68 | ...5,130,165-171,182 
   CreateParking.js                  |   53.19 |       50 |      80 |   52.68 | ...8-139,144,178-184 
   CreateProperty.js                 |   48.52 |    42.85 |      50 |   48.52 | ...2-106,127-155,165 
-  CreateUnit.js                     |   48.93 |    48.21 |      80 |   48.38 | ...5-126,131,158-175 
+  CreateUnit.js                     |   54.25 |       50 |      90 |   53.76 | ...5-126,131,168-175 
  src/components/dashboard           |    90.9 |     87.5 |      80 |    90.9 |                      
   DashBoard.js                      |     100 |      100 |     100 |     100 |                      
   FinancialPublic.js                |     100 |      100 |     100 |     100 |                      
@@ -170,10 +171,9 @@ All files                           |   44.63 |    40.77 |   47.67 |   44.63 |
   </pre>
 </details>
 
+
 ## Code Quality
-
 ### Provided by:
-
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
 
 ### Indicators
@@ -189,3 +189,4 @@ All files                           |   44.63 |    40.77 |   47.67 |   44.63 |
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
+
