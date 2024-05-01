@@ -6,8 +6,8 @@ from .views import ReservationViewSet
 
 router = DefaultRouter()
 # router.register(r'facilities', FacilityViewSet, basename='facilities')
-router.register(r'reservations', ReservationViewSet, basename='reservations')
+router.register(r"reservations", ReservationViewSet, basename="reservations")
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
 ]

@@ -2,24 +2,28 @@ from django.db import models
 
 from finance.models import FinanceModel
 
+
 # define the models for Facility and Reservation
 class Facility(models.Model):
     FACILITY_TYPES = (
-        ('gym', 'Gym'),
-        ('pool', 'Swimming Pool'),
-        ('meeting_room', 'Meeting Room'),
-        ('lounge', 'Lounge'),
+        ("gym", "Gym"),
+        ("pool", "Swimming Pool"),
+        ("meeting_room", "Meeting Room"),
+        ("lounge", "Lounge"),
     )
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     capacity = models.IntegerField()
     start_time = models.TimeField(help_text="Opening time of the facility")
     end_time = models.TimeField(help_text="Closing time of the facility")
-    property = models.ForeignKey('PropertyProfile', on_delete=models.CASCADE, related_name='facilities')
+    property = models.ForeignKey(
+        "PropertyProfile", on_delete=models.CASCADE, related_name="facilities"
+    )
+
     def __str__(self):
         return self.name
-    
-    
+
+
 # class Reservation(models.Model):
 #     STATUS_CHOICES = (
 #         ('pending', 'Pending'),
@@ -49,16 +53,22 @@ class PropertyProfile(models.Model):
         postal_code (CharField): The postal code of the property.
         fee_rate (DecimalField): The fee rate of the property.
     """
+
     name = models.CharField(max_length=100, null=True)
-    company = models.ForeignKey('user_profile.CompanyProfile', on_delete=models.CASCADE, related_name='property_profiles')
+    company = models.ForeignKey(
+        "user_profile.CompanyProfile",
+        on_delete=models.CASCADE,
+        related_name="property_profiles",
+    )
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     province = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=12)
     fee_rate = models.DecimalField(decimal_places=2, max_digits=20, default=0)
-    image = models.ImageField(upload_to="property_images", default="property_images/defaultProperty.jpg")
-    
-    
+    image = models.ImageField(
+        upload_to="property_images", default="property_images/defaultProperty.jpg"
+    )
+
     def __str__(self):
         """
         Returns a string representation of the property profile.
@@ -146,8 +156,10 @@ class Unit(models.Model):
     purchase_price = models.DecimalField(decimal_places=2, max_digits=20)
     rent_price = models.DecimalField(decimal_places=2, max_digits=20)
     extra_information = models.TextField(null=True)
-    operational_expense = models.DecimalField(decimal_places=2, max_digits=20, default=0)
-    
+    operational_expense = models.DecimalField(
+        decimal_places=2, max_digits=20, default=0
+    )
+
     @property
     def property_fee(self):
         """
@@ -168,9 +180,18 @@ class CondoUnit(Unit):
         public_profile (ForeignKey): The public profile associated with the condo unit.
     """
 
-    property = models.ForeignKey('PropertyProfile', on_delete=models.CASCADE, related_name='condo_units')
-    public_profile = models.ForeignKey('user_profile.PublicProfile', on_delete=models.SET_NULL, related_name='condo_units', null=True)
-    image = models.ImageField(upload_to='condoUnit_images', default="condoUnit_images/defaultCondoUnit.jpg")
+    property = models.ForeignKey(
+        "PropertyProfile", on_delete=models.CASCADE, related_name="condo_units"
+    )
+    public_profile = models.ForeignKey(
+        "user_profile.PublicProfile",
+        on_delete=models.SET_NULL,
+        related_name="condo_units",
+        null=True,
+    )
+    image = models.ImageField(
+        upload_to="condoUnit_images", default="condoUnit_images/defaultCondoUnit.jpg"
+    )
 
     def __str__(self):
         """
@@ -191,9 +212,19 @@ class ParkingUnit(Unit):
         public_profile (ForeignKey): The public profile associated with the parking unit.
     """
 
-    property = models.ForeignKey('PropertyProfile', on_delete=models.CASCADE, related_name='parking_units')
-    public_profile = models.ForeignKey('user_profile.PublicProfile', on_delete=models.SET_NULL, related_name='parking_units', null=True)
-    image = models.ImageField(upload_to='parkingUnit_images', default="parkingUnit_images/defaultParkingUnit.jpg")
+    property = models.ForeignKey(
+        "PropertyProfile", on_delete=models.CASCADE, related_name="parking_units"
+    )
+    public_profile = models.ForeignKey(
+        "user_profile.PublicProfile",
+        on_delete=models.SET_NULL,
+        related_name="parking_units",
+        null=True,
+    )
+    image = models.ImageField(
+        upload_to="parkingUnit_images",
+        default="parkingUnit_images/defaultParkingUnit.jpg",
+    )
 
     def __str__(self):
         """
@@ -214,9 +245,19 @@ class StorageUnit(Unit):
         public_profile (ForeignKey): The public profile associated with the storage unit.
     """
 
-    property = models.ForeignKey('PropertyProfile', on_delete=models.CASCADE, related_name='storage_units')
-    public_profile = models.ForeignKey('user_profile.PublicProfile', on_delete=models.SET_NULL, related_name='storage_units', null=True)
-    image = models.ImageField(upload_to='storageUnit_images', default="storageUnit_images/defaultStorageUnit.jpg")
+    property = models.ForeignKey(
+        "PropertyProfile", on_delete=models.CASCADE, related_name="storage_units"
+    )
+    public_profile = models.ForeignKey(
+        "user_profile.PublicProfile",
+        on_delete=models.SET_NULL,
+        related_name="storage_units",
+        null=True,
+    )
+    image = models.ImageField(
+        upload_to="storageUnit_images",
+        default="storageUnit_images/defaultStorageUnit.jpg",
+    )
 
     def __str__(self):
         """
@@ -226,9 +267,3 @@ class StorageUnit(Unit):
             str: The string representation of the storage unit.
         """
         return str(self.property)
-
-
-
-
-
-
