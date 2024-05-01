@@ -15,7 +15,7 @@ const Calendar = ({ setTime, timeType, handleClose }) => {
         const hours = pad(date.getHours());
         const minutes = pad(date.getMinutes());
         const seconds = pad(date.getSeconds());
-        return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
     };
 
     const handleConfirm = () => {

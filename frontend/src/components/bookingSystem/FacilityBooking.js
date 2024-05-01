@@ -4,9 +4,9 @@ import LargeTitle from "../LargeTitle.js";
 import { Button, Row, Col, Modal } from 'react-bootstrap';
 import Calendar from './Calendar.js';
 import { useProperty } from "../../utils/hooks/PropertyContext";
-import FacilitiesList from '../commonFacilities/FacilitiesList.js';
 import { Dropdown } from 'react-bootstrap';
 import axiosInstance from "../../api/axios";
+import ReservationsTable from './ReservationTable.js';
 
 const FacilityBooking = () => {
     const { propertyId } = useParams();
@@ -25,7 +25,8 @@ const FacilityBooking = () => {
     const [showEndTimeModal, setShowEndTimeModal] = useState(false);
     const [startTime, setStartTime] = useState(null);
     const [endTime, setEndTime] = useState(null);
-    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [matchedUnit, setMatchedUnit] = useState(null);
+    const [reservations, setReservations] = useState([]);
 
     const handleOpenStartTimeModal = () => setShowStartTimeModal(true);
     const handleCloseStartTimeModal = () => setShowStartTimeModal(false);
@@ -50,7 +51,7 @@ const FacilityBooking = () => {
             let propertyIdforUnit;  // Use let for variables that need to be reassigned
             if (condoUnits) {
                 // Find the first unit that matches the propertyId and get its ID
-                const matchedUnit = condoUnits.find(unit => unit.id === Number(propertyId));
+                setMatchedUnit(condoUnits.find(unit => unit.id === Number(propertyId)));
                 if (matchedUnit) {
                     propertyIdforUnit = matchedUnit.property;  // Now storing the ID correctly
                     console.log("property id for unit is: ", propertyIdforUnit);
@@ -63,7 +64,7 @@ const FacilityBooking = () => {
                     });
                     console.log("property ids are: ", propertyIds);
                 } else {
-                    console.log("No matching unit found for propertyId.");
+                    console.log("No matching unit found for propertyId.")
                 }
             }
             // Filter facilities that have a property matching any of the propertyIds in the Set
@@ -72,26 +73,46 @@ const FacilityBooking = () => {
             console.log("Filtered Facilities: ", filteredFacilities);
 
         });
+
+        try {
+            axiosInstance.get('reservations/reservations/')
+                .then(res => {
+                    setReservations(res.data);
+                });
+        } catch (error) {
+            console.log("Error fetching reservations:", error);
+        }
     }, [])
 
     //make a post request to create a booking
-    //TODO check if this works after merging from development branch
     const handleCreateBooking = async () => {
         try {
-            //post request to create a booking
+            // Post request to create a booking
             const response = await axiosInstance.post('reservations/reservations/', {
                 facility: selectedFactility.id,
                 user: localStorage.getItem("ID"),
                 start_time: startTime,
                 end_time: endTime,
-            })
-        } catch {
-            console.log("Error creating booking");
+            });
+
+            // Assuming the response includes the reservation data, otherwise adjust as necessary
+            if (response.data) {
+                window.alert(`Reservation made successfully!\n\nFacility: ${selectedFactility.name}\nStart Time: ${startTime}\nEnd Time: ${endTime}`);
+            } else {
+                window.alert("Reservation made successfully but no details were returned.");
+            }
+        } catch (error) {
+            console.log("Error creating booking:", error);
+            window.alert("Failed to create reservation. Please try again.");
         }
     }
 
+
     const handleConfirm = () => {
         handleCreateBooking();
+        setStartTime(null);
+        setEndTime(null);
+        setSelectedFacility('Select a Facility');
     };
 
     const goBack = () => {
@@ -100,55 +121,79 @@ const FacilityBooking = () => {
 
     return (
         <div className="container mt-5">
-            <LargeTitle title={`Facility Booking for ${propertyId}`} />
+            <LargeTitle title={`Reservation for Unit ${matchedUnit && matchedUnit.location}`} />
+
             <Row>
-                pick a date and time for your booking
-            </Row>
-            <Row>
-                <Col md={8}>
-                    <Button variant='primary' onClick={handleConfirm} disabled={!startTime || !endTime}>
-                        Confirm Booking
-                    </Button>
-                    <Button variant='secondary' onClick={goBack}>
-                        Cancel
-                    </Button>
+                <Col>
+                    <Dropdown className="mb-4 text-center mx-auto" style={{ width: '200px', marginTop: "100px" }}>
+                        <Dropdown.Toggle variant="success" id="dropdown-Unit" style={{ width: '200px' }}>
+                            {selectedFactility === 'Select a Facility' ? 'Select a Facility' : `${selectedFactility.name}`}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu className="text-center" style={{ width: '200px' }}>
+                            {unitFacilities.map((facility) => (
+                                <Dropdown.Item key={facility.id} eventKey={facility.id} onClick={() => setSelectedFacility(facility)}>
+                                    Facility {facility.name}
+                                </Dropdown.Item>
+                            ))}
+                        </Dropdown.Menu>
+                    </Dropdown>
+
+                    <Row>
+                        <Col style={{ justifyContent: "center" }}>
+                            <Button onClick={handleOpenStartTimeModal} style={{ width: "100px" }}>Start Time</Button>
+                        </Col>
+                        <Col>
+                            <span className="badge bg-success" style={{ fontSize: "18px", width: "220px" }}>{startTime && `${startTime}`}</span>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col>
+                            <Button onClick={handleOpenEndTimeModal} style={{ width: "100px", marginTop: "20px", marginBottom: "20px" }}>End Time</Button>
+                        </Col>
+                        <Col>
+                            <span className="badge bg-success" style={{ fontSize: "18px", width: "220px", marginTop: "20px" }}>{endTime && `${endTime}`}</span>
+                        </Col>
+                    </Row>
+
+                    {
+                        showStartTimeModal && (
+                            <Calendar
+                                setTime={setStartTime}
+                                timeType="Start"
+                                handleClose={handleCloseStartTimeModal}
+                            />
+                        )
+                    }
+                    {
+                        showEndTimeModal && (
+                            <Calendar
+                                setTime={setEndTime}
+                                timeType="End"
+                                handleClose={handleCloseEndTimeModal}
+                            />
+                        )
+                    }
+
+                    <Row >
+                        <Col md={8}>
+                            <Button variant='primary' onClick={handleConfirm} disabled={!startTime || !endTime} style={{ width: "100px" }}>
+                                Confirm
+                            </Button>
+                            <Button variant='secondary' onClick={goBack}>
+                                Cancel
+                            </Button>
+                        </Col>
+                    </Row>
+                </Col>
+                <Col>
+                    {/* table for the reservations */}
+                    <ReservationsTable reservations={reservations} unit={matchedUnit} />
                 </Col>
             </Row>
 
-            <Dropdown className="mb-4 w-75 text-center mx-auto">
-                <Dropdown.Toggle variant="success" id="dropdown-Unit" className="w-100">
-                    {selectedFactility === 'Select a Facility' ? 'Select a Facility' : `${selectedFactility.name}`}
-                </Dropdown.Toggle>
-                <Dropdown.Menu className="w-100 text-center">
-                    {console.log("Filtered Facilities from toggle: ", filteredFacilities)}
-                    {
-                        unitFacilities.map((facility) => {
-                            return <Dropdown.Item key={facility.id} eventKey={facility.id} onClick={() => setSelectedFacility(facility)}>Facility {facility.name}</Dropdown.Item>
-                        })
-                    }
-                </Dropdown.Menu>
-            </Dropdown>
 
-            <Button onClick={handleOpenStartTimeModal}>Set Start Time</Button>
-            <Button onClick={handleOpenEndTimeModal}>Set End Time</Button>
-
-            {showStartTimeModal && (
-                <Calendar
-                    setTime={setStartTime}
-                    timeType="Start"
-                    handleClose={handleCloseStartTimeModal}
-                />
-            )}
-            {showEndTimeModal && (
-                <Calendar
-                    setTime={setEndTime}
-                    timeType="End"
-                    handleClose={handleCloseEndTimeModal}
-                />
-            )}
-            <p>{startTime && `Start Time: ${startTime}`}</p>
-            <p>{endTime && `End Time: ${endTime}`}</p>
-        </div>
+        </div >
     );
 };
 
