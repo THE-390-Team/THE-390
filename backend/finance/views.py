@@ -34,7 +34,6 @@ class CompanyFinanceView(APIView):
         
         company_total_fees = 0
         company_total_expenses = 0
-        company_total = 0
         
         for property in properties:
             # get the total fees for condo units

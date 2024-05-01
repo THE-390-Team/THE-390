@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import axiosInstance from '../../api/axios';
-import { BrowserRouter } from 'react-router-dom';
 import Login from './Login';
 import '@testing-library/jest-dom';
 import AxiosMockAdapter from 'axios-mock-adapter';

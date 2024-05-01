@@ -159,7 +159,6 @@ class CompanyProfile(Profile):
         Send a registration key to the user's email.
         """
         try:
-            unit_type = " "
             if isinstance(key, CondoRegistrationKey):
                 type = "Condo" 
             elif isinstance(key, ParkingRegistrationKey):

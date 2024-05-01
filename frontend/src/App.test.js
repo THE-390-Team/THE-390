@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { useAuth } from './utils/hooks/AuthContext.js';
 import App from './App';
 import ReactDOM from 'react-dom';
