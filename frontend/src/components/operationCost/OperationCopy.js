@@ -104,20 +104,18 @@ const OperationCopy = () => {
                     <tr key={unit.id}>
                       <td>{type.slice(0, -1)}</td>
                       <td>{unit[type.slice(0, -1)]}</td>
-                      <td>{unit.fee}</td>
-                      <td>{unit.expense}</td>
+                      <td>${unit.fee}</td>
+                      <td>${unit.expense}</td>
                       <td>
-                        <input
+                        $<input
                           type="number"
                           placeholder="Enter value"
                           ref={e1 => inputRefs.current[unit.id] = e1}
                           onChange={(e) => {
                             setTempUnitExpense(e.target.value)
                             console.log(tempUnitExpense)
-                          }
-
-                          }
-                        />
+                          }}
+                          style={{ width: "100px", justifyContent: "center" }} />
                       </td>
                       <td>
                         <button
