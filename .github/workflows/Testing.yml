@@ -144,23 +144,20 @@ jobs:
               echo "[CondoCare Website](https://www.condocare.com)" >> temp.md
               echo "" >> temp.md
               echo "## Reports Overviews" >> temp.md
-              echo "- [Backend Coverage Report](#backend-coverage-report)"  >> temp.md
-              echo "- [Frontend Coverage Report](#frontend-coverage-report)"  >> temp.md
-              echo "" >> temp.md
               echo "" >> temp.md
               echo "<details>" >> temp.md
               echo "  <summary>Backend Coverage Report</summary>" >> temp.md
               echo "  <p>" >> temp.md
-              cat backend/backend-test.txt >> temp.md
+              echo "$(cat backend/backend-test.txt)" >> temp.md
               echo "  </p>" >> temp.md
               echo "</details>"  >> temp.md
               echo "" >> temp.md
               echo "" >> temp.md
               echo "<details>" >> temp.md
               echo "  <summary>Frontend Coverage Report</summary>" >> temp.md
-              cat frontend-summary/summary-test.txt >> temp.md
+              cat "$(cat frontend-summary/summary-test.txt)" >> temp.md
               echo "  <p>" >> temp.md
-              cat frontend-full/frontend-test.txt >> temp.md
+              echo "$(cat frontend-full/frontend-test.txt)" >> temp.md
               echo "  </p>" >> temp.md
               echo "</details>" >> temp.md
               echo "" >> temp.md
