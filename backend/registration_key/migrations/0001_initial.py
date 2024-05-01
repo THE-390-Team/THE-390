@@ -10,51 +10,111 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('properties', '0002_initial'),
+        ("properties", "0002_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='CondoRegistrationKey',
+            name="CondoRegistrationKey",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('key', models.CharField(max_length=20, unique=True)),
-                ('owner', models.BooleanField(default=True)),
-                ('is_activate', models.BooleanField(default=True)),
-                ('unit', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='properties.condounit')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("key", models.CharField(max_length=20, unique=True)),
+                ("owner", models.BooleanField(default=True)),
+                ("is_activate", models.BooleanField(default=True)),
+                (
+                    "unit",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="properties.condounit",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='ParkingRegistrationKey',
+            name="ParkingRegistrationKey",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('key', models.CharField(max_length=20, unique=True)),
-                ('owner', models.BooleanField(default=True)),
-                ('is_activate', models.BooleanField(default=True)),
-                ('unit', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='properties.parkingunit')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("key", models.CharField(max_length=20, unique=True)),
+                ("owner", models.BooleanField(default=True)),
+                ("is_activate", models.BooleanField(default=True)),
+                (
+                    "unit",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="properties.parkingunit",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='StorageUnitRegistrationKey',
+            name="StorageUnitRegistrationKey",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('key', models.CharField(max_length=20, unique=True)),
-                ('owner', models.BooleanField(default=True)),
-                ('is_activate', models.BooleanField(default=True)),
-                ('unit', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='properties.storageunit')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("key", models.CharField(max_length=20, unique=True)),
+                ("owner", models.BooleanField(default=True)),
+                ("is_activate", models.BooleanField(default=True)),
+                (
+                    "unit",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="properties.storageunit",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

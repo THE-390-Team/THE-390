@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import PropertyProfile, CondoUnit, ParkingUnit, StorageUnit
+
 # Register your models here.
 
 admin.site.register(PropertyProfile)
