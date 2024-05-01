@@ -23,6 +23,8 @@ import OperationCost from "./components/operationCost/OperationCopy.js";
 import FacilityBooking from "./components/bookingSystem/FacilityBooking.js";
 import CommonFacilities from "./components/commonFacilities/CommonFacilities.js";
 import CreateCommonFacilities from "./components/commonFacilities/CreateCommonFacilities.js";
+import EditRequest from "./components/request/EditRequest.js";
+import CreateRequest from "./components/request/CreateRequest.js";
 
 function App() {
   //check for the token in case of a refresh
@@ -55,6 +57,8 @@ function App() {
             <Route path="/home" element={<HomeScreen />} />
             <Route path='/operation' element={<OperationCost />} />
             <Route path='/booking-facility/:propertyId' element = {<FacilityBooking />} />
+            <Route path='/property-page/:propertyId/create-request' element={<CreateRequest />} />
+            <Route path='/property-page/:propertyId/edit-request' element={<EditRequest />} />
           </Routes>
         </Container>
       </main>
