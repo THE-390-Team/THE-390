@@ -1,7 +1,7 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 05:33:22 UTC 2024
+This repository was last updated Wed May  1 06:39:20 UTC 2024
 
 ## Visit our website at the following link:
 [CondoCare Website](https://www.condocare.com)
@@ -19,7 +19,7 @@ core/urls.py                                                                    
 finance/admin.py                                                                                     1      0   100%
 finance/apps.py                                                                                      4      0   100%
 finance/models.py                                                                                    5      1    80%
-finance/views.py                                                                                    55     48    13%
+finance/views.py                                                                                    54     47    13%
 jwt_auth_token/__init__.py                                                                           0      0   100%
 jwt_auth_token/admin.py                                                                              1      0   100%
 jwt_auth_token/apps.py                                                                               4      0   100%
@@ -71,13 +71,13 @@ user_profile/admin.py                                                           
 user_profile/apps.py                                                                                 4      0   100%
 user_profile/migrations/0001_initial.py                                                              8      0   100%
 user_profile/migrations/__init__.py                                                                  0      0   100%
-user_profile/models.py                                                                             102      6    94%
+user_profile/models.py                                                                             101      6    94%
 user_profile/serializers.py                                                                         38      0   100%
 user_profile/tests.py                                                                               65      0   100%
 user_profile/urls.py                                                                                14      0   100%
 user_profile/views.py                                                                               97     63    35%
 --------------------------------------------------------------------------------------------------------------------
-TOTAL                                                                                             1194    217    82%
+TOTAL                                                                                             1192    216    82%
   </pre>
 </details>
 
@@ -87,17 +87,17 @@ TOTAL                                                                           
 <pre>
 
 =============================== Coverage summary ===============================
-Statements   : 46.36% ( 530/1143 )
+Statements   : 46.32% ( 529/1142 )
 Branches     : 41.47% ( 219/528 )
 Functions    : 50.44% ( 113/224 )
-Lines        : 46.4% ( 522/1125 )
+Lines        : 46.35% ( 521/1124 )
 ================================================================================
 </pre>
   <pre>
 ------------------------------------|---------|----------|---------|---------|----------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
 ------------------------------------|---------|----------|---------|---------|----------------------
-All files                           |   46.36 |    41.47 |   50.44 |    46.4 |                      
+All files                           |   46.32 |    41.47 |   50.44 |   46.35 |                      
  src                                |     100 |      100 |     100 |     100 |                      
   App.js                            |     100 |      100 |     100 |     100 |                      
   index.js                          |     100 |      100 |     100 |     100 |                      
