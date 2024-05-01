@@ -4,6 +4,7 @@ import property1 from './property1.png';
 import property2 from './property2.jpeg';
 
 
+
 function CarouselFadeExample() {
     return (
         <Carousel fade>
@@ -24,9 +25,9 @@ function CarouselFadeExample() {
                     />
                 </div>
 
-                <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                <Carousel.Caption style={{ fontSize: '20px' }}>
+                    <h3>CondoCare</h3>
+                    <p>Where Comfort meets Convenience</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -45,9 +46,9 @@ function CarouselFadeExample() {
                         }}
                     />
                 </div>
-                <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <Carousel.Caption style={{ fontSize: '20px' }}>
+                    <h3>Find your perfect fit</h3>
+                    <p>Discover the range of Condo options available</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
@@ -66,11 +67,10 @@ function CarouselFadeExample() {
                         }}
                     />
                 </div>
-                <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                    </p>
+                <Carousel.Caption style={{ fontSize: '20px' }}>
+                    <h3>Coast To Coast Property Management</h3>
+                    <p>Providing quality management service since 2024 </p>
+                    
                 </Carousel.Caption>
             </Carousel.Item>
         </Carousel>
