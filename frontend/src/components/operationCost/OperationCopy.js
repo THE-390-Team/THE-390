@@ -78,8 +78,8 @@ const OperationCopy = () => {
                 <h2 className="mt-3">{property.property_name}</h2>
               </Col>
               <Col>
-                <p style={{ color: "green" }}>Property Fees: ${property.fee}</p>
-                <p style={{ color: "red" }}>Property Expenses: ${property.expenses}</p>
+                <p style={{ color: "green" }} data-testid={`total-fees-${property.name}`}>Property Fees: ${property.fee}</p>
+                <p style={{ color: "red" }} data-testid={`total-expenses-${property.name}`}>Property Expenses: ${property.expenses}</p>
               </Col>
             </Row>
           </>
@@ -105,7 +105,7 @@ const OperationCopy = () => {
                       <td>{type.slice(0, -1)}</td>
                       <td>{unit[type.slice(0, -1)]}</td>
                       <td>${unit.fee}</td>
-                      <td>${unit.expense}</td>
+                      <td data-testid={`total-expenses-${unit[type.slice(0, -1)]}`}>${unit.expense}</td>
                       <td>
                         $<input
                           type="number"
@@ -115,7 +115,9 @@ const OperationCopy = () => {
                             setTempUnitExpense(e.target.value)
                             console.log(tempUnitExpense)
                           }}
-                          style={{ width: "100px", justifyContent: "center" }} />
+                          style={{ width: "100px", justifyContent: "center" }}
+                          data-testid={`expense-input-${unit[type.slice(0, -1)]}`}
+                        />
                       </td>
                       <td>
                         <button
@@ -125,7 +127,8 @@ const OperationCopy = () => {
                             unit.id,
                             tempUnitExpense
                           )}
-                          style={{ marginRight: "5px" }}>
+                          style={{ marginRight: "5px" }}
+                          data-testid={`add-expense-${unit[type.slice(0, -1)]}`}>
                           Add
                         </button>
                         <button onClick={() => handleDeleteNewExpense(
@@ -133,7 +136,9 @@ const OperationCopy = () => {
                           type,
                           unit.id,
                           tempUnitExpense
-                        )}>
+                        )}
+                          data-testid={`delete-expense-${unit[type.slice(0, -1)]}`}
+                        >
                           Delete
                         </button>
                       </td>
@@ -157,7 +162,7 @@ const OperationCopy = () => {
           </Col>
           <Col>
             <p style={{ color: "green" }}>Total Fees: ${companyFinances.fee}</p>
-            <p style={{ color: "red" }}>Total Expenses: ${companyFinances.expenses}</p>
+            <p style={{ color: "red" }} >Total Expenses: ${companyFinances.expenses}</p>
             <h4>Grand Total: ${companyFinances.total}</h4>
           </Col>
         </Row>
