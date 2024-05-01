@@ -1,7 +1,7 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 05:48:30 UTC 2024
+This repository was last updated Wed May  1 14:53:48 UTC 2024
 
 ## Visit our website at the following link:
 [CondoCare Website](https://www.condocare.com)
@@ -87,17 +87,17 @@ TOTAL                                                                           
 <pre>
 
 =============================== Coverage summary ===============================
-Statements   : 46.36% ( 530/1143 )
-Branches     : 41.47% ( 219/528 )
-Functions    : 50.44% ( 113/224 )
-Lines        : 46.4% ( 522/1125 )
+Statements   : 45.84% ( 524/1143 )
+Branches     : 41.28% ( 218/528 )
+Functions    : 49.55% ( 111/224 )
+Lines        : 45.86% ( 516/1125 )
 ================================================================================
 </pre>
   <pre>
 ------------------------------------|---------|----------|---------|---------|----------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
 ------------------------------------|---------|----------|---------|---------|----------------------
-All files                           |   46.36 |    41.47 |   50.44 |    46.4 |                      
+All files                           |   45.84 |    41.28 |   49.55 |   45.86 |                      
  src                                |     100 |      100 |     100 |     100 |                      
   App.js                            |     100 |      100 |     100 |     100 |                      
   index.js                          |     100 |      100 |     100 |     100 |                      
@@ -113,8 +113,8 @@ All files                           |   46.36 |    41.47 |   50.44 |    46.4 |
  src/components/commonFacilities    |    2.94 |        0 |       0 |    2.94 |                      
   CommonFacilities.js               |   11.11 |        0 |       0 |   11.11 | 19-32                
   CreateCommonFacilities.js         |    1.69 |        0 |       0 |    1.69 | 18-143               
- src/components/createProperty      |   52.57 |    48.57 |   76.31 |   52.16 |                      
-  CreateLocker.js                   |   53.19 |       50 |      80 |   52.68 | ...5,130,165-171,182 
+ src/components/createProperty      |   50.85 |    48.09 |   71.05 |   50.43 |                      
+  CreateLocker.js                   |    46.8 |    48.21 |      60 |   46.23 | ...4-125,130,155-182 
   CreateParking.js                  |   53.19 |       50 |      80 |   52.68 | ...8-139,144,178-184 
   CreateProperty.js                 |   48.52 |    42.85 |      50 |   48.52 | ...2-106,127-155,165 
   CreateUnit.js                     |   54.25 |       50 |      90 |   53.76 | ...5-126,131,168-175 
