@@ -253,11 +253,7 @@ class CompanyFinanceViewTestCase(TestCase):
   
 
     def test_get_company_finance(self):
-        
-        
-        
-        
-        
+
         # TOTAL FOR CONDO 
         condo_budget = []
         total_condo_expenses = 0

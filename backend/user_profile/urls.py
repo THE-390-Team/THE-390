@@ -56,7 +56,7 @@ urlpatterns = [
     ),
     # finance
     path(
-        "company-profile/<int:company_id>/finance-report/", CompanyFinanceView.as_view()
+        "company-profile/<int:company_id>/finance-report/", CompanyFinanceView.as_view(), name="company-finance"
     ),
     # employee
     path(
