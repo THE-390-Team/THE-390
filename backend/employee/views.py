@@ -11,29 +11,35 @@ class ServiceRequestViewSet(ModelViewSet):
     serializer_class = ServiceRequestSerializer
 
     def get_user_request(self, request,user_id,**kwargs):
-        # if not request.user.is_authenticated:
-        #     return Response({'details': 'user is not authenticated'}, status = status.HTTP_403_FORBIDDEN)
-        user = PublicProfile.objects.get(user_id = user_id)
-        requests = ServiceRequest.objects.filter(user = user)
-        serializer = ServiceRequestSerializer(requests , many = True)
-        return Response(serializer.data)
+        try:
+            user = PublicProfile.objects.get(user_id = user_id)
+            requests = ServiceRequest.objects.filter(public_profile = user)
+            serializer = ServiceRequestSerializer(user.requests.all() , many = True)
+            return Response(serializer.data)
+        except PublicProfile.DoesNotExist:
+            return Response({'details': 'User does not exist'}, status = status.HTTP_404_NOT_FOUND)
+        
     
-    def get_company_request(self, request, **kwargs):
-        requests = []
-        properties = CompanyProfile.objects.get(user = requests.user).property_profiles
-        for property in properties:
-            for condo in property.get_condo_units():
-                if condo.public_profile is not None:
-                    requests+condo.public_profile.requests
+    def get_company_request(self, request, company_id, **kwargs):
+        try:
+            requests = []
+            # properties = CompanyProfile.objects.get(user = requests.user).property_profiles
+            properties = CompanyProfile.objects.get(user_id = company_id).property_profiles.all()
+            for property in properties:
+                for condo in property.get_condo_units():
+                    if condo.public_profile is not None:
+                        requests.extend(condo.public_profile.requests.all())
 
-            for storage in property.get_storage_units():
-                if storage.public_profile is not None:
-                    request+storage.public_profile.requests
+                for storage in property.get_storage_units():
+                    if storage.public_profile is not None:
+                        requests.extend(storage.public_profile.requests.all())
 
-            for parking in property.get_parking_units():
-                if parking.public_profile is not None:
-                    request+parking.public_profile.requests
+                for parking in property.get_parking_units():
+                    if parking.public_profile is not None:
+                        requests.extend(parking.public_profile.requests.all())
 
-        serializer = ServiceRequestSerializer(requests, many=True)
-        return Response(serializer.data)
+            serializer = ServiceRequestSerializer(requests, many=True)
+            return Response(serializer.data)
+        except CompanyProfile.DoesNotExist:
+            return Response({'details': 'Company does not exist'}, status = status.HTTP_404_NOT_FOUND)
             

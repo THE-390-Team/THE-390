@@ -29,8 +29,8 @@ urlpatterns = [
     # finance 
     path('company-profile/<int:company_id>/finance-report/', CompanyFinanceView.as_view()),
     # employee
-    path('public-profile/requests/<int:user_id>/', ServiceRequestViewSet.as_view({'get':'get_user_request'})),
-    path('company-profile/requests/', ServiceRequestViewSet.as_view({'get':'get_company_request'}))
+    path('public-profile/<int:user_id>/requests/', ServiceRequestViewSet.as_view({'get':'get_user_request'})),
+    path('company-profile/<int:company_id>/requests/', ServiceRequestViewSet.as_view({'get':'get_company_request'}))
 ]
 
 urlpatterns += router.urls

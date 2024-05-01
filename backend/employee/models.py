@@ -27,11 +27,12 @@ class ServiceRequest(models.Model):
         ordering = ['request_date']
 
     public_profile = models.ForeignKey('user_profile.PublicProfile', on_delete=models.CASCADE, related_name='requests')
-    assigned_employee = models.ForeignKey('user_profile.EmployeeProfile', on_delete=models.DO_NOTHING)
+    assigned_employee = models.ForeignKey('user_profile.EmployeeProfile', on_delete=models.DO_NOTHING, blank=True, null=True)
     request_date = models.DateTimeField(auto_now_add=True)
     request_description = models.TextField()
     completed = models.BooleanField(default=False)
     completion_date = models.DateTimeField(null=True, blank=True)
     completion_information = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.PENDING)
-    unit = models.ForeignKey('properties.CondoUnit', on_delete=models.CASCADE, related_name='requests')
+    unit = models.ForeignKey('properties.CondoUnit', on_delete=models.CASCADE, related_name='requests', blank=True, null=True)
+    type = models.CharField(max_length=20, choices=Type.choices, default=Type.MISCELANIOUS)
