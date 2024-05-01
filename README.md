@@ -2,7 +2,7 @@
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
 
-This repository was last updated Wed May  1 16:33:45 UTC 2024
+This repository was last updated Wed May  1 16:47:22 UTC 2024
 
 
 ## Visit our website at the following link:
