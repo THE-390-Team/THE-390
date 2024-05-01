@@ -103,7 +103,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: frontend-testing-summary
-          path: ./frontend/summary.txt
+          path: ./frontend/summary-test.txt
 
   Configuring:
     name: Configuring README 
@@ -115,7 +115,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: frontend-testing-summary
-          path: ./frontend/summary.txt
+          path: ./frontend/summary-test.txt
           
       - name: Download artifact frontend full testing
         uses: actions/download-artifact@v2
@@ -155,7 +155,7 @@ jobs:
               echo "" >> temp.md
               echo "<details>" >> temp.md
               echo "  <summary>Frontend Coverage Report</summary>" >> temp.md
-              cat ./frontend/summary.txt >> temp.md
+              cat ./frontend/summary-test.txt >> temp.md
               echo "  <p>" >> temp.md
               cat ./frontend/frontend-test.txt >> temp.md
               echo "  </p>" >> temp.md
