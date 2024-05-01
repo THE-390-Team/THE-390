@@ -111,23 +111,24 @@ jobs:
     needs: [Frontend, Backend]
     
     steps:
-      - name: Download artifact frontend summary
-        uses: actions/download-artifact@v2
-        with:
-          name: frontend-testing-summary
-          path: ./frontend/summary-test.txt
-          
-      - name: Download artifact frontend full testing
+      - name: Download artifact frontend testing full
         uses: actions/download-artifact@v2
         with:
           name: frontend-testing-full
-          path: ./frontend/frontend-test.txt
+          path: frontend-full
+      
+      - name: Download artifact frontend testing summary
+        uses: actions/download-artifact@v2
+        with:
+          name: frontend-testing-summary
+          path: frontend-summary
           
       - name: Download artifact backend
         uses: actions/download-artifact@v2
         with:
           name: backend-testing
-          path: ./backend/backend-test.txt
+          path: backend
+
           
       - name: Preparing & Updating the Read Me
         run: |
@@ -147,16 +148,16 @@ jobs:
               echo "<details>" >> temp.md
               echo "  <summary>Backend Coverage Report</summary>" >> temp.md
               echo "  <p>" >> temp.md
-              cat ./backend-testing/backend-test.txt >> temp.md
+              cat backend/backend-test.txt >> temp.md
               echo "  </p>" >> temp.md
               echo "</details>"
               echo "" >> temp.md
               echo "" >> temp.md
               echo "<details>" >> temp.md
               echo "  <summary>Frontend Coverage Report</summary>" >> temp.md
-              cat ./frontend-testing-summary/summary-test.txt >> temp.md
+              cat frontend-summary/summary-test.txt >> temp.md
               echo "  <p>" >> temp.md
-              cat ./frontend-testing-full/frontend-test.txt >> temp.md
+              cat frontend-full/frontend-test.txt >> temp.md
               echo "  </p>" >> temp.md
               echo "</details>" >> temp.md
               echo "" >> temp.md
@@ -182,7 +183,7 @@ jobs:
               echo "[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
               echo "" >> temp.md
 
-
+              mv temp.md README.md
               git init
               git branch
               git pull origin 
