@@ -40,7 +40,7 @@ const Calendar = ({ setTime, timeType, handleClose }) => {
                 />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={handleConfirm}>Confirm</Button>
+                <Button variant="primary" onClick={handleConfirm} data-testid="calender-confirm-button">Confirm</Button>
             </Modal.Footer>
         </Modal>
     );

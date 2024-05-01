@@ -70,7 +70,7 @@ function SubmitRegistrationButton() {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" data-testid="registration-key">
                             Save Key
                         </Button>
                     </Modal.Footer>

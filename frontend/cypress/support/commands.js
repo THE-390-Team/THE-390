@@ -101,3 +101,7 @@ Cypress.Commands.add('goToOperationalCostFromHomePage', () => {
   cy.contains('Add');
   cy.contains('Delete');
 });
+
+Cypress.Commands.add('createGenericFacility', () => {
+
+});
