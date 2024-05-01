@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import CondoRegistrationKey, ParkingRegistrationKey, RegistrationKey, StorageRegistrationKey
+from .models import (
+    CondoRegistrationKey,
+    ParkingRegistrationKey,
+    RegistrationKey,
+    StorageRegistrationKey,
+)
+
 # Register your models here.
 
 

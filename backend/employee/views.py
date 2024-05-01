@@ -6,26 +6,29 @@ from user_profile.models import CompanyProfile, PublicProfile
 from .serializers import ServiceRequestSerializer
 from .models import ServiceRequest
 
+
 class ServiceRequestViewSet(ModelViewSet):
     queryset = ServiceRequest.objects.all()
     serializer_class = ServiceRequestSerializer
 
-
-    def get_user_request(self, request,user_id,**kwargs):
+    def get_user_request(self, request, user_id, **kwargs):
         try:
-            user = PublicProfile.objects.get(user_id = user_id)
-            requests = ServiceRequest.objects.filter(public_profile = user)
-            serializer = ServiceRequestSerializer(user.requests.all() , many = True)
+            user = PublicProfile.objects.get(user_id=user_id)
+            requests = ServiceRequest.objects.filter(public_profile=user)
+            serializer = ServiceRequestSerializer(user.requests.all(), many=True)
             return Response(serializer.data)
         except PublicProfile.DoesNotExist:
-            return Response({'details': 'User does not exist'}, status = status.HTTP_404_NOT_FOUND)
-        
-    
+            return Response(
+                {"details": "User does not exist"}, status=status.HTTP_404_NOT_FOUND
+            )
+
     def get_company_request(self, request, company_id, **kwargs):
         try:
             requests = []
             # properties = CompanyProfile.objects.get(user = requests.user).property_profiles
-            properties = CompanyProfile.objects.get(user_id = company_id).property_profiles.all()
+            properties = CompanyProfile.objects.get(
+                user_id=company_id
+            ).property_profiles.all()
             for property in properties:
                 for condo in property.get_condo_units():
                     if condo.public_profile is not None:
@@ -42,5 +45,6 @@ class ServiceRequestViewSet(ModelViewSet):
             serializer = ServiceRequestSerializer(requests, many=True)
             return Response(serializer.data)
         except CompanyProfile.DoesNotExist:
-            return Response({'details': 'Company does not exist'}, status = status.HTTP_404_NOT_FOUND)
-            
+            return Response(
+                {"details": "Company does not exist"}, status=status.HTTP_404_NOT_FOUND
+            )

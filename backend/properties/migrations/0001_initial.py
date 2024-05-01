@@ -7,60 +7,109 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='CondoUnit',
+            name="CondoUnit",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('location', models.CharField(max_length=4)),
-                ('size', models.DecimalField(decimal_places=2, default=0, max_digits=20)),
-                ('purchase_price', models.DecimalField(decimal_places=2, max_digits=20)),
-                ('rent_price', models.DecimalField(decimal_places=2, max_digits=20)),
-                ('extra_information', models.TextField(null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("location", models.CharField(max_length=4)),
+                (
+                    "size",
+                    models.DecimalField(decimal_places=2, default=0, max_digits=20),
+                ),
+                (
+                    "purchase_price",
+                    models.DecimalField(decimal_places=2, max_digits=20),
+                ),
+                ("rent_price", models.DecimalField(decimal_places=2, max_digits=20)),
+                ("extra_information", models.TextField(null=True)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='ParkingUnit',
+            name="ParkingUnit",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('location', models.CharField(max_length=4)),
-                ('size', models.DecimalField(decimal_places=2, default=0, max_digits=20)),
-                ('purchase_price', models.DecimalField(decimal_places=2, max_digits=20)),
-                ('rent_price', models.DecimalField(decimal_places=2, max_digits=20)),
-                ('extra_information', models.TextField(null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("location", models.CharField(max_length=4)),
+                (
+                    "size",
+                    models.DecimalField(decimal_places=2, default=0, max_digits=20),
+                ),
+                (
+                    "purchase_price",
+                    models.DecimalField(decimal_places=2, max_digits=20),
+                ),
+                ("rent_price", models.DecimalField(decimal_places=2, max_digits=20)),
+                ("extra_information", models.TextField(null=True)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='PropertyProfile',
+            name="PropertyProfile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('address', models.CharField(max_length=100)),
-                ('city', models.CharField(max_length=100)),
-                ('province', models.CharField(max_length=100)),
-                ('postal_code', models.CharField(max_length=12)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("address", models.CharField(max_length=100)),
+                ("city", models.CharField(max_length=100)),
+                ("province", models.CharField(max_length=100)),
+                ("postal_code", models.CharField(max_length=12)),
             ],
         ),
         migrations.CreateModel(
-            name='StorageUnit',
+            name="StorageUnit",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('location', models.CharField(max_length=4)),
-                ('size', models.DecimalField(decimal_places=2, default=0, max_digits=20)),
-                ('purchase_price', models.DecimalField(decimal_places=2, max_digits=20)),
-                ('rent_price', models.DecimalField(decimal_places=2, max_digits=20)),
-                ('extra_information', models.TextField(null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("location", models.CharField(max_length=4)),
+                (
+                    "size",
+                    models.DecimalField(decimal_places=2, default=0, max_digits=20),
+                ),
+                (
+                    "purchase_price",
+                    models.DecimalField(decimal_places=2, max_digits=20),
+                ),
+                ("rent_price", models.DecimalField(decimal_places=2, max_digits=20)),
+                ("extra_information", models.TextField(null=True)),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

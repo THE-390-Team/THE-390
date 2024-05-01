@@ -7,32 +7,86 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('properties', '0006_condounit_operational_expense_and_more'),
-        ('user_profile', '0001_initial'),
+        ("properties", "0006_condounit_operational_expense_and_more"),
+        ("user_profile", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Facility',
+            name="Facility",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('description', models.TextField(blank=True)),
-                ('capacity', models.IntegerField()),
-                ('start_time', models.TimeField(help_text='Opening time of the facility')),
-                ('end_time', models.TimeField(help_text='Closing time of the facility')),
-                ('property', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='facilities', to='properties.propertyprofile')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("description", models.TextField(blank=True)),
+                ("capacity", models.IntegerField()),
+                (
+                    "start_time",
+                    models.TimeField(help_text="Opening time of the facility"),
+                ),
+                (
+                    "end_time",
+                    models.TimeField(help_text="Closing time of the facility"),
+                ),
+                (
+                    "property",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="facilities",
+                        to="properties.propertyprofile",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Reservation',
+            name="Reservation",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('start_time', models.DateTimeField()),
-                ('end_time', models.DateTimeField()),
-                ('status', models.CharField(choices=[('pending', 'Pending'), ('confirmed', 'Confirmed'), ('cancelled', 'Cancelled')], default='pending', max_length=10)),
-                ('facility', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='facility', to='properties.facility')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='reservations', to='user_profile.publicprofile')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("start_time", models.DateTimeField()),
+                ("end_time", models.DateTimeField()),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("pending", "Pending"),
+                            ("confirmed", "Confirmed"),
+                            ("cancelled", "Cancelled"),
+                        ],
+                        default="pending",
+                        max_length=10,
+                    ),
+                ),
+                (
+                    "facility",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="facility",
+                        to="properties.facility",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="reservations",
+                        to="user_profile.publicprofile",
+                    ),
+                ),
             ],
         ),
     ]
