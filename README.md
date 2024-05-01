@@ -1,7 +1,9 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
+
 This repository was last updated Wed May  1 16:33:45 UTC 2024
+
 
 ## Visit our website at the following link:
 [CondoCare Website](https://www.condocare.com)
@@ -16,6 +18,16 @@ Name                                                                            
 core/__init__.py                                                                                     0      0   100%
 core/settings.py                                                                                    41      0   100%
 core/urls.py                                                                                         7      0   100%
+employee/__init__.py                                                                                 0      0   100%
+employee/admin.py                                                                                    1      0   100%
+employee/apps.py                                                                                     4      0   100%
+employee/migrations/0001_initial.py                                                                  6      0   100%
+employee/migrations/__init__.py                                                                      0      0   100%
+employee/models.py                                                                                  28      0   100%
+employee/serializers.py                                                                              6      0   100%
+employee/tests.py                                                                                    1      0   100%
+employee/urls.py                                                                                     6      0   100%
+employee/views.py                                                                                   35     24    31%
 finance/admin.py                                                                                     1      0   100%
 finance/apps.py                                                                                      4      0   100%
 finance/models.py                                                                                    5      1    80%
@@ -74,10 +86,10 @@ user_profile/migrations/__init__.py                                             
 user_profile/models.py                                                                             102      6    94%
 user_profile/serializers.py                                                                         38      0   100%
 user_profile/tests.py                                                                               65      0   100%
-user_profile/urls.py                                                                                14      0   100%
+user_profile/urls.py                                                                                15      0   100%
 user_profile/views.py                                                                               97     63    35%
 --------------------------------------------------------------------------------------------------------------------
-TOTAL                                                                                             1194    217    82%
+TOTAL                                                                                             1282    241    81%
   </pre>
 </details>
 
