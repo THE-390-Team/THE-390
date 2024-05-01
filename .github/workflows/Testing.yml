@@ -147,18 +147,18 @@ jobs:
               echo "" >> temp.md
               echo "<details>" >> temp.md
               echo "  <summary>Backend Coverage Report</summary>" >> temp.md
-              echo "  <p>" >> temp.md
+              echo "  <pre>" >> temp.md
               echo "$(cat backend/backend-test.txt)" >> temp.md
-              echo "  </p>" >> temp.md
+              echo "  </pre>" >> temp.md
               echo "</details>"  >> temp.md
               echo "" >> temp.md
               echo "" >> temp.md
               echo "<details>" >> temp.md
               echo "  <summary>Frontend Coverage Report</summary>" >> temp.md
               echo "$(cat frontend-summary/summary-test.txt)" >> temp.md
-              echo "  <p>" >> temp.md
+              echo "  <pre>" >> temp.md
               echo "$(cat frontend-full/frontend-test.txt)" >> temp.md
-              echo "  </p>" >> temp.md
+              echo "  </pre>" >> temp.md
               echo "</details>" >> temp.md
               echo "" >> temp.md
               echo "" >> temp.md
