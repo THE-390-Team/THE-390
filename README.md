@@ -1,7 +1,7 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 05:48:30 UTC 2024
+This repository was last updated Wed May  1 08:45:58 UTC 2024
 
 ## Visit our website at the following link:
 [CondoCare Website](https://www.condocare.com)
@@ -87,17 +87,17 @@ TOTAL                                                                           
 <pre>
 
 =============================== Coverage summary ===============================
-Statements   : 43.05% ( 533/1238 )
-Branches     : 38.51% ( 218/566 )
-Functions    : 46.12% ( 113/245 )
-Lines        : 43.42% ( 525/1209 )
+Statements   : 43.09% ( 540/1253 )
+Branches     : 38.42% ( 219/570 )
+Functions    : 46.37% ( 115/248 )
+Lines        : 43.46% ( 532/1224 )
 ================================================================================
 </pre>
   <pre>
 ------------------------------------|---------|----------|---------|---------|----------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
 ------------------------------------|---------|----------|---------|---------|----------------------
-All files                           |   43.05 |    38.51 |   46.12 |   43.42 |                      
+All files                           |   43.09 |    38.42 |   46.37 |   43.46 |                      
  src                                |     100 |      100 |     100 |     100 |                      
   App.js                            |     100 |      100 |     100 |     100 |                      
   index.js                          |     100 |      100 |     100 |     100 |                      
@@ -107,16 +107,17 @@ All files                           |   43.05 |    38.51 |   46.12 |   43.42 |
   Footer.js                         |     100 |      100 |     100 |     100 |                      
   Header.js                         |     100 |      100 |     100 |     100 |                      
   LargeTitle.js                     |     100 |      100 |     100 |     100 |                      
- src/components/bookingSystem       |    2.73 |        0 |       0 |    3.07 |                      
+ src/components/bookingSystem       |     3.4 |        0 |       0 |    3.75 |                      
   Calendar.js                       |    5.88 |        0 |       0 |    6.25 | 8-28                 
-  FacilityBooking.js                |    1.78 |        0 |       0 |    2.04 | 12-126               
+  FacilityBooking.js                |    1.47 |        0 |       0 |    1.63 | 12-134               
+  ReservationTable.js               |   33.33 |      100 |       0 |   33.33 | 6-17                 
  src/components/commonFacilities    |    5.33 |        0 |       0 |     5.4 |                      
   CommonFacilities.js               |    8.33 |        0 |       0 |    9.09 | 20-83                
   CreateCommonFacilities.js         |    1.72 |        0 |       0 |    1.72 | 10-121               
   FacilitiesList.js                 |   33.33 |        0 |       0 |   33.33 | 5-8                  
   FacilityCard.js                   |      50 |      100 |       0 |      50 | 4                    
- src/components/createProperty      |   50.85 |    48.09 |   71.05 |   50.43 |                      
-  CreateLocker.js                   |    46.8 |    48.21 |      60 |   46.23 | ...4-125,130,155-182 
+ src/components/createProperty      |   52.57 |    48.57 |   76.31 |   52.16 |                      
+  CreateLocker.js                   |   53.19 |       50 |      80 |   52.68 | ...5,130,165-171,182 
   CreateParking.js                  |   53.19 |       50 |      80 |   52.68 | ...8-139,144,178-184 
   CreateProperty.js                 |   48.52 |    42.85 |      50 |   48.52 | ...2-106,127-155,165 
   CreateUnit.js                     |   54.25 |       50 |      90 |   53.76 | ...5-126,131,168-175 
