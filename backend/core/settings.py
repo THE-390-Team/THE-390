@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'properties',
     'registration_key',
     'finance',
+    'reservation'
 ]
 
 MIDDLEWARE = [
@@ -204,13 +205,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'patrickmaceachen78@gmail.com'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'patrickmaceachen78@gmail.com'
-EMAIL_HOST_PASSWORD = 'uvjx lzqn mrbb xgur'
-EMAIL_USE_SSL = False
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_USE_TLS = env("EMAIL_USE_TLS")
+EMAIL_USE_SSL = env("EMAIL_USE_SSL")
 
 # Default location for images and reference URL
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
