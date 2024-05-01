@@ -1,35 +1,39 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
+from rest_framework import status
 
-from .serializers import AccessRequestSerializer, IntercomRequestSerializer, MoveInRequestSerializer, MoveOutRequestSerializer, ViolationReportSerializer, DeficiencyReportSerializer, MiscelaniousRequestSerializer
-from .models import AccessRequest, IntercomRequest, MoveInRequest, MoveOutRequest, ViolationReport, DeficiencyReport, MiscelaniousRequest
+from user_profile.models import CompanyProfile, PublicProfile
+from .serializers import ServiceRequestSerializer
+from .models import ServiceRequest
 
-class AccessRequestViewSet(ModelViewSet):
-    queryset = AccessRequest.objects.all()
-    serializer_class = AccessRequestSerializer
-    
+class ServiceRequestViewSet(ModelViewSet):
+    queryset = ServiceRequest.objects.all()
+    serializer_class = ServiceRequestSerializer
 
-class IntercomRequestViewSet(ModelViewSet):
-    queryset = IntercomRequest.objects.all()
-    serializer_class = IntercomRequestSerializer
+    def get_user_request(self, request,user_id,**kwargs):
+        # if not request.user.is_authenticated:
+        #     return Response({'details': 'user is not authenticated'}, status = status.HTTP_403_FORBIDDEN)
+        user = PublicProfile.objects.get(user_id = user_id)
+        requests = ServiceRequest.objects.filter(user = user)
+        serializer = ServiceRequestSerializer(requests , many = True)
+        return Response(serializer.data)
     
+    def get_company_request(self, request, **kwargs):
+        requests = []
+        properties = CompanyProfile.objects.get(user = requests.user).property_profiles
+        for property in properties:
+            for condo in property.get_condo_units():
+                if condo.public_profile is not None:
+                    requests+condo.public_profile.requests
 
-class MoveInRequestViewSet(ModelViewSet):
-    queryset = MoveInRequest.objects.all()
-    serializer_class = MoveInRequestSerializer
+            for storage in property.get_storage_units():
+                if storage.public_profile is not None:
+                    request+storage.public_profile.requests
 
-class MoveOutRequestViewSet(ModelViewSet):
-    queryset = MoveOutRequest.objects.all()
-    serializer_class = MoveOutRequestSerializer
-    
-class ViolationReportViewSet(ModelViewSet):
-    queryset = ViolationReport.objects.all()
-    serializer_class = ViolationReportSerializer
-    
-class DeficiencyReportViewSet(ModelViewSet):
-    queryset = DeficiencyReport.objects.all()
-    serializer_class = DeficiencyReportSerializer
-    
-class MiscelaniousRequestViewSet(ModelViewSet):
-    queryset = MiscelaniousRequest.objects.all()
-    serializer_class = MiscelaniousRequestSerializer
-    
+            for parking in property.get_parking_units():
+                if parking.public_profile is not None:
+                    request+parking.public_profile.requests
+
+        serializer = ServiceRequestSerializer(requests, many=True)
+        return Response(serializer.data)
+            

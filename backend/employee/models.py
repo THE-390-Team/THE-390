@@ -5,17 +5,28 @@ from django.db import models
 
 
 class ServiceRequest(models.Model):
+
+    class Type(models.TextChoices):
+        MOVE_IN = 'MOVE_IN', 'Move In'
+        MOVE_OUT = 'MOVE_OUT', 'Move Out'
+        REPAIR = 'REPAIR', 'Repair'
+        ACCESS = 'ACCESS', 'Access'
+        INTERCOM = 'INTERCOM','Intercom'
+        VIOLATION = 'VIOLATION', 'Violation'
+        DEFFIENCY = 'DEFFIENCY', 'Deffiency'
+        MISCELANIOUS = 'MISCELANIOUS', 'Miscelanious'
+
     
     class Status(models.TextChoices):
-        PENDING = 'PENDING'
-        IN_PROGRESS = 'IN_PROGRESS'
-        COMPLETED = 'COMPLETED'
+        PENDING = 'PENDING','Pending'
+        IN_PROGRESS = 'IN_PROGRESS','In_Progress'
+        COMPLETED = 'COMPLETED','Completed'
+        CANCELLED = 'CANCELLED', 'Cancelled'
         
     class Meta:
         ordering = ['request_date']
-        abstract = True
-        
-        
+
+    public_profile = models.ForeignKey('user_profile.PublicProfile', on_delete=models.CASCADE, related_name='requests')
     assigned_employee = models.ForeignKey('user_profile.EmployeeProfile', on_delete=models.DO_NOTHING)
     request_date = models.DateTimeField(auto_now_add=True)
     request_description = models.TextField()
@@ -23,29 +34,4 @@ class ServiceRequest(models.Model):
     completion_date = models.DateTimeField(null=True, blank=True)
     completion_information = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.PENDING)
-    
-class AccessRequest(ServiceRequest):
-    public_profile = models.ForeignKey('user_profile.UserProfile', on_delete=models.CASCADE, related_name='access_requests')
-
-class IntercomRequest(ServiceRequest):
-    public_profile = models.ForeignKey('user_profile.UserProfile', on_delete=models.CASCADE, related_name='intercom_requests')
-
-
-class MoveInRequest(ServiceRequest):
-    public_profile = models.ForeignKey('user_profile.UserProfile', on_delete=models.CASCADE, related_name='move_in_requests')
-    unit = models.ForeignKey('properties.CondoUnit', on_delete=models.CASCADE, related_name='move_in_requests')
-
-class MoveOutRequest(ServiceRequest):
-    public_profile = models.ForeignKey('user_profile.UserProfile', on_delete=models.CASCADE, related_name='move_out_requests')
-    unit = models.ForeignKey('properties.CondoUnit', on_delete=models.CASCADE, related_name='move_out_requests')
-
-class ViolationReport(ServiceRequest):
-    public_profile = models.ForeignKey('user_profile.UserProfile', on_delete=models.CASCADE, related_name='violation_reports')
-
-
-class DeficiencyReport(ServiceRequest):
-    public_profile = models.ForeignKey('user_profile.UserProfile', on_delete=models.CASCADE, related_name='deficiency_reports')
-
-
-class MiscelaniousRequest(ServiceRequest):
-    public_profile = models.ForeignKey('user_profile.UserProfile', on_delete=models.CASCADE, related_name='miscelanious_requests')
+    unit = models.ForeignKey('properties.CondoUnit', on_delete=models.CASCADE, related_name='requests')
