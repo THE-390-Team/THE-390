@@ -7,67 +7,93 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('properties', '0003_propertyprofile_fee_rate_and_more'),
-        ('registration_key', '0001_initial'),
-        ('user_profile', '0001_initial'),
+        ("properties", "0003_propertyprofile_fee_rate_and_more"),
+        ("registration_key", "0001_initial"),
+        ("user_profile", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='condoregistrationkey',
-            old_name='is_activate',
-            new_name='is_active',
+            model_name="condoregistrationkey",
+            old_name="is_activate",
+            new_name="is_active",
         ),
         migrations.RenameField(
-            model_name='condoregistrationkey',
-            old_name='owner',
-            new_name='is_owner',
+            model_name="condoregistrationkey",
+            old_name="owner",
+            new_name="is_owner",
         ),
         migrations.RenameField(
-            model_name='parkingregistrationkey',
-            old_name='is_activate',
-            new_name='is_active',
+            model_name="parkingregistrationkey",
+            old_name="is_activate",
+            new_name="is_active",
         ),
         migrations.RenameField(
-            model_name='parkingregistrationkey',
-            old_name='owner',
-            new_name='is_owner',
+            model_name="parkingregistrationkey",
+            old_name="owner",
+            new_name="is_owner",
         ),
         migrations.AlterField(
-            model_name='condoregistrationkey',
-            name='key',
+            model_name="condoregistrationkey",
+            name="key",
             field=models.CharField(max_length=100, unique=True),
         ),
         migrations.AlterField(
-            model_name='condoregistrationkey',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='user_profile.publicprofile'),
+            model_name="condoregistrationkey",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="user_profile.publicprofile",
+            ),
         ),
         migrations.AlterField(
-            model_name='parkingregistrationkey',
-            name='key',
+            model_name="parkingregistrationkey",
+            name="key",
             field=models.CharField(max_length=100, unique=True),
         ),
         migrations.AlterField(
-            model_name='parkingregistrationkey',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='user_profile.publicprofile'),
+            model_name="parkingregistrationkey",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="user_profile.publicprofile",
+            ),
         ),
         migrations.CreateModel(
-            name='StorageRegistrationKey',
+            name="StorageRegistrationKey",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('key', models.CharField(max_length=100, unique=True)),
-                ('is_owner', models.BooleanField(default=True)),
-                ('is_active', models.BooleanField(default=True)),
-                ('unit', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='properties.storageunit')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='user_profile.publicprofile')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("key", models.CharField(max_length=100, unique=True)),
+                ("is_owner", models.BooleanField(default=True)),
+                ("is_active", models.BooleanField(default=True)),
+                (
+                    "unit",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="properties.storageunit",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="user_profile.publicprofile",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
         migrations.DeleteModel(
-            name='StorageUnitRegistrationKey',
+            name="StorageUnitRegistrationKey",
         ),
     ]
