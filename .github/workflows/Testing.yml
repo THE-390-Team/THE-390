@@ -50,8 +50,7 @@ jobs:
           name: backend-testing
           path: ./backend/backend-test.txt
 
-
- frontend:
+Frontend:
     name: Frontend Tests
     runs-on: ubuntu-latest
 
