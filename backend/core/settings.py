@@ -30,6 +30,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -52,13 +53,13 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     #
-    "user_profile",
-    "jwt_auth_token",
-    "properties",
-    "registration_key",
-    "finance",
-    "employee",
-    "reservation",
+    'user_profile',
+    'jwt_auth_token',
+    'properties',
+    'registration_key',
+    'finance',
+    'employee',
+    'reservation'
 ]
 
 MIDDLEWARE = [
@@ -164,7 +165,7 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": False,
     "UPDATE_LAST_LOGIN": False,
     "ALGORITHM": "HS256",
-    "SIGNING_KEY": env("SECRET_KEY"),  # settings.SECRET_KEY,
+    "SIGNING_KEY": SECRET_KEY,  # settings.SECRET_KEY,
     "VERIFYING_KEY": "",
     "AUDIENCE": None,
     "ISSUER": None,
