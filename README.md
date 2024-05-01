@@ -1,7 +1,7 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 16:18:06 UTC 2024
+This repository was last updated Wed May  1 18:29:07 UTC 2024
 
 ## Visit our website at the following link:
 [CondoCare Website](https://www.condocare.com)
@@ -16,6 +16,16 @@ Name                                                                            
 core/__init__.py                                                                                     0      0   100%
 core/settings.py                                                                                    41      0   100%
 core/urls.py                                                                                         7      0   100%
+employee/__init__.py                                                                                 0      0   100%
+employee/admin.py                                                                                    1      0   100%
+employee/apps.py                                                                                     4      0   100%
+employee/migrations/0001_initial.py                                                                  6      0   100%
+employee/migrations/__init__.py                                                                      0      0   100%
+employee/models.py                                                                                  28      0   100%
+employee/serializers.py                                                                              6      0   100%
+employee/tests.py                                                                                    1      0   100%
+employee/urls.py                                                                                     6      0   100%
+employee/views.py                                                                                   35     24    31%
 finance/admin.py                                                                                     1      0   100%
 finance/apps.py                                                                                      4      0   100%
 finance/models.py                                                                                    5      1    80%
@@ -74,10 +84,10 @@ user_profile/migrations/__init__.py                                             
 user_profile/models.py                                                                             102      6    94%
 user_profile/serializers.py                                                                         38      0   100%
 user_profile/tests.py                                                                               65      0   100%
-user_profile/urls.py                                                                                14      0   100%
+user_profile/urls.py                                                                                15      0   100%
 user_profile/views.py                                                                               97     63    35%
 --------------------------------------------------------------------------------------------------------------------
-TOTAL                                                                                             1194    217    82%
+TOTAL                                                                                             1282    241    81%
   </pre>
 </details>
 
@@ -87,17 +97,17 @@ TOTAL                                                                           
 <pre>
 
 =============================== Coverage summary ===============================
-Statements   : 45.05% ( 537/1192 )
-Branches     : 40.95% ( 222/542 )
-Functions    : 48.1% ( 114/237 )
-Lines        : 45.05% ( 529/1174 )
+Statements   : 45.54% ( 593/1302 )
+Branches     : 39.38% ( 230/584 )
+Functions    : 49.8% ( 130/261 )
+Lines        : 45.74% ( 586/1281 )
 ================================================================================
 </pre>
   <pre>
 ------------------------------------|---------|----------|---------|---------|----------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
 ------------------------------------|---------|----------|---------|---------|----------------------
-All files                           |   45.05 |    40.95 |    48.1 |   45.05 |                      
+All files                           |   45.54 |    39.38 |    49.8 |   45.74 |                      
  src                                |     100 |      100 |     100 |     100 |                      
   App.js                            |     100 |      100 |     100 |     100 |                      
   index.js                          |     100 |      100 |     100 |     100 |                      
@@ -107,53 +117,56 @@ All files                           |   45.05 |    40.95 |    48.1 |   45.05 |
   Footer.js                         |     100 |      100 |     100 |     100 |                      
   Header.js                         |     100 |      100 |     100 |     100 |                      
   LargeTitle.js                     |     100 |      100 |     100 |     100 |                      
- src/components/bookingSystem       |      10 |      100 |       0 |      10 |                      
-  Calendar.js                       |   14.28 |      100 |       0 |   14.28 | 8-30                 
-  FacilityBooking.js                |    7.69 |      100 |       0 |    7.69 | 10-71                
- src/components/commonFacilities    |    2.94 |        0 |       0 |    2.94 |                      
-  CommonFacilities.js               |   11.11 |        0 |       0 |   11.11 | 19-32                
-  CreateCommonFacilities.js         |    1.69 |        0 |       0 |    1.69 | 18-143               
+ src/components/bookingSystem       |     3.4 |        0 |       0 |    3.65 |                      
+  Calendar.js                       |    5.88 |        0 |       0 |    6.25 | 7-26                 
+  FacilityBooking.js                |    1.47 |        0 |       0 |    1.58 | 12-152               
+  ReservationTable.js               |   33.33 |      100 |       0 |   33.33 | 6-17                 
+ src/components/commonFacilities    |    5.33 |        0 |       0 |    5.33 |                      
+  CommonFacilities.js               |    8.33 |        0 |       0 |    8.33 | 19-94                
+  CreateCommonFacilities.js         |    1.72 |        0 |       0 |    1.72 | 10-131               
+  FacilitiesList.js                 |   33.33 |        0 |       0 |   33.33 | 5-9                  
+  FacilityCard.js                   |      50 |      100 |       0 |      50 | 4                    
  src/components/createProperty      |   52.57 |    48.57 |   76.31 |   52.16 |                      
-  CreateLocker.js                   |   53.19 |       50 |      80 |   52.68 | ...5,130,165-171,182 
-  CreateParking.js                  |   53.19 |       50 |      80 |   52.68 | ...8-139,144,178-184 
-  CreateProperty.js                 |   48.52 |    42.85 |      50 |   48.52 | ...2-106,127-155,165 
-  CreateUnit.js                     |   54.25 |       50 |      90 |   53.76 | ...5-126,131,168-175 
+  CreateLocker.js                   |   53.19 |       50 |      80 |   52.68 | ...0,125,159-165,176 
+  CreateParking.js                  |   53.19 |       50 |      80 |   52.68 | ...1-132,137,173-179 
+  CreateProperty.js                 |   48.52 |    42.85 |      50 |   48.52 | ...95-99,119-149,159 
+  CreateUnit.js                     |   54.25 |       50 |      90 |   53.76 | ...9-120,125,162-168 
  src/components/dashboard           |    90.9 |     87.5 |      80 |    90.9 |                      
   DashBoard.js                      |     100 |      100 |     100 |     100 |                      
   FinancialPublic.js                |     100 |      100 |     100 |     100 |                      
   SubmittedRequests.js              |   77.77 |       75 |      50 |   77.77 | 29-32                
  src/components/dashboard/financial |   89.47 |       80 |    87.5 |   89.47 |                      
-  Financial.js                      |    87.5 |       80 |   85.71 |    87.5 | 18,103               
+  Financial.js                      |    87.5 |       80 |   85.71 |    87.5 | 27,156               
   Total.js                          |     100 |      100 |     100 |     100 |                      
- src/components/log                 |   33.95 |    27.63 |    42.3 |   33.95 |                      
+ src/components/log                 |   34.44 |    27.63 |    42.3 |   34.44 |                      
   LogOut.js                         |     100 |      100 |     100 |     100 |                      
-  Login.js                          |   71.42 |       50 |   83.33 |   71.42 | ...,60-61,66,104-109 
-  SignUp.js                         |   39.21 |    48.48 |   44.44 |   39.21 | ...6,160-177,182-203 
-  SignUpCompany.js                  |    0.98 |        0 |       0 |    0.98 | 10-207               
+  Login.js                          |   71.42 |       50 |   83.33 |   71.42 | ...,59-60,65,103-108 
+  SignUp.js                         |   39.21 |    48.48 |   44.44 |   39.21 | ...2,165-182,187-208 
+  SignUpCompany.js                  |    0.98 |        0 |       0 |    0.98 | 9-214                
  src/components/nagivationBar       |     100 |      100 |     100 |     100 |                      
   NavigationBar.js                  |     100 |      100 |     100 |     100 |                      
- src/components/operationCost       |    5.26 |        0 |       0 |    5.26 |                      
-  OperationCopy.js                  |    5.26 |        0 |       0 |    5.26 | 11-84                
- src/components/property            |    62.5 |    60.86 |   45.71 |   66.26 |                      
-  PropertyCard.js                   |   41.66 |       25 |    7.69 |   45.45 | ...34-38,41-45,63-93 
-  PropertyContainer.js              |   58.82 |    53.57 |      50 |   58.82 | 34-37,58-74          
-  PropertyPage.js                   |   85.71 |    85.71 |      75 |    90.9 | 73-74,93             
- src/components/registrationKey     |   42.16 |       50 |    37.5 |   44.15 |                      
-  SendRegistrationButton.js         |    62.5 |    58.33 |   52.94 |   66.66 | ...8-29,67,75-90,108 
-  SubmitRegistrationButton.js       |       0 |        0 |       0 |       0 | 6-52                 
+ src/components/operationCost       |   95.45 |    66.66 |     100 |   95.45 |                      
+  OperationCopy.js                  |   95.45 |    66.66 |     100 |   95.45 | 53,81                
+ src/components/property            |   63.04 |    60.86 |   47.22 |   66.66 |                      
+  PropertyCard.js                   |   41.66 |       25 |    7.69 |   45.45 | ...3-37,40-44,86-150 
+  PropertyContainer.js              |    61.9 |    53.57 |   57.14 |    61.9 | 35-41,67-95          
+  PropertyPage.js                   |   85.71 |    85.71 |      75 |    90.9 | 130-131,169          
+ src/components/registrationKey     |   42.16 |       50 |    37.5 |   43.75 |                      
+  SendRegistrationButton.js         |    62.5 |    58.33 |   52.94 |   64.81 | ...77-95,112,145,171 
+  SubmitRegistrationButton.js       |       0 |        0 |       0 |       0 | 6-54                 
  src/components/request             |    4.76 |        0 |       0 |    4.76 |                      
-  CreateRequest.js                  |     2.5 |        0 |       0 |     2.5 | 17-117               
-  EditRequest.js                    |      50 |      100 |       0 |      50 | 17                   
+  CreateRequest.js                  |     2.5 |        0 |       0 |     2.5 | 11-115               
+  EditRequest.js                    |      50 |      100 |       0 |      50 | 11                   
  src/components/userProfile         |    42.5 |       10 |   38.46 |   39.47 |                      
-  UserProfile.js                    |    42.5 |       10 |   38.46 |   39.47 | 30-72,89             
+  UserProfile.js                    |    42.5 |       10 |   38.46 |   39.47 | 30-70,85             
  src/screens                        |     100 |      100 |     100 |     100 |                      
   HomeScreen.js                     |     100 |      100 |     100 |     100 |                      
  src/screens/homeScreenCarousel     |     100 |      100 |     100 |     100 |                      
   CarouselHomeScreen.js             |     100 |      100 |     100 |     100 |                      
- src/utils/hooks                    |   63.71 |    58.33 |   54.54 |   63.06 |                      
-  AuthContext.js                    |   78.57 |       50 |     100 |   78.57 | 22-24                
-  ProfileContext.js                 |   74.28 |       60 |   61.53 |   74.28 | 37,71-94,105         
-  PropertyContext.js                |   54.68 |      100 |   41.17 |   53.22 | ...3-108,114-119,148 
+ src/utils/hooks                    |   66.66 |       50 |   57.57 |   66.07 |                      
+  AuthContext.js                    |   78.57 |       50 |     100 |   78.57 | 21-23                
+  ProfileContext.js                 |   74.28 |       60 |   61.53 |   74.28 | 37,71-94,104         
+  PropertyContext.js                |      60 |        0 |   47.05 |   58.73 | ...1,146-147,152-175 
 ------------------------------------|---------|----------|---------|---------|----------------------
   </pre>
 </details>
