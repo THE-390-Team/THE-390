@@ -10,6 +10,7 @@ class ServiceRequestViewSet(ModelViewSet):
     queryset = ServiceRequest.objects.all()
     serializer_class = ServiceRequestSerializer
 
+
     def get_user_request(self, request,user_id,**kwargs):
         try:
             user = PublicProfile.objects.get(user_id = user_id)
