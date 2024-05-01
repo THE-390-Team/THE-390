@@ -1,7 +1,7 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 08:45:58 UTC 2024
+This repository was last updated Wed May  1 16:18:06 UTC 2024
 
 ## Visit our website at the following link:
 [CondoCare Website](https://www.condocare.com)
@@ -87,17 +87,17 @@ TOTAL                                                                           
 <pre>
 
 =============================== Coverage summary ===============================
-Statements   : 43.09% ( 540/1253 )
-Branches     : 38.42% ( 219/570 )
-Functions    : 46.37% ( 115/248 )
-Lines        : 43.46% ( 532/1224 )
+Statements   : 45.05% ( 537/1192 )
+Branches     : 40.95% ( 222/542 )
+Functions    : 48.1% ( 114/237 )
+Lines        : 45.05% ( 529/1174 )
 ================================================================================
 </pre>
   <pre>
 ------------------------------------|---------|----------|---------|---------|----------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
 ------------------------------------|---------|----------|---------|---------|----------------------
-All files                           |   43.09 |    38.42 |   46.37 |   43.46 |                      
+All files                           |   45.05 |    40.95 |    48.1 |   45.05 |                      
  src                                |     100 |      100 |     100 |     100 |                      
   App.js                            |     100 |      100 |     100 |     100 |                      
   index.js                          |     100 |      100 |     100 |     100 |                      
@@ -121,10 +121,10 @@ All files                           |   43.09 |    38.42 |   46.37 |   43.46 |
   CreateParking.js                  |   53.19 |       50 |      80 |   52.68 | ...8-139,144,178-184 
   CreateProperty.js                 |   48.52 |    42.85 |      50 |   48.52 | ...2-106,127-155,165 
   CreateUnit.js                     |   54.25 |       50 |      90 |   53.76 | ...5-126,131,168-175 
- src/components/dashboard           |     100 |      100 |     100 |     100 |                      
+ src/components/dashboard           |    90.9 |     87.5 |      80 |    90.9 |                      
   DashBoard.js                      |     100 |      100 |     100 |     100 |                      
   FinancialPublic.js                |     100 |      100 |     100 |     100 |                      
-  SubmittedRequests.js              |     100 |      100 |     100 |     100 |                      
+  SubmittedRequests.js              |   77.77 |       75 |      50 |   77.77 | 29-32                
  src/components/dashboard/financial |   89.47 |       80 |    87.5 |   89.47 |                      
   Financial.js                      |    87.5 |       80 |   85.71 |    87.5 | 18,103               
   Total.js                          |     100 |      100 |     100 |     100 |                      
@@ -144,6 +144,9 @@ All files                           |   43.09 |    38.42 |   46.37 |   43.46 |
  src/components/registrationKey     |   42.16 |       50 |    37.5 |   44.15 |                      
   SendRegistrationButton.js         |    62.5 |    58.33 |   52.94 |   66.66 | ...8-29,67,75-90,108 
   SubmitRegistrationButton.js       |       0 |        0 |       0 |       0 | 6-52                 
+ src/components/request             |    4.76 |        0 |       0 |    4.76 |                      
+  CreateRequest.js                  |     2.5 |        0 |       0 |     2.5 | 17-117               
+  EditRequest.js                    |      50 |      100 |       0 |      50 | 17                   
  src/components/userProfile         |    42.5 |       10 |   38.46 |   39.47 |                      
   UserProfile.js                    |    42.5 |       10 |   38.46 |   39.47 | 30-72,89             
  src/screens                        |     100 |      100 |     100 |     100 |                      
