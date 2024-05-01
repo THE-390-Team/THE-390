@@ -3,7 +3,7 @@ name: Testing
 on: [push]
 
 jobs:
-  backend:
+  Backend:
     name: Backend Tests
     runs-on: ubuntu-latest
 
@@ -21,14 +21,7 @@ jobs:
 
       - name: Install backend dependencies
         working-directory: ./backend
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
-          AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
         run: | 
-          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
-          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
           pip install --no-cache-dir -r requirements.txt
 
       - name: Start backend server & perform unit tests
@@ -38,24 +31,30 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
           AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+          EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+          EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+          EMAIL_PORT: ${{secrets.EMAIL_PORT}}
+          EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
+          EMAIL_USE_SSL: ${{secrets.EMAIL_USE_SSL}}
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          CORS_ALLOWED_ORIGINS: ${{secrets.CORS_ALLOWED_ORIGINS}}
+          ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
+          SECRET_KEY: ${{secrets.SECRET_KEY}}
+          DEBUG: ${{secrets.DEBUG}}
         run: |
-          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
-          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
           python manage.py makemigrations 
           python manage.py migrate 
           python manage.py runserver &
           coverage run manage.py test 
-          coverage report --omit '*/dist-packages/*'
-          # > backend-test.txt
+          coverage report --omit '*/dist-packages/*' > backend-test.txt
           
-      # - name: Save backend coverage report 
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: backend-testing
-      #     path: ./backend/backend-test.txt
+      - name: Save backend coverage report 
+        uses: actions/upload-artifact@v2
+        with:
+          name: backend-testing
+          path: ./backend/backend-test.txt
 
-
-  frontend:
+  Frontend:
     name: Frontend Tests
     runs-on: ubuntu-latest
 
@@ -74,6 +73,16 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
           AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+          EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+          EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+          EMAIL_PORT: ${{secrets.EMAIL_PORT}}
+          EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
+          EMAIL_USE_SSL: ${{secrets.EMAIL_USE_SSL}}
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          CORS_ALLOWED_ORIGINS: ${{secrets.CORS_ALLOWED_ORIGINS}}
+          ALLOWED_HOSTS: ${{secrets.ALLOWED_HOSTS}}
+          SECRET_KEY: ${{secrets.SECRET_KEY}}
+          DEBUG: ${{secrets.DEBUG}}
         run: |
           python -m venv venv
           source venv/bin/activate
@@ -91,29 +100,110 @@ jobs:
         run: | 
           npm install cypress @cypress/code-coverage @cypress/instrument-cra --save-dev --prefer-offline --no-audit
           npx cypress run 
-          npx nyc report --reporter=text 
-          # > frontend-test.txt
+          npx nyc report --reporter=text > frontend-test.txt
+          npx nyc report --reporter=text-summary > summary-test.txt
           
-      # - name: Save frontend coverage report 
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: frontend-testing
-      #     path: ./frontend/frontend-test.txt
+      - name: Save frontend coverage report 
+        uses: actions/upload-artifact@v2
+        with:
+          name: frontend-testing-full
+          path: ./frontend/frontend-test.txt
+          
+      - name: Save Summary coverage report 
+        uses: actions/upload-artifact@v2
+        with:
+          name: frontend-testing-summary
+          path: ./frontend/summary-test.txt
 
-  codecov:
-    name: Upload Coverage Reports to Codecov
+  Configuring:
+    name: Configuring README 
     runs-on: ubuntu-latest
-    needs: [frontend, backend]
-
+    needs: [Frontend, Backend]
+    
     steps:
       - name: Checkout the repository and the branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4
+      - name: Download artifact frontend testing full
+        uses: actions/download-artifact@v2
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          autoDetect: true
+          name: frontend-testing-full
+          path: frontend-full
+      
+      - name: Download artifact frontend testing summary
+        uses: actions/download-artifact@v2
+        with:
+          name: frontend-testing-summary
+          path: frontend-summary
+          
+      - name: Download artifact backend
+        uses: actions/download-artifact@v2
+        with:
+          name: backend-testing
+          path: backend
+
+          
+      - name: Preparing & Updating the Read Me
+        run: |
+              echo "# CondoCare" >> temp.md
+              echo "Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!" >> temp.md
+              echo "" >> temp.md
+              echo "This repository was last updated $(date)" >> temp.md
+              echo "" >> temp.md
+              echo "## Visit our website at the following link:" >> temp.md
+              echo "[CondoCare Website](https://www.condocare.com)" >> temp.md
+              echo "" >> temp.md
+              echo "## Reports Overviews" >> temp.md
+              echo "" >> temp.md
+              echo "<details>" >> temp.md
+              echo "  <summary>Backend Coverage Report</summary>" >> temp.md
+              echo "  <pre>" >> temp.md
+              echo "$(cat backend/backend-test.txt)" >> temp.md
+              echo "  </pre>" >> temp.md
+              echo "</details>"  >> temp.md
+              echo "" >> temp.md
+              echo "" >> temp.md
+              echo "<details>" >> temp.md
+              echo "  <summary>Frontend Coverage Report</summary>" >> temp.md
+              echo "<pre>" >> temp.md
+              echo "$(cat frontend-summary/summary-test.txt)" >> temp.md
+              echo "</pre>" >> temp.md
+              echo "  <pre>" >> temp.md
+              echo "$(cat frontend-full/frontend-test.txt)" >> temp.md
+              echo "  </pre>" >> temp.md
+              echo "</details>" >> temp.md
+              echo "" >> temp.md
+              echo "" >> temp.md
+              echo "## Code Quality" >> temp.md
+              echo "### Provided by:" >> temp.md
+              echo "[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
+              echo "" >> temp.md
+              echo "### Indicators" >> temp.md
+              echo "" >> temp.md
+              echo "[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
+              echo "[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=bugs)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
+              echo "[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
+              echo "[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=coverage)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390#backend-coverage-report)" >> temp.md
+              echo "[![Duplicated Lines (%)‌](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390#frontend-coverage-report)" >> temp.md
+              echo "[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
+              echo "[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
+              echo "[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
+              echo "[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
+              echo "[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
+              echo "[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)" >> temp.md
+              echo "" >> temp.md
+
+              mv temp.md README.md
+              git init
+              git branch
+              git pull origin 
+              git status
+              git config --local user.email "github-actions[bot]@users.noreply.github.com"
+              git config --local user.name "github-actions[bot]"
+              git add README.md
+              git commit -m "Testing & sending reports to README.md!"
+              git push origin --force
+
 
           
   
