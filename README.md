@@ -1,10 +1,10 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 18:29:07 UTC 2024
+This repository was last updated Wed May  1 20:22:19 UTC 2024
 
 ## Visit our website at the following link:
-[CondoCare Website](https://www.condocare.com)
+[CondoCare Website](https://condo-management-system.vercel.app/)
 
 ## Reports Overviews
 
