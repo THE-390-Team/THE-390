@@ -197,7 +197,7 @@ const PropertyCard = ({ property, type }) => {
         <NavLink
           to={`/booking-facility/${property.id}`}
           className='btn btn-primary'
-        >
+          data-testid={`reservation-button-${property.location}`}>
           Reserve Facility
         </NavLink>
       </Card>
