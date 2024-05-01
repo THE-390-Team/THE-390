@@ -111,6 +111,9 @@ jobs:
     needs: [Frontend, Backend]
     
     steps:
+      - name: Checkout the repository and the branch
+        uses: actions/checkout@v4
+        
       - name: Download artifact frontend testing full
         uses: actions/download-artifact@v2
         with:
