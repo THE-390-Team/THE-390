@@ -1,7 +1,7 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 16:18:06 UTC 2024
+This repository was last updated Wed May  1 16:33:45 UTC 2024
 
 ## Visit our website at the following link:
 [CondoCare Website](https://www.condocare.com)
@@ -87,17 +87,17 @@ TOTAL                                                                           
 <pre>
 
 =============================== Coverage summary ===============================
-Statements   : 45.05% ( 537/1192 )
-Branches     : 40.95% ( 222/542 )
-Functions    : 48.1% ( 114/237 )
-Lines        : 45.05% ( 529/1174 )
+Statements   : 45.54% ( 593/1302 )
+Branches     : 39.38% ( 230/584 )
+Functions    : 49.8% ( 130/261 )
+Lines        : 45.79% ( 583/1273 )
 ================================================================================
 </pre>
   <pre>
 ------------------------------------|---------|----------|---------|---------|----------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
 ------------------------------------|---------|----------|---------|---------|----------------------
-All files                           |   45.05 |    40.95 |    48.1 |   45.05 |                      
+All files                           |   45.54 |    39.38 |    49.8 |   45.79 |                      
  src                                |     100 |      100 |     100 |     100 |                      
   App.js                            |     100 |      100 |     100 |     100 |                      
   index.js                          |     100 |      100 |     100 |     100 |                      
@@ -135,8 +135,8 @@ All files                           |   45.05 |    40.95 |    48.1 |   45.05 |
   SignUpCompany.js                  |    0.98 |        0 |       0 |    0.98 | 10-207               
  src/components/nagivationBar       |     100 |      100 |     100 |     100 |                      
   NavigationBar.js                  |     100 |      100 |     100 |     100 |                      
- src/components/operationCost       |    2.27 |        0 |       0 |    2.38 |                      
-  OperationCopy.js                  |    2.27 |        0 |       0 |    2.38 | 11-131               
+ src/components/operationCost       |   95.45 |    66.66 |     100 |   95.23 |                      
+  OperationCopy.js                  |   95.45 |    66.66 |     100 |   95.23 | 44,65                
  src/components/property            |   63.04 |    60.86 |   47.22 |   66.66 |                      
   PropertyCard.js                   |   41.66 |       25 |    7.69 |   45.45 | ...34-38,41-45,63-93 
   PropertyContainer.js              |    61.9 |    53.57 |   57.14 |    61.9 | 36-42,65-81          
@@ -153,10 +153,10 @@ All files                           |   45.05 |    40.95 |    48.1 |   45.05 |
   HomeScreen.js                     |     100 |      100 |     100 |     100 |                      
  src/screens/homeScreenCarousel     |     100 |      100 |     100 |     100 |                      
   CarouselHomeScreen.js             |     100 |      100 |     100 |     100 |                      
- src/utils/hooks                    |   62.28 |       50 |   54.54 |    61.6 |                      
+ src/utils/hooks                    |   66.66 |       50 |   57.57 |   66.07 |                      
   AuthContext.js                    |   78.57 |       50 |     100 |   78.57 | 22-24                
   ProfileContext.js                 |   74.28 |       60 |   61.53 |   74.28 | 37,71-94,105         
-  PropertyContext.js                |    52.3 |        0 |   41.17 |   50.79 | ...3,138-139,144-164 
+  PropertyContext.js                |      60 |        0 |   47.05 |   58.73 | ...3,138-139,144-164 
 ------------------------------------|---------|----------|---------|---------|----------------------
   </pre>
 </details>
