@@ -8,7 +8,8 @@ from .models import Reservation
 #         model = Facility
 #         fields = '__all__'
 
+
 class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
-        fields = '__all__'
+        fields = "__all__"

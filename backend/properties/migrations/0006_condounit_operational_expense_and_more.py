@@ -6,33 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('properties', '0005_condounit_image_parkingunit_image_storageunit_image'),
+        ("properties", "0005_condounit_image_parkingunit_image_storageunit_image"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='condounit',
-            name='operational_expense',
+            model_name="condounit",
+            name="operational_expense",
             field=models.DecimalField(decimal_places=2, default=0, max_digits=20),
         ),
         migrations.AddField(
-            model_name='parkingunit',
-            name='operational_expense',
+            model_name="parkingunit",
+            name="operational_expense",
             field=models.DecimalField(decimal_places=2, default=0, max_digits=20),
         ),
         migrations.AddField(
-            model_name='propertyprofile',
-            name='name',
+            model_name="propertyprofile",
+            name="name",
             field=models.CharField(max_length=100, null=True),
         ),
         migrations.AddField(
-            model_name='storageunit',
-            name='operational_expense',
+            model_name="storageunit",
+            name="operational_expense",
             field=models.DecimalField(decimal_places=2, default=0, max_digits=20),
         ),
         migrations.AlterField(
-            model_name='propertyprofile',
-            name='fee_rate',
+            model_name="propertyprofile",
+            name="fee_rate",
             field=models.DecimalField(decimal_places=2, default=0, max_digits=20),
         ),
     ]
