@@ -130,7 +130,6 @@ jobs:
           path: ./backend/backend-test.txt
           
       - name: Preparing & Updating the Read Me
-        working-directory: ./frontend
         run: |
               echo "# CondoCare" >> temp.md
               echo "Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!" >> temp.md
