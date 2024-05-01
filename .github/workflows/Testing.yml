@@ -106,24 +106,29 @@ Frontend:
           name: frontend-testing-summary
           path: ./frontend/summary.txt
 
-Compiling/Configuring README:
-      - name: Download artifact
+Configuring :
+    name: Configuring README ... 
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Download artifact frontend summary
         uses: actions/download-artifact@v2
         with:
            name: frontend-testing-summary
           path: ./frontend/summary.txt
-      - name: Download artifact
+          
+      - name: Download artifact frontend full testing
         uses: actions/download-artifact@v2
         with:
           name: frontend-testing-full
           path: ./frontend/frontend-test.txt
           
-      - name: Download artifact
+      - name: Download artifact backend
         uses: actions/download-artifact@v2
         with:
           name: backend-testing
           path: ./backend/backend-test.txt
-        
+      - name: Preparing & Updating the Read Me
         working-directory: ./frontend
         env:
         run: |
