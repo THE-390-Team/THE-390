@@ -50,7 +50,7 @@ jobs:
           name: backend-testing
           path: ./backend/backend-test.txt
 
-Frontend:
+  Frontend:
     name: Frontend Tests
     runs-on: ubuntu-latest
 
@@ -106,7 +106,7 @@ Frontend:
           name: frontend-testing-summary
           path: ./frontend/summary.txt
 
-Configuring :
+  Configuring:
     name: Configuring README 
     runs-on: ubuntu-latest
     
