@@ -12,8 +12,8 @@ import Total from './Total.js'
 import axiosInstance from '../../../api/axios'
 
 const Financial = () => {
-  const comapanyID = localStorage.getItem('ID')
-  const [property, setProperty] = useState({})
+  const comapanyID = localStorage.getItem('ID');
+  const [property, setProperty] = useState({});
 
   const FetchPropertiesFinacials = async () => {
     try {
@@ -64,14 +64,12 @@ const Financial = () => {
                     <Col>
                       {`${property.properties[propertyKey].property_name}`}
                     </Col>
-                    <Col style={{ textAlign: 'right' }}>
+                    <Col style={{ textAlign: "right" }} data-testid={`fee-test-${property.properties[propertyKey].property_name}`}>
                       ${property.properties[propertyKey].fee}
                     </Col>
                   </Row>
                 </Accordion.Header>
-                <Accordion.Body
-                  style={{ maxHeight: '200px', overflowY: 'scroll' }}
-                >
+                <Accordion.Body style={{ maxHeight: "200px", overflowY: "scroll" }} data-testid={`accordion-body-${propertyKey}`}>
                   {/* Displaying condo fees */}
                   <Table bordered hover>
                     <thead>

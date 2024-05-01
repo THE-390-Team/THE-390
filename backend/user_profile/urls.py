@@ -1,6 +1,7 @@
 from django.urls import path
 from rest_framework import routers
 
+from employee.views import ServiceRequestViewSet
 from finance.views import CompanyFinanceView
 from .views import (
     PublicProfileViewSet,
@@ -28,35 +29,18 @@ urlpatterns = [
         PropertyProfileViewSet.as_view({"get": "list", "post": "create"}),
     ),
     # endpoint for listing all units related to a public profile
-    path(
-        "public-profile/<int:user_id>/condo-units/",
-        PublicProfileViewSet.as_view({"get": "get_condo_units"}),
-    ),
-    path(
-        "public-profile/<int:user_id>/parking-units/",
-        PublicProfileViewSet.as_view({"get": "get_parking_units"}),
-    ),
-    path(
-        "public-profile/<int:user_id>/storage-units/",
-        PublicProfileViewSet.as_view({"get": "get_storage_units"}),
-    ),
-    # register unit to public profile with registration key
-    path(
-        "public-profile/register-condo/",
-        PublicProfileViewSet.as_view({"patch": "register_condo"}),
-    ),
-    path(
-        "public-profile/register-storage/",
-        PublicProfileViewSet.as_view({"patch": "register_storage"}),
-    ),
-    path(
-        "public-profile/register-parking/",
-        PublicProfileViewSet.as_view({"patch": "register_parking"}),
-    ),
-    # finance
-    path(
-        "company-profile/<int:company_id>/finance-report/", CompanyFinanceView.as_view()
-    ),
+    path('public-profile/<int:user_id>/condo-units/', PublicProfileViewSet.as_view({'get': 'get_condo_units'})),
+    path('public-profile/<int:user_id>/parking-units/', PublicProfileViewSet.as_view({'get':'get_parking_units'})),
+    path('public-profile/<int:user_id>/storage-units/', PublicProfileViewSet.as_view({'get':'get_storage_units'})),
+    # register unit to public profile with registration key 
+    path('public-profile/register-condo/', PublicProfileViewSet.as_view({'patch': 'register_condo'})),
+    path('public-profile/register-storage/', PublicProfileViewSet.as_view({'patch': 'register_storage'})),
+    path('public-profile/register-parking/', PublicProfileViewSet.as_view({'patch': 'register_parking'})),
+    # finance 
+    path('company-profile/<int:company_id>/finance-report/', CompanyFinanceView.as_view()),
+    # employee
+    path('public-profile/<int:user_id>/requests/', ServiceRequestViewSet.as_view({'get':'get_user_request'})),
+    path('company-profile/<int:company_id>/requests/', ServiceRequestViewSet.as_view({'get':'get_company_request'}))
 ]
 
 urlpatterns += router.urls

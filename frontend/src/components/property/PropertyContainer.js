@@ -21,21 +21,28 @@ const PropertyContainer = () => {
   // get role of the user from the profile context
   const { role } = useProfile()
 
-  // get information on db properties
-  useEffect(() => {
-    // get the id from local storage
-    const id = localStorage.getItem('ID')
-    if (role === 'COMPANY') {
-      // fetch all the properties for the company if the user is a company employee
-      fetchCompanyProperties(id)
-    } else if (role === 'PUBLIC') {
-      // fetch all the units for the user if the user is a public user
-      console.log('fetching properties for public user')
-      fetchAllCondoUnitsForProfile(id)
-      fetchAllParkingUnitsForProfile(id)
-      fetchAllStorageUnitsForProfile(id)
-    }
-  }, [])
+    // get information on db properties
+    useEffect(() => {
+        // get the id from local storage
+        const id = localStorage.getItem("ID");
+        const fetchData = async () => {
+            try {
+                if (role === "COMPANY") {
+                    // fetch all the properties for the company if the user is a company employee
+                    fetchCompanyProperties(id)
+                } else if (role === "PUBLIC") {
+                    // fetch all the units for the user if the user is a public user
+                    console.log("fetching properties for public user")
+                    fetchAllCondoUnitsForProfile(id)
+                    fetchAllParkingUnitsForProfile(id)
+                    fetchAllStorageUnitsForProfile(id)
+                }
+            } catch (error) {
+                console.error("Error fetching properties: ", error)
+            }
+        }
+        fetchData();
+    }, []);
 
   return (
     <div className='grid-container'>

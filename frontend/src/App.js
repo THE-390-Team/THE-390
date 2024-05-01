@@ -13,16 +13,18 @@ import PropertyCard from './components/property/PropertyCard.js'
 import DashBoard from './components/dashboard/DashBoard.js'
 import PropertyPage from './components/property/PropertyPage.js'
 //import PropertyCard from "./components/property/PropertyCard.js";
-import CreateUnit from './components/createProperty/CreateUnit.js'
-import CreateParking from './components/createProperty/CreateParking.js'
-import CreateLocker from './components/createProperty/CreateLocker.js'
-import CreateProperty from './components/createProperty/CreateProperty.js'
-import { useAuth } from './utils/hooks/AuthContext.js'
-import { useEffect } from 'react'
-import OperationCost from './components/operationCost/OperationCopy.js'
-import FacilityBooking from './components/bookingSystem/FacilityBooking.js'
-import CommonFacilities from './components/commonFacilities/CommonFacilities.js'
-import CreateCommonFacilities from './components/commonFacilities/CreateCommonFacilities.js'
+import CreateUnit from "./components/createProperty/CreateUnit.js";
+import CreateParking from "./components/createProperty/CreateParking.js";
+import CreateLocker from "./components/createProperty/CreateLocker.js";
+import CreateProperty from "./components/createProperty/CreateProperty.js";
+import { useAuth } from "./utils/hooks/AuthContext.js";
+import { useEffect } from "react";
+import OperationCost from "./components/operationCost/OperationCopy.js";
+import FacilityBooking from "./components/bookingSystem/FacilityBooking.js";
+import CommonFacilities from "./components/commonFacilities/CommonFacilities.js";
+import CreateCommonFacilities from "./components/commonFacilities/CreateCommonFacilities.js";
+import EditRequest from "./components/request/EditRequest.js";
+import CreateRequest from "./components/request/CreateRequest.js";
 
 function App() {
   //check for the token in case of a refresh
@@ -72,10 +74,9 @@ function App() {
             <Route path='/create-property' element={<CreateProperty />} />
             <Route path='/home' element={<HomeScreen />} />
             <Route path='/operation' element={<OperationCost />} />
-            <Route
-              path='/booking-facility/:propertyId'
-              element={<FacilityBooking />}
-            />
+            <Route path='/booking-facility/:propertyId' element = {<FacilityBooking />} />
+            <Route path='/property-page/:propertyId/create-request' element={<CreateRequest />} />
+            <Route path='/property-page/:propertyId/edit-request' element={<EditRequest />} />
           </Routes>
         </Container>
       </main>
