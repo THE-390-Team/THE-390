@@ -155,7 +155,7 @@ jobs:
               echo "" >> temp.md
               echo "<details>" >> temp.md
               echo "  <summary>Frontend Coverage Report</summary>" >> temp.md
-              cat "$(cat frontend-summary/summary-test.txt)" >> temp.md
+              echo "$(cat frontend-summary/summary-test.txt)" >> temp.md
               echo "  <p>" >> temp.md
               echo "$(cat frontend-full/frontend-test.txt)" >> temp.md
               echo "  </p>" >> temp.md
