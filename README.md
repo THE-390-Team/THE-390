@@ -4,6 +4,7 @@ View website at this link: https://condo-management-system.vercel.app/. The data
 
 Date: Mon Apr 29 17:35:08 UTC 2024
 
+
 Code Quality Indicators
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NicholasWahome_THE-390&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NicholasWahome_THE-390)
