@@ -167,7 +167,6 @@ const CreateCommonFacilities = () => {
                 <Form.Group as={Col} controlId="formGridType">
                     <Form.Label>Facility Type</Form.Label>
                     <Form.Select
-                    defaultValue={formData.property_rovince}
                     name="type"
                     value={formData.type}
                     onChange={handleChange}
