@@ -1,7 +1,7 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 05:22:26 UTC 2024
+This repository was last updated Wed May  1 05:28:32 UTC 2024
 
 ## Visit our website at the following link:
 [CondoCare Website](https://www.condocare.com)
@@ -10,7 +10,7 @@ This repository was last updated Wed May  1 05:22:26 UTC 2024
 
 <details>
   <summary>Backend Coverage Report</summary>
-  <p>
+  <pre>
 Name                                                                                             Stmts   Miss  Cover
 --------------------------------------------------------------------------------------------------------------------
 core/__init__.py                                                                                     0      0   100%
@@ -78,7 +78,7 @@ user_profile/urls.py                                                            
 user_profile/views.py                                                                               97     63    35%
 --------------------------------------------------------------------------------------------------------------------
 TOTAL                                                                                             1194    217    82%
-  </p>
+  </pre>
 </details>
 
 
@@ -91,7 +91,7 @@ Branches     : 41.47% ( 219/528 )
 Functions    : 50.44% ( 113/224 )
 Lines        : 46.4% ( 522/1125 )
 ================================================================================
-  <p>
+  <pre>
 ------------------------------------|---------|----------|---------|---------|----------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
 ------------------------------------|---------|----------|---------|---------|----------------------
@@ -150,16 +150,15 @@ All files                           |   46.36 |    41.47 |   50.44 |    46.4 |
   ProfileContext.js                 |   74.28 |       60 |   61.53 |   74.28 | 37,71-94,105         
   PropertyContext.js                |   54.68 |      100 |   41.17 |   53.22 | ...3-108,114-119,148 
 ------------------------------------|---------|----------|---------|---------|----------------------
-  </p>
+  </pre>
 </details>
 
 
 ## Code Quality
 ### Provided by:
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/bb3c9af8236b4e89bc59c9172e2e41a3)](https://app.codacy.com/gh/JRB958/THE-390/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
 
 ### Indicators
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
 
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=THE-390-Team_THE-390)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
