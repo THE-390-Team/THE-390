@@ -1,10 +1,10 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 16:52:54 UTC 2024
+This repository was last updated Wed May  1 20:22:19 UTC 2024
 
 ## Visit our website at the following link:
-[CondoCare Website](https://www.condocare.com)
+[CondoCare Website](https://condo-management-system.vercel.app/)
 
 ## Reports Overviews
 
@@ -97,17 +97,17 @@ TOTAL                                                                           
 <pre>
 
 =============================== Coverage summary ===============================
-Statements   : 45.08% ( 587/1302 )
-Branches     : 39.21% ( 229/584 )
-Functions    : 49.04% ( 128/261 )
-Lines        : 45.32% ( 577/1273 )
+Statements   : 45.54% ( 593/1302 )
+Branches     : 39.38% ( 230/584 )
+Functions    : 49.8% ( 130/261 )
+Lines        : 45.74% ( 586/1281 )
 ================================================================================
 </pre>
   <pre>
 ------------------------------------|---------|----------|---------|---------|----------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
 ------------------------------------|---------|----------|---------|---------|----------------------
-All files                           |   45.08 |    39.21 |   49.04 |   45.32 |                      
+All files                           |   45.54 |    39.38 |    49.8 |   45.74 |                      
  src                                |     100 |      100 |     100 |     100 |                      
   App.js                            |     100 |      100 |     100 |     100 |                      
   index.js                          |     100 |      100 |     100 |     100 |                      
@@ -117,56 +117,56 @@ All files                           |   45.08 |    39.21 |   49.04 |   45.32 |
   Footer.js                         |     100 |      100 |     100 |     100 |                      
   Header.js                         |     100 |      100 |     100 |     100 |                      
   LargeTitle.js                     |     100 |      100 |     100 |     100 |                      
- src/components/bookingSystem       |     3.4 |        0 |       0 |    3.75 |                      
-  Calendar.js                       |    5.88 |        0 |       0 |    6.25 | 8-28                 
-  FacilityBooking.js                |    1.47 |        0 |       0 |    1.63 | 12-134               
+ src/components/bookingSystem       |     3.4 |        0 |       0 |    3.65 |                      
+  Calendar.js                       |    5.88 |        0 |       0 |    6.25 | 7-26                 
+  FacilityBooking.js                |    1.47 |        0 |       0 |    1.58 | 12-152               
   ReservationTable.js               |   33.33 |      100 |       0 |   33.33 | 6-17                 
- src/components/commonFacilities    |    5.33 |        0 |       0 |     5.4 |                      
-  CommonFacilities.js               |    8.33 |        0 |       0 |    9.09 | 20-83                
-  CreateCommonFacilities.js         |    1.72 |        0 |       0 |    1.72 | 10-121               
-  FacilitiesList.js                 |   33.33 |        0 |       0 |   33.33 | 5-8                  
+ src/components/commonFacilities    |    5.33 |        0 |       0 |    5.33 |                      
+  CommonFacilities.js               |    8.33 |        0 |       0 |    8.33 | 19-94                
+  CreateCommonFacilities.js         |    1.72 |        0 |       0 |    1.72 | 10-131               
+  FacilitiesList.js                 |   33.33 |        0 |       0 |   33.33 | 5-9                  
   FacilityCard.js                   |      50 |      100 |       0 |      50 | 4                    
- src/components/createProperty      |   50.85 |    48.09 |   71.05 |   50.43 |                      
-  CreateLocker.js                   |    46.8 |    48.21 |      60 |   46.23 | ...4-125,130,155-182 
-  CreateParking.js                  |   53.19 |       50 |      80 |   52.68 | ...8-139,144,178-184 
-  CreateProperty.js                 |   48.52 |    42.85 |      50 |   48.52 | ...2-106,127-155,165 
-  CreateUnit.js                     |   54.25 |       50 |      90 |   53.76 | ...5-126,131,168-175 
+ src/components/createProperty      |   52.57 |    48.57 |   76.31 |   52.16 |                      
+  CreateLocker.js                   |   53.19 |       50 |      80 |   52.68 | ...0,125,159-165,176 
+  CreateParking.js                  |   53.19 |       50 |      80 |   52.68 | ...1-132,137,173-179 
+  CreateProperty.js                 |   48.52 |    42.85 |      50 |   48.52 | ...95-99,119-149,159 
+  CreateUnit.js                     |   54.25 |       50 |      90 |   53.76 | ...9-120,125,162-168 
  src/components/dashboard           |    90.9 |     87.5 |      80 |    90.9 |                      
   DashBoard.js                      |     100 |      100 |     100 |     100 |                      
   FinancialPublic.js                |     100 |      100 |     100 |     100 |                      
   SubmittedRequests.js              |   77.77 |       75 |      50 |   77.77 | 29-32                
  src/components/dashboard/financial |   89.47 |       80 |    87.5 |   89.47 |                      
-  Financial.js                      |    87.5 |       80 |   85.71 |    87.5 | 18,103               
+  Financial.js                      |    87.5 |       80 |   85.71 |    87.5 | 27,156               
   Total.js                          |     100 |      100 |     100 |     100 |                      
  src/components/log                 |   34.44 |    27.63 |    42.3 |   34.44 |                      
   LogOut.js                         |     100 |      100 |     100 |     100 |                      
-  Login.js                          |   71.42 |       50 |   83.33 |   71.42 | ...,60-61,66,104-109 
-  SignUp.js                         |   39.21 |    48.48 |   44.44 |   39.21 | ...6,160-177,182-203 
-  SignUpCompany.js                  |    0.98 |        0 |       0 |    0.98 | 10-207               
+  Login.js                          |   71.42 |       50 |   83.33 |   71.42 | ...,59-60,65,103-108 
+  SignUp.js                         |   39.21 |    48.48 |   44.44 |   39.21 | ...2,165-182,187-208 
+  SignUpCompany.js                  |    0.98 |        0 |       0 |    0.98 | 9-214                
  src/components/nagivationBar       |     100 |      100 |     100 |     100 |                      
   NavigationBar.js                  |     100 |      100 |     100 |     100 |                      
- src/components/operationCost       |   95.45 |    66.66 |     100 |   95.23 |                      
-  OperationCopy.js                  |   95.45 |    66.66 |     100 |   95.23 | 44,65                
+ src/components/operationCost       |   95.45 |    66.66 |     100 |   95.45 |                      
+  OperationCopy.js                  |   95.45 |    66.66 |     100 |   95.45 | 53,81                
  src/components/property            |   63.04 |    60.86 |   47.22 |   66.66 |                      
-  PropertyCard.js                   |   41.66 |       25 |    7.69 |   45.45 | ...34-38,41-45,63-93 
-  PropertyContainer.js              |    61.9 |    53.57 |   57.14 |    61.9 | 36-42,65-81          
-  PropertyPage.js                   |   85.71 |    85.71 |      75 |    90.9 | 73-74,93             
- src/components/registrationKey     |   42.16 |       50 |    37.5 |   44.15 |                      
-  SendRegistrationButton.js         |    62.5 |    58.33 |   52.94 |   66.66 | ...8-29,67,75-90,108 
-  SubmitRegistrationButton.js       |       0 |        0 |       0 |       0 | 6-52                 
+  PropertyCard.js                   |   41.66 |       25 |    7.69 |   45.45 | ...3-37,40-44,86-150 
+  PropertyContainer.js              |    61.9 |    53.57 |   57.14 |    61.9 | 35-41,67-95          
+  PropertyPage.js                   |   85.71 |    85.71 |      75 |    90.9 | 130-131,169          
+ src/components/registrationKey     |   42.16 |       50 |    37.5 |   43.75 |                      
+  SendRegistrationButton.js         |    62.5 |    58.33 |   52.94 |   64.81 | ...77-95,112,145,171 
+  SubmitRegistrationButton.js       |       0 |        0 |       0 |       0 | 6-54                 
  src/components/request             |    4.76 |        0 |       0 |    4.76 |                      
-  CreateRequest.js                  |     2.5 |        0 |       0 |     2.5 | 17-117               
-  EditRequest.js                    |      50 |      100 |       0 |      50 | 17                   
+  CreateRequest.js                  |     2.5 |        0 |       0 |     2.5 | 11-115               
+  EditRequest.js                    |      50 |      100 |       0 |      50 | 11                   
  src/components/userProfile         |    42.5 |       10 |   38.46 |   39.47 |                      
-  UserProfile.js                    |    42.5 |       10 |   38.46 |   39.47 | 30-72,89             
+  UserProfile.js                    |    42.5 |       10 |   38.46 |   39.47 | 30-70,85             
  src/screens                        |     100 |      100 |     100 |     100 |                      
   HomeScreen.js                     |     100 |      100 |     100 |     100 |                      
  src/screens/homeScreenCarousel     |     100 |      100 |     100 |     100 |                      
   CarouselHomeScreen.js             |     100 |      100 |     100 |     100 |                      
  src/utils/hooks                    |   66.66 |       50 |   57.57 |   66.07 |                      
-  AuthContext.js                    |   78.57 |       50 |     100 |   78.57 | 22-24                
-  ProfileContext.js                 |   74.28 |       60 |   61.53 |   74.28 | 37,71-94,105         
-  PropertyContext.js                |      60 |        0 |   47.05 |   58.73 | ...3,138-139,144-164 
+  AuthContext.js                    |   78.57 |       50 |     100 |   78.57 | 21-23                
+  ProfileContext.js                 |   74.28 |       60 |   61.53 |   74.28 | 37,71-94,104         
+  PropertyContext.js                |      60 |        0 |   47.05 |   58.73 | ...1,146-147,152-175 
 ------------------------------------|---------|----------|---------|---------|----------------------
   </pre>
 </details>
