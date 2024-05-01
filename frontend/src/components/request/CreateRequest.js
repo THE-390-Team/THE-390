@@ -90,21 +90,21 @@ const CreateRequest = () => {
             })
             .then((res) => {
               if (res.status == 201) {
-                // Create new property if successful and go back to property dashboard
-                window.alert(`Common Facility ${formData.name} has been created`)
+                // Create new request if successful and go back to property dashboard
+                window.alert(`Request ${formData.type} has been created`)
                 console.log(res);
                 console.log(res.data);
                 goBack();
               }
             })
             .catch((error) => {
-              //Show popup of error encountered
+              //Show popup of error if encountered
               console.log(error);
               console.log(error.data);
               window.alert(`${error} `)
             });
         } else {
-          //Do not post form if there is error in input
+          //Do not post form if there is error in request input
           return;
         }
     };
