@@ -1,12 +1,14 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 04:54:31 UTC 2024
+This repository was last updated Wed May  1 05:02:22 UTC 2024
 
 ## Visit our website at the following link:
 [CondoCare Website](https://www.condocare.com)
 
 ## Reports Overviews
+- [Backend Coverage Report](#backend-coverage-report)
+- [Frontend Coverage Report](#frontend-coverage-report)
 
 
 <details>
@@ -80,6 +82,7 @@ user_profile/views.py                                                           
 --------------------------------------------------------------------------------------------------------------------
 TOTAL                                                                                             1194    217    82%
   </p>
+</details>
 
 
 <details>
