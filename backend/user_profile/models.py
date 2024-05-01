@@ -8,7 +8,9 @@ from django.db.models.signals import post_save
 from registration_key.models import RegistrationKey
 from properties.models import PropertyProfile
 from django.core.mail import send_mail
-
+import mailtrap as mt
+from mailtrap.exceptions import MailtrapError
+from registration_key.models import CondoRegistrationKey, ParkingRegistrationKey, StorageRegistrationKey
 
 class CustomUserManager(BaseUserManager):
     """
@@ -156,12 +158,31 @@ class CompanyProfile(Profile):
         """
         Send a registration key to the user's email.
         """
-        email = user.email
-        send_mail(
-            "unit registration_key",
-            str(key),
-            # TODO: change destination email address
-            "patrickmaceachen78@gmail.com",
-            ["patrickmaceachen78@gmail.com"],
-            fail_silently=False
-        )
+        try:
+            unit_type = " "
+            if isinstance(key, CondoRegistrationKey):
+                type = "Condo" 
+            elif isinstance(key, ParkingRegistrationKey):
+                type = "Parking"
+            elif isinstance(key, StorageRegistrationKey):
+                type = "Storage"
+                
+            mail = mt.MailFromTemplate(
+                sender=mt.Address(email="mailtrap@condocare.space", name="Mailtrap Test"),
+                to=[mt.Address(email=user.email)],
+                template_uuid="219ffdec-1291-45f3-88a3-88632bc6bdb7",
+                template_variables={
+                    "name": str(user),
+                    "location": key.unit.location,
+                    "address": key.unit.property.address,
+                    "type": type,
+                    "registration_key": str(key),
+                }
+            )
+            
+            client = mt.MailtrapClient(token="f34c428ac3c72d703049d0172569cfba")
+            client.send(mail)
+        except MailtrapError as error:
+            raise Exception(error.message)
+        
+        

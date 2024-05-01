@@ -1,27 +1,20 @@
 name: Testing 
-# This workflows simulates an environment to test the entire application using unit testing, integration testing and system testing.
+
 on: [push]
+
 jobs:
-  publish:
-    name: Publish the release version
+  backend:
+    name: Backend Tests
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout the repository and the branch
         uses: actions/checkout@v2
 
-      # Install frontend entrance dependencies and start server
-      - name: Start frontend server
-        working-directory: ./frontend
-        run: |
-          npm ci
-          npm start &
-      # Install backend dependencies and start server
       - name: Create python environment
         working-directory: ./backend
         run: python -m venv venv
 
-      # Create a Python environment
       - name: Activate python environment
         working-directory: ./backend
         run: source venv/bin/activate
@@ -33,10 +26,57 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
           AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+          EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+          EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+          EMAIL_PORT: ${{secrets.EMAIL_PORT}}
+          EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
+          EMAIL_USE_SSL: ${{secrets.EMAIL_USE_SSL}}
         run: | 
-            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
-            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
-            pip install --no-cache-dir -r requirements.txt
+          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+          pip install --no-cache-dir -r requirements.txt
+
+      - name: Start backend server & perform unit tests
+        working-directory: ./backend
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
+          AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+          EMAIL_HOST_USER: ${{secrets.EMAIL_HOST_USER}}
+          EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+          EMAIL_PORT: ${{secrets.EMAIL_PORT}}
+          EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
+          EMAIL_USE_SSL: ${{secrets.EMAIL_USE_SSL}}
+        run: |
+          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
+          python manage.py makemigrations 
+          python manage.py migrate 
+          python manage.py runserver &
+          coverage run manage.py test 
+          coverage report --omit '*/dist-packages/*'
+          # > backend-test.txt
+          
+      # - name: Save backend coverage report 
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: backend-testing
+      #     path: ./backend/backend-test.txt
+
+
+  frontend:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository and the branch
+        uses: actions/checkout@v2
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci
+        
       - name: Start backend server
         working-directory: ./backend
         env:
@@ -44,59 +84,35 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
           AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+          EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+          EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+          EMAIL_PORT: ${{secrets.EMAIL_PORT}}
+          EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
+          EMAIL_USE_SSL: ${{secrets.EMAIL_USE_SSL}}
         run: |
-            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
-            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
-            python manage.py makemigrations 
-            python manage.py migrate 
-            python manage.py runserver &
-    # Install Cypress and run tests
-      - name: Install Cypress
-        working-directory: ./frontend
-        run: | 
-             npm install cypress --save-dev
-             npx cypress run 
-
-      # Run Unit tests Django (Backend)
-      - name: Run Unit tests Django
-        working-directory: ./backend
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
-          AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
-        run: |
-            echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
-            echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
-            coverage run manage.py test 
-            coverage report --omit '*/dist-packages/*' > coverage_report.json
-            python manage.py makemigrations 
-            python manage.py migrate 
-
-      # Save coverage report to repository
-      - name: Save coverage report 
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage-report
-          path: ./backend/coverage_report.json
-
+          python -m venv venv
+          source venv/bin/activate
+          pip install --no-cache-dir -r requirements.txt
+          python manage.py makemigrations
+          python manage.py migrate
+          python manage.py runserver &
           
-      - name: Checkout the repository and the branch
-        uses: actions/checkout@v4
-
-     # Install frontend entrance dependencies and start server
       - name: Start frontend server
         working-directory: ./frontend
-        run: |
-          npm ci
-      
-      - name: Run Unit Tests 
+        run: npm start &
+
+      - name: Install Cypress
         working-directory: ./frontend
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           AWS_STORAGE_BUCKET_NAME: ${{secrets.AWS_STORAGE_BUCKET_NAME}}
           AWS_S3_REGION_NAME: ${{secrets.AWS_S3_REGION_NAME}}
+          EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+          EMAIL_HOST_PASSWORD: ${{secrets.EMAIL_HOST_PASSWORD}}
+          EMAIL_PORT: ${{secrets.EMAIL_PORT}}
+          EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
+          EMAIL_USE_SSL: ${{secrets.EMAIL_USE_SSL}}
         run: |
               npm run coverage > jest-report.json
               cd ..
@@ -152,13 +168,10 @@ jobs:
               git push origin --force
       # Uploads Code Coverage Report
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: THE-390-Team/THE-390
-
-   
-
+          autoDetect: true
 
           
   
