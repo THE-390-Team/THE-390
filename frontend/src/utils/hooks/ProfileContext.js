@@ -106,6 +106,6 @@ export function ProfileProvider(props) {
     }
 
     return (
-        <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation, fetchProfileRole, role}} > {props.children} </ProfileContext.Provider>
+        <ProfileContext.Provider value={{ profileInfo, getProfileInformation, setProfileInformation, fetchProfileRole, role, setRole}} > {props.children} </ProfileContext.Provider>
     )
 }
