@@ -1,7 +1,7 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 20:22:19 UTC 2024
+This repository was last updated Wed May  1 22:56:52 UTC 2024
 
 ## Visit our website at the following link:
 [CondoCare Website](https://condo-management-system.vercel.app/)
@@ -97,17 +97,17 @@ TOTAL                                                                           
 <pre>
 
 =============================== Coverage summary ===============================
-Statements   : 45.54% ( 593/1302 )
-Branches     : 39.38% ( 230/584 )
-Functions    : 49.8% ( 130/261 )
-Lines        : 45.74% ( 586/1281 )
+Statements   : 45.72% ( 604/1321 )
+Branches     : 39.69% ( 235/592 )
+Functions    : 50% ( 132/264 )
+Lines        : 45.92% ( 597/1300 )
 ================================================================================
 </pre>
   <pre>
 ------------------------------------|---------|----------|---------|---------|----------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
 ------------------------------------|---------|----------|---------|---------|----------------------
-All files                           |   45.54 |    39.38 |    49.8 |   45.74 |                      
+All files                           |   45.72 |    39.69 |      50 |   45.92 |                      
  src                                |     100 |      100 |     100 |     100 |                      
   App.js                            |     100 |      100 |     100 |     100 |                      
   index.js                          |     100 |      100 |     100 |     100 |                      
@@ -131,10 +131,10 @@ All files                           |   45.54 |    39.38 |    49.8 |   45.74 |
   CreateParking.js                  |   53.19 |       50 |      80 |   52.68 | ...1-132,137,173-179 
   CreateProperty.js                 |   48.52 |    42.85 |      50 |   48.52 | ...95-99,119-149,159 
   CreateUnit.js                     |   54.25 |       50 |      90 |   53.76 | ...9-120,125,162-168 
- src/components/dashboard           |    90.9 |     87.5 |      80 |    90.9 |                      
+ src/components/dashboard           |    77.5 |    68.75 |   76.92 |    77.5 |                      
   DashBoard.js                      |     100 |      100 |     100 |     100 |                      
   FinancialPublic.js                |     100 |      100 |     100 |     100 |                      
-  SubmittedRequests.js              |   77.77 |       75 |      50 |   77.77 | 29-32                
+  SubmittedRequests.js              |   66.66 |    58.33 |   57.14 |   66.66 | 32,37-43,54,60-63    
  src/components/dashboard/financial |   89.47 |       80 |    87.5 |   89.47 |                      
   Financial.js                      |    87.5 |       80 |   85.71 |    87.5 | 27,156               
   Total.js                          |     100 |      100 |     100 |     100 |                      
@@ -145,8 +145,8 @@ All files                           |   45.54 |    39.38 |    49.8 |   45.74 |
   SignUpCompany.js                  |    0.98 |        0 |       0 |    0.98 | 9-214                
  src/components/nagivationBar       |     100 |      100 |     100 |     100 |                      
   NavigationBar.js                  |     100 |      100 |     100 |     100 |                      
- src/components/operationCost       |   95.45 |    66.66 |     100 |   95.45 |                      
-  OperationCopy.js                  |   95.45 |    66.66 |     100 |   95.45 | 53,81                
+ src/components/operationCost       |   95.45 |       75 |     100 |   95.45 |                      
+  OperationCopy.js                  |   95.45 |       75 |     100 |   95.45 | 53,81                
  src/components/property            |   63.04 |    60.86 |   47.22 |   66.66 |                      
   PropertyCard.js                   |   41.66 |       25 |    7.69 |   45.45 | ...3-37,40-44,86-150 
   PropertyContainer.js              |    61.9 |    53.57 |   57.14 |    61.9 | 35-41,67-95          
@@ -154,8 +154,8 @@ All files                           |   45.54 |    39.38 |    49.8 |   45.74 |
  src/components/registrationKey     |   42.16 |       50 |    37.5 |   43.75 |                      
   SendRegistrationButton.js         |    62.5 |    58.33 |   52.94 |   64.81 | ...77-95,112,145,171 
   SubmitRegistrationButton.js       |       0 |        0 |       0 |       0 | 6-54                 
- src/components/request             |    4.76 |        0 |       0 |    4.76 |                      
-  CreateRequest.js                  |     2.5 |        0 |       0 |     2.5 | 11-115               
+ src/components/request             |    4.65 |        0 |       0 |    4.65 |                      
+  CreateRequest.js                  |    2.43 |        0 |       0 |    2.43 | 11-115               
   EditRequest.js                    |      50 |      100 |       0 |      50 | 11                   
  src/components/userProfile         |    42.5 |       10 |   38.46 |   39.47 |                      
   UserProfile.js                    |    42.5 |       10 |   38.46 |   39.47 | 30-70,85             
