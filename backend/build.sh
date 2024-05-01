@@ -25,5 +25,6 @@ pip install -r requirements.txt
 #     echo "Failed to create superuser, but continuing..."
 # fi
 
+python manage.py makemigrations
 
 python manage.py migrate
