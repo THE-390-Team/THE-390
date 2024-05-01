@@ -1,7 +1,7 @@
 # CondoCare
 Welcome to CondoCare, a student project aimed at revolutionizing condo management! Dive into our platform designed to simplify condo living for residents and management alike. Explore our innovative features for effortless communication, swift maintenance requests, and vibrant community engagement. Join us as we redefine condo living one click at a time!
 
-This repository was last updated Wed May  1 05:28:32 UTC 2024
+This repository was last updated Wed May  1 05:33:22 UTC 2024
 
 ## Visit our website at the following link:
 [CondoCare Website](https://www.condocare.com)
@@ -84,6 +84,7 @@ TOTAL                                                                           
 
 <details>
   <summary>Frontend Coverage Report</summary>
+<pre>
 
 =============================== Coverage summary ===============================
 Statements   : 46.36% ( 530/1143 )
@@ -91,6 +92,7 @@ Branches     : 41.47% ( 219/528 )
 Functions    : 50.44% ( 113/224 )
 Lines        : 46.4% ( 522/1125 )
 ================================================================================
+</pre>
   <pre>
 ------------------------------------|---------|----------|---------|---------|----------------------
 File                                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s    
@@ -160,7 +162,6 @@ All files                           |   46.36 |    41.47 |   50.44 |    46.4 |
 
 ### Indicators
 
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=THE-390-Team_THE-390)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=bugs)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=THE-390-Team_THE-390&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=THE-390-Team_THE-390)
