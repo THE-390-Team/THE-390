@@ -31,6 +31,11 @@ jobs:
           EMAIL_PORT: ${{secrets.EMAIL_PORT}}
           EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
           EMAIL_USE_SSL: ${{secrets.EMAIL_USE_SSL}}
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          CORS_ALLOWED_ORIGINS: ${{secrets.CORS_ALLOWED_ORIGINS}}
+          CORS_ALLOWED_HOSTS: ${{secrets.CORS_ALLOWED_HOSTS}}
+          SECRET_KEY: ${{secrets.SECRET_KEY}}
+          DEBUG: ${{secrets.DEBUG}}
         run: | 
           echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
           echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
@@ -48,6 +53,11 @@ jobs:
           EMAIL_PORT: ${{secrets.EMAIL_PORT}}
           EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
           EMAIL_USE_SSL: ${{secrets.EMAIL_USE_SSL}}
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          CORS_ALLOWED_ORIGINS: ${{secrets.CORS_ALLOWED_ORIGINS}}
+          CORS_ALLOWED_HOSTS: ${{secrets.CORS_ALLOWED_HOSTS}}
+          SECRET_KEY: ${{secrets.SECRET_KEY}}
+          DEBUG: ${{secrets.DEBUG}}
         run: |
           echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
           echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
@@ -89,6 +99,11 @@ jobs:
           EMAIL_PORT: ${{secrets.EMAIL_PORT}}
           EMAIL_USE_TLS: ${{secrets.EMAIL_USE_TLS}}
           EMAIL_USE_SSL: ${{secrets.EMAIL_USE_SSL}}
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          CORS_ALLOWED_ORIGINS: ${{secrets.CORS_ALLOWED_ORIGINS}}
+          CORS_ALLOWED_HOSTS: ${{secrets.CORS_ALLOWED_HOSTS}}
+          SECRET_KEY: ${{secrets.SECRET_KEY}}
+          DEBUG: ${{secrets.DEBUG}}
         run: |
           python -m venv venv
           source venv/bin/activate
