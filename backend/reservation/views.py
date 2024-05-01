@@ -11,6 +11,7 @@ from rest_framework.decorators import action
 #     queryset = Facility.objects.all()
 #     serializer_class = FacilitySerializer
 
+
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
@@ -18,19 +19,20 @@ class ReservationViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            facility = serializer.validated_data['facility']
-            start_time = serializer.validated_data['start_time']
-            end_time = serializer.validated_data['end_time']
+            facility = serializer.validated_data["facility"]
+            start_time = serializer.validated_data["start_time"]
+            end_time = serializer.validated_data["end_time"]
 
             # Check for overlapping reservations
             overlapping_reservations = Reservation.objects.filter(
-                facility=facility,
-                start_time__lt=end_time,
-                end_time__gt=start_time
+                facility=facility, start_time__lt=end_time, end_time__gt=start_time
             ).exists()
 
             if overlapping_reservations:
-                return Response({'error': 'This time slot is already booked.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"error": "This time slot is already booked."},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
 
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

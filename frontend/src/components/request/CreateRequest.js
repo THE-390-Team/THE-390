@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import axiosInstance from "../../api/axios";
-import { useProfile } from "../../utils/hooks/ProfileContext";
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  Form,
-} from "react-bootstrap";
-import LargeTitle from "../LargeTitle.js";
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import axiosInstance from '../../api/axios'
+import { useProfile } from '../../utils/hooks/ProfileContext'
+import { Container, Row, Col, Button, Form } from 'react-bootstrap'
+import LargeTitle from '../LargeTitle.js'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 const CreateRequest = () => {
     let navigate = useNavigate();
@@ -21,9 +15,9 @@ const CreateRequest = () => {
     const id = localStorage.getItem("ID");
     const { propertyId } = useParams();
 
-    useEffect(() => {
-        getProfileInformation();
-    }, []);
+  useEffect(() => {
+    getProfileInformation()
+  }, [])
 
     const [formData, setFormData] = useState({
         type: "Miscelanious",
@@ -32,26 +26,26 @@ const CreateRequest = () => {
         unit: null,
     });
 
-    const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({})
 
-    const handleChange = (e) => {
-        setFormData({
-          ...formData,
-          // Trimming any whitespace
-          [e.target.name]: e.target.value,
-        });
-    
-        //Clear existing error if there is change to input
-        setErrors({ ...errors, [e.target.name]: '' });
-        console.log(formData);
-    };
+  const handleChange = e => {
+    setFormData({
+      ...formData,
+      // Trimming any whitespace
+      [e.target.name]: e.target.value,
+    })
 
-    const handleDateChange = (date) => {
-        setFormData({
-          ...formData,
-          request_date: date,
-        });
-      };
+    //Clear existing error if there is change to input
+    setErrors({ ...errors, [e.target.name]: '' })
+    console.log(formData)
+  }
+
+  const handleDateChange = date => {
+    setFormData({
+      ...formData,
+      request_date: date,
+    })
+  }
 
     const validateForm = () => {
         const errors = {};
@@ -62,23 +56,23 @@ const CreateRequest = () => {
             isValid = false;
         }
 
-        //If there are errors, set errors in state and prevent submit
-        if (Object.keys(errors).length > 0) {
-            setErrors(errors);
-        }
-    
-        return isValid;
+    //If there are errors, set errors in state and prevent submit
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors)
     }
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    
-        //If form is valid, post the form
-        if (validateForm()) {
-          console.log(formData);
-    
-          //post form
-          axiosInstance
+
+    return isValid
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    //If form is valid, post the form
+    if (validateForm()) {
+      console.log(formData)
+
+      //post form
+      axiosInstance
 
           // TODO: Check for endpoint, as this might change
             .post(`/requests/service-request/`, {
@@ -118,12 +112,12 @@ const CreateRequest = () => {
         navigate(-1);
     }
 
-    return (
-        <Container className="w-75 p-3 bg-secondary mt-5 text-dark">
-            <Row className="justify-content-center">
-                {/* a page title */}
-                <LargeTitle title="Create New Request" />
-            </Row>
+  return (
+    <Container className='w-75 p-3 bg-secondary mt-5 text-dark'>
+      <Row className='justify-content-center'>
+        {/* a page title */}
+        <LargeTitle title='Create New Request' />
+      </Row>
 
             <Form className="py-5 text-dark" onSubmit={handleSubmit}>
                 <Row className="mb-3">  
@@ -177,15 +171,24 @@ const CreateRequest = () => {
                     </Form.Group>
                 </Row>
 
-                <Button style={{ marginTop: "20px" }} variant="primary" onClick={goBack}>
-                    Cancel
-                </Button>
-                <Button style={{ marginTop: "20px", marginLeft: "20px" }} variant="primary" type="submit" data-testid="submit-button">
-                    Submit
-                </Button>
-            </Form>
-        </Container>
-    )
+        <Button
+          style={{ marginTop: '20px' }}
+          variant='primary'
+          onClick={goBack}
+        >
+          Cancel
+        </Button>
+        <Button
+          style={{ marginTop: '20px', marginLeft: '20px' }}
+          variant='primary'
+          type='submit'
+          data-testid='submit-button'
+        >
+          Submit
+        </Button>
+      </Form>
+    </Container>
+  )
 }
 
-export default CreateRequest;
+export default CreateRequest

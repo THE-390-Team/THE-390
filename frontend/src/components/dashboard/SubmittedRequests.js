@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import axiosInstance from "../../api/axios";
-import { useProperty } from "../../utils/hooks/PropertyContext"
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import axiosInstance from '../../api/axios'
+import { useProperty } from '../../utils/hooks/PropertyContext'
 import {
   Container,
   Row,
@@ -12,9 +12,9 @@ import {
   ListGroup,
   Accordion,
   Table,
-} from "react-bootstrap";
-import LargeTitle from "../LargeTitle.js";
-import { useProfile } from '../../utils/hooks/ProfileContext.js';
+} from 'react-bootstrap'
+import LargeTitle from '../LargeTitle.js'
+import { useProfile } from '../../utils/hooks/ProfileContext.js'
 
 const SubmittedRequests = () => {
     const { role, fetchProfileRole } = useProfile();
