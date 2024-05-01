@@ -3,8 +3,8 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import Facility, PropertyProfile, CondoUnit, ParkingUnit, Reservation, StorageUnit
-from .serializers import FacilitySerializer, PropertyProfileSerializer, CondoUnitSerializer, ReservationSerializer, StorageUnitSerializer, ParkingUnitSerializer
+from .models import Facility, PropertyProfile, CondoUnit, ParkingUnit, StorageUnit
+from .serializers import FacilitySerializer, PropertyProfileSerializer, CondoUnitSerializer, StorageUnitSerializer, ParkingUnitSerializer
 from user_profile.models import CompanyProfile
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
@@ -15,20 +15,20 @@ class FacilityViewSet(ModelViewSet):
     queryset = Facility.objects.all()
     serializer_class = FacilitySerializer
 
-class ReservationViewSet(ModelViewSet):
-    queryset = Reservation.objects.all()
-    serializer_class = ReservationSerializer
+# class ReservationViewSet(ModelViewSet):
+#     queryset = Reservation.objects.all()
+#     serializer_class = ReservationSerializer
     
     
-    def create(self, request, *args, **kwargs):
-        """
-        Create a reservation. The serializer handles checking for overlapping reservations.
-        """
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)  # This will raise an error if there's an overlap
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+#     def create(self, request, *args, **kwargs):
+#         """
+#         Create a reservation. The serializer handles checking for overlapping reservations.
+#         """
+#         serializer = self.get_serializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)  # This will raise an error if there's an overlap
+#         self.perform_create(serializer)
+#         headers = self.get_success_headers(serializer.data)
+#         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 class PropertyProfileViewSet(ModelViewSet):
     """  
