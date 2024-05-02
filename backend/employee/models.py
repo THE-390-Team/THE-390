@@ -43,7 +43,7 @@ class ServiceRequest(models.Model):
     )
     unit = models.ForeignKey(
         "properties.CondoUnit",
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="requests",
         blank=True,
         null=True,
