@@ -6,6 +6,9 @@ This repository was last updated Thu May  2 03:10:13 UTC 2024
 ## Visit our website at the following link:
 [CondoCare Website](https://condo-management-system.vercel.app/)
 
+## Link to Documentation and Google Drive
+https://drive.google.com/drive/folders/1Yaso52WHZf5TxmD2KLVr0bEh4Nu_fUrg
+
 ## Reports Overviews
 
 <details>
