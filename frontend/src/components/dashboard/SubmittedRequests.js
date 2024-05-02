@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import axiosInstance from "../../api/axios";
-import { useProperty } from "../../utils/hooks/PropertyContext"
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import axiosInstance from '../../api/axios'
+import { useProperty } from '../../utils/hooks/PropertyContext'
 import {
   Container,
   Row,
@@ -12,19 +12,50 @@ import {
   ListGroup,
   Accordion,
   Table,
-} from "react-bootstrap";
-import LargeTitle from "../LargeTitle.js";
-import { useProfile } from '../../utils/hooks/ProfileContext.js';
+} from 'react-bootstrap'
+import LargeTitle from '../LargeTitle.js'
+import { useProfile } from '../../utils/hooks/ProfileContext.js'
 
 const SubmittedRequests = () => {
     const { role, fetchProfileRole } = useProfile();
+    const [ requests, setRequests ] = useState({});
+    const id = localStorage.getItem("ID");
     let navigate = useNavigate();
+    
+    const FetchCompanyRequests = async () => {
+        try {
+          const response = await axiosInstance.get(`/profiles/company-profile/${id}/requests/`);
+          if (response.status === 200) {
+            setRequests(response.data);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+    const FetchPublicRequests = async () => {
+    try {
+        const response = await axiosInstance.get(`/profiles/public-profile/${id}/requests/`);
+        if (response.status === 200) {
+        setRequests(response.data);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+    }
+    
     useEffect(() => {
-        const id = localStorage.getItem("ID");
         //get the id from local storage
         //fetch profile role from the profile context
+        if (role === "COMPANY"){
+            FetchCompanyRequests();
+        } else if (role === "PUBLIC")
+        {
+            FetchPublicRequests();
+        }
         fetchProfileRole();
     }, []);
+
     function handleGoToCreateRequest() {
         navigate('/property-page/:propertyId/create-request');
     }
@@ -40,11 +71,13 @@ const SubmittedRequests = () => {
                 </div>
 
                 <Accordion defaultActiveKey="0" style={{ maxHeight: '600px', overflowY: 'scroll' }}>
-                    <Accordion.Item>
+                    {requests && 
+                    Object.keys(requests).map(requestsKey => (
+                    <Accordion.Item key={requestsKey} eventKey={requestsKey}>
                         <Accordion.Header>
                             <Row style={{ width: '100%' }}>
                                 <Col>
-                                    Request Sender
+                                    Request {`${requestsKey}`}
                                 </Col>
                             </Row>
                         </Accordion.Header>
@@ -56,34 +89,42 @@ const SubmittedRequests = () => {
                                 <tbody>
                                     <tr>
                                         <th>Request Type</th>
-                                        <th style={{ width: '50%', textAlign: "center" }}>Type</th>
+                                        <th style={{ width: '50%', textAlign: "center" }}>{`${requests[requestsKey].type}`}</th>
                                     </tr>
                                     <tr>
                                         <th>Request Date</th>
-                                        <th style={{ width: '50%', textAlign: "center" }}>Date</th>
+                                        <th style={{ width: '50%', textAlign: "center" }}>{`${requests[requestsKey].request_date}`.substring(0, 10)}</th>
                                     </tr>
                                     <tr>
                                         <th>Request Description</th>
-                                        <th style={{ width: '50%', textAlign: "center" }}>Description</th>
+                                        <th style={{ width: '50%', textAlign: "center" }}>{`${requests[requestsKey].request_description}`}</th>
                                     </tr>
                                     <tr>
                                         <th>Completed Status</th>
-                                        <th style={{ width: '50%', textAlign: "center" }}>True/False</th>
+                                        <th style={{ width: '50%', textAlign: "center" }}>{`${requests[requestsKey].completed}`}</th>
+                                    </tr>
+                                    {/* <tr>
+                                        <th>Completion Date</th>
+                                        <th style={{ width: '50%', textAlign: "center" }}>{`${requests[requestsKey].completion_date}`}</th>
                                     </tr>
                                     <tr>
-                                        <th>Completion Date</th>
-                                        <th style={{ width: '50%', textAlign: "center" }}>Date if completed</th>
+                                        <th>Completion Information</th>
+                                        <th style={{ width: '50%', textAlign: "center" }}>{`${requests[requestsKey].completion_information}`}</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Completion Status</th>
+                                        <th style={{ width: '50%', textAlign: "center" }}>{`${requests[requestsKey].completion_status}`}</th>
                                     </tr>
                                     {role === "COMPANY" && 
                                         <tr>
                                             <th>Assigned Employee</th>
-                                            <th style={{ width: '50%', textAlign: "center" }}>Assigned Employee Identifier</th>
+                                            <th style={{ width: '50%', textAlign: "center" }}>{`${requests[requestsKey].assigned_employee}`}</th>
                                         </tr>
-                                    }
+                                    } */}
                                 </tbody>
                             </Table>
                         </Accordion.Body>
-                    </Accordion.Item>
+                    </Accordion.Item>))}
                 </Accordion>
             </Card>
             {

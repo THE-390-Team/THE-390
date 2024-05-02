@@ -1,7 +1,7 @@
 name: Testing 
 
 on: [push]
-
+# This is the YAML Test file that runs upon every push to any of the branches that have the file within it
 jobs:
   Backend:
     name: Backend Tests
@@ -154,7 +154,7 @@ jobs:
               echo "This repository was last updated $(date)" >> temp.md
               echo "" >> temp.md
               echo "## Visit our website at the following link:" >> temp.md
-              echo "[CondoCare Website](https://www.condocare.com)" >> temp.md
+              echo "[CondoCare Website](https://condo-management-system.vercel.app/)" >> temp.md
               echo "" >> temp.md
               echo "## Reports Overviews" >> temp.md
               echo "" >> temp.md
