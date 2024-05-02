@@ -16,11 +16,11 @@ class ServiceRequest(models.Model):
         MISCELANIOUS = "MISCELANIOUS", "Miscelanious"
 
     class Status(models.TextChoices):
-        PENDING = "PENDING", "Pending"
-        IN_PROGRESS = "IN_PROGRESS", "In_Progress"
-        COMPLETED = "COMPLETED", "Completed"
-        CANCELLED = "CANCELLED", "Cancelled"
-
+        PENDING = 'PENDING','Pending'
+        IN_PROGRESS = 'IN_PROGRESS','In_Progress'
+        COMPLETED = 'COMPLETED','Completed'
+        CANCELLED = 'CANCELLED', 'Cancelled'
+        
     class Meta:
         ordering = ["request_date"]
 
@@ -29,7 +29,7 @@ class ServiceRequest(models.Model):
     )
     assigned_employee = models.ForeignKey(
         "user_profile.EmployeeProfile",
-        on_delete=models.DO_NOTHING,
+        on_delete=models.SET_NULL,
         blank=True,
         null=True,
     )

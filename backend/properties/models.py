@@ -151,7 +151,7 @@ class Unit(models.Model):
     class Meta:
         abstract = True
 
-    location = models.CharField(max_length=4)
+    location = models.CharField(max_length=100)
     size = models.DecimalField(decimal_places=2, max_digits=20, default=0)
     purchase_price = models.DecimalField(decimal_places=2, max_digits=20)
     rent_price = models.DecimalField(decimal_places=2, max_digits=20)
